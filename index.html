@@ -261,6 +261,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/07/09/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/07/09/docker/" itemprop="url">
+                  docker
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-09T19:05:05+08:00">
+                2020-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">网站部署</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="docker的安装"><a href="#docker的安装" class="headerlink" title="docker的安装"></a>docker的安装</h1><h2 id="docker的中央仓库"><a href="#docker的中央仓库" class="headerlink" title="docker的中央仓库"></a>docker的中央仓库</h2><ul>
+<li>dockerd的官方仓库<br><a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></li>
+<li>网易蜂巢<br>&lt;c.163.com/hub&gt;</li>
+<li>daoCloud(推荐使用)<br><a href="http://hub.daocloud.io/" target="_blank" rel="noopener">http://hub.daocloud.io/</a></li>
+<li>公司私服<br>在下面配置文件中添加配置  ‘’‘<pre><code>/etc/docker/deamon.json</code></pre><h2 id="docker的安装-1"><a href="#docker的安装-1" class="headerlink" title="docker的安装"></a>docker的安装</h2><h1 id="docker的基本操作"><a href="#docker的基本操作" class="headerlink" title="docker的基本操作"></a>docker的基本操作</h1><h2 id="docker镜像的基本操作"><a href="#docker镜像的基本操作" class="headerlink" title="docker镜像的基本操作"></a>docker镜像的基本操作</h2><h2 id="docker容器的基本操作"><a href="#docker容器的基本操作" class="headerlink" title="docker容器的基本操作"></a>docker容器的基本操作</h2><h1 id="docker应用"><a href="#docker应用" class="headerlink" title="docker应用"></a>docker应用</h1><h2 id="docker安装容器"><a href="#docker安装容器" class="headerlink" title="docker安装容器"></a>docker安装容器</h2><h2 id="docker自定义镜像"><a href="#docker自定义镜像" class="headerlink" title="docker自定义镜像"></a>docker自定义镜像</h2><h2 id="docker数据卷"><a href="#docker数据卷" class="headerlink" title="docker数据卷"></a>docker数据卷</h2><h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/07/09/java%E5%B9%B6%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,7 +547,7 @@
     - 进程执行开销大、可以有效的管理和保护资源</code></pre></li>
 <li><p>程序计数器（为什么私有）</p>
 <pre><code>- 字节码解释器通过改变程序计数器来依次读取指令，实现代码的流程控制
-- 在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候
+- 在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候&lt;br/&gt;
   当前线程还在之前执行的位置
 - 作用：上下文切换之后，线程能恢复到正确的位置</code></pre></li>
 <li><p>虚拟机栈与本地方法栈（为什么私有）</p>
@@ -1569,7 +1717,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1580,7 +1728,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1591,7 +1739,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
