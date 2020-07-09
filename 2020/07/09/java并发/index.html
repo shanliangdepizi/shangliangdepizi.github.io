@@ -87,14 +87,14 @@
 
 
 
-<meta name="description" content="Java并发面试题基础进程与线程定义- 进程      - 程序的一次执行过程（进程从创建到消亡的过程）     - 系统运行程序的最小单元  - 线程      - 共享进程的堆与方法区     - 自己有 程序计数器、虚拟机栈、本地方法栈对比- 关系      - 线程是进程划分的更小的运行单元     - 同一个进程的多个线程极有可能互相影响  - 区别      - 进程相互之间是独立的">
+<meta name="description" content="Java并发面试题基础进程与线程 定义 - 进程      - 程序的一次执行过程（进程从创建到消亡的过程）     - 系统运行程序的最小单元  - 线程      - 共享进程的堆与方法区     - 自己有 程序计数器、虚拟机栈、本地方法栈 对比 - 关系      - 线程是进程划分的更小的运行单元     - 同一个进程的多个线程极有可能互相影响  - 区别      - 进程相互之间是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java并发">
 <meta property="og:url" content="http://myblog.wuchao.space/2020/07/09/java%E5%B9%B6%E5%8F%91/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="Java并发面试题基础进程与线程定义- 进程      - 程序的一次执行过程（进程从创建到消亡的过程）     - 系统运行程序的最小单元  - 线程      - 共享进程的堆与方法区     - 自己有 程序计数器、虚拟机栈、本地方法栈对比- 关系      - 线程是进程划分的更小的运行单元     - 同一个进程的多个线程极有可能互相影响  - 区别      - 进程相互之间是独立的">
+<meta property="og:description" content="Java并发面试题基础进程与线程 定义 - 进程      - 程序的一次执行过程（进程从创建到消亡的过程）     - 系统运行程序的最小单元  - 线程      - 共享进程的堆与方法区     - 自己有 程序计数器、虚拟机栈、本地方法栈 对比 - 关系      - 线程是进程划分的更小的运行单元     - 同一个进程的多个线程极有可能互相影响  - 区别      - 进程相互之间是">
 <meta property="article:published_time" content="2020-07-09T03:39:04.000Z">
-<meta property="article:modified_time" content="2020-07-09T10:34:41.253Z">
+<meta property="article:modified_time" content="2020-07-09T10:54:10.516Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="java多线程">
 <meta name="twitter:card" content="summary">
@@ -365,7 +365,9 @@
       
 
       
-        <h1 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h1><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><pre><code>- 进程
+        <h1 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h1><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><ol>
+<li><p>定义</p>
+<pre><code>- 进程
 
     - 程序的一次执行过程（进程从创建到消亡的过程）
     - 系统运行程序的最小单元
@@ -373,7 +375,9 @@
 - 线程
 
     - 共享进程的堆与方法区
-    - 自己有 程序计数器、虚拟机栈、本地方法栈</code></pre><h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><pre><code>- 关系
+    - 自己有 程序计数器、虚拟机栈、本地方法栈</code></pre></li>
+<li><p>对比</p>
+<pre><code>- 关系
 
     - 线程是进程划分的更小的运行单元
     - 同一个进程的多个线程极有可能互相影响
@@ -386,31 +390,44 @@
 - 优缺点
 
     - 线程执行开销小、不利于资源的管理与保护
-    - 进程执行开销大、可以有效的管理和保护资源</code></pre><h5 id="程序计数器（为什么私有）"><a href="#程序计数器（为什么私有）" class="headerlink" title="程序计数器（为什么私有）"></a>程序计数器（为什么私有）</h5><pre><code>- 字节码解释器通过改变程序计数器来依次读取指令，实现代码的流程控制
-- 在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候，当前线程还在之前执行的位置
-- 作用：上下文切换之后，线程能恢复到正确的位置</code></pre><h5 id="虚拟机栈与本地方法栈（为什么私有）"><a href="#虚拟机栈与本地方法栈（为什么私有）" class="headerlink" title="虚拟机栈与本地方法栈（为什么私有）"></a>虚拟机栈与本地方法栈（为什么私有）</h5><pre><code>- 虚拟机栈：Java方法在执行的时候，用来存储局部变量、操作数栈、常量池等引用信息。入栈与出栈等同于方法的调用与执行结束
-- 本地方法栈：虚拟机栈是为虚拟机执行Java方法（字节码）服务，本地方法为虚拟机使用到的native服务
-- 为了保证现线程中的局部变量不被别的线程访问，所以都是线程私有的</code></pre><h5 id="堆与方法区"><a href="#堆与方法区" class="headerlink" title="堆与方法区"></a>堆与方法区</h5><pre><code>- 都是线程的共享资源
+    - 进程执行开销大、可以有效的管理和保护资源</code></pre></li>
+<li><p>程序计数器（为什么私有）</p>
+<pre><code>- 字节码解释器通过改变程序计数器来依次读取指令，实现代码的流程控制
+- 在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候
+  当前线程还在之前执行的位置
+- 作用：上下文切换之后，线程能恢复到正确的位置</code></pre></li>
+<li><p>虚拟机栈与本地方法栈（为什么私有）</p>
+<pre><code>- 虚拟机栈：Java方法在执行的时候，用来存储局部变量、操作数栈、常量池等  
+            引用信息。入栈与出栈等同于方法的调用与执行结束
+- 本地方法栈：虚拟机栈是为虚拟机执行Java方法（字节码）服务，本地方法为虚拟
+              机使用到的native服务
+- 为了保证现线程中的局部变量不被别的线程访问，所以都是线程私有的</code></pre></li>
+<li><p>堆与方法区</p>
+<pre><code>- 都是线程的共享资源
 - 堆：内存中最大的区域，存储对象
-- 方法区：存放已被加载的类信息、常量、静态变量、即时编译后的代码</code></pre><h4 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h4><pre><code>- 并发
+- 方法区：存放已被加载的类信息、常量、静态变量、即时编译后的代码</code></pre></li>
+</ol>
+<h4 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h4><pre><code>- 并发
 
     - 同一时间段，多个任务都在执行（单位时间内不一定执行）
 
 - 并行
 
-    - 单位时间内，多个任务执行</code></pre><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><pre><code>- 多线程的优点
+    - 单位时间内，多个任务执行</code></pre><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><pre><code>1. 多线程的优点
 
     - 总体来说
 
-        - 从计算机底层：多核CPU时代，多个线程可以同时运行，减少线程上下文切换的开销
-        - 多线程并发编程利于开发高并发系统，可以大大提高系统整体的并发能力以及性能
+        - 从计算机底层：多核CPU时代，多个线程可以同时运行，减少线程上下文切换的
+                     开销
+        - 多线程并发编程利于开发高并发系统，可以大大提高系统整体的并发能力以及性
+          能
 
     - 计算机底层
 
         - 单核时代：多线程为了提高CPU 和O设备的综合利用率
         - 多核时代：提高CPU利用率，多线程可以利用多个CPU核心
 
-- 多线程的缺点
+2. 多线程的缺点
 
     - 内存泄漏
     - 上下文切换
@@ -1513,7 +1530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java并发"><span class="nav-number">1.</span> <span class="nav-text">Java并发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题"><span class="nav-number">1.1.</span> <span class="nav-text">面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#程序计数器（为什么私有）"><span class="nav-number">1.1.1.1.3.</span> <span class="nav-text">程序计数器（为什么私有）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#虚拟机栈与本地方法栈（为什么私有）"><span class="nav-number">1.1.1.1.4.</span> <span class="nav-text">虚拟机栈与本地方法栈（为什么私有）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆与方法区"><span class="nav-number">1.1.1.1.5.</span> <span class="nav-text">堆与方法区</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发与并行"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">线程的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">上下文切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程死锁"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">线程死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sleep-与wait"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">sleep()与wait()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶"><span class="nav-number">1.1.2.</span> <span class="nav-text">进阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必备技能"><span class="nav-number">1.2.</span> <span class="nav-text">必备技能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发容器"><span class="nav-number">1.2.1.</span> <span class="nav-text">并发容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java线程池学习总结"><span class="nav-number">1.2.2.</span> <span class="nav-text">java线程池学习总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乐观锁与悲观锁"><span class="nav-number">1.2.3.</span> <span class="nav-text">乐观锁与悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JUC中的Atomic原子类总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">JUC中的Atomic原子类总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AQS原理以及AQS同步组件"><span class="nav-number">1.2.5.</span> <span class="nav-text">AQS原理以及AQS同步组件</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java并发"><span class="nav-number">1.</span> <span class="nav-text">Java并发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题"><span class="nav-number">1.1.</span> <span class="nav-text">面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发与并行"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">线程的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">上下文切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程死锁"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">线程死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sleep-与wait"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">sleep()与wait()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶"><span class="nav-number">1.1.2.</span> <span class="nav-text">进阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必备技能"><span class="nav-number">1.2.</span> <span class="nav-text">必备技能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发容器"><span class="nav-number">1.2.1.</span> <span class="nav-text">并发容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java线程池学习总结"><span class="nav-number">1.2.2.</span> <span class="nav-text">java线程池学习总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乐观锁与悲观锁"><span class="nav-number">1.2.3.</span> <span class="nav-text">乐观锁与悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JUC中的Atomic原子类总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">JUC中的Atomic原子类总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AQS原理以及AQS同步组件"><span class="nav-number">1.2.5.</span> <span class="nav-text">AQS原理以及AQS同步组件</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
