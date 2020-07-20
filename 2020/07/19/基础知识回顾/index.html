@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="工匠">
 <meta property="og:description" content="面向对象与面向过程的区别 面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
 <meta property="article:published_time" content="2020-07-19T10:36:09.000Z">
-<meta property="article:modified_time" content="2020-07-19T11:41:27.957Z">
+<meta property="article:modified_time" content="2020-07-20T01:58:41.010Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="J2SE">
 <meta name="twitter:card" content="summary">
@@ -428,7 +428,16 @@
 </li>
 <li>*  重载（overload）与重写（override）的区别<ul>
 <li>重载（overload）：在一个类中，方法名一致，返回值类型和参数类型、个数都不同的两个或者两个以上的方法</li>
-<li>重写（override）：在子类和父类中，子类继承父类，并对父类中的某个方法的实现进行重写；要求子类方法与父类方法的方法名、参数类型以及个数一致，而返回值可以不同</li>
+<li>代码示例：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> Overload</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> basis</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/20 8:22</span></span><br><span class="line"><span class="comment">重载示例</span></span><br><span class="line"><span class="comment">方法名一致</span></span><br><span class="line"><span class="comment">参数类型或者参数个数不同</span></span><br><span class="line"><span class="comment">返回值不同</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverLoad</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParameter</span><span class="params">(Integer id, String name)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParameter</span><span class="params">(Integer id, String name, String sex)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">  sex = <span class="string">"男"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>重写（override）：<ul>
+<li>在子类和父类中，子类继承父类，并对父类中的某个方法的实现进行重写；要求子类方法与父类方法的方法名、参数类型以及个数一致，而返回值可以不同</li>
+<li>代码示例<ul>
+<li>父类 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis.overloadAndoverride;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> ParentClass</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> basis</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/20 9:10</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParentClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParentClass</span><span class="params">(Integer id, String name, Integer age)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">  age = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>子类：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis.overloadAndoverride;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> ParentClass</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> basis</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/20 9:10</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParentClass</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParentClass</span><span class="params">(Integer id, String name, Integer age)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">  age = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>*  JAVA面向对象的三大特征<ul>
@@ -440,10 +449,23 @@
 <li>子类可以通过自己的方式实现父类的方法（重写）</li>
 </ul>
 </li>
-<li>多态</li>
+<li>多态<ul>
+<li>程序中所引用的变量以及引用变量所调用的方法，在程序编译期间无法确定，到运行时才可以确定。</li>
+<li>多出现在继承和接口实现中 </li>
 </ul>
 </li>
-<li>*String、StringBuilder、StringBuffer的区别</li>
+</ul>
+</li>
+<li>*String、StringBuilder、StringBuffer的区别<ul>
+<li>可变性<ul>
+<li>String 不可变长字符串，添加新的字符需要创建一个新对象</li>
+<li>StringBuilder、StringBuffer可变长字符串，可以通过append()方法添加新字符 </li>
+</ul>
+</li>
+<li>安全性<br>StringBuffer线程安全（例如append方法上有synchronized修饰）；String、StringBuilder线程不安全 </li>
+<li>执行性能<br>String&gt;StringBuilder&gt;StringBuffer</li>
+</ul>
+</li>
 <li>*自动拆箱和装箱</li>
 <li>静态方法中为什么不能调用非静态变量</li>
 <li>JAVA中定义一个无参构造的作用</li>
