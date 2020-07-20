@@ -87,17 +87,19 @@
 
 
 
-<meta name="description" content="面向对象与面向过程的区别 面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
+<meta name="description" content="面向对象与面向过程的区别  面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础知识回顾">
 <meta property="og:url" content="http://myblog.wuchao.space/2020/07/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="面向对象与面向过程的区别 面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
+<meta property="og:description" content="面向对象与面向过程的区别  面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png">
 <meta property="article:published_time" content="2020-07-19T10:36:09.000Z">
-<meta property="article:modified_time" content="2020-07-20T03:25:02.227Z">
+<meta property="article:modified_time" content="2020-07-20T10:20:58.046Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="J2SE">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png">
 
 
 
@@ -377,12 +379,14 @@
 
       
         <ol>
-<li>面向对象与面向过程的区别<ul>
+<li><p>面向对象与面向过程的区别</p>
+<ul>
 <li>面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化</li>
 <li>面向过程没有面向对象易维护、扩展、复用<a id="more"></a></li>
 </ul>
 </li>
-<li>JAVA语言有哪些特点<ul>
+<li><p>JAVA语言有哪些特点</p>
+<ul>
 <li>面向对象：封装、继承、多态（后面详细解释）</li>
 <li>平台无关：程序执行在JVM虚拟机中，通过JVM调用操作系统的资源</li>
 <li>支持多线程：</li>
@@ -390,13 +394,15 @@
 <li>编译与解释并存 源文件编译成.class文件，JVM执行.class文件</li>
 </ul>
 </li>
-<li>JVM、JDK、JRE 区别<ul>
+<li><p>JVM、JDK、JRE 区别</p>
+<ul>
 <li>JVM: Java虚拟机（Java Vitual Machine），运行Java字节码文件（.class文件），可以在不同的操作系统上执行同一个字节码文件，实现一处编译，到处运行</li>
 <li>JDK Java开发环境(Java Develop Kit):包括JRE、基础类库、Java命令;主要创建和编译程序</li>
 <li>JRE Java运行环境（Java Runnable Environment）:基础类库、Java命令以及一些基础组件</li>
 </ul>
 </li>
-<li>JAVA与C++的区别<ul>
+<li><p>JAVA与C++的区别</p>
+<ul>
 <li>都是面向对象编程</li>
 <li>Java支持多线程和网络编程</li>
 <li>Java只支持单线程，但是提供接口和抽象方法</li>
@@ -404,29 +410,34 @@
 <li>Java可以实现自动内存管理，例如：垃圾回收机制</li>
 </ul>
 </li>
-<li>JAVA应用程序与小程序的区别<ul>
+<li><p>JAVA应用程序与小程序的区别</p>
+<ul>
 <li>Java应用程序：main()方法，作为程序的入口，由此来执行程序</li>
 <li>小程序：没有main()方法，嵌在浏览器的init()或者run()方法中启动</li>
 </ul>
 </li>
-<li>字符型常量与字符串常量的区别<ul>
+<li><p>字符型常量与字符串常量的区别</p>
+<ul>
 <li>形式上：字符型常量是单引号引起的常量；字符型常量是双引号引起的常量</li>
 <li>含以上：字符型常量相当于整数型（ASC值），可参与表达式运算；字符串常量代表是一个地址值（用了表达在内存中存储的位置）</li>
 <li>占用内存大小：字符型常量占 2 个字符；字符串常量占若干字符</li>
 </ul>
 </li>
-<li>构造方法是否能被override（重写）<ul>
+<li><p>构造方法是否能被override（重写）</p>
+<ul>
 <li>不可以</li>
 <li>父类的私有属性和构造方法不能被继承和重写（override）；但是父类的构造方法可以被重载（overload）</li>
 </ul>
 </li>
-<li>JAVA程序的主类、应用程序、小程序的区别<ul>
+<li><p>JAVA程序的主类、应用程序、小程序的区别</p>
+<ul>
 <li>Java主类：带有main()方法的类就是主类，一个程序只有一个主类</li>
 <li>应用程序：不一定要求是pulic类</li>
 <li>小程序：主类继承于JApplet或者Applet中，必须是public类</li>
 </ul>
 </li>
-<li>*  重载（overload）与重写（override）的区别<ul>
+<li><p>*  重载（overload）与重写（override）的区别</p>
+<ul>
 <li>重载（overload）：在一个类中，方法名一致，返回值类型和参数类型、个数都不同的两个或者两个以上的方法</li>
 <li>代码示例：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> Overload</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> basis</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/20 8:22</span></span><br><span class="line"><span class="comment">重载示例</span></span><br><span class="line"><span class="comment">方法名一致</span></span><br><span class="line"><span class="comment">参数类型或者参数个数不同</span></span><br><span class="line"><span class="comment">返回值不同</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverLoad</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParameter</span><span class="params">(Integer id, String name)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParameter</span><span class="params">(Integer id, String name, String sex)</span></span>&#123;</span><br><span class="line">  id = <span class="number">0</span>;</span><br><span class="line">  name = <span class="string">"吴超"</span>;</span><br><span class="line">  sex = <span class="string">"男"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>重写（override）：<ul>
@@ -440,7 +451,8 @@
 </li>
 </ul>
 </li>
-<li>*  JAVA面向对象的三大特征<ul>
+<li><p>*  JAVA面向对象的三大特征</p>
+<ul>
 <li>封装：将一个类中的属性（特征）和方法（行为），封装起来。只能通过此类的实例化对象的set()和get()方法赋值或者访问</li>
 <li>继承<ul>
 <li>只支持单继承</li>
@@ -456,7 +468,8 @@
 </li>
 </ul>
 </li>
-<li>*String、StringBuilder、StringBuffer的区别<ul>
+<li><p>*String、StringBuilder、StringBuffer的区别</p>
+<ul>
 <li>可变性<ul>
 <li>String 不可变长字符串，添加新的字符需要创建一个新对象</li>
 <li>StringBuilder、StringBuffer可变长字符串，可以通过append()方法添加新字符 </li>
@@ -466,7 +479,8 @@
 <li>执行性能<br>String&gt;StringBuilder&gt;StringBuffer</li>
 </ul>
 </li>
-<li>*自动拆箱和装箱<ul>
+<li><p>*自动拆箱和装箱</p>
+<ul>
 <li>拆箱<ul>
 <li>将包装数据类型转化成基本数据类型</li>
 <li>代码示例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> j = i</span><br><span class="line">实现过程：</span><br><span class="line">Integer i = Integer.valueOf(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">int</span> j = i.intValue();</span><br></pre></td></tr></table></figure></li>
@@ -479,19 +493,23 @@
 </li>
 </ul>
 </li>
-<li>静态方法中为什么不能调用非静态变量<ul>
+<li><p>静态方法中为什么不能调用非静态变量</p>
+<ul>
 <li>静态方法属于类，非静态变量属于对象，需要实例化的对象才可以调用，不同对象的成员变量也不同</li>
 <li>而静态变量属于类，可以直接被静态方法调用</li>
 </ul>
 </li>
-<li>JAVA中定义一个无参构造的作用<ul>
+<li><p>JAVA中定义一个无参构造的作用</p>
+<ul>
 <li>对象实例化的时候使用</li>
 <li>如果类中没有构造方法，对象实例化的时候会自动加载一个无参构造方法</li>
 <li>如果父类没有无参构造，子类在调用super()方法时候会报错</li>
 </ul>
 </li>
-<li>import Java 与 Javax的区别<br>Javax是对Java的扩展</li>
-<li>*接口和抽象类的区别<ul>
+<li><p>import Java 与 Javax的区别<br>Javax是对Java的扩展</p>
+</li>
+<li><p>*接口和抽象类的区别</p>
+<ul>
 <li>修饰符<ul>
 <li>接口修饰符一般是public修饰</li>
 <li>抽象类需要使用Abstract修饰，public default protected都可以修饰</li>
@@ -514,7 +532,8 @@
 </li>
 </ul>
 </li>
-<li>*成员变量与局部变量的区别<ul>
+<li><p>*成员变量与局部变量的区别</p>
+<ul>
 <li>作用域<ul>
 <li>成员变量是对象的变量，可以对象可以随意调用</li>
 <li>局部变量是在方法中，方法结束，局部变量失效 </li>
@@ -533,24 +552,137 @@
 </li>
 </ul>
 </li>
-<li>对象实体与对象的引用有什么不同</li>
-<li>什么是返回值类型，返回值类型在方法中的作用</li>
-<li>类中构造方法的作用，类中没有声明的构造方法，怎么执行</li>
-<li>构造方法的特征</li>
-<li>*静态方法与实例方法的区别</li>
-<li>对象相等与对象的引用相等的区别</li>
-<li>* == 与 equles的区别</li>
-<li>*hashCode()与equals()</li>
-<li>简述线程、程序、进程的定义以及之间的区别</li>
-<li>*线程的状态</li>
-<li>关于final关键字的总结</li>
-<li>*Java中的异常处理</li>
-<li>如果字段不想被序列化，怎么办</li>
-<li>键盘输入的方法</li>
-<li>Java中的IO流</li>
-<li>BIO、NIO、AIO的区别</li>
-<li>常用的关键字</li>
-<li>Collections工具类与Arrays工具类常用的方法</li>
+<li><p>对象实体与对象的引用有什么不同</p>
+<ul>
+<li>对象实体是对象在内存的堆中存储的内容</li>
+<li>对象的引用，只是一个内存地址，存在于内存栈中</li>
+</ul>
+</li>
+<li><p>什么是返回值类型，返回值类型在方法中的作用</p>
+<ul>
+<li>返回值类型： 用来接收方法执行完返回的结果</li>
+<li>作用： 接收方法执行结束返回的结果，以便其他的方法或者对象调用</li>
+</ul>
+</li>
+<li><p>类中构造方法的作用，类中没有声明的构造方法，怎么执行</p>
+<ul>
+<li>作用：用于实例化对象</li>
+<li>类中没有声明的改造方法，会自动创建一个无参的构造方法；通过此无参构造方法实例化对象</li>
+</ul>
+</li>
+<li><p>构造方法的特征</p>
+<ul>
+<li>修饰符：一般是public</li>
+<li>返回值类型：没有返回值类型，也不需要用void</li>
+<li>方法名：与类名一致，大小写也一致</li>
+<li>参数类型及个数：参数类型、个数、顺序，根据自己需求确定</li>
+<li>在实例化对象时候才执行</li>
+</ul>
+</li>
+<li><p>*静态方法与实例方法的区别</p>
+<ul>
+<li>归属<ul>
+<li>静态方法属于类，在类被加载时候就会执行，而且只会执行一次</li>
+<li>实例方法属于实例化后的对象，对象调用该方法才会执行 </li>
+</ul>
+</li>
+<li>修饰符<ul>
+<li>静态方法必须要用final来修饰</li>
+<li>实例方法不需要final修饰 </li>
+</ul>
+</li>
+<li>被调用<ul>
+<li>静态方法：ClassName.methodName()或者objectName.methodName()</li>
+<li>实例方法：objectName.methodName() </li>
+</ul>
+</li>
+<li>参数<ul>
+<li>静态方法需要静态的变量作为参数</li>
+<li>实例方法可以是静态变量也可以是非静态变量作为参数 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对象相等与对象的引用相等的区别</p>
+<ul>
+<li>对象相等是：对象在内存栈中的内存地址以及堆中的内容相等</li>
+<li>对象引用相等：对象在内存栈中的内存地址相等</li>
+</ul>
+</li>
+<li><p>* == 与 equles的区别</p>
+<ul>
+<li>==<ul>
+<li>基本数据类型的数值相等</li>
+<li>引用数据类型的内存地址相等 </li>
+</ul>
+</li>
+<li>equals<ul>
+<li>基本数据类型也是比较数值的大小</li>
+<li>如果类没有覆盖equals()方法，比较内存地址</li>
+<li>如果类覆盖了equlas()方法，比较的是对象的内容 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>*hashCode()与equals()</p>
+<ul>
+<li>HashCode()<ul>
+<li>获取对象的hash值</li>
+<li>作用：标记在哈希表中索引的位置 </li>
+</ul>
+</li>
+<li>equals()<ul>
+<li>重写equals()方法，比较对象的内存地址</li>
+<li>重写equals()方法之前，必须重写HashCode()方法，获取对象在哈希表中的索引值 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>简述线程、程序、进程的定义以及之间的区别</p>
+<ul>
+<li>程序<ul>
+<li>程序的执行过程就是进程从创建到销毁的过程 </li>
+<li>一个指令和数据的文件</li>
+</ul>
+</li>
+<li>进程<ul>
+<li>程序一次的执行过程，程序运行的基本单元</li>
+</ul>
+</li>
+<li>线程<ul>
+<li>一个进程可能是一个或者多个线程</li>
+<li>同类的线程共享同一块内存区域 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>*线程的状态</p>
+<ul>
+<li>NEW 线程创建</li>
+<li>RUNNABLE 线程运行</li>
+<li>BLOCKING 线程阻塞 </li>
+<li>WAITTING 线程等待</li>
+<li>TIME_WAITTING 线程等待（限时）</li>
+<li>TERMINATED 线程终止</li>
+<li>图示<br><img src="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png" alt="线程状态"></li>
+</ul>
+</li>
+<li><p>关于final关键字的总结</p>
+</li>
+<li><p>*Java中的异常处理</p>
+</li>
+<li><p>如果字段不想被序列化，怎么办</p>
+</li>
+<li><p>键盘输入的方法</p>
+</li>
+<li><p>Java中的IO流</p>
+</li>
+<li><p>BIO、NIO、AIO的区别</p>
+</li>
+<li><p>常用的关键字</p>
+</li>
+<li><p>Collections工具类与Arrays工具类常用的方法</p>
+</li>
 </ol>
 
       
