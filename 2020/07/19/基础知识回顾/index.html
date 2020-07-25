@@ -95,7 +95,7 @@
 <meta property="og:description" content="面向对象与面向过程的区别  面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
 <meta property="og:image" content="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png">
 <meta property="article:published_time" content="2020-07-19T10:36:09.000Z">
-<meta property="article:modified_time" content="2020-07-20T10:20:58.046Z">
+<meta property="article:modified_time" content="2020-07-24T06:41:17.794Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="J2SE">
 <meta name="twitter:card" content="summary">
@@ -668,8 +668,66 @@
 </ul>
 </li>
 <li><p>关于final关键字的总结</p>
+<ul>
+<li>应用于类中：此类无法被继承</li>
+<li>应用于方法中：方法锁定，无法修改</li>
+<li>应用于变量中<ul>
+<li>基本数据类型的值无法更改</li>
+<li>引用数据类型，引用的对象无法更改，不可以再引用其他的对象 </li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>*Java中的异常处理</p>
+<ul>
+<li><p>Error 程序无法处理的错误</p>
+<ul>
+<li>VitualMachineError 虚拟机错误<ul>
+<li>StatckOverFlowError</li>
+<li>OutOfMemoryError </li>
+</ul>
+</li>
+<li>AWTError  </li>
+</ul>
+</li>
+<li><p>Exception 程序可处理的错误</p>
+<ul>
+<li>编译时候异常<ul>
+<li>IOException 文件异常</li>
+<li>SQLException  SQL异常</li>
+</ul>
+</li>
+<li>RuntimeException 运行时异常<ul>
+<li>NullPointException 空指针异常</li>
+<li>ArrayIndexOutOfBoundsException 数组越界异常</li>
+<li>ClassCastException 类型装换异常</li>
+<li>ArithmeticException 算术异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>throw和throws关键字区别</p>
+<ul>
+<li><p>throw 将产生的异常抛出，是抛出异常的动作</p>
+<ul>
+<li><p>代码示例：</p>
+<pre><code></code></pre></li>
+<li><p>throw 出现在出现在方法体</p>
+</li>
+<li><p>throw 是抛出了异常，执行throw是一定抛出了异常 </p>
+</li>
+</ul>
+</li>
+<li><p>throws 声明将要抛出哪种类型的异常</p>
+<ul>
+<li>throws 出现在方法头上</li>
+<li>throws 表示可能出现某种异常，不一定会有异常</li>
+<li>代码示例： </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>如果字段不想被序列化，怎么办</p>
 </li>
