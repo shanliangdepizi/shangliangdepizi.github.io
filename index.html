@@ -381,8 +381,7 @@
 
       
         
-          
-            <h1 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h1><ol>
+          <h1 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h1><ol>
 <li>何为线程、进程<ul>
 <li>进程<ul>
 <li>程序执行一次的过程</li>
@@ -392,53 +391,14 @@
 <li>线程<ul>
 <li>线程是进程的一个小单元，一个进程可能有一个或者多个线程</li>
 <li>线程之间共享堆内存和方法区</li>
-<li>每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>简要描述线程、进程之间的关系、区别以及优缺点<ul>
-<li>运行时数据区图<ul>
-<li>图示：<br><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595674150517&di=4a513f51591e8b614300328078c8e8ea&imgtype=0&src=http%3A%2F%2Fwww.blog80.com%2Fupload%2F2019%2F03%2Fttni2ss6ceivcrairidg5veiqf.jpg" alt="运行时数据区图"></li>
-<li>程序计数器为什么是私有的</li>
-<li>虚拟机栈和本地方法栈为什么是私有的</li>
-<li>介绍一个堆和方法区</li>
-</ul>
-</li>
-<li>关系<ul>
-<li>一个线程中可能包含一个或者多个线程</li>
-<li>线程是进程划分的更小的执行单位 </li>
-</ul>
-</li>
-<li>区别<ul>
-<li>线程占用的系统资源比进程少</li>
-<li>线程之间的切换的开销小，切换速度快</li>
-<li>进程是各自独立的运行 </li>
-</ul>
-</li>
-<li>优缺点<ul>
-<li>线程之间的切换开销小。线程之间切换时候，依据程序计数器的变化；当程序计数器为0时，说明线程空闲，可以直接执行；当线程执行时候，程序计数器会一直累加，而线程执行完成后，程序计数器会累减，直到程序计数器为0，线程才是空闲的</li>
-<li>线程占用资源少。程序要想获得资源，需要获取cpu的时间片，等CPU时间片是空闲时候，程序可以直接调用资源；当CPU时间片是忙碌时候，线程需要等待CPU空闲才可以调用资源 </li>
-<li>进程不利于资源的管理和保护</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>说一说并发和并行的区别<ul>
-<li>并行 在单位时间内，多个任务同时运行</li>
-<li>并发 在一个时间段内，多个任务同时运行</li>
-</ul>
-</li>
-<li>为什么使用多线程<br>* </li>
-<li>使用多线程的问题</li>
-<li>线程的状态</li>
-<li>什么是上下文切换</li>
-<li>什么是线程死锁，怎么避免死锁</li>
-<li>说一说sleep()方法与wait()方法的区别和共同点</li>
-<li>为什么调用start()方法会执行run()方法而不直接调用run()方法<h1 id="线程进阶"><a href="#线程进阶" class="headerlink" title="线程进阶"></a>线程进阶</h1></li>
-</ol>
-
-          
+<li>每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
