@@ -94,8 +94,9 @@
 <meta property="og:site_name" content="工匠">
 <meta property="og:description" content="面向对象与面向过程的区别  面向对象的执行效率没有面向过程的执行效率快，因为对象被调用时需要实例化 面向过程没有面向对象易维护、扩展、复用">
 <meta property="og:image" content="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png">
+<meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F%E5%88%86%E7%B1%BB.png">
 <meta property="article:published_time" content="2020-07-19T10:36:09.000Z">
-<meta property="article:modified_time" content="2020-07-24T06:41:17.794Z">
+<meta property="article:modified_time" content="2020-07-25T03:43:59.019Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="J2SE">
 <meta name="twitter:card" content="summary">
@@ -680,8 +681,7 @@
 </li>
 <li><p>*Java中的异常处理</p>
 <ul>
-<li><p>Error 程序无法处理的错误</p>
-<ul>
+<li>Error 程序无法处理的错误<ul>
 <li>VitualMachineError 虚拟机错误<ul>
 <li>StatckOverFlowError</li>
 <li>OutOfMemoryError </li>
@@ -690,8 +690,7 @@
 <li>AWTError  </li>
 </ul>
 </li>
-<li><p>Exception 程序可处理的错误</p>
-<ul>
+<li>Exception 程序可处理的错误<ul>
 <li>编译时候异常<ul>
 <li>IOException 文件异常</li>
 <li>SQLException  SQL异常</li>
@@ -706,23 +705,17 @@
 </li>
 </ul>
 </li>
-<li><p>throw和throws关键字区别</p>
-<ul>
-<li><p>throw 将产生的异常抛出，是抛出异常的动作</p>
-<ul>
-<li><p>代码示例：</p>
-<pre><code></code></pre></li>
-<li><p>throw 出现在出现在方法体</p>
-</li>
-<li><p>throw 是抛出了异常，执行throw是一定抛出了异常 </p>
-</li>
+<li>throw和throws关键字区别<ul>
+<li>throw 将产生的异常抛出，是抛出异常的动作<ul>
+<li>代码示例：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis.exception;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> ThrowException</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> exception</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/24 10:10</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThrowException</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    String s= <span class="string">"abc"</span>;</span><br><span class="line">     <span class="keyword">if</span> (s.equals(<span class="string">"abc"</span>))&#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"数字格式不正确"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>throw 出现在出现在方法体</li>
+<li>throw 是抛出了异常，执行throw是一定抛出了异常 </li>
 </ul>
 </li>
-<li><p>throws 声明将要抛出哪种类型的异常</p>
-<ul>
+<li>throws 声明将要抛出哪种类型的异常<ul>
 <li>throws 出现在方法头上</li>
 <li>throws 表示可能出现某种异常，不一定会有异常</li>
-<li>代码示例： </li>
+<li>代码示例:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.wuchao.foundation_test.blogTest.basis.exception;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"><span class="doctag">@author</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@class</span> ThrowsException</span></span><br><span class="line"><span class="comment"><span class="doctag">@module</span> exception</span></span><br><span class="line"><span class="comment"><span class="doctag">@blame</span> wuchao</span></span><br><span class="line"><span class="comment"><span class="doctag">@since</span> 2020/7/25 9:44</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThrowsExceprion</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> <span class="keyword">throws</span> NumberFormatException</span>&#123;</span><br><span class="line">            </span><br><span class="line">    String s = <span class="string">"abc"</span>;</span><br><span class="line">    System.out.println(Double.parseDouble(s));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">try</span>&#123;</span><br><span class="line">        method();</span><br><span class="line">       &#125;<span class="keyword">catch</span> (NumberFormatException n)&#123;</span><br><span class="line">        System.out.println(<span class="string">"非数据类型无法装换"</span>);</span><br><span class="line">      &#125; </span><br><span class="line">     &#125;       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -730,14 +723,184 @@
 </ul>
 </li>
 <li><p>如果字段不想被序列化，怎么办</p>
+<ul>
+<li>可以在不想被序列化的字段前面添加 transitant</li>
+</ul>
 </li>
 <li><p>键盘输入的方法</p>
+<ul>
+<li>使用Scanner类</li>
+<li>使用BufferedReader</li>
+</ul>
 </li>
 <li><p>Java中的IO流</p>
+<ul>
+<li>字节流(Stream)<ul>
+<li>输出流(OutputStream)<ul>
+<li>节点流<ul>
+<li>FileOutputStream 文件字节输出流</li>
+<li>PipedOutpuStream 管道字节输出流</li>
+<li>ByteArrayOutoutStream 字节数组输出流 </li>
+</ul>
+</li>
+<li>处理流 <ul>
+<li>BufferedOutputStream 缓冲字节输出流</li>
+<li>DataOutputStream  基本数据类型字节输出流</li>
+<li>ObjectOutputStream 对象字节输出流（用于对象序列化）</li>
+<li>PrintOutputStream 打印字节输出流 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>输入流(InputStream)<ul>
+<li>节点流<ul>
+<li>FileInputStream 文件字节输入流</li>
+<li>PipedInputStream 管道字节输入流</li>
+<li>ByteArrayInputStream字节数组输入流 </li>
+</ul>
+</li>
+<li>处理流<ul>
+<li>BufferedInputStream 缓冲字节输入流</li>
+<li>DataInputStream 基本数据类型字节输入流</li>
+<li>ObjectInputStream 对象字节输入流 （用于对象序列化）</li>
+<li>SequenceInputStream 合并流   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>字符流<ul>
+<li>输出流(Writer)<ul>
+<li>节点流<ul>
+<li>FileWriter 文件字符输出流</li>
+<li>PipedWriter 管道字符输出流</li>
+<li>CharArrayWtiter 字符数组输出流 </li>
+</ul>
+</li>
+<li>处理流 <ul>
+<li>BufferedWriter 缓冲字符流</li>
+<li>OutputStreamWriter 转换流</li>
+<li>PrintWriter 打印流 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>输入流(Reader)<ul>
+<li>节点流<ul>
+<li>FileReader 文件字符输入流</li>
+<li>PipedReader 管道字符输入流</li>
+<li>CharArrayReader 字符数组输入流 </li>
+</ul>
+</li>
+<li>处理流 <ul>
+<li>BufferedReader 缓冲字符输入流</li>
+<li>InputStreamReader 转换流</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>图示：<br> <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F%E5%88%86%E7%B1%BB.png" alt="IO流图示"> </li>
+</ul>
 </li>
 <li><p>BIO、NIO、AIO的区别</p>
+<ul>
+<li>BIO (Blocking IO)<ul>
+<li>同步阻塞IO</li>
+<li>数据的读取与写入必须阻塞在一个线程中等待其完成完成</li>
+<li>线程执行IO操作时候，进入阻塞状态，无法执行其他操作，直到IO操作完成 </li>
+</ul>
+</li>
+<li>NIO（Non-Blocking IO）<ul>
+<li>同步非阻塞IO</li>
+<li>线程执行IO时候，不进入阻塞状态，线程可执行其他操作，直到通过回调机制通知该线程执行IO的结果</li>
+</ul>
+</li>
+<li>AIO（Asynchronized IO）<ul>
+<li>异步非阻塞IO </li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>常用的关键字</p>
+<ul>
+<li><p>final</p>
+<ul>
+<li>修饰类<ul>
+<li>此类无法被继承</li>
+<li>此类的成员方法隐式的指定成final方法</li>
+</ul>
+</li>
+<li>修饰方法  此方法不能被重写（Overrider）</li>
+<li>修饰变量时是常量<ul>
+<li>基本数据类型的变量，其数值一旦初始化不能被改变</li>
+<li>引用类型的变量，一旦初始化之后不能指向其他的变量    </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>static</p>
+<ul>
+<li>修饰成员变量和方法<ul>
+<li>被static修饰的成员属于类</li>
+<li>被static修饰的变量是静态成员变量，存放在Java内存的方法区中2</li>
+<li>调用方法 类名.成员方法 或者 类名.成员变量 </li>
+</ul>
+</li>
+<li>静态代码块<ul>
+<li>定义在类中的方法外</li>
+<li>静态代码块在非静态代码块之前执行（静态代码块-&gt;非静态代码块-&gt;构造方法）</li>
+<li>无论该类创建多少对象，静态代码块只执行一次 </li>
+</ul>
+</li>
+<li>静态内部类<ul>
+<li>他的创建不依赖外部类的创建（与非静态内部类的区别）</li>
+<li>不能使用任何外部类的非static的成员方法或者变量 </li>
+</ul>
+</li>
+<li>静态导包 <ul>
+<li>代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> 包名</span><br></pre></td></tr></table></figure></li>
+<li>不需要使用导入类的类名+成员方法/成员变量的方式调用，可以直接调用导入类的静态成员变量和方法  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>this</p>
+<ul>
+<li><p>引用类的当前实例</p>
+</li>
+<li><p>代码示例：<br>``` java<br>class Manager {<br> Employees[] employees;</p>
+<p>void manageEmployees() {<br>int totalEmp = this.employees.length; // 引用当前实例的变量<br>System.out.println(“Total employees: “ + totalEmp);<br>this.report(); // 引用当前实例的方法<br>}</p>
+<p>void report() { }<br>}</p>
+</li>
+</ul>
+</li>
+<li><p>super</p>
+<ul>
+<li><p>子类访问父类的变量和方法</p>
+</li>
+<li><p>代码示例：</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>{
+
+<span class="keyword">protected</span> <span class="keyword">int</span> number;
+
+<span class="function"><span class="keyword">protected</span> <span class="title">showNumber</span><span class="params">()</span> </span>{
+   System.out.println(<span class="string">"number = "</span> + number);
+}
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>{
+  <span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span> </span>{
+  <span class="keyword">super</span>.number = <span class="number">10</span>; <span class="comment">// 引用父类的变量</span>
+  <span class="keyword">super</span>.showNumber(); <span class="comment">//引用父类的方法</span>
+}
+}</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>Collections工具类与Arrays工具类常用的方法</p>
 </li>
