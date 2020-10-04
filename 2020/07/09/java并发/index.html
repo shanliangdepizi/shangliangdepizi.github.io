@@ -417,7 +417,7 @@
 <li><p>程序计数器（为什么私有）</p>
 <ul>
 <li>字节码解释器通过改变程序计数器来依次读取指令，实现代码的流程控制</li>
-<li>在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候<br/>当前线程还在之前执行的位置</li>
+<li>在多线程情况下，程序计数器记录当前线程执行的位置，保证上下文切换的时候<br>当前线程还在之前执行的位置</li>
 <li>作用：上下文切换之后，线程能恢复到正确的位置</li>
 </ul>
 </li>
@@ -752,7 +752,7 @@
 <ul>
 <li>ExecutorService.executor(Runnable command)</li>
 <li>ExecutorService.submit(Runnable task)</li>
-<li>ExecutorService.subnit(Callable<T> task)</li>
+<li>ExecutorService.subnit(Callable<T> task)</T></li>
 </ul>
 </li>
 <li><p>执行结束，返回一个Future接口的对象</p>
@@ -799,7 +799,7 @@
 </li>
 <li><p>创建方式</p>
 <ul>
-<li><p>通过构造方法创建： ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> blockingQueue, ThreadFactory factory)</p>
+<li><p>通过构造方法创建： ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> blockingQueue, ThreadFactory factory)</Runnable></p>
 </li>
 <li><p>通过Executor的工具类Executors创建</p>
 <ul>
@@ -873,14 +873,14 @@
 <li>maximumPoolSize:最大线程数，当任务队列满的时候，可以运行线程的最大值</li>
 <li>keepAliveTime:任务队列满的时候，等待的队列可存活的时间</li>
 <li>TimeUnit:时间单位，用来设置存活的时间单位</li>
-<li>BlockingQueue<Runnable>:存放任务的阻塞队列，当前任务打到corePoolSize的时候，任务存在在该队列</li>
+<li>BlockingQueue<Runnable>:存放任务的阻塞队列，当前任务打到corePoolSize的时候，任务存在在该队列</Runnable></li>
 <li>ThreadFactory: 创建线程的工厂</li>
-<li>Handle:饱和策略，当corePoolSize、BlockingQueue<Runnable>、maximum都满的时候执行怎么执行任务的策略</li>
+<li>Handle:饱和策略，当corePoolSize、BlockingQueue<Runnable>、maximum都满的时候执行怎么执行任务的策略</Runnable></li>
 </ul>
 </li>
 <li><p>饱和策略</p>
 <ul>
-<li><p>定义：同时运行的线程数达到线程池的最大线程数(maximumPoolSize)，任务队列也满(BlockingQueue<Runnable>)，执行的策略</p>
+<li><p>定义：同时运行的线程数达到线程池的最大线程数(maximumPoolSize)，任务队列也满(BlockingQueue<Runnable>)，执行的策略</Runnable></p>
 </li>
 <li><p>策略</p>
 <ul>
@@ -898,8 +898,8 @@
 </li>
 <li><p>原理分析</p>
 <ul>
-<li>corePoolSize已满，将任务放入BlockingQueue<Runnable></li>
-<li>BlockingQueue<Runnable>已满，maximum是否已满</li>
+<li>corePoolSize已满，将任务放入BlockingQueue<Runnable></Runnable></li>
+<li>BlockingQueue<Runnable>已满，maximum是否已满</Runnable></li>
 <li>如果，maximum已满，执行设定的饱和策略。</li>
 </ul>
 </li>
