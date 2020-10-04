@@ -381,31 +381,23 @@
 
       
         
-          <p>一. ElasticSearch介绍</p>
-<p>​    1.1 引言</p>
-<blockquote>
+          <h1 id="一-ElasticSearch介绍"><a href="#一-ElasticSearch介绍" class="headerlink" title="一. ElasticSearch介绍"></a>一. ElasticSearch介绍</h1><h2 id="1-1-引言"><a href="#1-1-引言" class="headerlink" title="1.1 引言"></a>1.1 引言</h2><blockquote>
 <ol>
 <li>在海量数据中执行所有功能时候，使用MySQL，效率太低</li>
 <li>如果输入的关键字不准确，同样可以搜索到数据</li>
 <li>将搜索的关键字，以红色字体显示</li>
 </ol>
 </blockquote>
-<p>​    1.2 ES的介绍</p>
-<blockquote>
+<h2 id="1-2-ES的介绍"><a href="#1-2-ES的介绍" class="headerlink" title="1.2 ES的介绍"></a>1.2 ES的介绍</h2><blockquote>
 <p>ES是使用Java语言，基于Lucene的全文检索框架，实现分布式全文检索的功能，提供基于RESTful风格的WEB接口；官方也为各种语言通过的API</p>
 <p>Lucene：本身就是全文检索的底层</p>
 <p>分布式：主要是为了突出他的横向扩展功能（搭建集群）</p>
 <p>全文检索：分词器（将一段词语进行分词，统一放到分词库中，在检索时候，根据关键词从分词库中检索，找到匹配的内容）+倒排查找</p>
 <p>RESTful风格的WEB接口：只需要发送一个HTTP请求，根据请求方式的不同，携带参数的不同，执行相应的功能</p>
 </blockquote>
-<p>​    1.3 ES和Slor</p>
-<ol>
-<li><p>Slor在查询死数据的时候比ES的效率快，但是查询实时数据的时候，Slor的查询速度会降低很多而ES基本没有什么变化</p>
-</li>
-<li><p>Slor的搭建基于Zookeeper来管理，ES本身就支持集群的搭建，不需要第三方的框架</p>
-</li>
-<li></li>
-<li><p>1.4 倒排索引</p>
+<h2 id="1-3-ES和Slor"><a href="#1-3-ES和Slor" class="headerlink" title="1.3 ES和Slor"></a>1.3 ES和Slor</h2><pre><code>1. Slor在查询死数据的时候比ES的效率快，但是查询实时数据的时候，Slor的查询速度会降低很多而ES基本没有什么变化
+2. Slor的搭建基于Zookeeper来管理，ES本身就支持集群的搭建，不需要第三方的框架
+3. </code></pre><h2 id="1-4-倒排索引"><a href="#1-4-倒排索引" class="headerlink" title="1.4 倒排索引"></a>1.4 倒排索引</h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/10/02/ElasticSearch/#more" rel="contents">
