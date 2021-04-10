@@ -284,7 +284,7 @@
               
                 
                 <a class="post-title-link" href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/" itemprop="url">
-                  OSPF数据包与状态/OSPF基础
+                  OSOF基础
                 </a>
               
             
@@ -310,6 +310,50 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/OSPF%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">OSPF协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -539,7 +583,7 @@
               
                 
                 <a class="post-title-link" href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" itemprop="url">
-                  OSPF数据包与状态/OSPF核心工作流程
+                  OSOF核心工作流程
                 </a>
               
             
@@ -565,6 +609,50 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/OSPF%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">OSPF协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -603,8 +691,7 @@
 
       
         
-          
-            <h1 id="OSPF核心工作流程"><a href="#OSPF核心工作流程" class="headerlink" title="OSPF核心工作流程"></a>OSPF核心工作流程</h1><ol>
+          <h1 id="OSPF核心工作流程"><a href="#OSPF核心工作流程" class="headerlink" title="OSPF核心工作流程"></a>OSPF核心工作流程</h1><ol>
 <li><p>工作流程内容</p>
 <ul>
 <li>发现并建立邻居</li>
@@ -617,78 +704,14 @@
 <li>将LSA泛洪到区域内的所有OSPF的路由器，不仅仅是直连的路由器</li>
 <li>手机LSA信息创建LSDB（链路状态数据库、地图）</li>
 <li>使用SPF算法，计算到每个目标网络的最短路径，并将这些信息保存到路由表</li>
-</ul>
-</li>
-<li><p>图示</p>
-<ul>
-<li><p>发现邻居</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/CGInN12AtTU5z7v.png" alt="alt OSPF发现邻居"></li>
-</ul>
-</li>
-<li><p>LSA泛洪</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/HNoy7GqrKEaYkVI.png" alt="alt LSA泛洪"></li>
-</ul>
-</li>
-<li><p>SPF算法得到路由表</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/OXIRmNlQ4jocCTM.png" alt="alt SPF算法获得路由表"></li>
-</ul>
-</li>
-<li><p>OSPF核心工作 流程</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/DEzMkrioyF7vmCV.png" alt="alt OSPF核心工作流程"></li>
-</ul>
-</li>
-<li></li>
-</ul>
-</li>
-<li><p>OSPF三张表</p>
-<ul>
-<li><p>邻居表</p>
-<ul>
-<li><p>记录所有邻居关系</p>
-</li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis ospf peer</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>LSA数据库</p>
-<ul>
-<li><p>记录所有链路信息</p>
-</li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis ospf lsdb</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>路由表</p>
-<ul>
-<li><p>记录最佳路由</p>
-</li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dis ip routing-table</span><br><span class="line">dis ip routing-table protocol ospf</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-
-          
+</ul></li></ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

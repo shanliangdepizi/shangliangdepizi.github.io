@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java, 博客" />
+  <meta name="keywords" content="OSPF," />
 
 
 
@@ -89,7 +89,7 @@
 
 <meta name="description" content="OSPF核心工作流程 工作流程内容  发现并建立邻居 进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新） LSA（Link-State Advertisement）链路状态宣告（路况信息） 链路：路由器接口 状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）   将LSA泛洪到区域内的所有OSPF的路由器，不仅仅">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OSPF数据包与状态&#x2F;OSPF核心工作流程">
+<meta property="og:title" content="OSOF核心工作流程">
 <meta property="og:url" content="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="工匠">
 <meta property="og:description" content="OSPF核心工作流程 工作流程内容  发现并建立邻居 进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新） LSA（Link-State Advertisement）链路状态宣告（路况信息） 链路：路由器接口 状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）   将LSA泛洪到区域内的所有OSPF的路由器，不仅仅">
@@ -98,10 +98,9 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/09/OXIRmNlQ4jocCTM.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/09/DEzMkrioyF7vmCV.png">
 <meta property="article:published_time" content="2021-04-10T01:37:35.540Z">
-<meta property="article:modified_time" content="2021-04-09T03:32:20.171Z">
+<meta property="article:modified_time" content="2021-04-10T01:42:50.368Z">
 <meta property="article:author" content="吴超">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2021/04/09/CGInN12AtTU5z7v.png">
 
@@ -137,7 +136,7 @@
 
 
 
-  <title> OSPF数据包与状态/OSPF核心工作流程 | 工匠 </title>
+  <title> OSOF核心工作流程 | 工匠 </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -287,7 +286,7 @@
             
             
               
-                OSPF数据包与状态/OSPF核心工作流程
+                OSOF核心工作流程
               
             
           </h2>
@@ -312,6 +311,50 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/%E8%B7%AF%E7%94%B1/OSPF%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">OSPF协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -363,7 +406,13 @@
 <li>手机LSA信息创建LSDB（链路状态数据库、地图）</li>
 <li>使用SPF算法，计算到每个目标网络的最短路径，并将这些信息保存到路由表</li>
 </ul>
+<a id="more"></a>
+
+
+
 </li>
+</ol>
+<ol start="2">
 <li><p>图示</p>
 <ul>
 <li><p>发现邻居</p>
@@ -459,6 +508,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/OSPF/" rel="tag"># OSPF</a>
+          
+        </div>
+      
 
       
         
@@ -478,8 +533,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/" rel="prev" title="OSPF数据包与状态/OSPF基础">
-                OSPF数据包与状态/OSPF基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/" rel="prev" title="OSOF基础">
+                OSOF基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -796,7 +851,7 @@
         var disqus_config = function () {
           this.page.url = 'http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/';
           this.page.identifier = '2021/04/10/OSPF数据包与状态/OSPF核心工作流程/';
-          this.page.title = 'OSPF数据包与状态/OSPF核心工作流程';
+          this.page.title = 'OSOF核心工作流程';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wuchao.disqus.com/embed.js';
