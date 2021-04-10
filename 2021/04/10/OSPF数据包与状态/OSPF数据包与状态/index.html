@@ -87,12 +87,12 @@
 
 
 
-<meta name="description" content="1. Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式">
+<meta name="description" content="Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式  命">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSPF数据包与状态">
 <meta property="og:url" content="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="1. Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式">
+<meta property="og:description" content="Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式  命">
 <meta property="og:image" content="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/09/zLuloxC3pFMEcfR.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/09/KkByfntiu4SrEQm.png">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/10/Uqy2akxjWgpm3fQ.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/10/DxfbkdRAIByrlJw.png">
 <meta property="article:published_time" content="2021-04-10T01:01:36.101Z">
-<meta property="article:modified_time" content="2021-04-10T08:25:38.675Z">
+<meta property="article:modified_time" content="2021-04-10T12:59:48.395Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
@@ -408,7 +408,7 @@
       
 
       
-        <h1 id="1-Router-ID"><a href="#1-Router-ID" class="headerlink" title="1. Router ID"></a>1. Router ID</h1><ul>
+        <h1 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h1><ul>
 <li><p>概述</p>
 <ul>
 <li>运行OSPF协议之前，必须选取一个RID</li>
@@ -455,7 +455,7 @@
 
 </li>
 </ul>
-<h1 id="2-OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><a href="#2-OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）" class="headerlink" title="2. OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"></a>2. OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</h1><ul>
+<h1 id="OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><a href="#OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）" class="headerlink" title="OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"></a>OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</h1><ul>
 <li><p>数据包结构</p>
 <ul>
 <li><p>包结构图示</p>
@@ -617,8 +617,8 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-OSPF状态机制"><a href="#3-OSPF状态机制" class="headerlink" title="3. OSPF状态机制"></a>3. OSPF状态机制</h1><h2 id="3-1-OSPF状态概述"><a href="#3-1-OSPF状态概述" class="headerlink" title="3.1 OSPF状态概述"></a>3.1 OSPF状态概述</h2><h3 id="3-1-1-图示"><a href="#3-1-1-图示" class="headerlink" title="3.1.1 图示"></a>3.1.1 图示</h3><p><img src="https://i.loli.net/2021/04/10/ILFRo6c5sxNpjTH.png" alt="alt OSPF状态机制"></p>
-<h3 id="3-1-2-图表"><a href="#3-1-2-图表" class="headerlink" title="3.1.2 图表"></a>3.1.2 图表</h3><table>
+<h1 id="OSPF状态机制"><a href="#OSPF状态机制" class="headerlink" title="OSPF状态机制"></a>OSPF状态机制</h1><h2 id="1-OSPF状态概述"><a href="#1-OSPF状态概述" class="headerlink" title="1. OSPF状态概述"></a>1. OSPF状态概述</h2><h3 id="1-1-图示"><a href="#1-1-图示" class="headerlink" title="1.1 图示"></a>1.1 图示</h3><p><img src="https://i.loli.net/2021/04/10/ILFRo6c5sxNpjTH.png" alt="alt OSPF状态机制"></p>
+<h3 id="1-2-图表"><a href="#1-2-图表" class="headerlink" title="1.2 图表"></a>1.2 图表</h3><table>
 <thead>
 <tr>
 <th>状态</th>
@@ -658,7 +658,7 @@
 <td>只有2-way状态和Full状态是稳定状态</td>
 </tr>
 </tbody></table>
-<h3 id="3-1-3-概述"><a href="#3-1-3-概述" class="headerlink" title="3.1.3 概述"></a>3.1.3 概述</h3><ol>
+<h3 id="1-3-概述"><a href="#1-3-概述" class="headerlink" title="1.3 概述"></a>1.3 概述</h3><ol>
 <li><p>创建邻居</p>
 <ul>
 <li><p>down 失效状态</p>
@@ -958,7 +958,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Router-ID"><span class="nav-number">1.</span> <span class="nav-text">1. Router ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><span class="nav-number">2.</span> <span class="nav-text">2. OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-OSPF状态机制"><span class="nav-number">3.</span> <span class="nav-text">3. OSPF状态机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-OSPF状态概述"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 OSPF状态概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-图示"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-图表"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-概述"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 概述</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Router-ID"><span class="nav-number">1.</span> <span class="nav-text">Router ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><span class="nav-number">2.</span> <span class="nav-text">OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF状态机制"><span class="nav-number">3.</span> <span class="nav-text">OSPF状态机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-OSPF状态概述"><span class="nav-number">3.1.</span> <span class="nav-text">1. OSPF状态概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-图示"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-图表"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2 图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-概述"><span class="nav-number">3.1.3.</span> <span class="nav-text">1.3 概述</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
