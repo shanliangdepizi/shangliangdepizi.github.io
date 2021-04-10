@@ -87,21 +87,23 @@
 
 
 
-<meta name="description" content="title: Java线程date: 2020-07-25 12:14:41tags:categories:  面试题 Java线程  线程基础 何为线程、进程 进程 程序执行一次的过程 程序执行的最小单位    线程 线程是进程的一个小单元，一个进程可能有一个或者多个线程 线程之间共享堆内存和方法区 每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器">
+<meta name="description" content="OSPF核心工作流程 工作流程内容  发现并建立邻居 进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新） LSA（Link-State Advertisement）链路状态宣告（路况信息） 链路：路由器接口 状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）   将LSA泛洪到区域内的所有OSPF的路由器，不仅仅">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java线程">
-<meta property="og:url" content="http://myblog.wuchao.space/2020/07/25/Java%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:title" content="OSPF数据包与状态&#x2F;OSPF核心工作流程">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="title: Java线程date: 2020-07-25 12:14:41tags:categories:  面试题 Java线程  线程基础 何为线程、进程 进程 程序执行一次的过程 程序执行的最小单位    线程 线程是进程的一个小单元，一个进程可能有一个或者多个线程 线程之间共享堆内存和方法区 每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595674150517&di=4a513f51591e8b614300328078c8e8ea&imgtype=0&src=http%253A%252F%252Fwww.blog80.com%252Fupload%252F2019%252F03%252Fttni2ss6ceivcrairidg5veiqf.jpg">
-<meta property="og:image" content="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png">
-<meta property="article:published_time" content="2020-07-25T04:14:41.048Z">
-<meta property="article:modified_time" content="2020-09-12T02:31:49.509Z">
+<meta property="og:description" content="OSPF核心工作流程 工作流程内容  发现并建立邻居 进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新） LSA（Link-State Advertisement）链路状态宣告（路况信息） 链路：路由器接口 状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）   将LSA泛洪到区域内的所有OSPF的路由器，不仅仅">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/CGInN12AtTU5z7v.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/HNoy7GqrKEaYkVI.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/OXIRmNlQ4jocCTM.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/DEzMkrioyF7vmCV.png">
+<meta property="article:published_time" content="2021-04-10T01:37:35.540Z">
+<meta property="article:modified_time" content="2021-04-09T03:32:20.171Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595674150517&di=4a513f51591e8b614300328078c8e8ea&imgtype=0&src=http%253A%252F%252Fwww.blog80.com%252Fupload%252F2019%252F03%252Fttni2ss6ceivcrairidg5veiqf.jpg">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/09/CGInN12AtTU5z7v.png">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://myblog.wuchao.space/2020/07/25/Java线程/"/>
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/10/OSPF数据包与状态/OSPF核心工作流程/"/>
 
 
 
 
 
-  <title> Java线程 | 工匠 </title>
+  <title> OSPF数据包与状态/OSPF核心工作流程 | 工匠 </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/07/25/Java%E7%BA%BF%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -285,7 +287,7 @@
             
             
               
-                Java线程
+                OSPF数据包与状态/OSPF核心工作流程
               
             
           </h2>
@@ -300,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T12:14:41+08:00">
-                2020-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:37:35+08:00">
+                2021-04-10
               </time>
             
 
@@ -319,9 +321,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/07/25/Java线程/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/10/OSPF数据包与状态/OSPF核心工作流程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -347,107 +349,90 @@
       
 
       
-        <p>title: Java线程<br>date: 2020-07-25 12:14:41<br>tags:<br>categories:</p>
+        <h1 id="OSPF核心工作流程"><a href="#OSPF核心工作流程" class="headerlink" title="OSPF核心工作流程"></a>OSPF核心工作流程</h1><ol>
+<li><p>工作流程内容</p>
 <ul>
-<li>面试题</li>
-<li>Java线程</li>
-</ul>
-<h1 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h1><ol>
-<li>何为线程、进程<ul>
-<li>进程<ul>
-<li>程序执行一次的过程</li>
-<li>程序执行的最小单位 </li>
+<li>发现并建立邻居</li>
+<li>进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新）<ul>
+<li>LSA（Link-State Advertisement）链路状态宣告（路况信息）</li>
+<li>链路：路由器接口</li>
+<li>状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）</li>
 </ul>
 </li>
-<li>线程<ul>
-<li>线程是进程的一个小单元，一个进程可能有一个或者多个线程</li>
-<li>线程之间共享堆内存和方法区</li>
-<li>每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器<a id="more"></a></li>
+<li>将LSA泛洪到区域内的所有OSPF的路由器，不仅仅是直连的路由器</li>
+<li>手机LSA信息创建LSDB（链路状态数据库、地图）</li>
+<li>使用SPF算法，计算到每个目标网络的最短路径，并将这些信息保存到路由表</li>
 </ul>
 </li>
+<li><p>图示</p>
+<ul>
+<li><p>发现邻居</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/CGInN12AtTU5z7v.png" alt="alt OSPF发现邻居"></li>
 </ul>
 </li>
-<li>简要描述线程、进程之间的关系、区别以及优缺点<ul>
-<li>运行时数据区图<ul>
-<li>图示：<br><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595674150517&di=4a513f51591e8b614300328078c8e8ea&imgtype=0&src=http%3A%2F%2Fwww.blog80.com%2Fupload%2F2019%2F03%2Fttni2ss6ceivcrairidg5veiqf.jpg" alt="运行时数据区图"></li>
-<li>程序计数器为什么是私有的</li>
-<li>虚拟机栈和本地方法栈为什么是私有的</li>
-<li>介绍一个堆和方法区</li>
+<li><p>LSA泛洪</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/HNoy7GqrKEaYkVI.png" alt="alt LSA泛洪"></li>
 </ul>
 </li>
-<li>关系<ul>
-<li>一个线程中可能包含一个或者多个线程</li>
-<li>线程是进程划分的更小的执行单位 </li>
+<li><p>SPF算法得到路由表</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/OXIRmNlQ4jocCTM.png" alt="alt SPF算法获得路由表"></li>
 </ul>
 </li>
-<li>区别<ul>
-<li>线程占用的系统资源比进程少</li>
-<li>线程之间的切换的开销小，切换速度快</li>
-<li>进程是各自独立的运行 </li>
+<li><p>OSPF核心工作 流程</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/DEzMkrioyF7vmCV.png" alt="alt OSPF核心工作流程"></li>
 </ul>
 </li>
-<li>优缺点<ul>
-<li>线程之间的切换开销小。线程之间切换时候，依据程序计数器的变化；当程序计数器为0时，说明线程空闲，可以直接执行；当线程执行时候，程序计数器会一直累加，而线程执行完成后，程序计数器会累减，直到程序计数器为0，线程才是空闲的</li>
-<li>线程占用资源少。程序要想获得资源，需要获取cpu的时间片，等CPU时间片是空闲时候，程序可以直接调用资源；当CPU时间片是忙碌时候，线程需要等待CPU空闲才可以调用资源 </li>
-<li>进程不利于资源的管理和保护</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>说一说并发和并行的区别<ul>
-<li>并行 在单位时间内，多个任务同时运行</li>
-<li>并发 在一个时间段内，多个任务同时运行</li>
-</ul>
-</li>
-<li>为什么使用多线程<ul>
-<li>充分的利用系统资源，多核CPU时代，减少上下文切换的开销，提高CPU的利用率</li>
-<li>提高系统的并发能力和性能</li>
-</ul>
-</li>
-<li>使用多线程的问题<ul>
-<li>线程安全问题</li>
-<li>线程死锁问题（后面会写）</li>
-<li>内存泄漏问题</li>
-</ul>
-</li>
-<li>线程的状态<ul>
-<li>NEW 线程创建</li>
-<li>RUNNABLE 线程运行</li>
-<li>BLOCKING 线程阻塞 </li>
-<li>WAITTING 线程等待</li>
-<li>TIME_WAITTING 线程等待（限时）</li>
-<li>TERMINATED 线程终止</li>
-<li>图示<br><img src="https://images2017.cnblogs.com/blog/1294022/201712/1294022-20171206070245644-1496567738.png" alt="线程状态"></li>
-</ul>
-</li>
-<li>什么是上下文切换<ul>
-<li>任务从保存到记加载的过程就是一次上下文切换</li>
-<li>当前任务的执行完成之后，CPU时间片切换到其他任务之前，记录自己的状态，以便下次任务切换回来，可以继续加载当前任务的状态</li>
-<li>线程数&gt;CPU核心数 CPU采用给线程分配时间片并轮询的方式</li>
-</ul>
-</li>
-<li>什么是线程死锁，怎么避免死锁<ul>
-<li>线程死锁<br> 多个线程同时阻塞，一个或者多个线程都在等待某一个资源被释放 </li>
-<li>避免线程的方法<ul>
-<li>破坏互斥条件：无法实现，同步即互斥</li>
-<li>破坏请求和保持条件：一次性请求任务执行所需要的所有资源</li>
-<li>破幻不剥夺条件：占用部分资源的线程进一步申请其他资源时候，如果申请不到，则释放该资源占用的所有的资源</li>
-<li>破幻循环等待条件：按特定顺序申请资源  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>说一说sleep()方法与wait()方法的区别和共同点<ul>
-<li>共同点<ul>
 <li></li>
 </ul>
 </li>
-<li>区别</li>
+<li><p>OSPF三张表</p>
+<ul>
+<li><p>邻居表</p>
+<ul>
+<li><p>记录所有邻居关系</p>
+</li>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis ospf peer</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 </li>
-<li>为什么调用start()方法会执行run()方法而不直接调用run()方法</li>
+</ul>
+</li>
 </ol>
-<h1 id="线程进阶"><a href="#线程进阶" class="headerlink" title="线程进阶"></a>线程进阶</h1>
+<ul>
+<li><p>LSA数据库</p>
+<ul>
+<li><p>记录所有链路信息</p>
+</li>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis ospf lsdb</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>路由表</p>
+<ul>
+<li><p>记录最佳路由</p>
+</li>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dis ip routing-table</span><br><span class="line">dis ip routing-table protocol ospf</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -483,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/19/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/" rel="next" title="基础知识回顾">
-                <i class="fa fa-chevron-left"></i> 基础知识回顾
+              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/" rel="next" title="OSPF数据包与状态">
+                <i class="fa fa-chevron-left"></i> OSPF数据包与状态
               </a>
             
           </div>
@@ -493,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/10/02/ElasticSearch/" rel="prev" title="ElasticSearch">
-                ElasticSearch <i class="fa fa-chevron-right"></i>
+              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/" rel="prev" title="OSPF数据包与状态/OSPF基础">
+                OSPF数据包与状态/OSPF基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -665,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程基础"><span class="nav-number">1.</span> <span class="nav-text">线程基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程进阶"><span class="nav-number">2.</span> <span class="nav-text">线程进阶</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF核心工作流程"><span class="nav-number">1.</span> <span class="nav-text">OSPF核心工作流程</span></a></li></ol></div>
             
 
           </div>
@@ -809,9 +794,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://myblog.wuchao.space/2020/07/25/Java%E7%BA%BF%E7%A8%8B/';
-          this.page.identifier = '2020/07/25/Java线程/';
-          this.page.title = 'Java线程';
+          this.page.url = 'http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/';
+          this.page.identifier = '2021/04/10/OSPF数据包与状态/OSPF核心工作流程/';
+          this.page.title = 'OSPF数据包与状态/OSPF核心工作流程';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wuchao.disqus.com/embed.js';
