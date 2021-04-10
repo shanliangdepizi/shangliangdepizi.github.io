@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/09/zLuloxC3pFMEcfR.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/09/KkByfntiu4SrEQm.png">
 <meta property="article:published_time" content="2021-04-10T01:01:36.101Z">
-<meta property="article:modified_time" content="2021-04-10T01:29:18.217Z">
+<meta property="article:modified_time" content="2021-04-10T01:34:54.160Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
@@ -429,7 +429,11 @@
 
   * 命令
 
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line"># 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
+
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  ospf 1 route-id 1.1.1.1</span><br><span class="line">  # 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
+
+
 
 * 图表
 
@@ -512,9 +516,15 @@
 </ol>
 <pre><code>* 解析图示
 
+
+
   * ![alt OSPF包结构-数据报头解析](https://i.loli.net/2021/04/09/unTewRbU6cHPMK9.png)
 
+
+
 * 抓包图示
+
+
 
   * ![alt OSPF包结构-数据包报头](https://i.loli.net/2021/04/09/bOPS9lIFo51Yq2W.png)</code></pre><ul>
 <li><p>数据包类型</p>
@@ -571,13 +581,17 @@
 
       * R1配置
 
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g 0&#x2F;0&#x2F;1</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    sys</span><br><span class="line">    sys R1</span><br><span class="line">    int g 0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 12.0.0.1 24</span><br><span class="line">    </span><br><span class="line">    ospf 1 route-id 1.1.1.1</span><br><span class="line">    area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
 
 
 
       * R2配置
 
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g 0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line"></span><br><span class="line">ospf 1 route-id 2.2.2.2</span><br><span class="line">area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    sys</span><br><span class="line">    sys R2</span><br><span class="line">    int g 0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 12.0.0.2 24</span><br><span class="line">    </span><br><span class="line">ospf 1 route-id 2.2.2.2</span><br><span class="line">    area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
 
 
 
