@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/07/25/Java%E7%BA%BF%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/10/02/ElasticSearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/" itemprop="url">
-                  Java线程
+                <a class="post-title-link" href="/2020/10/02/ElasticSearch/" itemprop="url">
+                  ElasticSearch
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T12:14:41+08:00">
-                2020-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-02T22:05:09+08:00">
+                2020-10-02
               </time>
             
 
@@ -312,6 +312,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/ElasticSearch/" itemprop="url" rel="index">
+                    <span itemprop="name">ElasticSearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -320,9 +353,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#comments" itemprop="discussionUrl">
+                <a href="/2020/10/02/ElasticSearch/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/07/25/Java线程/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/10/02/ElasticSearch/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -349,25 +382,26 @@
 
       
         
-          <p>title: Java线程<br>date: 2020-07-25 12:14:41<br>tags:<br>categories:</p>
-<ul>
-<li>面试题</li>
-<li>Java线程</li>
-</ul>
-<h1 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h1><ol>
-<li>何为线程、进程<ul>
-<li>进程<ul>
-<li>程序执行一次的过程</li>
-<li>程序执行的最小单位 </li>
-</ul>
-</li>
-<li>线程<ul>
-<li>线程是进程的一个小单元，一个进程可能有一个或者多个线程</li>
-<li>线程之间共享堆内存和方法区</li>
-<li>每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器</li></ul></li></ul></li></ol>
+          <h1 id="一-ElasticSearch介绍"><a href="#一-ElasticSearch介绍" class="headerlink" title="一. ElasticSearch介绍"></a>一. ElasticSearch介绍</h1><h2 id="1-1-引言"><a href="#1-1-引言" class="headerlink" title="1.1 引言"></a>1.1 引言</h2><blockquote>
+<ol>
+<li>在海量数据中执行所有功能时候，使用MySQL，效率太低</li>
+<li>如果输入的关键字不准确，同样可以搜索到数据</li>
+<li>将搜索的关键字，以红色字体显示</li>
+</ol>
+</blockquote>
+<h2 id="1-2-ES的介绍"><a href="#1-2-ES的介绍" class="headerlink" title="1.2 ES的介绍"></a>1.2 ES的介绍</h2><blockquote>
+<p>ES是使用Java语言，基于Lucene的全文检索框架，实现分布式全文检索的功能，提供基于RESTful风格的WEB接口；官方也为各种语言通过的API</p>
+<p>Lucene：本身就是全文检索的底层</p>
+<p>分布式：主要是为了突出他的横向扩展功能（搭建集群）</p>
+<p>全文检索：分词器（将一段词语进行分词，统一放到分词库中，在检索时候，根据关键词从分词库中检索，找到匹配的内容）+倒排查找</p>
+<p>RESTful风格的WEB接口：只需要发送一个HTTP请求，根据请求方式的不同，携带参数的不同，执行相应的功能</p>
+</blockquote>
+<h2 id="1-3-ES和Slor"><a href="#1-3-ES和Slor" class="headerlink" title="1.3 ES和Slor"></a>1.3 ES和Slor</h2><pre><code>1. Slor在查询死数据的时候比ES的效率快，但是查询实时数据的时候，Slor的查询速度会降低很多而ES基本没有什么变化
+2. Slor的搭建基于Zookeeper来管理，ES本身就支持集群的搭建，不需要第三方的框架
+3. </code></pre><h2 id="1-4-倒排索引"><a href="#1-4-倒排索引" class="headerlink" title="1.4 倒排索引"></a>1.4 倒排索引</h2>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#more" rel="contents">
+            <a class="btn" href="/2020/10/02/ElasticSearch/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -408,7 +442,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -453,7 +487,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
