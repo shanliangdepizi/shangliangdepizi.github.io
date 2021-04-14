@@ -87,36 +87,27 @@
 
 
 
-<meta name="description" content="邻居发现条件RID唯一 邻居路由器设置相同的RID  R1路由器设置 123456&lt;R1&gt;sys[R1]ospf 1 rout[R1]ospf 1 router-id 1.1.1.1[R2-ospf-1]area 0[R2-ospf-1-area-0.0.0.0]networ	[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255  R2路">
+<meta name="description" content="Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式  命">
 <meta property="og:type" content="article">
-<meta property="og:title" content="邻居建立的条件（必须三层直连）">
-<meta property="og:url" content="http://myblog.wuchao.space/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/index.html">
+<meta property="og:title" content="OSPF数据包与状态">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="邻居发现条件RID唯一 邻居路由器设置相同的RID  R1路由器设置 123456&lt;R1&gt;sys[R1]ospf 1 rout[R1]ospf 1 router-id 1.1.1.1[R2-ospf-1]area 0[R2-ospf-1-area-0.0.0.0]networ	[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255  R2路">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/vjyS2ga9lVWQqYd.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/jokiCpqn2Xl6Nz9.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/EZuRMxa5GUpWQ7X.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/rA9LPG5UZfHwiCu.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/NlA7B52wK94RGHt.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/bGWi1zyq4lmJOCT.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/S4bWPqDC6axMeNo.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/bGcUzVevohMwj6Z.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/7pIjfFnw8dTVD4A.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/i5vLJ8PyuztKd7B.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/ZeyhLFYnbf6JBou.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/2wPzvTohrfJlnW1.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/FXBNJxtZYy8VngE.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/11/rC42WzUs6V8fvj7.png">
-<meta property="article:published_time" content="2021-04-11T07:25:36.741Z">
-<meta property="article:modified_time" content="2021-04-11T09:20:48.095Z">
+<meta property="og:description" content="Router ID 概述  运行OSPF协议之前，必须选取一个RID 用来标识唯一的OSPF路由器 RID可以自动选取，也可以手动配置   选取规则  图表    规则 备注    RID选取顺序规则 1. 手动配置（推荐使用）2. 活动的回环接口上选择IP地址最高的3. 活动的物理接口上选择IP地址最高的   PS RID的选取具有非抢占性，除非重启OSPF进程        手动配置方式  命">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/zLuloxC3pFMEcfR.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/KkByfntiu4SrEQm.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/09/95izBbxD1ItWHwq.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/10/U7n2YS5Ph6WLf1A.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/10/ILFRo6c5sxNpjTH.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/10/J6FBvtWeQK4ruql.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/10/Uqy2akxjWgpm3fQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/10/DxfbkdRAIByrlJw.png">
+<meta property="article:published_time" content="2021-04-10T01:01:36.101Z">
+<meta property="article:modified_time" content="2021-04-11T07:21:59.586Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png">
 
 
 
@@ -144,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/11/OSPF数据包与状态/OSPF邻居建立条件/"/>
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/"/>
 
 
 
 
 
-  <title> 邻居建立的条件（必须三层直连） | 工匠 </title>
+  <title> OSPF数据包与状态 | 工匠 </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -300,7 +291,7 @@
             
             
               
-                邻居建立的条件（必须三层直连）
+                OSPF数据包与状态
               
             
           </h2>
@@ -315,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-11T15:25:36+08:00">
-                2021-04-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:01:36+08:00">
+                2021-04-10
               </time>
             
 
@@ -389,9 +380,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/11/OSPF数据包与状态/OSPF邻居建立条件/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -422,126 +413,331 @@
       
 
       
-        <h1 id="邻居发现"><a href="#邻居发现" class="headerlink" title="邻居发现"></a>邻居发现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h3 id="RID唯一"><a href="#RID唯一" class="headerlink" title="RID唯一"></a>RID唯一</h3><ol>
-<li><p>邻居路由器设置相同的RID</p>
+        <h1 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h1><ul>
+<li><p>概述</p>
 <ul>
-<li><p>R1路由器设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]ospf 1 rout</span><br><span class="line">[R1]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>R2路由器设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">[R2]ospf 1 rout	</span><br><span class="line">[R2]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
+<li>运行OSPF协议之前，必须选取一个RID</li>
+<li>用来标识唯一的OSPF路由器</li>
+<li>RID可以自动选取，也可以手动配置</li>
 </ul>
 </li>
-</ol>
-<ol start="2">
-<li><p>抓包情况</p>
+<li><p>选取规则</p>
 <ul>
-<li><p>正常情况下</p>
-<ul>
-<li><p>R1的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png" alt="alt OSPF邻居建立-RID1"></p>
-</li>
-<li><p>R2的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/vjyS2ga9lVWQqYd.png" alt="alt 邻居建立RID2"></p>
-<a id="more"></a>
-</li>
-</ul>
-</li>
-<li><p>RID一致情况</p>
-<ul>
-<li><p>R1的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/jokiCpqn2Xl6Nz9.png" alt="alt OSPF邻居建立-RID1-2"></p>
-</li>
-<li><p>R2的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/EZuRMxa5GUpWQ7X.png" alt="alt OSPF邻居建立-RID2-2"></p>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th align="left">规则</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">RID选取顺序规则</td>
+<td>1. 手动配置（推荐使用）<br>2. 活动的回环接口上选择IP地址最高的<br>3. 活动的物理接口上选择IP地址最高的</td>
+</tr>
+<tr>
+<td align="left">PS</td>
+<td>RID的选取具有非抢占性，除非重启OSPF进程</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>路由器OSPF状态</p>
 <ul>
-<li><p>RID唯一情况下，OSPF的状态</p>
-<p><img src="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png" alt="alt OSPF状态-RID唯一"></p>
-</li>
-<li><p>RID不唯一情况下，OSPF状态</p>
-<p><img src="https://i.loli.net/2021/04/11/rA9LPG5UZfHwiCu.png" alt="alt OSPF邻居-RID不唯一"></p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="区域ID（Area-ID）要一致"><a href="#区域ID（Area-ID）要一致" class="headerlink" title="区域ID（Area ID）要一致"></a>区域ID（Area ID）要一致</h3><ol>
-<li>至少一个接口在一个区域的两个路由器才可以建立邻居关系</li>
-</ol>
-<h3 id="邻居路由器的Hello数据包与Dead时间一致"><a href="#邻居路由器的Hello数据包与Dead时间一致" class="headerlink" title="邻居路由器的Hello数据包与Dead时间一致"></a>邻居路由器的Hello数据包与Dead时间一致</h3><ol>
-<li><p>Hello数据包时间一致情况下</p>
-<ul>
-<li><p>抓包</p>
-<p><img src="https://i.loli.net/2021/04/11/NlA7B52wK94RGHt.png" alt="alt OSPF-Hello数据包时间一致抓包"></p>
-<p><img src="https://i.loli.net/2021/04/11/bGWi1zyq4lmJOCT.png" alt="alt OSPF-Hello数据包时间一致"></p>
-</li>
-<li><p>路由器OSPF状态</p>
-<p><img src="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png" alt="alt OSPF-Hello-OSPF状态"></p>
-</li>
-</ul>
-</li>
-<li><p>Hello数据包不一致的情况下</p>
-<ul>
-<li><p>将R1的Hello数据包设置成9sec</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int</span><br><span class="line">[R1]interface g0&#x2F;0&#x2F;1</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;1]ospf timer hello 9</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>抓包</p>
-<p><img src="https://i.loli.net/2021/04/11/S4bWPqDC6axMeNo.png" alt="alt OSPF-Hello-抓包"></p>
-<p><img src="https://i.loli.net/2021/04/11/bGcUzVevohMwj6Z.png" alt="alt OSPF-Hello-抓包"></p>
-</li>
-<li><p>路由器OSPF状态</p>
-<p><img src="https://i.loli.net/2021/04/11/7pIjfFnw8dTVD4A.png" alt="alt OSPF-Hello-路由器OSPF状态"></p>
-</li>
-</ul>
-<h3 id="链路RTU大小一致（默认不开启，思科默认开启）"><a href="#链路RTU大小一致（默认不开启，思科默认开启）" class="headerlink" title="链路RTU大小一致（默认不开启，思科默认开启）"></a>链路RTU大小一致（默认不开启，思科默认开启）</h3><h3 id="如果开启认证，认证方式要一致"><a href="#如果开启认证，认证方式要一致" class="headerlink" title="如果开启认证，认证方式要一致"></a>如果开启认证，认证方式要一致</h3><h3 id="子网掩码一致（以太网环境）"><a href="#子网掩码一致（以太网环境）" class="headerlink" title="子网掩码一致（以太网环境）"></a>子网掩码一致（以太网环境）</h3><ol>
-<li><p>子网掩码一致</p>
-<ul>
-<li><p>抓包</p>
-<p><img src="https://i.loli.net/2021/04/11/i5vLJ8PyuztKd7B.png" alt="alt OSPF子网掩码一致-抓包"></p>
-<p><img src="https://i.loli.net/2021/04/11/ZeyhLFYnbf6JBou.png" alt="alt OSPF子网掩码一致-抓包"></p>
-</li>
-<li><p>路由器OSPF状态</p>
-<p><img src="https://i.loli.net/2021/04/11/38iScbBVp2DaOs9.png" alt="alt OSPF子网掩码一致路由器OSPF状态"></p>
-</li>
-</ul>
-</li>
-<li><p>子网掩码不一致</p>
+<li><p>手动配置方式</p>
 <ul>
 <li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int g0&#x2F;0&#x2F;1</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;1]ip add 12.0.0.1 26</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line"># 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>图表</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png" alt="alt RID选取规则"></li>
+</ul>
+<a id="more"></a>
+
+</li>
+</ul>
+<h1 id="OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><a href="#OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）" class="headerlink" title="OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"></a>OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</h1><ul>
+<li><p>数据包结构</p>
+<ul>
+<li><p>包结构图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/zLuloxC3pFMEcfR.png" alt="alt OSPF数据包结构"></li>
+</ul>
+</li>
+<li><p>OSPF数据报头</p>
+<ul>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>释义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OSPF Header</td>
+<td>OSPF数据包报头</td>
+<td></td>
+</tr>
+<tr>
+<td>Version：2</td>
+<td>OSPF的版本号</td>
+<td>IPv4 版本号是2<br>IPv5版本号是3</td>
+</tr>
+<tr>
+<td>Message Type：Hello Packet(1)</td>
+<td>数据包类型</td>
+<td>有五种类型</td>
+</tr>
+<tr>
+<td>Packet Length：44</td>
+<td>数据包长度</td>
+<td>不同类型的数据包长度不同</td>
+</tr>
+<tr>
+<td>Source OSPF Router：192.168.1.254</td>
+<td>OSPF的RID<br>（路由器ID）</td>
+<td>OSPF协议的Route ID</td>
+</tr>
+<tr>
+<td>Area ID：0.0.0.0（Backbone）</td>
+<td>区域ID</td>
+<td>0代表骨干网<br>其他数字代表非骨干网</td>
+</tr>
+<tr>
+<td>Checksum：0x0c51[correct]</td>
+<td>校验和</td>
+<td></td>
+</tr>
+<tr>
+<td>Auth Type：Null（0）</td>
+<td>认证方式</td>
+<td>两种认证方式</td>
+</tr>
+<tr>
+<td>Auth Data（none）：00000000000000</td>
+<td>认证数据信息</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 解析图示
+
+  * ![alt OSPF包结构-数据报头解析](https://i.loli.net/2021/04/09/unTewRbU6cHPMK9.png)
+
+* 抓包图示
+
+  * ![alt OSPF包结构-数据包报头](https://i.loli.net/2021/04/09/bOPS9lIFo51Yq2W.png)</code></pre><ul>
+<li><p>数据包类型</p>
+<ul>
+<li><p>图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/KkByfntiu4SrEQm.png" alt="alt OSPF数据包类型"></li>
+</ul>
+</li>
+<li><p>作用</p>
+<ul>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>OSPF数据包类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hello包</td>
+<td>建立、维护邻居关系</td>
+</tr>
+<tr>
+<td>Database Description 数据库描述（DD）</td>
+<td>LSDB摘要（仅仅包含LSA头部Header信息）<br>与邻居的LSDB数据库进行比对，只记录自己没有的LS</td>
+</tr>
+<tr>
+<td>Link-State Request 链路状态请求</td>
+<td>询问邻居LSA的信息<br>请求LSA，不是一个数据包</td>
+</tr>
+<tr>
+<td>Linl-State Update 链路状态更新</td>
+<td>当自己LS发生变化，给邻居发送LS更新信息</td>
+</tr>
+<tr>
+<td>Link-State Acknowledgment链路状态确认</td>
+<td>收到邻居发送的LS更新信息，给邻居发送一个ACK确认信息</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 实验
 
 
 
+  * 拓扑
+
+    * ![alt OSPF数据包类型实验](https://i.loli.net/2021/04/09/XAVBSEnQmF8dgTv.png)
+
+  * 配置
+
+    * R1配置
+
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  sys</span><br><span class="line">  sys R1</span><br><span class="line">  int g 0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 12.0.0.1 24</span><br><span class="line">  </span><br><span class="line">  ospf 1 route-id 1.1.1.1</span><br><span class="line">  area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+    * R2配置
+
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  sys</span><br><span class="line">  sys R2</span><br><span class="line">  int g 0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 12.0.0.2 24</span><br><span class="line">  </span><br><span class="line">  ospf 1 route-id 2.2.2.2</span><br><span class="line">  area 0</span><br><span class="line">network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+    * 图示
+
+      * ![alt OSPG数据包类型抓包结果](https://i.loli.net/2021/04/09/wvEKjietu1IcXCT.png)</code></pre><ul>
+<li><p>DD数据信息（Database Description）包</p>
+<ul>
+<li>图示<ul>
+<li><img src="https://i.loli.net/2021/04/09/95izBbxD1ItWHwq.png" alt="alt OSPF数据包类型-DD数据包"></li>
+</ul>
+</li>
+<li>通过Sequence Number 来区分不同的LS信息</li>
+</ul>
+</li>
+<li><p>图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/10/U7n2YS5Ph6WLf1A.png" alt="alt OSPF数据包类型"></li>
+</ul>
+</li>
+</ul>
+<h1 id="OSPF状态机制"><a href="#OSPF状态机制" class="headerlink" title="OSPF状态机制"></a>OSPF状态机制</h1><h2 id="1-OSPF状态概述"><a href="#1-OSPF状态概述" class="headerlink" title="1. OSPF状态概述"></a>1. OSPF状态概述</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/10/ILFRo6c5sxNpjTH.png" alt="alt OSPF状态机制"></p>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>down 失效状态</td>
+<td>没有收到Hello包</td>
+</tr>
+<tr>
+<td>Init 初始状态</td>
+<td>收到Hello包，邻居的Hello包中的邻居列表没有自己的路由信息</td>
+</tr>
+<tr>
+<td>2-way 双向通信状态</td>
+<td>收到Hello包，并且邻居发送的Hello包中的邻居列表中包含自己的路由信息<br>此时，两个邻居路由器形成邻居关系</td>
+</tr>
+<tr>
+<td>ExStart 交换初始状态</td>
+<td>决定信息交换时路由器的主从关系<br>向邻居第一次发送DD（Database Description）数据包中的RID来确定主从关系</td>
+</tr>
+<tr>
+<td>ExChange 交换状态</td>
+<td>向邻居发送DD（Database Description）数据包</td>
+</tr>
+<tr>
+<td>Loading加载状态</td>
+<td>LSR和LSU交换、LSACK确认</td>
+</tr>
+<tr>
+<td>Full 完全邻接状态</td>
+<td>LSDB同步，形成邻接关系</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>只有2-way状态和Full状态是稳定状态</td>
+</tr>
+</tbody></table>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+<li><p>创建邻居</p>
+<ul>
+<li><p>down 失效状态</p>
+<ul>
+<li>路由器没有使用OSPF协议</li>
+<li>路由器没有邻居</li>
+</ul>
+</li>
+<li><p>Init 初始状态</p>
+<ul>
+<li>路由器收到了邻居的Hello包，但是邻居的Hallo包中的邻居列表没有有关该路由器的路由信息</li>
+<li>A泛洪： 大家好，我是A，我没有邻居</li>
+<li>B泛洪：大家好，我是B，我有个邻居是A（此时A对于B来说就是Init状态）</li>
+</ul>
+</li>
+<li><p>2-way 双向通信状态</p>
+<ul>
+<li>路由器收到邻居的Hello包，并且邻居Hello包中的邻居列表中有自己的路由信息</li>
+<li>A泛洪： 大家好，我是A，我没有邻居</li>
+<li>B泛洪：大家好，我是B，我有个邻居是A（此时A对于B来说就是Init状态）</li>
+<li>此时，A收到B泛洪的Hello包中的邻居列表中有自己的信息，进入2-way状态</li>
+<li>通过上面的状态变化，路由器的邻居关系创建成功</li>
+</ul>
+</li>
+<li><p>图示</p>
+<ul>
+<li><p>邻居状态的建立</p>
+<p><img src="https://i.loli.net/2021/04/10/J6FBvtWeQK4ruql.png" alt="alt OSPF邻居状态的建立"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>创建邻接</p>
+<ul>
+<li><p>ExStart 交换初始状态</p>
+<ul>
+<li>建立邻居关系的两个路由器，互相发送第一个DD（Database Description）数据包</li>
+<li>对两个路由器发送的第一个DD（Database Description）数据包中的RID（Router ID）进行对比，选择一个作为Master（RID大的作为Master）</li>
+</ul>
+</li>
+<li><p>ExChange 交换状态</p>
+<ul>
+<li>建立邻居关系的路由器，再次发送DD（Database Description）数据包。</li>
+<li>比对两个DD（Database Description）数据包中的LSDB(Link-State Database)是否一致。</li>
+<li>如果一致，路由器状态为FULL 安全邻接状态</li>
+<li>如果不一致，路由器发送LSR（Link-State Request）数据包给邻居，邻居会发送LSU（Link-State Request）数据包，路由器发送LSACK（Link-State Acknowlege）数据包确认。</li>
+</ul>
+</li>
+<li><p>Loading 加载状态 </p>
+<ul>
+<li>建立邻居关系的路由器，比对DD（Database Description）数据包中的LSDB（Link-State Database）。</li>
+<li>如果LSDB不一致，路由器发送LSR（Link-State Request）数据包给邻居，邻居发送LSU（Link-State Update）数据包，路由器发送LSACK（Link-State Acknowlege）数据包确认。</li>
+</ul>
+</li>
+<li><p>Full 完全邻接状态</p>
+<ul>
+<li>如果LSDB一致，Full完全邻接状态建立</li>
+<li>只要邻居LSDB一致，进入Full状态</li>
+<li>只有2-way和Full状态是稳定状态</li>
+</ul>
+</li>
+<li><p>图示</p>
+<ul>
+<li><p>建立邻接关系</p>
+<p><img src="https://i.loli.net/2021/04/10/Uqy2akxjWgpm3fQ.png" alt="alt 建立邻接关系流程"></p>
+<p><img src="https://i.loli.net/2021/04/10/DxfbkdRAIByrlJw.png" alt="alt 建立邻接关系2"></p>
+</li>
+</ul>
 </li>
 </ul>
 </li>
 </ol>
-<ul>
-<li><p>抓包</p>
-<p><img src="https://i.loli.net/2021/04/11/2wPzvTohrfJlnW1.png" alt="alt OSPF子网掩码不一致-抓包"></p>
-<p><img src="https://i.loli.net/2021/04/11/FXBNJxtZYy8VngE.png" alt="alt OSPF子网掩码不一致-抓包"></p>
-</li>
-<li><p>路由器OSPF状态</p>
-<p><img src="https://i.loli.net/2021/04/11/rC42WzUs6V8fvj7.png" alt="alt OSPF子网掩码不一致-路由器OSPF状态"></p>
-</li>
-</ul>
-<h3 id="网络地址一致"><a href="#网络地址一致" class="headerlink" title="网络地址一致"></a>网络地址一致</h3><h3 id="末梢区域设置要一致（Option）"><a href="#末梢区域设置要一致（Option）" class="headerlink" title="末梢区域设置要一致（Option）"></a>末梢区域设置要一致（Option）</h3>
+
       
     </div>
 
@@ -588,8 +784,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/" rel="next" title="OSPF基础">
-                <i class="fa fa-chevron-left"></i> OSPF基础
+              <a href="/2020/10/02/ElasticSearch/" rel="next" title="ElasticSearch">
+                <i class="fa fa-chevron-left"></i> ElasticSearch
               </a>
             
           </div>
@@ -598,8 +794,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B&DR&BDR/" rel="prev" title="OSPF网络类型（基于接口）、DR、BDR">
-                OSPF网络类型（基于接口）、DR、BDR <i class="fa fa-chevron-right"></i>
+              <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" rel="prev" title="OSPF核心工作流程">
+                OSPF核心工作流程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -770,7 +966,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#邻居发现"><span class="nav-number">1.</span> <span class="nav-text">邻居发现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-number">1.1.</span> <span class="nav-text">条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RID唯一"><span class="nav-number">1.1.1.</span> <span class="nav-text">RID唯一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区域ID（Area-ID）要一致"><span class="nav-number">1.1.2.</span> <span class="nav-text">区域ID（Area ID）要一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邻居路由器的Hello数据包与Dead时间一致"><span class="nav-number">1.1.3.</span> <span class="nav-text">邻居路由器的Hello数据包与Dead时间一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链路RTU大小一致（默认不开启，思科默认开启）"><span class="nav-number">1.1.4.</span> <span class="nav-text">链路RTU大小一致（默认不开启，思科默认开启）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果开启认证，认证方式要一致"><span class="nav-number">1.1.5.</span> <span class="nav-text">如果开启认证，认证方式要一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子网掩码一致（以太网环境）"><span class="nav-number">1.1.6.</span> <span class="nav-text">子网掩码一致（以太网环境）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络地址一致"><span class="nav-number">1.1.7.</span> <span class="nav-text">网络地址一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#末梢区域设置要一致（Option）"><span class="nav-number">1.1.8.</span> <span class="nav-text">末梢区域设置要一致（Option）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Router-ID"><span class="nav-number">1.</span> <span class="nav-text">Router ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）"><span class="nav-number">2.</span> <span class="nav-text">OSPF数据包结构和类型（封装在IP协议之上，IP协议号89）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF状态机制"><span class="nav-number">3.</span> <span class="nav-text">OSPF状态机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-OSPF状态概述"><span class="nav-number">3.1.</span> <span class="nav-text">1. OSPF状态概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">3.1.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">3.1.2.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">3.1.3.</span> <span class="nav-text">概述</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -939,9 +1135,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://myblog.wuchao.space/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/';
-          this.page.identifier = '2021/04/11/OSPF数据包与状态/OSPF邻居建立条件/';
-          this.page.title = '邻居建立的条件（必须三层直连）';
+          this.page.url = 'http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/';
+          this.page.identifier = '2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/';
+          this.page.title = 'OSPF数据包与状态';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wuchao.disqus.com/embed.js';
