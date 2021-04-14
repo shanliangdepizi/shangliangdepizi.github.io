@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="OSPF基础 概述  定义 OSPF Open Shortest Path First 开放最短路径优先   内容 大中型网络上使用最为广泛的IGP协议 链路状态协议 无类协议 使用组播（224.0.0.5和224.0.0.6） 收敛较快 以开销（Cost）作为度量值 采用的SPF算法可以有效的避免环路 触发式更新（以较低的频率（每30分钟）发送定期更新—链路状态LSA泛洪） 区域的设计使得OSP">
+<meta name="description" content="OSPF命令表图表   命令环境 命令 备注    [R1-ospf-1] ospf进程下 ospf 1 router-id 1.1.1.1 开启OSPF，进程号缺省为1建议手动配置Router ID   [R1-ospf-1] ospf进程下 area 0area 0.0.0.0 配置区域   [R1-ospf-1-area-0.0.0.0] ospf进程下区域内 network 192.168">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OSPF基础">
-<meta property="og:url" content="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="OSPF命令">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/14/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="OSPF基础 概述  定义 OSPF Open Shortest Path First 开放最短路径优先   内容 大中型网络上使用最为广泛的IGP协议 链路状态协议 无类协议 使用组播（224.0.0.5和224.0.0.6） 收敛较快 以开销（Cost）作为度量值 采用的SPF算法可以有效的避免环路 触发式更新（以较低的频率（每30分钟）发送定期更新—链路状态LSA泛洪） 区域的设计使得OSP">
-<meta property="og:image" content="https://i.loli.net/2021/04/08/9IGo5EsJ3a2AcZx.png">
-<meta property="article:published_time" content="2021-04-10T01:37:35.548Z">
-<meta property="article:modified_time" content="2021-04-10T08:17:48.812Z">
+<meta property="og:description" content="OSPF命令表图表   命令环境 命令 备注    [R1-ospf-1] ospf进程下 ospf 1 router-id 1.1.1.1 开启OSPF，进程号缺省为1建议手动配置Router ID   [R1-ospf-1] ospf进程下 area 0area 0.0.0.0 配置区域   [R1-ospf-1-area-0.0.0.0] ospf进程下区域内 network 192.168">
+<meta property="og:image" content="https://i.loli.net/2021/04/14/kWujTDyqvnV7ilQ.png">
+<meta property="article:published_time" content="2021-04-14T02:20:51.511Z">
+<meta property="article:modified_time" content="2021-04-14T03:10:13.126Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/04/08/9IGo5EsJ3a2AcZx.png">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/14/kWujTDyqvnV7ilQ.png">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/10/OSPF数据包与状态/OSPF基础/"/>
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/14/OSPF数据包与状态/OSPF命令/"/>
 
 
 
 
 
-  <title> OSPF基础 | 工匠 </title>
+  <title> OSPF命令 | 工匠 </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/14/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -283,7 +283,7 @@
             
             
               
-                OSPF基础
+                OSPF命令
               
             
           </h2>
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:37:35+08:00">
-                2021-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-14T10:20:51+08:00">
+                2021-04-14
               </time>
             
 
@@ -372,9 +372,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/14/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/10/OSPF数据包与状态/OSPF基础/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/14/OSPF数据包与状态/OSPF命令/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,130 +405,113 @@
       
 
       
-        <h1 id="OSPF基础"><a href="#OSPF基础" class="headerlink" title="OSPF基础"></a>OSPF基础</h1><ol>
-<li><p>概述</p>
-<ul>
-<li>定义<ul>
-<li>OSPF Open Shortest Path First</li>
-<li>开放最短路径优先</li>
-</ul>
-</li>
-<li>内容<ul>
-<li>大中型网络上使用最为广泛的IGP协议</li>
-<li>链路状态协议</li>
-<li>无类协议</li>
-<li>使用组播（224.0.0.5和224.0.0.6）</li>
-<li>收敛较快</li>
-<li>以开销（Cost）作为度量值</li>
-<li>采用的SPF算法可以有效的避免环路</li>
-<li>触发式更新（以较低的频率（每30分钟）发送定期更新—链路状态LSA泛洪）</li>
-<li>区域的设计使得OSPF能够支持更大的网络</li>
-<li>通过LSA的形式发布路由</li>
-<li>不支持自动汇总，支持手动汇总</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>区域介绍（Area）</p>
-<ul>
-<li><p>概述</p>
-<table>
+        <h1 id="OSPF命令表"><a href="#OSPF命令表" class="headerlink" title="OSPF命令表"></a>OSPF命令表</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
 <thead>
 <tr>
-<th>术语</th>
+<th>命令环境</th>
+<th>命令</th>
 <th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>区域（Area）</td>
-<td>为了适应大型的网络，OSPF在AS内划分多个区域<br>区域是以接口为单位划分的<br>每个OSPF路由器只维护所在区域的完整的链路状态信息</td>
+<td>[R1-ospf-1] <br>ospf进程下</td>
+<td>ospf 1 router-id 1.1.1.1</td>
+<td>开启OSPF，进程号缺省为1<br>建议手动配置Router ID</td>
 </tr>
 <tr>
-<td>区域ID（Area ID）</td>
-<td>可以表示为一个十进制的数字，如：1<br>也可以表示成一个IP，如：0.0.01</td>
+<td>[R1-ospf-1]<br> ospf进程下</td>
+<td>area 0<br>area 0.0.0.0</td>
+<td>配置区域</td>
 </tr>
 <tr>
-<td>区域优点</td>
-<td>尽量减少路由条目<br>使拓扑的变化仅影响本区域内部</td>
+<td>[R1-ospf-1-area-0.0.0.0] <br>ospf进程下区域内</td>
+<td>network 192.168.0.0 0.0.0.255</td>
+<td>宣告网络，指定运行OSPF的接口<br>使用接口地址与反掩码（255.255.255.255-掩码地址）</td>
+</tr>
+<tr>
+<td>[R1-ospf-1]或[R1]或<R1></R1></td>
+<td>dispaly ospf peer [brief]</td>
+<td>显示OSPF邻居信息</td>
+</tr>
+<tr>
+<td>[R1-LoopBack1]  <br>接口下</td>
+<td>ospf timer hello 10</td>
+<td>修改Hello包发送时间间隔</td>
+</tr>
+<tr>
+<td>[R1-LoopBack1]  <br>接口下</td>
+<td>ospf timer dead 40</td>
+<td>修改Hello包超时时间</td>
+</tr>
+<tr>
+<td>[R1-ospf-1]或[R1]或<R1></R1></td>
+<td>display ospf interface LoopBack 1</td>
+<td>显示OSPF接口信息</td>
+</tr>
+<tr>
+<td>[R1-LoopBack1]  <br>接口下</td>
+<td>ospf dr-priority 100</td>
+<td>修改OSPF接口的优先级<br>取值范围是0~255<br>0代表不参与优先级比较，255始终参与优先级比较</td>
+</tr>
+<tr>
+<td>[R1-LoopBack1]  <br>接口下</td>
+<td>ospf cost 10</td>
+<td>修改Cost开销值<br>范围是1~65536 缺省为1</td>
+</tr>
+<tr>
+<td>[R1-ospf-1] <br>ospf进程下</td>
+<td>bandwidth-reference 100</td>
+<td>调整带宽参数值，默认为100Mbps<br>需要在整个OSPF网络中统一调整</td>
+</tr>
+<tr>
+<td><R1> <br>系统模式下</R1></td>
+<td>reset ospf process</td>
+<td>重启OSPF进程</td>
 </tr>
 </tbody></table>
+<h2 id="重点解析"><a href="#重点解析" class="headerlink" title="重点解析"></a>重点解析</h2><h3 id="反掩码"><a href="#反掩码" class="headerlink" title="反掩码"></a>反掩码</h3><ol>
+<li>反掩码 network 192.168.0.0 0.0.0.255<ul>
+<li>OSPF wild card bits</li>
+<li>255.255.255.255-掩码</li>
+</ul>
 </li>
+<li>例子<ul>
+<li>192.168.4.4/24</li>
+<li>反掩码就是 192.168.4.0 0.0.0.255</li>
 </ul>
 </li>
 </ol>
-<ul>
-<li><p>区域类型</p>
-<ul>
-<li><p>图标</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>骨干区域</td>
-<td>Area 0 ，核心区域<br>也叫传输区域（负责不同的非骨干区域之间分发路由信息）</td>
-</tr>
-<tr>
-<td>非骨干区域</td>
-<td>非Area 0 <br>也称为常规区域</td>
-</tr>
-<tr>
-<td>PS</td>
-<td>所有的非骨干区域必须和骨干区域直接相连</td>
-</tr>
-</tbody></table>
-</li>
+<h3 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h3><ol>
+<li>优先级取值范围<ul>
+<li>取值范围是0~255</li>
+<li>0代表不参与优先级比较</li>
+<li>255代表始终参与优先级比较</li>
 </ul>
 </li>
+<li>例子 <ul>
+<li>将某个OSPF路由器接口的优先级调整</li>
+<li>重启OSPF进程</li>
+<li>重新比较OSPF优先级</li>
 </ul>
-<pre><code>* 图示
+</li>
+</ol>
+<h3 id="Cost开销中的带宽参考值"><a href="#Cost开销中的带宽参考值" class="headerlink" title="Cost开销中的带宽参考值"></a>Cost开销中的带宽参考值</h3><ol>
+<li>默认值为100Mbps</li>
+<li>需要在OSPF网络中统一调整</li>
+</ol>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="修改带宽参考值"><a href="#修改带宽参考值" class="headerlink" title="修改带宽参考值"></a>修改带宽参考值</h2><ol>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]ospf 1</span><br><span class="line">[R1-ospf-1]bradw	</span><br><span class="line">[R1-ospf-1]band	</span><br><span class="line">[R1-ospf-1]bandwidth-reference ?</span><br><span class="line">  INTEGER&lt;1-2147483648&gt;  The reference bandwidth (Mbits&#x2F;s)</span><br><span class="line">[R1-ospf-1]bandwidth-reference 10000</span><br><span class="line">Info: Reference bandwidth is changed. Please ensure that the reference bandwidth</span><br><span class="line"> that is configured for all the routers are the same.</span><br></pre></td></tr></table></figure>
 
-  * ![alt OSPF区域类型](https://i.loli.net/2021/04/08/ud4QgJEUtlbZoXO.png)</code></pre><ol start="3">
-<li><p>OSPF路由器类型</p>
-<ul>
-<li><p>图表</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IR</td>
-<td>Internal Router    内部路由器<br> 所有的接口都属于一个区域</td>
-</tr>
-<tr>
-<td>BR</td>
-<td>BackBone Router  骨干路由器<br>至少有一个接口属于骨干区域</td>
-</tr>
-<tr>
-<td>ABR</td>
-<td>Area Border Router  区域边界路由器<br>连接一个或者多个区域到骨干网区域，至少有一个接口属于骨干区域</td>
-</tr>
-<tr>
-<td>ASBR</td>
-<td>Autonomous System Boder Rputer  自治系统边界路由器<br>把从其他路由协议学习到的路由信息以注入的方式到OSPF进程中</td>
-</tr>
-<tr>
-<td>PS</td>
-<td>一台路由器可以同时属于多种路由类型</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
+
+
 </li>
 </ol>
-<ul>
-<li><p>图示</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/08/9IGo5EsJ3a2AcZx.png" alt="alt OSPF路由器类型"></li>
-</ul>
+<ol start="2">
+<li><p>结果</p>
+<p><img src="https://i.loli.net/2021/04/14/kWujTDyqvnV7ilQ.png" alt="alt OSPF-Cost修改带宽参考值"></p>
 </li>
-</ul>
+</ol>
 
       
     </div>
@@ -576,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" rel="next" title="OSPF核心工作流程">
-                <i class="fa fa-chevron-left"></i> OSPF核心工作流程
+              <a href="/2021/04/12/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%BA%A6%E9%87%8F%E5%80%BCCost%E5%BC%80%E9%94%80/" rel="next" title="OSPF度量值Cost">
+                <i class="fa fa-chevron-left"></i> OSPF度量值Cost
               </a>
             
           </div>
@@ -585,10 +568,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/04/11/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/" rel="prev" title="邻居建立的条件（必须三层直连）">
-                邻居建立的条件（必须三层直连） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -758,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF基础"><span class="nav-number">1.</span> <span class="nav-text">OSPF基础</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF命令表"><span class="nav-number">1.</span> <span class="nav-text">OSPF命令表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图表"><span class="nav-number">1.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点解析"><span class="nav-number">1.2.</span> <span class="nav-text">重点解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反掩码"><span class="nav-number">1.2.1.</span> <span class="nav-text">反掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级（priority）"><span class="nav-number">1.2.2.</span> <span class="nav-text">优先级（priority）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost开销中的带宽参考值"><span class="nav-number">1.2.3.</span> <span class="nav-text">Cost开销中的带宽参考值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验"><span class="nav-number">2.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改带宽参考值"><span class="nav-number">2.1.</span> <span class="nav-text">修改带宽参考值</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -927,9 +906,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://myblog.wuchao.space/2021/04/10/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%9F%BA%E7%A1%80/';
-          this.page.identifier = '2021/04/10/OSPF数据包与状态/OSPF基础/';
-          this.page.title = 'OSPF基础';
+          this.page.url = 'http://myblog.wuchao.space/2021/04/14/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/OSPF%E5%91%BD%E4%BB%A4/';
+          this.page.identifier = '2021/04/14/OSPF数据包与状态/OSPF命令/';
+          this.page.title = 'OSPF命令';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wuchao.disqus.com/embed.js';
