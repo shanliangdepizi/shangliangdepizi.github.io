@@ -97,8 +97,21 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/14/dVonIaZ3Thu6M8l.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/14/QMFJY1f5IH9KBX8.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/14/JaoIxnFv4OcVE3C.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/lsCZYFoJdV39OhA.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/c6qsLNeWp5kmiKh.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/jXqGbt8nM6SlzYF.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/JIlaE6xiFmHnwtT.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/eQlLoK5SGXNPTq6.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/xdY8WXFmJgVsTji.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/RVQAK8LheWTiYbv.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/xSte6O4g2l7dVsN.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/Cw5pbkjngusUHVy.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/M5ieKJL1tbHugIG.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/UhqXrfLCecnAgaV.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/fIXbcejYyGNUa7L.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/15/Dp1nYRwqSturCkI.png">
 <meta property="article:published_time" content="2021-04-14T03:14:06.668Z">
-<meta property="article:modified_time" content="2021-04-14T15:11:32.649Z">
+<meta property="article:modified_time" content="2021-04-15T10:58:22.524Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="OSPF">
 <meta name="twitter:card" content="summary">
@@ -433,7 +446,9 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"></span><br><span class="line">#配置接口</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 192.168.0.2 24</span><br><span class="line"></span><br><span class="line">#配置OSPF</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">a 0</span><br><span class="line">network 192.168.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
 
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><h3 id="R3配置"><a href="#R3配置" class="headerlink" title="R3配置"></a>R3配置</h3><ol>
+
+
+<h3 id="R3配置"><a href="#R3配置" class="headerlink" title="R3配置"></a>R3配置</h3><ol>
 <li>命令</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line"></span><br><span class="line">#配置接口</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 192.168.0.3 24</span><br><span class="line"></span><br><span class="line">#配置OSPF</span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">a 0</span><br><span class="line">network 192.168.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
@@ -472,7 +487,114 @@
 <p><img src="https://i.loli.net/2021/04/14/JaoIxnFv4OcVE3C.png" alt="alt R1到4.4.4.4Cost值"></p>
 </li>
 </ol>
-<h1 id="缺省路由发布"><a href="#缺省路由发布" class="headerlink" title="缺省路由发布"></a>缺省路由发布</h1>
+<h3 id="配置R1为DR、R2为BDR"><a href="#配置R1为DR、R2为BDR" class="headerlink" title="配置R1为DR、R2为BDR"></a>配置R1为DR、R2为BDR</h3><ol>
+<li><p>R1配置命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf dr-pri	</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf dr-priority 200</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>R2配置命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int g0&#x2F;0&#x2F;0	</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ospf dr-pri	</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ospf dr-priority 100</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="缺省路由发布"><a href="#缺省路由发布" class="headerlink" title="缺省路由发布"></a>缺省路由发布</h1><h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><table>
+<thead>
+<tr>
+<th>配置方式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>静态配置</td>
+<td>使用命令： ip route-static 0.0.0.0 0 下一跳地址</td>
+</tr>
+<tr>
+<td>动态配置</td>
+<td>使用动态路由协议进行发布</td>
+</tr>
+</tbody></table>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/15/lsCZYFoJdV39OhA.png" alt="alt 缺省路由发布概述图"></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R4]ip route-s	</span><br><span class="line">[R4]ip route-static 0.0.0.0 0 48.0.0.8</span><br><span class="line">[R4]ospf 1</span><br><span class="line">[R4-ospf-1]def	</span><br><span class="line">[R4-ospf-1]default-rout	</span><br><span class="line">[R4-ospf-1]default-route-advertise   #配置动态缺省路由</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><ol>
+<li><p>缺省路由发布步骤1</p>
+<p><img src="https://i.loli.net/2021/04/15/c6qsLNeWp5kmiKh.png" alt="alt 缺省路由拓扑"></p>
+</li>
+<li><p>步骤2</p>
+<p><img src="https://i.loli.net/2021/04/15/jXqGbt8nM6SlzYF.png" alt="alt 缺省路由发布步骤2"></p>
+</li>
+<li><p>步骤3</p>
+<p><img src="https://i.loli.net/2021/04/15/JIlaE6xiFmHnwtT.png" alt="alt 缺省路由发布步骤3"></p>
+</li>
+</ol>
+<h1 id="路由认证"><a href="#路由认证" class="headerlink" title="路由认证"></a>路由认证</h1><h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><p><img src="https://i.loli.net/2021/04/15/eQlLoK5SGXNPTq6.png" alt="alt OSPF路由认证技术背景"></p>
+<h2 id="攻击演示"><a href="#攻击演示" class="headerlink" title="攻击演示"></a>攻击演示</h2><h3 id="拓扑-1"><a href="#拓扑-1" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="https://i.loli.net/2021/04/15/xdY8WXFmJgVsTji.png" alt="alt OSPF认证拓扑图"></p>
+<h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>通过抓包找到OSPF的网段</p>
+<p><img src="https://i.loli.net/2021/04/15/RVQAK8LheWTiYbv.png" alt="alt OSPF认证抓包"></p>
+</li>
+<li><p>R10配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]sys R10</span><br><span class="line">[R10]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R10-GigabitEthernet0&#x2F;0&#x2F;0]ip add 192.168.0.10 24</span><br><span class="line">Apr 15 2021 18:26:48-08:00 R10 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[0]:The line protocol IP</span><br><span class="line"> on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the UP state. </span><br><span class="line">[R10-GigabitEthernet0&#x2F;0&#x2F;0]int lo 1</span><br><span class="line">[R10-LoopBack1]ip add 4.4.4.4 32</span><br><span class="line">[R10-LoopBack1]</span><br><span class="line">[R10-GigabitEthernet0&#x2F;0&#x2F;0]ospf 1</span><br><span class="line">[R10-ospf-1]a 0</span><br><span class="line">[R10-ospf-1-area-0.0.0.0]net 192.168.0.10 0.0.0.0</span><br><span class="line">[R10-ospf-1-area-0.0.0.0]net 4.4.4.4 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><ol>
+<li><p>到4.4.4.4的路由</p>
+<p><img src="https://i.loli.net/2021/04/15/xSte6O4g2l7dVsN.png" alt="alt OSPF-R1TracertR10"></p>
+</li>
+<li><p>出现新的邻居</p>
+<p><img src="https://i.loli.net/2021/04/15/Cw5pbkjngusUHVy.png" alt="alt OSPF认证出现新邻居"></p>
+</li>
+</ol>
+<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><h3 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h3><ol>
+<li>命令</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int g0/0/0<br>ospf authentication-mode md5 1 cipher wuchao</td>
+<td>配置接口认证</td>
+</tr>
+<tr>
+<td>a 0<br>authentication-mode md5 1 cipher wuchao</td>
+<td>配置区域认证</td>
+</tr>
+<tr>
+<td>PS:如果上面的同时配置，接口配置优先生效<br>配置时候 MD5的id必须一致</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#R1</span><br><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf au	</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf authentication-mode md5 1 cip	</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf authentication-mode md5 1 cipher wuchao</span><br><span class="line"></span><br><span class="line">#R2</span><br><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ospf authentication-mode md5 1 cipher wuchao</span><br><span class="line"></span><br><span class="line">#R3</span><br><span class="line">&lt;R3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R3]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R3-GigabitEthernet0&#x2F;0&#x2F;0]ospf authentication-mode md5 1 cipher wuchao</span><br><span class="line"></span><br><span class="line">#R6</span><br><span class="line">&lt;R6&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R6]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R6-GigabitEthernet0&#x2F;0&#x2F;0]ospf authentication-mode md5 1 cipher wuchao</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启认证，阻止攻击</p>
+<p><img src="https://i.loli.net/2021/04/15/M5ieKJL1tbHugIG.png" alt="alt OSPF-R1认证"></p>
+<p><img src="https://i.loli.net/2021/04/15/UhqXrfLCecnAgaV.png" alt="alt OSPF-R10认证"></p>
+</li>
+</ol>
+<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><ol>
+<li><p>认证</p>
+<p><img src="https://i.loli.net/2021/04/15/fIXbcejYyGNUa7L.png" alt="alt OSPF认证解决安全隐患"></p>
+</li>
+<li><p>OSPF认证方式</p>
+<p><img src="https://i.loli.net/2021/04/15/Dp1nYRwqSturCkI.png" alt="alt OSPF认证方式"></p>
+</li>
+</ol>
+
       
     </div>
 
@@ -528,6 +650,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/15/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C/" rel="prev" title="路由综合实验">
+                路由综合实验 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -606,7 +732,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -628,7 +754,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -697,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑"><span class="nav-number">1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R1配置"><span class="nav-number">3.1.</span> <span class="nav-text">R1配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R2配置"><span class="nav-number">3.2.</span> <span class="nav-text">R2配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">3.3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R3配置"><span class="nav-number">3.4.</span> <span class="nav-text">R3配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R6配置"><span class="nav-number">3.5.</span> <span class="nav-text">R6配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R4配置"><span class="nav-number">3.6.</span> <span class="nav-text">R4配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R8配置"><span class="nav-number">3.7.</span> <span class="nav-text">R8配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证R1到4-4-4-4的Cost值"><span class="nav-number">3.8.</span> <span class="nav-text">验证R1到4.4.4.4的Cost值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺省路由发布"><span class="nav-number"></span> <span class="nav-text">缺省路由发布</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑"><span class="nav-number">1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#R1配置"><span class="nav-number">3.1.</span> <span class="nav-text">R1配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R2配置"><span class="nav-number">3.2.</span> <span class="nav-text">R2配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R3配置"><span class="nav-number">3.3.</span> <span class="nav-text">R3配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R6配置"><span class="nav-number">3.4.</span> <span class="nav-text">R6配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R4配置"><span class="nav-number">3.5.</span> <span class="nav-text">R4配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R8配置"><span class="nav-number">3.6.</span> <span class="nav-text">R8配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证R1到4-4-4-4的Cost值"><span class="nav-number">3.7.</span> <span class="nav-text">验证R1到4.4.4.4的Cost值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置R1为DR、R2为BDR"><span class="nav-number">3.8.</span> <span class="nav-text">配置R1为DR、R2为BDR</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺省路由发布"><span class="nav-number"></span> <span class="nav-text">缺省路由发布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置方法"><span class="nav-number">1.</span> <span class="nav-text">配置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图示"><span class="nav-number">2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">4.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由认证"><span class="nav-number"></span> <span class="nav-text">路由认证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术背景"><span class="nav-number">1.</span> <span class="nav-text">技术背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击演示"><span class="nav-number">2.</span> <span class="nav-text">攻击演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑-1"><span class="nav-number">2.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-1"><span class="nav-number">2.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果展示"><span class="nav-number">2.3.</span> <span class="nav-text">结果展示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认证"><span class="nav-number">3.</span> <span class="nav-text">认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-2"><span class="nav-number">3.1.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析-1"><span class="nav-number">3.2.</span> <span class="nav-text">解析</span></a></li></ol></li></ol></div>
             
 
           </div>
