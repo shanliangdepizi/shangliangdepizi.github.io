@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E5%9F%BA%E7%A1%80/" itemprop="url">
-                  OSPF基础
+                <a class="post-title-link" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/" itemprop="url">
+                  邻居建立的条件（必须三层直连）
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:37:35+08:00">
-                2021-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-11T15:25:36+08:00">
+                2021-04-11
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF基础/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/11/HCNA/路由/OSPF/OSPF邻居建立条件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,133 +404,38 @@
 
       
         
-          
-            <h1 id="OSPF基础"><a href="#OSPF基础" class="headerlink" title="OSPF基础"></a>OSPF基础</h1><ol>
-<li><p>概述</p>
+          <h1 id="邻居发现"><a href="#邻居发现" class="headerlink" title="邻居发现"></a>邻居发现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h3 id="RID唯一"><a href="#RID唯一" class="headerlink" title="RID唯一"></a>RID唯一</h3><ol>
+<li><p>邻居路由器设置相同的RID</p>
 <ul>
-<li>定义<ul>
-<li>OSPF Open Shortest Path First</li>
-<li>开放最短路径优先</li>
-</ul>
+<li><p>R1路由器设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]ospf 1 rout</span><br><span class="line">[R1]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
 </li>
-<li>内容<ul>
-<li>大中型网络上使用最为广泛的IGP协议</li>
-<li>链路状态协议</li>
-<li>无类协议</li>
-<li>使用组播（224.0.0.5和224.0.0.6）</li>
-<li>收敛较快</li>
-<li>以开销（Cost）作为度量值</li>
-<li>采用的SPF算法可以有效的避免环路</li>
-<li>触发式更新（以较低的频率（每30分钟）发送定期更新—链路状态LSA泛洪）</li>
-<li>区域的设计使得OSPF能够支持更大的网络</li>
-<li>通过LSA的形式发布路由</li>
-<li>不支持自动汇总，支持手动汇总</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>区域介绍（Area）</p>
-<ul>
-<li><p>概述</p>
-<table>
-<thead>
-<tr>
-<th>术语</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>区域（Area）</td>
-<td>为了适应大型的网络，OSPF在AS内划分多个区域<br>区域是以接口为单位划分的<br>每个OSPF路由器只维护所在区域的完整的链路状态信息</td>
-</tr>
-<tr>
-<td>区域ID（Area ID）</td>
-<td>可以表示为一个十进制的数字，如：1<br>也可以表示成一个IP，如：0.0.01</td>
-</tr>
-<tr>
-<td>区域优点</td>
-<td>尽量减少路由条目<br>使拓扑的变化仅影响本区域内部</td>
-</tr>
-</tbody></table>
+<li><p>R2路由器设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">[R2]ospf 1 rout	</span><br><span class="line">[R2]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 </li>
 </ol>
+<ol start="2">
+<li><p>抓包情况</p>
 <ul>
-<li><p>区域类型</p>
+<li><p>正常情况下</p>
 <ul>
-<li><p>图标</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>骨干区域</td>
-<td>Area 0 ，核心区域<br>也叫传输区域（负责不同的非骨干区域之间分发路由信息）</td>
-</tr>
-<tr>
-<td>非骨干区域</td>
-<td>非Area 0 <br>也称为常规区域</td>
-</tr>
-<tr>
-<td>PS</td>
-<td>所有的非骨干区域必须和骨干区域直接相连</td>
-</tr>
-</tbody></table>
+<li><p>R1的RID</p>
+<p><img src="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png" alt="alt OSPF邻居建立-RID1"></p>
 </li>
-</ul>
-</li>
-</ul>
-<pre><code>* 图示
-
-  * ![alt OSPF区域类型](https://i.loli.net/2021/04/08/ud4QgJEUtlbZoXO.png)</code></pre><ol start="3">
-<li><p>OSPF路由器类型</p>
-<ul>
-<li><p>图表</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IR</td>
-<td>Internal Router    内部路由器<br> 所有的接口都属于一个区域</td>
-</tr>
-<tr>
-<td>BR</td>
-<td>BackBone Router  骨干路由器<br>至少有一个接口属于骨干区域</td>
-</tr>
-<tr>
-<td>ABR</td>
-<td>Area Border Router  区域边界路由器<br>连接一个或者多个区域到骨干网区域，至少有一个接口属于骨干区域</td>
-</tr>
-<tr>
-<td>ASBR</td>
-<td>Autonomous System Boder Rputer  自治系统边界路由器<br>把从其他路由协议学习到的路由信息以注入的方式到OSPF进程中</td>
-</tr>
-<tr>
-<td>PS</td>
-<td>一台路由器可以同时属于多种路由类型</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>图示</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/08/9IGo5EsJ3a2AcZx.png" alt="alt OSPF路由器类型"></li>
-</ul>
-</li>
-</ul>
-
-          
+<li><p>R2的RID</p>
+<p><img src="https://i.loli.net/2021/04/11/vjyS2ga9lVWQqYd.png" alt="alt 邻居建立RID2"></p></li></ul></li></ul></li></ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -567,7 +472,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -612,7 +517,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +528,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
