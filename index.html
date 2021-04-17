@@ -405,7 +405,69 @@
       
         
           
-            <h1 id="交换机主要功能"><a href="#交换机主要功能" class="headerlink" title="交换机主要功能"></a>交换机主要功能</h1><h1 id="交换机工作原理"><a href="#交换机工作原理" class="headerlink" title="交换机工作原理"></a>交换机工作原理</h1>
+            <h1 id="交换机主要功能"><a href="#交换机主要功能" class="headerlink" title="交换机主要功能"></a>交换机主要功能</h1><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/17/zRB8hguAD5MI7cJ.png" alt="alt 交换机主要功能"></p>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
+<li>终端设备接入</li>
+<li>以太网数据帧的交换，根据目的MAC地址转发数据帧</li>
+<li>学习MAC地址，并维护MAC地址表</li>
+<li>防止二层环路(STP)</li>
+</ol>
+<h1 id="交换机工作原理"><a href="#交换机工作原理" class="headerlink" title="交换机工作原理"></a>交换机工作原理</h1><h2 id="小型网路"><a href="#小型网路" class="headerlink" title="小型网路"></a>小型网路</h2><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/17/G9mcnrYHd6vpXiJ.png" alt="alt 小型网络"></p>
+</li>
+<li><p>解释</p>
+<ul>
+<li>没有配置情况下，规划在同一个广播域</li>
+<li>二层交换机不看IP地址</li>
+<li>发送ARP之后，同一个广播域都可以收到，才能做数据帧的转发</li>
+</ul>
+</li>
+</ol>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/17/ltAhdYfzNWZKo4O.png" alt="alt 交换机工作原理"></p>
+<p><img src="https://i.loli.net/2021/04/17/lZpUL6Dif8BvGxA.png" alt="alt 交换机工作原理"></p>
+</li>
+<li><p>释义</p>
+<ul>
+<li>二层交换机在接收到数据帧之后，会根据数据帧的头部信息进行处理</li>
+<li>二层交换机学习源MAC，加入到自己的MAC地址表中</li>
+<li>根据目的MAC，在自己的MAC地址表中查询对应的接口</li>
+<li>如果MAC地址表中有对应信息，在对应的接口将数据帧的转发</li>
+<li>如果MAC地址表中没有对应信息，二层交换机会泛洪</li>
+</ul>
+</li>
+</ol>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>原理</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>学习<br>Learn</td>
+<td>当交换机的接口收到数据帧的时候，将数据帧内的源MAC地址与该接口进行绑定，并保存在MAC地址表中<br>交换机通过终端发送给广播（Broadcast）的ARP请求，获悉终端的MAC地址<br>并将获悉到的MAC地址记录在MAC地址表中（交换机接口与终端MAC地址的映射）</td>
+</tr>
+<tr>
+<td>泛洪<br>Flood</td>
+<td>当从一个接口收到广播帧、组播帧、未知单播帧（目标MAC不存在与MAC地址表中）<br>把该帧从所有的其他端口转发出去，除了该接口<br>源MAC对应的终端发送的数据帧中的目的MAC地址不在交换机的MAC地址表中<br>交换机就会将该目的MAC地址泛洪给自己除了源MAC对应的接口以为的所有接口</td>
+</tr>
+<tr>
+<td>转发<br>Forward</td>
+<td>当一个接口收到已知的单播帧后，会立即从对应的端口转发出去<br>交换机的某个接口收到对应MAC地址的中断发送的单播帧后<br>交换机根据自己MAC地址表中的目的MAC地址与交换机端口的映射关系<br>将数据帧转发给目的MAC对应的终端</td>
+</tr>
+<tr>
+<td>更新<br>Update</td>
+<td>默认二层交换MAC地址表保存300秒<br>（如果某个终端在该时间段内不发送数据帧，则会被移出MAC地址表）<br>交换机重启后，清空所有的所有接口学习的记录<br>接口关闭后会清空改接口学习的记录<br>一个源MAC地址出现在另外一个接口上，会删除老的记录，保存新的记录</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>对于一台二层交换机来说，一个MAC只能关联在一个接口上<br>一个接口上可以学习多个MAC地址</td>
+</tr>
+</tbody></table>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3>
           
         
       
