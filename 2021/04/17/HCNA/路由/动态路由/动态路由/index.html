@@ -1,0 +1,951 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络工程java, 博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="动态路由 简介  路由器使用路由协议从其他路由器那获悉的路由 当网络拓扑发生变化时，路由器会自动更新路由信息   路由协议  概述   路由器之间交互信息的一种语言   共享路由信息   维护路由表、提供最佳转发路径  win10中的路由表      路由协议总览  图示   分类依据（作用范围）   协议分类  作用范围分类    类型 备注    IGP(Interior Gateway Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCNA&#x2F;路由&#x2F;动态路由&#x2F;动态路由">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="动态路由 简介  路由器使用路由协议从其他路由器那获悉的路由 当网络拓扑发生变化时，路由器会自动更新路由信息   路由协议  概述   路由器之间交互信息的一种语言   共享路由信息   维护路由表、提供最佳转发路径  win10中的路由表      路由协议总览  图示   分类依据（作用范围）   协议分类  作用范围分类    类型 备注    IGP(Interior Gateway Pr">
+<meta property="og:image" content="https://i.loli.net/2021/04/06/Xsc8aTrmHJGjZIY.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/06/DJFedA6NhVbgXr4.png">
+<meta property="article:published_time" content="2021-04-17T07:21:00.998Z">
+<meta property="article:modified_time" content="2021-04-06T14:42:08.784Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="网络工程">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/06/Xsc8aTrmHJGjZIY.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/17/HCNA/路由/动态路由/动态路由/"/>
+
+
+
+
+
+  <title> HCNA/路由/动态路由/动态路由 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                HCNA/路由/动态路由/动态路由
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:00+08:00">
+                2021-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2021/04/17/HCNA/路由/动态路由/动态路由/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><ol>
+<li><p>简介</p>
+<ul>
+<li>路由器使用路由协议从其他路由器那获悉的路由</li>
+<li>当网络拓扑发生变化时，路由器会自动更新路由信息</li>
+</ul>
+</li>
+<li><p>路由协议</p>
+<ul>
+<li><p>概述</p>
+<p>  路由器之间交互信息的一种语言</p>
+<p>  共享路由信息</p>
+<p>  维护路由表、提供最佳转发路径</p>
+</li>
+<li><p>win10中的路由表</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>路由协议总览</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/06/Xsc8aTrmHJGjZIY.png" alt="alt 路由协议总览"></p>
+</li>
+<li><p>分类依据（作用范围）</p>
+<p><img src="https://i.loli.net/2021/04/06/DJFedA6NhVbgXr4.png" alt="alt 路由协议分类"></p>
+</li>
+<li><p>协议分类</p>
+<ul>
+<li><p>作用范围分类</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IGP(Interior Gateway Protocol)内部网关协议</td>
+<td>用于一个AS内部路由交换信息。如：OSPF、IS-IS、RIP</td>
+</tr>
+<tr>
+<td>EGP(Enterior Getaway Protocol)外部网关协议</td>
+<td>用于多个AS之间交换路由信息。如：BGP</td>
+</tr>
+<tr>
+<td>AS(Autonomous System) 自治系统</td>
+<td>处于单个管理机制下的网络（企业、电信、联通、移动）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>  + 根据协议算法分类
+
+    | 类型                        | 备注                                                         |
+    | --------------------------- | ------------------------------------------------------------ |
+    | DV(Distance-Vector)距离矢量 | 基于距离矢量算法，路由器并不了解网络拓扑结构。类似路牌、道听途书。如：RIP、EIGRP |
+    | LS(Link-State)链路状态      | 基于SPF(Shortest Path First最短路径优先)算法，路由器了解网路拓扑，类似于地图。如：OSPF、IS-IS |
+
+  + DV（距离矢量）与LS（链路状态）的区别
+
+    拓扑图
+
+     ![alt DV与LS区别的拓扑图](https://i.loli.net/2021/04/06/4SvhLXscw2k8Oiu.png)    
+
+
+
+    DV所选路径（RIP）   
+
+    ![alt DV所选路径](https://i.loli.net/2021/04/06/cFElufTr6C28jeU.png)LS所选路径（OSPF）
+
+    ![alt LS所选路径-OSPF](https://i.loli.net/2021/04/06/cMP9tmg6x7hTe4Z.png)
+
+  * 根据发送的更新是否携带掩码
+
+    | 类型          | 属性                                         |
+    | ------------- | -------------------------------------------- |
+    | Classful 有类 | 不携带掩码。如：RIPv1、IGRP                  |
+    | Classless无类 | 携带掩码。如：RIPv2、EIGRP、OSPF、IS-IS、BGP |
+
+    图示
+
+    ![alt 发送的更新是否携带掩码](https://i.loli.net/2021/04/06/2pdVvYNFI7gMlUo.png)
+
+  * 根据业务应用分类
+
+    | 类型                                    | 备注                             |
+    | --------------------------------------- | -------------------------------- |
+    | Unicast Routing Protocol 单播路由协议   | 如：RIP、EIGRP、OSPF、IS-IS、BGP |
+    | Multicast Routing Protocol 组播路由协议 | 如：DVMRP、PIM-SM、PIM-DM        |
+
+* 路由协议操作规则
+
+  * 协议是在接口上运行
+
+  * 只能学习和发布相同协议的路由信息
+
+  * 如果不同的路由协议见需要交换路由信息，就需要进行注入（import）
+
+  * 图示
+
+    ![alt 路由操作规则](https://i.loli.net/2021/04/06/JmKRhvL1YjAseTX.png)
+
+    ![alt 路由操作规则](https://i.loli.net/2021/04/06/EjfCrSqB4aTkyoQ.png)</code></pre><ul>
+<li><p>路由器收敛</p>
+<ul>
+<li>当所有路由表包含相同网络可达性信息</li>
+<li>网络（路由）进入一个稳定状态</li>
+<li>网络达到收敛前无法完全正常工作</li>
+</ul>
+</li>
+<li><p>衡量动态路由协议的一些性能指标</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正确性</td>
+<td>能够正确找到最优的路由，且无自环</td>
+</tr>
+<tr>
+<td>快收敛</td>
+<td>当拓扑结构发生变化之后，能够快速做出相应的路由变化</td>
+</tr>
+<tr>
+<td>低开销</td>
+<td>协议自身的开销（内存、CPU、网络带宽）最小</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>协议自身不易受攻击，有安全机制</td>
+</tr>
+<tr>
+<td>普适性</td>
+<td>适应各种拓扑结构和各种规模的网络</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP/" rel="next" title="HCNA/路由/RIP/RIP">
+                <i class="fa fa-chevron-left"></i> HCNA/路由/RIP/RIP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" rel="prev" title="HCNA/路由/路由基础/路由基础">
+                HCNA/路由/路由基础/路由基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态路由"><span class="nav-number">1.</span> <span class="nav-text">动态路由</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/';
+          this.page.identifier = '2021/04/17/HCNA/路由/动态路由/动态路由/';
+          this.page.title = 'HCNA/路由/动态路由/动态路由';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

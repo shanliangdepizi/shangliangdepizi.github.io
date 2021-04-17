@@ -1,0 +1,966 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络工程java, 博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="路由基础 关键术语  路由（Routing） 从源头到目的的路径 不同网络间的转发过程  路由表（Routing Table） 路由信息的集合 路由的依据  路由器（Router） 具有路由功能的设备  默认网关（Default Gateway） 通常是路由设备的接口IP地址  图示       路由过程图解  路由过程 RA路由器的路由表里面目的地址是10.4.1.0&#x2F;24段，下一跳是10.1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCNA&#x2F;路由&#x2F;路由基础&#x2F;路由基础">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="路由基础 关键术语  路由（Routing） 从源头到目的的路径 不同网络间的转发过程  路由表（Routing Table） 路由信息的集合 路由的依据  路由器（Router） 具有路由功能的设备  默认网关（Default Gateway） 通常是路由设备的接口IP地址  图示       路由过程图解  路由过程 RA路由器的路由表里面目的地址是10.4.1.0&#x2F;24段，下一跳是10.1.">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/ItEiS8V41FAOn7L.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/3vPpUYfrmE25nLS.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/mdheuARFQlycUrI.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/bDI2UPRnZoWdeF4.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/fZK4TxEMVPDwW2u.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/L98SDfOgewQ4HNX.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/PHanl5kuJpcL2ME.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/oq7c61GdpVTXynA.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/dfkDcS86KiyphZQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/5oQ49trYwUKEufe.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/VUcojXqang8Zfwz.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/PzJaeIEOqr39lWx.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/05/G5Wu1mCBsnIRjAv.png">
+<meta property="article:published_time" content="2021-04-17T07:21:30.599Z">
+<meta property="article:modified_time" content="2021-04-05T06:59:00.609Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="网络工程">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/05/ItEiS8V41FAOn7L.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/17/HCNA/路由/路由基础/路由基础/"/>
+
+
+
+
+
+  <title> HCNA/路由/路由基础/路由基础 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                HCNA/路由/路由基础/路由基础
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:30+08:00">
+                2021-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2021/04/17/HCNA/路由/路由基础/路由基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="路由基础"><a href="#路由基础" class="headerlink" title="路由基础"></a>路由基础</h1><ol>
+<li><p>关键术语</p>
+<ul>
+<li><p>路由（Routing）</p>
+<p>从源头到目的的路径</p>
+<p>不同网络间的转发过程</p>
+</li>
+<li><p>路由表（Routing Table）</p>
+<p>路由信息的集合</p>
+<p>路由的依据</p>
+</li>
+<li><p>路由器（Router）</p>
+<p>具有路由功能的设备</p>
+</li>
+<li><p>默认网关（Default Gateway）</p>
+<p>通常是路由设备的接口IP地址</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/ItEiS8V41FAOn7L.png" alt="alt 关键术语"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>路由过程图解</p>
+<ul>
+<li><p>路由过程</p>
+<p>RA路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.1.2.2，出口是RA路由器的E0</p>
+<p>RB路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.2.1.2，出口是RB路由器的E1</p>
+<p>RC路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.4.1.1，出口是RC路由器的E1</p>
+</li>
+<li><p>路由详细过程</p>
+<p>当三层设备收到一个IP数据包之后，会查看IP数据包头部中的目的IP的地址，并在路由表中进行查找，匹配到最优路径之后，将IP数据包扔给出接口和下一跳路由，下一跳路由接着处理IP数据包</p>
+</li>
+<li><p>最长匹配原则</p>
+<p>路由表中的路由越详细，越优先使用</p>
+</li>
+<li><p>下一跳</p>
+<p>下一跳与出接口要一一对应</p>
+<p>下一跳是下一个路由器接口的IP地址</p>
+</li>
+<li><p>出接口</p>
+<p>出接口是当前路由的连接下一个路由器的接口</p>
+</li>
+<li><p>基础命令</p>
+<p>用户模式下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">dis ip routing-table</span><br><span class="line"># 查看某个协议的路由表</span><br><span class="line">dis ip routing-table protocol static</span><br></pre></td></tr></table></figure>
+
+<p>系统模式下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置静态路由</span><br><span class="line">#进入系统模式</span><br><span class="line">sys</span><br><span class="line">ip route-static Destination Mask NextHop</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/3vPpUYfrmE25nLS.png" alt="alt 路由过程图解"></p>
+</li>
+</ul>
+<ol start="3">
+<li><p>路由器转发数据包</p>
+<ul>
+<li><p>关键术语</p>
+<p>目的地址 Destination/Mask</p>
+<p>下一跳 NextHop 下一跳路由器接口的地址</p>
+<p>出接口 Interface 本路由器连接下一个路由器的接口</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/mdheuARFQlycUrI.png" alt="alt 路由器转发数据包"></p>
+</li>
+</ul>
+</li>
+<li><p>路由选路</p>
+<ul>
+<li><p>路由器负责给数据包选择一条最优路径，并负责转发数据包</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/bDI2UPRnZoWdeF4.png" alt="alt 路由选路"></p>
+</li>
+</ul>
+</li>
+<li><p>路由器的工作内容</p>
+<ul>
+<li>收到数据包查看目标IP地址</li>
+<li>在路由表中选择最佳路径</li>
+<li>维护路由表</li>
+</ul>
+</li>
+<li><p>路由表解析</p>
+<ul>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">display ip routing-table</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/fZK4TxEMVPDwW2u.png" alt="alt IP路由表"></p>
+</li>
+<li><p>解析上面路由表</p>
+<p>路由表包含了路由器可以到达的目的网络（Destination/Mask），Mask也决定了路由匹配规则</p>
+<p>目的网络在路由表中不存在的数据包将会被丢弃</p>
+<p>1). Destination</p>
+<p>   目标，用来标识IP数据包中的目的地址或网络</p>
+<p>2). Mask</p>
+<p>  掩码，选择最佳路径的判断依据（最长匹配原则）</p>
+<p>3). Protocol</p>
+<p>  协议，路由的来源、学习方式</p>
+<p>4). Preference</p>
+<p>  优先级，比较不同网络来源到达相同目标网络的优先级，越低越优先</p>
+<p>5). Cost</p>
+<p>  度量值、开销，比较相同路由来源到达相同目标网络的不同路径的优先级，越低越优先</p>
+<p>6). NextHop</p>
+<p>  下一跳，指明IP数据包所经过的下一个路由器的接口地址</p>
+<p>7). Interface</p>
+<p>  出接口，指明IP数据包将从当前路由器的哪个接口转发出去</p>
+</li>
+<li><p>路由优先级（Preference）</p>
+<p>图示：</p>
+<p><img src="https://i.loli.net/2021/04/05/L98SDfOgewQ4HNX.png" alt="alt 路由优先级"></p>
+<p><img src="https://i.loli.net/2021/04/05/PHanl5kuJpcL2ME.png" alt="alt 路由优先级比喻"></p>
+</li>
+<li><p>路由度量值（开销）Cost</p>
+<p><img src="https://i.loli.net/2021/04/05/oq7c61GdpVTXynA.png" alt="alt 路由度量值（开销）"></p>
+<p><img src="https://i.loli.net/2021/04/05/dfkDcS86KiyphZQ.png" alt="alt 路由度量值（开销）"></p>
+</li>
+</ul>
+</li>
+<li><p>等价路由（ECMP Equal Cost Multi-Path）</p>
+<ul>
+<li><p>同一个路由来源，到达同一个目标网络，有几条相同度量值（开销）的路由，这几个路由都会加入到路由表中，数据包会在这几条路由上负载均衡</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/5oQ49trYwUKEufe.png" alt="alt 等价路由"></p>
+</li>
+</ul>
+</li>
+<li><p>最长匹配原则（最终数据包匹配最佳路由的算法-Msak的作用）</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/VUcojXqang8Zfwz.png" alt="alt 最长匹配原则"></p>
+</li>
+<li><p>示例解析</p>
+<p>图示：</p>
+<p><img src="https://i.loli.net/2021/04/05/PzJaeIEOqr39lWx.png" alt="alt 最长匹配原则举例"></p>
+<p>解析：</p>
+<p><img src="https://i.loli.net/2021/04/05/G5Wu1mCBsnIRjAv.png" alt="alt 最长匹配原则解析"></p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" rel="next" title="HCNA/路由/动态路由/动态路由">
+                <i class="fa fa-chevron-left"></i> HCNA/路由/动态路由/动态路由
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E8%A1%A8%E3%80%81%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E3%80%81%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/" rel="prev" title="HCNA/路由/路由基础/路由表、直连路由、静态路由">
+                HCNA/路由/路由基础/路由表、直连路由、静态路由 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#路由基础"><span class="nav-number">1.</span> <span class="nav-text">路由基础</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/';
+          this.page.identifier = '2021/04/17/HCNA/路由/路由基础/路由基础/';
+          this.page.title = 'HCNA/路由/路由基础/路由基础';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
