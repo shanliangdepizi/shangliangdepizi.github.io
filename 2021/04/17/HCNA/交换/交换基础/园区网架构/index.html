@@ -87,17 +87,24 @@
 
 
 
-<meta name="description" content="不积跬步无以至千里">
+<meta name="description" content="前言 交换机工作再数据链路层 对数据帧进程操作 收到数据帧后，交换机根据数据帧的头部信息，对数据帧进行转发  网络分层设计优点 通过使用网络分层设计原则和条理化设计方案，设计人员可以创建易于管理和易于支持的网络  图示    园区网图示 分析 接入层 用户接入（接入PC、打印机等设备） 接入安全（ARP欺骗、DHCP欺骗、DHCP攻击等） 访问控制（IP与MAC绑定、802.1x、AAA等）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="园区网络架构">
 <meta property="og:url" content="http://myblog.wuchao.space/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="不积跬步无以至千里">
+<meta property="og:description" content="前言 交换机工作再数据链路层 对数据帧进程操作 收到数据帧后，交换机根据数据帧的头部信息，对数据帧进行转发  网络分层设计优点 通过使用网络分层设计原则和条理化设计方案，设计人员可以创建易于管理和易于支持的网络  图示    园区网图示 分析 接入层 用户接入（接入PC、打印机等设备） 接入安全（ARP欺骗、DHCP欺骗、DHCP攻击等） 访问控制（IP与MAC绑定、802.1x、AAA等）">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/dqmoCLAhJNb3GZ7.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/Sqf4rIo3ZmneNCG.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/8pL9cTn1xmkHlCr.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/pqe3dJnX25GHArf.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/7BqkD4hs3wl6Non.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/17/XiB2P7wdLyMC8UV.png">
 <meta property="article:published_time" content="2021-04-17T07:21:54.206Z">
-<meta property="article:modified_time" content="2021-04-17T07:32:50.922Z">
+<meta property="article:modified_time" content="2021-04-17T09:28:31.782Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="网络架构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/17/dqmoCLAhJNb3GZ7.png">
 
 
 
@@ -403,7 +410,51 @@
       
 
       
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ol>
+<li>交换机工作再数据链路层</li>
+<li>对数据帧进程操作</li>
+<li>收到数据帧后，交换机根据数据帧的头部信息，对数据帧进行转发</li>
+</ol>
+<h1 id="网络分层设计"><a href="#网络分层设计" class="headerlink" title="网络分层设计"></a>网络分层设计</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li><p>通过使用网络分层设计原则和条理化设计方案，设计人员可以创建易于管理和易于支持的网络</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/17/dqmoCLAhJNb3GZ7.png" alt="alt 网络分层设计"></p>
+</li>
+</ol>
+<h2 id="园区网"><a href="#园区网" class="headerlink" title="园区网"></a>园区网</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/17/Sqf4rIo3ZmneNCG.png" alt="alt 园区网设计"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>接入层<ul>
+<li>用户接入（接入PC、打印机等设备）</li>
+<li>接入安全（ARP欺骗、DHCP欺骗、DHCP攻击等）</li>
+<li>访问控制（IP与MAC绑定、802.1x、AAA等）</li>
+</ul>
+</li>
+<li>汇聚层<ul>
+<li>流量汇聚</li>
+<li>链路冗余（链路捆绑）</li>
+<li>设备冗余（VRRP、堆叠）</li>
+<li>路由选择（网关）</li>
+</ul>
+</li>
+<li>核心层<ul>
+<li>高速转发</li>
+<li>服务器接入</li>
+<li>路由选择</li>
+</ul>
+</li>
+<li>出口层<ul>
+<li>宽带（广域网）接入</li>
+<li>出口策略</li>
+<li>带宽控制</li>
+</ul>
+</li>
+</ol>
+<h2 id="企业网络基本架构"><a href="#企业网络基本架构" class="headerlink" title="企业网络基本架构"></a>企业网络基本架构</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/17/8pL9cTn1xmkHlCr.png" alt="alt 企业网络基本架构"></p>
+<h1 id="园区网-1"><a href="#园区网-1" class="headerlink" title="园区网"></a>园区网</h1><h2 id="园区网架构"><a href="#园区网架构" class="headerlink" title="园区网架构"></a>园区网架构</h2><p><img src="https://i.loli.net/2021/04/17/pqe3dJnX25GHArf.png" alt="alt 园区网架构"></p>
+<h2 id="园区网设备接口"><a href="#园区网设备接口" class="headerlink" title="园区网设备接口"></a>园区网设备接口</h2><p><img src="https://i.loli.net/2021/04/17/7BqkD4hs3wl6Non.png" alt="alt 园区网-接口"></p>
+<h3 id="园区网设备带宽需求"><a href="#园区网设备带宽需求" class="headerlink" title="园区网设备带宽需求"></a>园区网设备带宽需求</h3><p><img src="https://i.loli.net/2021/04/17/XiB2P7wdLyMC8UV.png" alt="alt 园区网-带宽"></p>
+
       
     </div>
 
@@ -460,6 +511,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="prev" title="交换机工作原理">
+                交换机工作原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -512,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/wuchao.jpg"
@@ -528,7 +592,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,7 +614,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -609,6 +673,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络分层设计"><span class="nav-number">2.</span> <span class="nav-text">网络分层设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#园区网"><span class="nav-number">2.2.</span> <span class="nav-text">园区网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">2.2.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.2.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#企业网络基本架构"><span class="nav-number">2.3.</span> <span class="nav-text">企业网络基本架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">图示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#园区网-1"><span class="nav-number">3.</span> <span class="nav-text">园区网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#园区网架构"><span class="nav-number">3.1.</span> <span class="nav-text">园区网架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#园区网设备接口"><span class="nav-number">3.2.</span> <span class="nav-text">园区网设备接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#园区网设备带宽需求"><span class="nav-number">3.2.1.</span> <span class="nav-text">园区网设备带宽需求</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
