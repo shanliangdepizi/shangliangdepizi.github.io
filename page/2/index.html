@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url">
-                  园区网络架构
+                <a class="post-title-link" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" itemprop="url">
+                  交换机工作原理
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:54+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T17:28:44+08:00">
                 2021-04-17
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/17/HCNA/交换/交换基础/园区网架构/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/17/HCNA/交换/交换基础/交换机工作原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,50 +405,169 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ol>
-<li>交换机工作再数据链路层</li>
-<li>对数据帧进程操作</li>
-<li>收到数据帧后，交换机根据数据帧的头部信息，对数据帧进行转发</li>
+            <h1 id="交换机主要功能"><a href="#交换机主要功能" class="headerlink" title="交换机主要功能"></a>交换机主要功能</h1><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/17/zRB8hguAD5MI7cJ.png" alt="alt 交换机主要功能"></p>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
+<li>终端设备接入</li>
+<li>以太网数据帧的交换，根据目的MAC地址转发数据帧</li>
+<li>学习MAC地址，并维护MAC地址表</li>
+<li>防止二层环路(STP)</li>
 </ol>
-<h1 id="网络分层设计"><a href="#网络分层设计" class="headerlink" title="网络分层设计"></a>网络分层设计</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
-<li><p>通过使用网络分层设计原则和条理化设计方案，设计人员可以创建易于管理和易于支持的网络</p>
-</li>
+<h1 id="交换机工作原理"><a href="#交换机工作原理" class="headerlink" title="交换机工作原理"></a>交换机工作原理</h1><h2 id="小型网路"><a href="#小型网路" class="headerlink" title="小型网路"></a>小型网路</h2><ol>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/17/dqmoCLAhJNb3GZ7.png" alt="alt 网络分层设计"></p>
+<p><img src="https://i.loli.net/2021/04/17/G9mcnrYHd6vpXiJ.png" alt="alt 小型网络"></p>
 </li>
-</ol>
-<h2 id="园区网"><a href="#园区网" class="headerlink" title="园区网"></a>园区网</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/17/Sqf4rIo3ZmneNCG.png" alt="alt 园区网设计"></p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
-<li>接入层<ul>
-<li>用户接入（接入PC、打印机等设备）</li>
-<li>接入安全（ARP欺骗、DHCP欺骗、DHCP攻击等）</li>
-<li>访问控制（IP与MAC绑定、802.1x、AAA等）</li>
-</ul>
-</li>
-<li>汇聚层<ul>
-<li>流量汇聚</li>
-<li>链路冗余（链路捆绑）</li>
-<li>设备冗余（VRRP、堆叠）</li>
-<li>路由选择（网关）</li>
-</ul>
-</li>
-<li>核心层<ul>
-<li>高速转发</li>
-<li>服务器接入</li>
-<li>路由选择</li>
-</ul>
-</li>
-<li>出口层<ul>
-<li>宽带（广域网）接入</li>
-<li>出口策略</li>
-<li>带宽控制</li>
+<li><p>解释</p>
+<ul>
+<li>没有配置情况下，规划在同一个广播域</li>
+<li>二层交换机不看IP地址</li>
+<li>发送ARP之后，同一个广播域都可以收到，才能做数据帧的转发</li>
 </ul>
 </li>
 </ol>
-<h2 id="企业网络基本架构"><a href="#企业网络基本架构" class="headerlink" title="企业网络基本架构"></a>企业网络基本架构</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/17/8pL9cTn1xmkHlCr.png" alt="alt 企业网络基本架构"></p>
-<h1 id="园区网-1"><a href="#园区网-1" class="headerlink" title="园区网"></a>园区网</h1><h2 id="园区网架构"><a href="#园区网架构" class="headerlink" title="园区网架构"></a>园区网架构</h2><p><img src="https://i.loli.net/2021/04/17/pqe3dJnX25GHArf.png" alt="alt 园区网架构"></p>
-<h2 id="园区网设备接口"><a href="#园区网设备接口" class="headerlink" title="园区网设备接口"></a>园区网设备接口</h2><p><img src="https://i.loli.net/2021/04/17/7BqkD4hs3wl6Non.png" alt="alt 园区网-接口"></p>
-<h3 id="园区网设备带宽需求"><a href="#园区网设备带宽需求" class="headerlink" title="园区网设备带宽需求"></a>园区网设备带宽需求</h3><p><img src="https://i.loli.net/2021/04/17/XiB2P7wdLyMC8UV.png" alt="alt 园区网-带宽"></p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/17/ltAhdYfzNWZKo4O.png" alt="alt 交换机工作原理"></p>
+<p><img src="https://i.loli.net/2021/04/17/lZpUL6Dif8BvGxA.png" alt="alt 交换机工作原理"></p>
+</li>
+<li><p>释义</p>
+<ul>
+<li>二层交换机在接收到数据帧之后，会根据数据帧的头部信息进行处理</li>
+<li>二层交换机学习源MAC，加入到自己的MAC地址表中</li>
+<li>根据目的MAC，在自己的MAC地址表中查询对应的接口</li>
+<li>如果MAC地址表中有对应信息，在对应的接口将数据帧的转发</li>
+<li>如果MAC地址表中没有对应信息，二层交换机会泛洪</li>
+</ul>
+</li>
+</ol>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>原理</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>学习<br>Learn</td>
+<td>当交换机的接口收到数据帧的时候，将数据帧内的源MAC地址与该接口进行绑定，并保存在MAC地址表中<br>交换机通过终端发送给广播（Broadcast）的ARP请求，获悉终端的MAC地址<br>并将获悉到的MAC地址记录在MAC地址表中（交换机接口与终端MAC地址的映射）</td>
+</tr>
+<tr>
+<td>泛洪<br>Flood</td>
+<td>当从一个接口收到广播帧、组播帧、未知单播帧（目标MAC不存在与MAC地址表中）<br>把该帧从所有的其他端口转发出去，除了该接口<br>源MAC对应的终端发送的数据帧中的目的MAC地址不在交换机的MAC地址表中<br>交换机就会将该目的MAC地址泛洪给自己除了源MAC对应的接口以为的所有接口</td>
+</tr>
+<tr>
+<td>转发<br>Forward</td>
+<td>当一个接口收到已知的单播帧后，会立即从对应的端口转发出去<br>交换机的某个接口收到对应MAC地址的中断发送的单播帧后<br>交换机根据自己MAC地址表中的目的MAC地址与交换机端口的映射关系<br>将数据帧转发给目的MAC对应的终端</td>
+</tr>
+<tr>
+<td>更新<br>Update</td>
+<td>默认二层交换MAC地址表保存300秒<br>（如果某个终端在该时间段内不发送数据帧，则会被移出MAC地址表）<br>交换机重启后，清空所有的所有接口学习的记录<br>接口关闭后会清空改接口学习的记录<br>一个源MAC地址出现在另外一个接口上，会删除老的记录，保存新的记录</td>
+</tr>
+<tr>
+<td>PS</td>
+<td>对于一台二层交换机来说，一个MAC只能关联在一个接口上<br>一个接口上可以学习多个MAC地址</td>
+</tr>
+</tbody></table>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><ol>
+<li><p>学习（Learn）</p>
+<ul>
+<li><p>拓扑图</p>
+<p><img src="https://i.loli.net/2021/04/20/RISd3mto2KxYnJc.png" alt="alt 交换机原理拓扑"></p>
+</li>
+<li><p>空的交换机mac地址表中没有数据</p>
+<p><img src="https://i.loli.net/2021/04/20/ldDnsLKUmbvwYzr.png" alt="alt 空交换MAC地址表没有数据"></p>
+</li>
+<li><p>外接一个PC，PC并往出发包</p>
+<p><img src="https://i.loli.net/2021/04/20/7kBg1nA8QFCEzSb.png" alt="alt 外接PC发包"></p>
+</li>
+<li><p>交换机接收到PC发的数据帧，会把帧内的源MAC地址与接口进行绑定，存入MAC地址表</p>
+<p><img src="https://i.loli.net/2021/04/20/26pdHlqtowbVjQh.png" alt="alt 存入MAC地址表"></p>
+</li>
+</ul>
+</li>
+<li><p>泛洪 Flood</p>
+<ul>
+<li><p>拓扑图</p>
+<p><img src="https://i.loli.net/2021/04/20/dqXLaPM8pANkCye.png" alt="alt 交换机原理泛洪"></p>
+</li>
+<li><p>广播帧、组播帧、未知的单播帧，会泛洪给除了自己以外的所有接口</p>
+<p><img src="https://i.loli.net/2021/04/20/TUqKmgWHOyQYlSa.png" alt="alt 交换机泛洪"></p>
+</li>
+<li><p>交换机学习到两个MAC</p>
+<p><img src="https://i.loli.net/2021/04/20/DzO2J1WpT9UACdK.png" alt="alt 交换机MAC个数"></p>
+</li>
+</ul>
+</li>
+<li><p>更新Update</p>
+<ul>
+<li><p>每条记录保存300秒 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis mac-address aging-time</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li><p>总结</p>
+<p><img src="https://i.loli.net/2021/04/20/PikCAQW3aVfvqXE.png" alt="alt 交换机工作原理总结"></p>
+</li>
+<li><p>交换机初始化状态</p>
+<p><img src="https://i.loli.net/2021/04/20/vrQMHBNx9PSkOu6.png" alt="alt 交换机初始化状态"> </p>
+</li>
+<li><p>交换机学习MAC地址</p>
+<p><img src="https://i.loli.net/2021/04/20/u45PckXBIlbD3Nf.png" alt="alt 交换机学习MAC地址"></p>
+</li>
+<li><p>转发数据帧</p>
+<p><img src="https://i.loli.net/2021/04/20/65PdXtsBZWwczQA.png" alt></p>
+</li>
+<li><p>目标主机回复</p>
+<p><img src="https://i.loli.net/2021/04/20/3HtVLOKMrjRonWu.png" alt="alt 目标主机回复"></p>
+</li>
+</ol>
+<h2 id="以太网接口工作模式"><a href="#以太网接口工作模式" class="headerlink" title="以太网接口工作模式"></a>以太网接口工作模式</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>半双工</td>
+<td>half-duplex<br>通信双方都能发送和接收数据，但不能同时进行</td>
+</tr>
+<tr>
+<td>全双工</td>
+<td>full-duplex<br>通信双发可以同时发送和接收数据</td>
+</tr>
+<tr>
+<td>速率</td>
+<td>Speed<br>接口连接时，两端进行协商，协商失败，无法通信</td>
+</tr>
+</tbody></table>
+<h3 id="Speed-速率"><a href="#Speed-速率" class="headerlink" title="Speed 速率"></a>Speed 速率</h3><ol>
+<li><p>速率</p>
+<p><img src="https://i.loli.net/2021/04/20/G5JgWpFzsSbC1kq.png" alt="alt 交换机速率"></p>
+</li>
+<li></li>
+</ol>
+<h3 id="Duplex-双工模式"><a href="#Duplex-双工模式" class="headerlink" title="Duplex 双工模式"></a>Duplex 双工模式</h3><ol>
+<li><p>双工图示</p>
+<p><img src="https://i.loli.net/2021/04/20/21eCRGdEhJn8ZAP.png" alt="alt  交换机双工图示"></p>
+</li>
+<li><p>双工命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 设置速率speed</span><br><span class="line">&lt;Huawei&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]int g0&#x2F;0&#x2F;1</span><br><span class="line">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1]speed ?</span><br><span class="line">  10                10M port speed mode</span><br><span class="line">  100               100M port speed mode</span><br><span class="line">  1000              1000M port speed mode</span><br><span class="line">  auto-negotiation  Auto negotiation</span><br><span class="line">  </span><br><span class="line"># 设置duplex</span><br><span class="line">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1]duplex ?</span><br><span class="line">  full  Full-Duplex mode </span><br><span class="line">  half  Half-Duplex mode </span><br><span class="line"># 关闭自动协商</span><br><span class="line">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1]undo negot	</span><br><span class="line">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1]undo negotiation au	</span><br><span class="line">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1]undo negotiation auto</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>验证配置命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display interface g0&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
           
         
@@ -487,7 +606,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -532,7 +651,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -543,7 +662,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
