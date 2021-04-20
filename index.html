@@ -405,7 +405,131 @@
       
         
           
-            
+            <h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><h2 id="没有VLAN"><a href="#没有VLAN" class="headerlink" title="没有VLAN"></a>没有VLAN</h2><p><img src="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png" alt="alt 没有VLAN的情况"></p>
+<h2 id="VLAN引入"><a href="#VLAN引入" class="headerlink" title="VLAN引入"></a>VLAN引入</h2><ol>
+<li><p>交换机的所有接口在同一个广播域，往往也是一个逻辑子网</p>
+<p><img src="https://i.loli.net/2021/04/20/6AvM9erWNcVSdbI.png" alt="alt 逻辑子网"></p>
+</li>
+<li><p>用户可以根据自己的需求灵活的隔离广播域</p>
+<p> <img src="https://i.loli.net/2021/04/20/zsYk3IhapNn8ixe.png" alt="alt 隔离广播域">]</p>
+</li>
+<li><p>随着网络规模的扩大，广播风暴给网络带来重大问题</p>
+<p><img src="https://i.loli.net/2021/04/20/Hury5QzY36L1s92.png" alt="alt 广播风暴"></p>
+</li>
+<li><p>VLAN引入 </p>
+<p><img src="https://i.loli.net/2021/04/20/yj9BDrRMwoNUb6W.png" alt="alt VLAN引入"></p>
+</li>
+<li><p>多个交换机划分VLAN</p>
+<p><img src="https://i.loli.net/2021/04/20/wNFBUzO4xSd8KAm.png" alt="alt 多个交换机划分VLAN"></p>
+</li>
+</ol>
+<h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="VLAN优点"><a href="#VLAN优点" class="headerlink" title="VLAN优点"></a>VLAN优点</h2><ol>
+<li><p>有效的控制广播域的范围</p>
+</li>
+<li><p>增强网络的安全性</p>
+</li>
+<li><p>灵活的构建虚拟工作组</p>
+</li>
+<li><p>简化网络管理</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/20/jcUQIZHsVe6dKvT.png" alt="alt VLAN优点"></p>
+</li>
+</ol>
+<h2 id="VLAN概述"><a href="#VLAN概述" class="headerlink" title="VLAN概述"></a>VLAN概述</h2><h3 id="Virtual-LAN-虚拟局域网"><a href="#Virtual-LAN-虚拟局域网" class="headerlink" title="Virtual LAN 虚拟局域网"></a>Virtual LAN 虚拟局域网</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
+<li>将一个物理局域网在逻辑上划分成多个广播域</li>
+<li>1VLAN = 1广播域 = 1子网</li>
+<li>广播不会在VLAN之间转发，被限制在自己的VLAN中</li>
+<li>不同的VLAN之间通信需要借助三层设备</li>
+</ol>
+<h2 id="VLAN范围"><a href="#VLAN范围" class="headerlink" title="VLAN范围"></a>VLAN范围</h2><ol>
+<li>0~4095</li>
+<li>0和4095保留</li>
+<li>1为默认</li>
+</ol>
+<h2 id="VLAN标签（Tags）"><a href="#VLAN标签（Tags）" class="headerlink" title="VLAN标签（Tags）"></a>VLAN标签（Tags）</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
+<li><p>IEEE 802.1q: dot1q，是VLAN的正式标准，对Ethernet帧格式进行修改，在源MAC地址字段和协议类型字段之间加入4字节的802.1q Tag</p>
+</li>
+<li><p>每台支持802.1q协议的交换机发送的数据包都会包含VLAN ID，以表明交换机的接口属于哪个VLAN</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/20/UfxAv5Q7dbwT1Xc.png" alt="image-20210420211227099"></p>
+</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有帧标记（tagged frame）</td>
+<td>加入4字节802.1q Tag的帧</td>
+</tr>
+<tr>
+<td>无帧标记（untagged frame）</td>
+<td>原始的、未加入4字节802.1q Tag的帧</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="VLAN链路类型"><a href="#VLAN链路类型" class="headerlink" title="VLAN链路类型"></a>VLAN链路类型</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access Link<br>接入链路</td>
+<td>用于连接交换机和终端之间的链路<br>此链路上传输的帧都是untagged</td>
+</tr>
+<tr>
+<td>Trunk Link<br>干道/中继链路</td>
+<td>用于交换机之间互联或者交换机与路由器之间连接的链路<br>干道链路上传输的帧都是tagged帧，用于两端识别</td>
+</tr>
+</tbody></table>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/hQEnJzBp9v3CkDW.png" alt="alt VLAN链路类型"></p>
+<h3 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display port vlan </span><br><span class="line">dispaly vlan</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="PVID"><a href="#PVID" class="headerlink" title="PVID"></a>PVID</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><ol>
+<li>Port VLAN ID，代表端口的缺省VLAN</li>
+<li>默认的PVID为1</li>
+</ol>
+<h3 id="修改命令"><a href="#修改命令" class="headerlink" title="修改命令"></a>修改命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#端口模式下</span><br><span class="line">port default vlan 100</span><br></pre></td></tr></table></figure>
+
+<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/Sy3HCJdsvBbXRup.png" alt="alt PVID"></p>
+<h2 id="VLAN端口类型"><a href="#VLAN端口类型" class="headerlink" title="VLAN端口类型"></a>VLAN端口类型</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access<br>接入端口</td>
+<td>用于连接终端<br>收到数据帧后，会添加VLAN Tag，VLAN ID与端口的PVID相同<br>转发数据前，会移除VLAN Tag<br><img src="https://i.loli.net/2021/04/20/QHga7nTd5FZDYxE.png" alt="alt Access端口"></td>
+</tr>
+<tr>
+<td>Trunk<br>干道/中继端口</td>
+<td>用于交换机与交换机、交换机与路由器之间连接<br>收到帧  时<br>1. 如果帧不包含标签Tag，将打上接口的PVID<br>2. 如果帧包含标签Tag，则不改变<br>发送帧时，该帧的VLAN ID在Trunk的允许发送列表（Trunk VLAN List）<br>1. 与端口的PVID一致，则剥离Tag发送<br>2. 与端口的PVID不一致，则直接发送（包含Tag）<br><img src="https://i.loli.net/2021/04/20/oayP8CFweZnM46s.png" alt="alt Trunk端口"></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="不同端口详解"><a href="#不同端口详解" class="headerlink" title="不同端口详解"></a>不同端口详解</h3><ol>
+<li>Access端口</li>
+<li>Trunk端口</li>
+<li>Hybrid端口</li>
+</ol>
+<h2 id="VLAN转发流程"><a href="#VLAN转发流程" class="headerlink" title="VLAN转发流程"></a>VLAN转发流程</h2>
           
         
       
