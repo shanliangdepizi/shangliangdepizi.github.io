@@ -87,32 +87,26 @@
 
 
 
-<meta name="description" content="技术背景没有VLAN VLAN引入 交换机的所有接口在同一个广播域，往往也是一个逻辑子网   用户可以根据自己的需求灵活的隔离广播域  ]  随着网络规模的扩大，广播风暴给网络带来重大问题   VLAN引入    多个交换机划分VLAN    VLANVLAN优点 有效的控制广播域的范围  增强网络的安全性  灵活的构建虚拟工作组  简化网络管理  图示    VLAN概述Virtual LAN">
+<meta name="description" content="物理链路拓扑图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="交换机VLAN">
-<meta property="og:url" content="http://myblog.wuchao.space/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN/index.html">
+<meta property="og:title" content="VLAN间路由">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="技术背景没有VLAN VLAN引入 交换机的所有接口在同一个广播域，往往也是一个逻辑子网   用户可以根据自己的需求灵活的隔离广播域  ]  随着网络规模的扩大，广播风暴给网络带来重大问题   VLAN引入    多个交换机划分VLAN    VLANVLAN优点 有效的控制广播域的范围  增强网络的安全性  灵活的构建虚拟工作组  简化网络管理  图示    VLAN概述Virtual LAN">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/6AvM9erWNcVSdbI.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/zsYk3IhapNn8ixe.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/Hury5QzY36L1s92.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/yj9BDrRMwoNUb6W.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/wNFBUzO4xSd8KAm.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/jcUQIZHsVe6dKvT.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/UfxAv5Q7dbwT1Xc.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/hQEnJzBp9v3CkDW.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/Sy3HCJdsvBbXRup.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/QHga7nTd5FZDYxE.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/20/oayP8CFweZnM46s.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/25/jf83sYyFUzdNKTb.png">
-<meta property="og:image" content="https://i.loli.net/2021/04/25/SDwGZFHQyIB8J3A.png">
-<meta property="article:published_time" content="2021-04-20T07:51:02.251Z">
-<meta property="article:modified_time" content="2021-04-28T08:31:29.264Z">
+<meta property="og:description" content="物理链路拓扑图">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/obpTc5aEtWnYy1O.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/82HoFwn4XApBfcK.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/uazh5Sky3TmjiXK.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/9Qq5wLtsoF4X3Dh.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/bLtDx73dcKrAeok.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/vw9QqflWcmFx5Iy.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/GJqBW2nvX5Uflht.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/29/x4PfG7zaFTHJ15i.png">
+<meta property="article:published_time" content="2021-04-28T12:33:40.053Z">
+<meta property="article:modified_time" content="2021-04-29T08:25:16.935Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="交换机">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/29/obpTc5aEtWnYy1O.png">
 
 
 
@@ -140,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/20/HCNA/交换/vlan/VLAN/"/>
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/04/28/HCNA/交换/vlan/vlan间路由/"/>
 
 
 
 
 
-  <title> 交换机VLAN | 工匠 </title>
+  <title> VLAN间路由 | 工匠 </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +269,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -296,7 +290,7 @@
             
             
               
-                交换机VLAN
+                VLAN间路由
               
             
           </h2>
@@ -311,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-20T15:51:02+08:00">
-                2021-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-28T20:33:40+08:00">
+                2021-04-28
               </time>
             
 
@@ -385,9 +379,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/20/HCNA/交换/vlan/VLAN/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/28/HCNA/交换/vlan/vlan间路由/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -418,149 +412,114 @@
       
 
       
-        <h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><h2 id="没有VLAN"><a href="#没有VLAN" class="headerlink" title="没有VLAN"></a>没有VLAN</h2><p><img src="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png" alt="alt 没有VLAN的情况"></p>
-<h2 id="VLAN引入"><a href="#VLAN引入" class="headerlink" title="VLAN引入"></a>VLAN引入</h2><ol>
-<li><p>交换机的所有接口在同一个广播域，往往也是一个逻辑子网</p>
-<p><img src="https://i.loli.net/2021/04/20/6AvM9erWNcVSdbI.png" alt="alt 逻辑子网"></p>
-</li>
-<li><p>用户可以根据自己的需求灵活的隔离广播域</p>
-<p> <img src="https://i.loli.net/2021/04/20/zsYk3IhapNn8ixe.png" alt="alt 隔离广播域">]</p>
-</li>
-<li><p>随着网络规模的扩大，广播风暴给网络带来重大问题</p>
-<p><img src="https://i.loli.net/2021/04/20/Hury5QzY36L1s92.png" alt="alt 广播风暴"></p>
-</li>
-<li><p>VLAN引入 </p>
-<p><img src="https://i.loli.net/2021/04/20/yj9BDrRMwoNUb6W.png" alt="alt VLAN引入"></p>
-</li>
-<li><p>多个交换机划分VLAN</p>
-<p><img src="https://i.loli.net/2021/04/20/wNFBUzO4xSd8KAm.png" alt="alt 多个交换机划分VLAN"></p>
+        <h1 id="物理链路"><a href="#物理链路" class="headerlink" title="物理链路"></a>物理链路</h1><h2 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h2><p><img src="https://i.loli.net/2021/04/29/obpTc5aEtWnYy1O.png" alt="alt VLAN间路由物理链路"></p>
+<a id="more"></a>
+
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>交换机配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys S1</span><br><span class="line"></span><br><span class="line">vlan 10</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br><span class="line"></span><br><span class="line">vlan 20</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;3</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;4</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ol>
-<h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="VLAN优点"><a href="#VLAN优点" class="headerlink" title="VLAN优点"></a>VLAN优点</h2><ol>
-<li><p>有效的控制广播域的范围</p>
-</li>
-<li><p>增强网络的安全性</p>
-</li>
-<li><p>灵活的构建虚拟工作组</p>
-</li>
-<li><p>简化网络管理</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/20/jcUQIZHsVe6dKvT.png" alt="alt VLAN优点"></p>
+<ol start="2">
+<li><p>路由器配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.0.0.1 8</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 20.0.0.1 8</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ol>
-<h2 id="VLAN概述"><a href="#VLAN概述" class="headerlink" title="VLAN概述"></a>VLAN概述</h2><h3 id="Virtual-LAN-虚拟局域网"><a href="#Virtual-LAN-虚拟局域网" class="headerlink" title="Virtual LAN 虚拟局域网"></a>Virtual LAN 虚拟局域网</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
-<li>将一个物理局域网在逻辑上划分成多个广播域</li>
-<li>1VLAN = 1广播域 = 1子网</li>
-<li>广播不会在VLAN之间转发，被限制在自己的VLAN中</li>
-<li>不同的VLAN之间通信需要借助三层设备</li>
-</ol>
-<h2 id="VLAN范围"><a href="#VLAN范围" class="headerlink" title="VLAN范围"></a>VLAN范围</h2><ol>
-<li>0~4095</li>
-<li>0和4095保留</li>
-<li>1为默认</li>
-</ol>
-<h2 id="VLAN标签（Tags）"><a href="#VLAN标签（Tags）" class="headerlink" title="VLAN标签（Tags）"></a>VLAN标签（Tags）</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
-<li><p>IEEE 802.1q: dot1q，是VLAN的正式标准，对Ethernet帧格式进行修改，在源MAC地址字段和协议类型字段之间加入4字节的802.1q Tag</p>
+<ol start="3">
+<li><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3></li>
+<li><p>PC1 ping PC2时，PC1属于VLAN10，PC2属于VLAN20，且不属于同一段地址。</p>
 </li>
-<li><p>每台支持802.1q协议的交换机发送的数据包都会包含VLAN ID，以表明交换机的接口属于哪个VLAN</p>
+<li><p>PC1 配置了网关，会发送ARP请求询问网关配置在那个设备的那个接口</p>
 </li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/20/UfxAv5Q7dbwT1Xc.png" alt="image-20210420211227099"></p>
+<li><p>PC1到交换机S1发送untagged的数据帧，交换机S1收到数据帧之后，给数据帧打上tag，且VLANID为10。</p>
+</li>
+<li><p>交换机S1收到数据帧后，给路由器R1发送数据帧，并剥离标签（交换机与路由器连接的接口是Access类型，且属于VLAN10）。</p>
+</li>
+<li><p>路由器在路由表中查到目的地址路由，路由器给交换机发送数据帧，也是untagged的包。因为交换机上的接口是Access的，交换机会给数据帧打上tag，此时VLANID为20。</p>
+</li>
+<li><p>交换机把数据帧发送给PC2也是会剥离标签，到达PC2，返回的包也是这样</p>
 </li>
 </ol>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
-<li><p>图表</p>
-<table>
+<h3 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h3><p><img src="https://i.loli.net/2021/04/29/82HoFwn4XApBfcK.png" alt="alt VLAN间路由-物理链路-抓包"></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><img src="https://i.loli.net/2021/04/29/uazh5Sky3TmjiXK.png" alt="alt 测试"></p>
+<h1 id="单臂路由"><a href="#单臂路由" class="headerlink" title="单臂路由"></a>单臂路由</h1><h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
 <thead>
 <tr>
-<th>类型</th>
+<th>命令</th>
 <th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>有标记帧（tagged frame）</td>
-<td>加入4字节802.1q Tag的帧</td>
+<td>dot1q termination vid 10</td>
+<td>关联子接口和VLAN</td>
 </tr>
 <tr>
-<td>无标记帧（untagged frame）</td>
-<td>原始的、未加入4字节802.1q Tag的帧</td>
+<td>arp broadcast enable</td>
+<td>开启子接口的ARP广播功能</td>
 </tr>
 </tbody></table>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>R1路由器配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0.10</span><br><span class="line"></span><br><span class="line">dot1q termination vid 10</span><br><span class="line">arp broadcast enable</span><br><span class="line">ip add 10.0.0.1 8</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0.20</span><br><span class="line">dot1q termination vid 20</span><br><span class="line">arp broadcast enable</span><br><span class="line">ip add 20.0.0.1 8</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ol>
-<h2 id="VLAN链路类型"><a href="#VLAN链路类型" class="headerlink" title="VLAN链路类型"></a>VLAN链路类型</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<ol start="2">
+<li><p>S1交换配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys S1</span><br><span class="line"></span><br><span class="line">vlan batch 10 20</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;3</span><br><span class="line">port link-type trunk</span><br><span class="line">port trunk allow-pass vlan 10 20</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h2 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h2><ol>
+<li>交换机与路由器连接的接口类型为Trunk，并且允许PC1与PC2的VLAN通过。</li>
+<li>交换机给路由器发送数据帧的时候，都会带标签，路由器在此基础上将数据帧封装成数据包</li>
+<li>PC1到PC2通信时，标签分别是VLANID10、VLANID20</li>
+<li>PC2到PC1通信时，标签分别是VLANID20、VLANID10</li>
+</ol>
+<h2 id="抓包-1"><a href="#抓包-1" class="headerlink" title="抓包"></a>抓包</h2><p><img src="https://i.loli.net/2021/04/29/9Qq5wLtsoF4X3Dh.png" alt="alt VLAN间路由-单臂路由-抓包"></p>
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p><img src="https://i.loli.net/2021/04/29/bLtDx73dcKrAeok.png" alt="alt VLAN间路由-单臂路由-测试"></p>
+<h1 id="三层交换"><a href="#三层交换" class="headerlink" title="三层交换"></a>三层交换</h1><h2 id="拓扑-1"><a href="#拓扑-1" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://i.loli.net/2021/04/29/vw9QqflWcmFx5Iy.png" alt="alt VLAN间路由-三层交换-拓扑"></p>
+<h2 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
 <thead>
 <tr>
-<th>类型</th>
+<th>命令</th>
 <th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Access Link<br>接入链路</td>
-<td>用于连接交换机和终端之间的链路<br>此链路上传输的帧都是untagged</td>
+<td>interface vlan if 10</td>
+<td>配置VLAN<br>if后面的数值要与vlan id 一致</td>
 </tr>
 <tr>
-<td>Trunk Link<br>干道/中继链路</td>
-<td>用于交换机之间互联或者交换机与路由器之间连接的链路<br>干道链路上传输的帧都是tagged帧，用于两端识别</td>
+<td>ip add ip地址 子网掩码</td>
+<td></td>
+</tr>
+<tr>
+<td>portswitch</td>
+<td>配置接口为2层</td>
+</tr>
+<tr>
+<td>undo portswitch</td>
+<td>配置接口为3层</td>
 </tr>
 </tbody></table>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/hQEnJzBp9v3CkDW.png" alt="alt VLAN链路类型"></p>
-<h3 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display port vlan </span><br><span class="line">dispaly vlan</span><br></pre></td></tr></table></figure>
+<h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys S1</span><br><span class="line"></span><br><span class="line">vlan batch 10 20</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br><span class="line"></span><br><span class="line">int vlanif 10</span><br><span class="line">ip add 10.0.0.1 8</span><br><span class="line"></span><br><span class="line">int vlanif 20</span><br><span class="line">ip add 20.0.0.1 8</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="PVID"><a href="#PVID" class="headerlink" title="PVID"></a>PVID</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><ol>
-<li>Port VLAN ID，代表端口的缺省VLAN</li>
-<li>默认的PVID为1</li>
-</ol>
-<h3 id="修改命令"><a href="#修改命令" class="headerlink" title="修改命令"></a>修改命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#端口模式下</span><br><span class="line">port default vlan 100</span><br></pre></td></tr></table></figure>
+<h2 id="抓包-2"><a href="#抓包-2" class="headerlink" title="抓包"></a>抓包</h2><p><img src="https://i.loli.net/2021/04/29/GJqBW2nvX5Uflht.png" alt="image-20210429160414270"></p>
+<h2 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h2><p> <img src="https://i.loli.net/2021/04/29/x4PfG7zaFTHJ15i.png" alt="image-20210429160706905">]</p>
 
-<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/Sy3HCJdsvBbXRup.png" alt="alt PVID"></p>
-<h2 id="VLAN端口类型"><a href="#VLAN端口类型" class="headerlink" title="VLAN端口类型"></a>VLAN端口类型</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Access<br>接入端口</td>
-<td>用于连接终端<br>收到数据帧后，会添加VLAN Tag，VLAN ID与端口的PVID相同<br>转发数据前，会移除VLAN Tag<br><img src="https://i.loli.net/2021/04/20/QHga7nTd5FZDYxE.png" alt="alt Access端口"></td>
-</tr>
-<tr>
-<td>Trunk<br>干道/中继端口</td>
-<td>用于交换机与交换机、交换机与路由器之间连接<br>收到帧  时<br>1. 如果帧不包含标签Tag，将打上接口的PVID<br>2. 如果帧包含标签Tag，则不改变<br>发送帧时，该帧的VLAN ID在Trunk的允许发送列表（Trunk VLAN List）<br>1. 与端口的PVID一致，则剥离Tag发送<br>2. 与端口的PVID不一致，则直接发送（包含Tag）<br><img src="https://i.loli.net/2021/04/20/oayP8CFweZnM46s.png" alt="alt Trunk端口"></td>
-</tr>
-<tr>
-<td>Hybrid<br>混杂端口</td>
-<td>既可以连接主机，也可以l连接其他交换机<br>既可以连接接入链路，又可以连接干道链路<br>允许多个VLAN的帧通过，并可以在出接口位置将某些帧的Tag剥离（命令实现）<br><img src="https://i.loli.net/2021/04/25/jf83sYyFUzdNKTb.png" alt="alt Hybrid混合端口"></td>
-</tr>
-</tbody></table>
-<h3 id="不同端口详解"><a href="#不同端口详解" class="headerlink" title="不同端口详解"></a>不同端口详解</h3><ol>
-<li>Access端口<ul>
-<li>收到数据帧，默认添加Tags，数据帧的VLANID与端口PVID相同</li>
-<li>发送数据帧的时候，会剥离数据帧中的Tags</li>
-</ul>
-</li>
-<li>Trunk端口<ul>
-<li>收到数据帧的时候<ul>
-<li>如果数据帧没有Tags，打上端口的PVID</li>
-<li>如果数据帧有Tags，VLANID不变</li>
-</ul>
-</li>
-<li>发送数据帧的时候<ul>
-<li>首先，确定VLANID是在Trunk允许列表中</li>
-<li>如果发送的时候，数据帧的VLANID与端口的PVID相同，剥离Tags发送。</li>
-<li>如果发送的时候，数据帧的VLANID与端口的PVID不相同，数据帧带Tags发送。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Hybrid端口</li>
-</ol>
-<h2 id="VLAN转发流程"><a href="#VLAN转发流程" class="headerlink" title="VLAN转发流程"></a>VLAN转发流程</h2><h3 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/25/SDwGZFHQyIB8J3A.png" alt="alt VLAN转发过程"></p>
-<h3 id="释义"><a href="#释义" class="headerlink" title="释义"></a>释义</h3>
       
     </div>
 
@@ -607,8 +566,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="next" title="交换机工作原理">
-                <i class="fa fa-chevron-left"></i> 交换机工作原理
+              <a href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN%E9%85%8D%E7%BD%AE/" rel="next" title="VLAN配置">
+                <i class="fa fa-chevron-left"></i> VLAN配置
               </a>
             
           </div>
@@ -616,10 +575,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN%E9%85%8D%E7%BD%AE/" rel="prev" title="VLAN配置">
-                VLAN配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -789,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#技术背景"><span class="nav-number">1.</span> <span class="nav-text">技术背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#没有VLAN"><span class="nav-number">1.1.</span> <span class="nav-text">没有VLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN引入"><span class="nav-number">1.2.</span> <span class="nav-text">VLAN引入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLAN"><span class="nav-number">2.</span> <span class="nav-text">VLAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN优点"><span class="nav-number">2.1.</span> <span class="nav-text">VLAN优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN概述"><span class="nav-number">2.2.</span> <span class="nav-text">VLAN概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-LAN-虚拟局域网"><span class="nav-number">2.2.1.</span> <span class="nav-text">Virtual LAN 虚拟局域网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">2.2.2.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN范围"><span class="nav-number">2.3.</span> <span class="nav-text">VLAN范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN标签（Tags）"><span class="nav-number">2.4.</span> <span class="nav-text">VLAN标签（Tags）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">2.4.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN链路类型"><span class="nav-number">2.5.</span> <span class="nav-text">VLAN链路类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">2.5.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">2.5.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看命令"><span class="nav-number">2.5.3.</span> <span class="nav-text">查看命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PVID"><span class="nav-number">2.6.</span> <span class="nav-text">PVID</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">2.6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改命令"><span class="nav-number">2.6.2.</span> <span class="nav-text">修改命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-1"><span class="nav-number">2.6.3.</span> <span class="nav-text">图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN端口类型"><span class="nav-number">2.7.</span> <span class="nav-text">VLAN端口类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表-1"><span class="nav-number">2.7.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同端口详解"><span class="nav-number">2.7.2.</span> <span class="nav-text">不同端口详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLAN转发流程"><span class="nav-number">2.8.</span> <span class="nav-text">VLAN转发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-2"><span class="nav-number">2.8.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#释义"><span class="nav-number">2.8.2.</span> <span class="nav-text">释义</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#物理链路"><span class="nav-number">1.</span> <span class="nav-text">物理链路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑图"><span class="nav-number">1.1.</span> <span class="nav-text">拓扑图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验"><span class="nav-number">2.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">2.0.2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抓包"><span class="nav-number">2.0.3.</span> <span class="nav-text">抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">2.0.4.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单臂路由"><span class="nav-number">3.</span> <span class="nav-text">单臂路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑"><span class="nav-number">3.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-1"><span class="nav-number">3.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">3.2.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">3.2.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析-1"><span class="nav-number">3.3.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抓包-1"><span class="nav-number">3.4.</span> <span class="nav-text">抓包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试-1"><span class="nav-number">3.5.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三层交换"><span class="nav-number">4.</span> <span class="nav-text">三层交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓扑-1"><span class="nav-number">4.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-2"><span class="nav-number">4.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抓包-2"><span class="nav-number">4.3.</span> <span class="nav-text">抓包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试-2"><span class="nav-number">4.4.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -958,9 +913,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://myblog.wuchao.space/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN/';
-          this.page.identifier = '2021/04/20/HCNA/交换/vlan/VLAN/';
-          this.page.title = '交换机VLAN';
+          this.page.url = 'http://myblog.wuchao.space/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/';
+          this.page.identifier = '2021/04/28/HCNA/交换/vlan/vlan间路由/';
+          this.page.title = 'VLAN间路由';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://wuchao.disqus.com/embed.js';
