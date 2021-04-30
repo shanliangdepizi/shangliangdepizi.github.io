@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" itemprop="url">
-                  动态路由
+                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" itemprop="url">
+                  路由基础
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:30+08:00">
                 2021-04-17
               </time>
             
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
-                    <span itemprop="name">动态路由</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">路由基础</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/17/HCNA/路由/动态路由/动态路由/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/17/HCNA/路由/路由基础/路由基础/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,153 +405,157 @@
       
         
           
-            <h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><ol>
-<li><p>简介</p>
+            <h1 id="路由基础"><a href="#路由基础" class="headerlink" title="路由基础"></a>路由基础</h1><ol>
+<li><p>关键术语</p>
 <ul>
-<li>路由器使用路由协议从其他路由器那获悉的路由</li>
-<li>当网络拓扑发生变化时，路由器会自动更新路由信息</li>
+<li><p>路由（Routing）</p>
+<p>从源头到目的的路径</p>
+<p>不同网络间的转发过程</p>
+</li>
+<li><p>路由表（Routing Table）</p>
+<p>路由信息的集合</p>
+<p>路由的依据</p>
+</li>
+<li><p>路由器（Router）</p>
+<p>具有路由功能的设备</p>
+</li>
+<li><p>默认网关（Default Gateway）</p>
+<p>通常是路由设备的接口IP地址</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/ItEiS8V41FAOn7L.png" alt="alt 关键术语"></p>
+</li>
 </ul>
 </li>
-<li><p>路由协议</p>
+</ol>
+<ol start="2">
+<li><p>路由过程图解</p>
 <ul>
-<li><p>概述</p>
-<p>  路由器之间交互信息的一种语言</p>
-<p>  共享路由信息</p>
-<p>  维护路由表、提供最佳转发路径</p>
+<li><p>路由过程</p>
+<p>RA路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.1.2.2，出口是RA路由器的E0</p>
+<p>RB路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.2.1.2，出口是RB路由器的E1</p>
+<p>RC路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.4.1.1，出口是RC路由器的E1</p>
 </li>
-<li><p>win10中的路由表</p>
+<li><p>路由详细过程</p>
+<p>当三层设备收到一个IP数据包之后，会查看IP数据包头部中的目的IP的地址，并在路由表中进行查找，匹配到最优路径之后，将IP数据包扔给出接口和下一跳路由，下一跳路由接着处理IP数据包</p>
+</li>
+<li><p>最长匹配原则</p>
+<p>路由表中的路由越详细，越优先使用</p>
+</li>
+<li><p>下一跳</p>
+<p>下一跳与出接口要一一对应</p>
+<p>下一跳是下一个路由器接口的IP地址</p>
+</li>
+<li><p>出接口</p>
+<p>出接口是当前路由的连接下一个路由器的接口</p>
+</li>
+<li><p>基础命令</p>
+<p>用户模式下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">dis ip routing-table</span><br><span class="line"># 查看某个协议的路由表</span><br><span class="line">dis ip routing-table protocol static</span><br></pre></td></tr></table></figure>
+
+<p>系统模式下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置静态路由</span><br><span class="line">#进入系统模式</span><br><span class="line">sys</span><br><span class="line">ip route-static Destination Mask NextHop</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 </li>
 </ol>
 <ul>
-<li><p>路由协议总览</p>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/3vPpUYfrmE25nLS.png" alt="alt 路由过程图解"></p>
+</li>
+</ul>
+<ol start="3">
+<li><p>路由器转发数据包</p>
+<ul>
+<li><p>关键术语</p>
+<p>目的地址 Destination/Mask</p>
+<p>下一跳 NextHop 下一跳路由器接口的地址</p>
+<p>出接口 Interface 本路由器连接下一个路由器的接口</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/mdheuARFQlycUrI.png" alt="alt 路由器转发数据包"></p>
+</li>
+</ul>
+</li>
+<li><p>路由选路</p>
+<ul>
+<li><p>路由器负责给数据包选择一条最优路径，并负责转发数据包</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/bDI2UPRnZoWdeF4.png" alt="alt 路由选路"></p>
+</li>
+</ul>
+</li>
+<li><p>路由器的工作内容</p>
+<ul>
+<li>收到数据包查看目标IP地址</li>
+<li>在路由表中选择最佳路径</li>
+<li>维护路由表</li>
+</ul>
+</li>
+<li><p>路由表解析</p>
+<ul>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">display ip routing-table</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/fZK4TxEMVPDwW2u.png" alt="alt IP路由表"></p>
+</li>
+<li><p>解析上面路由表</p>
+<p>路由表包含了路由器可以到达的目的网络（Destination/Mask），Mask也决定了路由匹配规则</p>
+<p>目的网络在路由表中不存在的数据包将会被丢弃</p>
+<p>1). Destination</p>
+<p>   目标，用来标识IP数据包中的目的地址或网络</p>
+<p>2). Mask</p>
+<p>  掩码，选择最佳路径的判断依据（最长匹配原则）</p>
+<p>3). Protocol</p>
+<p>  协议，路由的来源、学习方式</p>
+<p>4). Preference</p>
+<p>  优先级，比较不同网络来源到达相同目标网络的优先级，越低越优先</p>
+<p>5). Cost</p>
+<p>  度量值、开销，比较相同路由来源到达相同目标网络的不同路径的优先级，越低越优先</p>
+<p>6). NextHop</p>
+<p>  下一跳，指明IP数据包所经过的下一个路由器的接口地址</p>
+<p>7). Interface</p>
+<p>  出接口，指明IP数据包将从当前路由器的哪个接口转发出去</p>
+</li>
+<li><p>路由优先级（Preference）</p>
+<p>图示：</p>
+<p><img src="https://i.loli.net/2021/04/05/L98SDfOgewQ4HNX.png" alt="alt 路由优先级"></p>
+<p><img src="https://i.loli.net/2021/04/05/PHanl5kuJpcL2ME.png" alt="alt 路由优先级比喻"></p>
+</li>
+<li><p>路由度量值（开销）Cost</p>
+<p><img src="https://i.loli.net/2021/04/05/oq7c61GdpVTXynA.png" alt="alt 路由度量值（开销）"></p>
+<p><img src="https://i.loli.net/2021/04/05/dfkDcS86KiyphZQ.png" alt="alt 路由度量值（开销）"></p>
+</li>
+</ul>
+</li>
+<li><p>等价路由（ECMP Equal Cost Multi-Path）</p>
+<ul>
+<li><p>同一个路由来源，到达同一个目标网络，有几条相同度量值（开销）的路由，这几个路由都会加入到路由表中，数据包会在这几条路由上负载均衡</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/05/5oQ49trYwUKEufe.png" alt="alt 等价路由"></p>
+</li>
+</ul>
+</li>
+<li><p>最长匹配原则（最终数据包匹配最佳路由的算法-Msak的作用）</p>
 <ul>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/06/Xsc8aTrmHJGjZIY.png" alt="alt 路由协议总览"></p>
+<p><img src="https://i.loli.net/2021/04/05/VUcojXqang8Zfwz.png" alt="alt 最长匹配原则"></p>
 </li>
-<li><p>分类依据（作用范围）</p>
-<p><img src="https://i.loli.net/2021/04/06/DJFedA6NhVbgXr4.png" alt="alt 路由协议分类"></p>
-</li>
-<li><p>协议分类</p>
-<ul>
-<li><p>作用范围分类</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IGP(Interior Gateway Protocol)内部网关协议</td>
-<td>用于一个AS内部路由交换信息。如：OSPF、IS-IS、RIP</td>
-</tr>
-<tr>
-<td>EGP(Enterior Getaway Protocol)外部网关协议</td>
-<td>用于多个AS之间交换路由信息。如：BGP</td>
-</tr>
-<tr>
-<td>AS(Autonomous System) 自治系统</td>
-<td>处于单个管理机制下的网络（企业、电信、联通、移动）</td>
-</tr>
-</tbody></table>
+<li><p>示例解析</p>
+<p>图示：</p>
+<p><img src="https://i.loli.net/2021/04/05/PzJaeIEOqr39lWx.png" alt="alt 最长匹配原则举例"></p>
+<p>解析：</p>
+<p><img src="https://i.loli.net/2021/04/05/G5Wu1mCBsnIRjAv.png" alt="alt 最长匹配原则解析"></p>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<pre><code>  + 根据协议算法分类
-
-    | 类型                        | 备注                                                         |
-    | --------------------------- | ------------------------------------------------------------ |
-    | DV(Distance-Vector)距离矢量 | 基于距离矢量算法，路由器并不了解网络拓扑结构。类似路牌、道听途书。如：RIP、EIGRP |
-    | LS(Link-State)链路状态      | 基于SPF(Shortest Path First最短路径优先)算法，路由器了解网路拓扑，类似于地图。如：OSPF、IS-IS |
-
-  + DV（距离矢量）与LS（链路状态）的区别
-
-    拓扑图
-
-     ![alt DV与LS区别的拓扑图](https://i.loli.net/2021/04/06/4SvhLXscw2k8Oiu.png)    
-
-
-
-    DV所选路径（RIP）   
-
-    ![alt DV所选路径](https://i.loli.net/2021/04/06/cFElufTr6C28jeU.png)LS所选路径（OSPF）
-
-    ![alt LS所选路径-OSPF](https://i.loli.net/2021/04/06/cMP9tmg6x7hTe4Z.png)
-
-  * 根据发送的更新是否携带掩码
-
-    | 类型          | 属性                                         |
-    | ------------- | -------------------------------------------- |
-    | Classful 有类 | 不携带掩码。如：RIPv1、IGRP                  |
-    | Classless无类 | 携带掩码。如：RIPv2、EIGRP、OSPF、IS-IS、BGP |
-
-    图示
-
-    ![alt 发送的更新是否携带掩码](https://i.loli.net/2021/04/06/2pdVvYNFI7gMlUo.png)
-
-  * 根据业务应用分类
-
-    | 类型                                    | 备注                             |
-    | --------------------------------------- | -------------------------------- |
-    | Unicast Routing Protocol 单播路由协议   | 如：RIP、EIGRP、OSPF、IS-IS、BGP |
-    | Multicast Routing Protocol 组播路由协议 | 如：DVMRP、PIM-SM、PIM-DM        |
-
-* 路由协议操作规则
-
-  * 协议是在接口上运行
-
-  * 只能学习和发布相同协议的路由信息
-
-  * 如果不同的路由协议见需要交换路由信息，就需要进行注入（import）
-
-  * 图示
-
-    ![alt 路由操作规则](https://i.loli.net/2021/04/06/JmKRhvL1YjAseTX.png)
-
-    ![alt 路由操作规则](https://i.loli.net/2021/04/06/EjfCrSqB4aTkyoQ.png)</code></pre><ul>
-<li><p>路由器收敛</p>
-<ul>
-<li>当所有路由表包含相同网络可达性信息</li>
-<li>网络（路由）进入一个稳定状态</li>
-<li>网络达到收敛前无法完全正常工作</li>
-</ul>
-</li>
-<li><p>衡量动态路由协议的一些性能指标</p>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>正确性</td>
-<td>能够正确找到最优的路由，且无自环</td>
-</tr>
-<tr>
-<td>快收敛</td>
-<td>当拓扑结构发生变化之后，能够快速做出相应的路由变化</td>
-</tr>
-<tr>
-<td>低开销</td>
-<td>协议自身的开销（内存、CPU、网络带宽）最小</td>
-</tr>
-<tr>
-<td>安全性</td>
-<td>协议自身不易受攻击，有安全机制</td>
-</tr>
-<tr>
-<td>普适性</td>
-<td>适应各种拓扑结构和各种规模的网络</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
+</ol>
 
           
         
@@ -590,7 +594,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -635,7 +639,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
