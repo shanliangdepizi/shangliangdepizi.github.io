@@ -404,8 +404,7 @@
 
       
         
-          
-            <h1 id="GARP"><a href="#GARP" class="headerlink" title="GARP"></a>GARP</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+          <h1 id="GARP"><a href="#GARP" class="headerlink" title="GARP"></a>GARP</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
 <li><p>Generic Attribute Registration Protocol 通用属性注册协议</p>
 </li>
 <li><p>在交换机之间分发、传播、注册某种属性（VLAN属性、组播地址等）</p>
@@ -418,75 +417,13 @@
 <p><img src="https://i.loli.net/2021/04/30/UCAnr8gO6om5bJ1.png" alt="alt GARP概述"></p>
 </li>
 </ol>
-<h2 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h2><h3 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h3><table>
-<thead>
-<tr>
-<th>消息类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>join</td>
-<td>注册，端口注册VLAN</td>
-</tr>
-<tr>
-<td>leave</td>
-<td>注销，端口注销VLAN</td>
-</tr>
-<tr>
-<td>leave all</td>
-<td>端口注销所有VLAN（除了VLAN1）</td>
-</tr>
-</tbody></table>
-<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p><img src="https://i.loli.net/2021/04/30/1jlxI3pVB8owztA.png" alt="alt GARP消息类型-join"></p>
-<h3 id="leave"><a href="#leave" class="headerlink" title="leave"></a>leave</h3><p><img src="https://i.loli.net/2021/04/30/bPAGBF7rotDfspj.png" alt="alt GARP消息类型-leave"></p>
-<h3 id="leave-all"><a href="#leave-all" class="headerlink" title="leave all"></a>leave all</h3><p><img src="https://i.loli.net/2021/04/30/MiSdLYNm4KBvb56.png" alt="alt GARP消息类型-leave all"></p>
-<h1 id="GVRP"><a href="#GVRP" class="headerlink" title="GVRP"></a>GVRP</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><ol>
-<li><p>GARP VLAN Registation Protocol GARP VLAN注册协议</p>
-</li>
-<li><p>GVRP基于GARP的工作机制，用来传输VLAN属性信息</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/30/q8jPyVdhcIzQHng.png" alt="alt GVRP概述"></p>
-</li>
-</ol>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
-<li>接收来自其他交换机的VLAN注册信息，并动态更新本地的VLAN注册信息，包括当前的VLAN、VLAN成员等</li>
-<li>将本地注册的VLAN信息向其他的交换机传播，为了使同一个交换网内的所有支持GVRP的设备VLAN信息一致</li>
-<li>手动配置的是静态VLAN（common），通过GVRP注册的是动态VLAN (dynamic)</li>
-<li>GVRP传播的VLAN注册信息包括本地手动配置的静态VLAN信息和来自其他交换机的动态注册信息</li>
-</ol>
-<h2 id="GVRP消息类型"><a href="#GVRP消息类型" class="headerlink" title="GVRP消息类型"></a>GVRP消息类型</h2><h3 id="单向注册"><a href="#单向注册" class="headerlink" title="单向注册"></a>单向注册</h3><p><img src="https://i.loli.net/2021/04/30/mEZOiejSlf4b5PY.png" alt="alt GVRP单向注册"></p>
-<h3 id="单向注销"><a href="#单向注销" class="headerlink" title="单向注销"></a>单向注销</h3><p><img src="https://i.loli.net/2021/04/30/ZsLcT5JYPBdbE1I.png" alt="alt 单向注销"></p>
-<h2 id="GVRP注册模式"><a href="#GVRP注册模式" class="headerlink" title="GVRP注册模式"></a>GVRP注册模式</h2><h3 id="normal"><a href="#normal" class="headerlink" title="normal"></a>normal</h3><ol>
-<li><p>交换机默认是normal模式，允许动态和静态的VLAN注册</p>
-</li>
-<li><p>会同时发送动态和静态的VLAN信息</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/30/fvK4z2FLsbiUgyS.png" alt="alt GVRP注册模式-normal"></p>
-</li>
-</ol>
-<h3 id="forbidden"><a href="#forbidden" class="headerlink" title="forbidden"></a>forbidden</h3><ol>
-<li><p>接口上不允许动态VLAN的注册</p>
-</li>
-<li><p>同时删除端口上的所有VLAN（除了VLAN1以外）</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/30/aKDxleCdOzIJrGy.png" alt="alt GVRP注册模式-forbidden"></p>
-</li>
-</ol>
-<h3 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h3><ol>
-<li><p>端口不允许东涛VLAN信息的注册以及注销</p>
-</li>
-<li><p>端口只发送静态VLAN信息</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/30/TPpfHeOw4sJNxMj.png" alt="alt GVRP注册模式-fixed"></p>
-</li>
-</ol>
-<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/30/HCNA/%E4%BA%A4%E6%8D%A2/GVRP/GVRP/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
