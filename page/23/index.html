@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/" itemprop="url">
-                  OSPF数据包与状态
+                <a class="post-title-link" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" itemprop="url">
+                  OSPF核心工作流程
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:01:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:37:35+08:00">
                 2021-04-10
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF核心工作流程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,52 +404,23 @@
 
       
         
-          <h1 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h1><ul>
-<li><p>概述</p>
+          <h1 id="OSPF核心工作流程"><a href="#OSPF核心工作流程" class="headerlink" title="OSPF核心工作流程"></a>OSPF核心工作流程</h1><ol>
+<li><p>工作流程内容</p>
 <ul>
-<li>运行OSPF协议之前，必须选取一个RID</li>
-<li>用来标识唯一的OSPF路由器</li>
-<li>RID可以自动选取，也可以手动配置</li>
+<li>发现并建立邻居</li>
+<li>进行LSA（Link-State advertisement）宣告（区别于距离矢量（Distance Vector）路由更新）<ul>
+<li>LSA（Link-State Advertisement）链路状态宣告（路况信息）</li>
+<li>链路：路由器接口</li>
+<li>状态：描述接口信息（地址、掩码、开销、网络类型、邻居关系等）</li>
 </ul>
 </li>
-<li><p>选取规则</p>
-<ul>
-<li><p>图表</p>
-<table>
-<thead>
-<tr>
-<th align="left">规则</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">RID选取顺序规则</td>
-<td>1. 手动配置（推荐使用）<br>2. 活动的回环接口上选择IP地址最高的<br>3. 活动的物理接口上选择IP地址最高的</td>
-</tr>
-<tr>
-<td align="left">PS</td>
-<td>RID的选取具有非抢占性，除非重启OSPF进程</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>手动配置方式</p>
-<ul>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line"># 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>图表</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png" alt="alt RID选取规则"></li>
-</ul></li></ul>
+<li>将LSA泛洪到区域内的所有OSPF的路由器，不仅仅是直连的路由器</li>
+<li>手机LSA信息创建LSDB（链路状态数据库、地图）</li>
+<li>使用SPF算法，计算到每个目标网络的最短路径，并将这些信息保存到路由表</li>
+</ul></li></ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#more" rel="contents">
+            <a class="btn" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -490,7 +461,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/22/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -535,7 +506,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
