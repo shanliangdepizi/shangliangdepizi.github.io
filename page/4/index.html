@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN%E9%85%8D%E7%BD%AE/" itemprop="url">
-                  VLAN配置
+                <a class="post-title-link" href="/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/" itemprop="url">
+                  VLAN间路由
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-26T08:52:14+08:00">
-                2021-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-28T20:33:40+08:00">
+                2021-04-28
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/vlan/VLAN%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/26/HCNA/交换/vlan/VLAN配置/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/28/HCNA/交换/vlan/vlan间路由/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,167 +404,14 @@
 
       
         
-          
-            <h1 id="VLAN规划"><a href="#VLAN规划" class="headerlink" title="VLAN规划"></a>VLAN规划</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>VLAN5</th>
-<th>VLAN10</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>基于端口</td>
-<td>G0/0/1、G0/0/7</td>
-<td>G0/0/2 G0/0/9</td>
-</tr>
-<tr>
-<td>基于MAC地址</td>
-<td>00-01-02-02-04-QQ</td>
-<td>00-01-02-03-04-WW</td>
-</tr>
-<tr>
-<td>基于IP子网划分</td>
-<td>10.0.1.*</td>
-<td>10.0.2.*</td>
-</tr>
-<tr>
-<td>基于协议划分</td>
-<td>IP</td>
-<td>IPX</td>
-</tr>
-<tr>
-<td>基于策略</td>
-<td>10.0.1.* + G0/0/1 + 00-01-02-03-04-AA</td>
-<td>10.0.2.* + G0/0/2 + 00-01-02-03-04-BB</td>
-</tr>
-</tbody></table>
-<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/26/OdpnAwcisZRubVH.png" alt="alt VLAN规划"></p>
-<h1 id="VLAN配置"><a href="#VLAN配置" class="headerlink" title="VLAN配置"></a>VLAN配置</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>VLAN 10</td>
-<td>创建单个VLAN</td>
-</tr>
-<tr>
-<td>vlan batch 10 to 20</td>
-<td>创建多个VLAN</td>
-</tr>
-<tr>
-<td>port link-type access/trunk/hybrid</td>
-<td>配置接口类型</td>
-</tr>
-<tr>
-<td>port default vlan 10</td>
-<td>配置Access关联VLAN/PVID</td>
-</tr>
-<tr>
-<td>port trunk allow-pass vlan 10</td>
-<td>配置Trunk允许VLAN<br>默认只允许VLAN1</td>
-</tr>
-<tr>
-<td>port trunk pvid vlan 10</td>
-<td>配置Trunk的PVID</td>
-</tr>
-<tr>
-<td>port hybrid tagged/untagged vlan 10</td>
-<td>配置Hybrid的PVID</td>
-</tr>
-<tr>
-<td>port hybrid pvid vlan 10</td>
-<td>配置Hybrid的PVID</td>
-</tr>
-<tr>
-<td>display vlan</td>
-<td>验证VLAN</td>
-</tr>
-<tr>
-<td>display port vlan</td>
-<td>验证VLAN</td>
-</tr>
-</tbody></table>
-<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol>
-<li><p>将Access端口配置给某个VLAN</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Access端口模式下</span><br><span class="line"></span><br><span class="line">port default vlan xxx</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="2">
-<li><p>Trunk端口下配置VLAN</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Trunk端口模式下</span><br><span class="line"></span><br><span class="line">   #配置Trunk允许列表</span><br><span class="line">   port trunk allow-pass vlan xxx </span><br><span class="line">   </span><br><span class="line">   #配置Trunk端口的PVID</span><br><span class="line">   port trunk pvid vlan xxx</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="3">
-<li><p>Hybrid端口下配置VLAN</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Hybrid 端口配置VLAN</span><br><span class="line">   </span><br><span class="line">   # 配置带不带标签</span><br><span class="line">   port hybrid tagged&#x2F;untagged vlan xxx</span><br><span class="line">   </span><br><span class="line">   # 配置PVID</span><br><span class="line">   port hybrid pvid vlan xxx</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="普通实验"><a href="#普通实验" class="headerlink" title="普通实验"></a>普通实验</h3><ol>
-<li><p>拓扑</p>
-<p><img src="https://i.loli.net/2021/04/26/elyx8OFgrZGa2un.png" alt="alt VLAN配置实验拓扑"></p>
-</li>
-<li><p>配置</p>
-<ul>
-<li><p>全部配置成Access端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;S3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S3]sys S3</span><br><span class="line">[S3]int g0&#x2F;0&#x2F;1</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]q</span><br><span class="line">[S3]q</span><br><span class="line">&lt;S3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S3]sys S3</span><br><span class="line"></span><br><span class="line"># 创建VLAN 10</span><br><span class="line">[S3]vlan 10</span><br><span class="line">[S3-vlan10]int g0&#x2F;0&#x2F;1</span><br><span class="line"></span><br><span class="line"># 配置端口类型</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]port link-type access</span><br><span class="line"></span><br><span class="line">#配置端口VLAN</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]port default vlan 10</span><br><span class="line"></span><br><span class="line"># 验证端口配置</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]int g0&#x2F;0&#x2F;2</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]port link-type access</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]p</span><br><span class="line">Apr 26 2021 23:12:04-08:00 S3 DS&#x2F;4&#x2F;DATASYNC_CFGCHANGE:OID 1.3.6.1.4.1.2011.5.25.</span><br><span class="line">191.3.1 configurations have been changed. The current change number is 13, the c</span><br><span class="line">hange loop count is 0, and the maximum number of records is 4095.</span><br><span class="line">Error: The interface is already a L2 interface.</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]port default vlan 10</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]</span><br><span class="line">Apr 26 2021 23:12:22-08:00 S3 %%01IFNET&#x2F;4&#x2F;IF_STATE(l)[0]:Interface Vlanif1 has t</span><br><span class="line">urned into DOWN state.</span><br><span class="line">Apr 26 2021 23:12:24-08:00 S3 DS&#x2F;4&#x2F;DATASYNC_CFGCHANGE:OID 1.3.6.1.4.1.2011.5.25.</span><br><span class="line">191.3.1 configurations have been changed. The current change number is 14, the c</span><br><span class="line">hange loop count is 0, and the maximum number of records is 4095.</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;S1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S1]sys S1</span><br><span class="line">[S1]vlan 10</span><br><span class="line">[S1-vlan10]int g0&#x2F;0&#x2F;1</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]port link-type access</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]port default vlan 10</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]port link-type access</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]port default vlan 10</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>验证</p>
-<p><img src="https://i.loli.net/2021/04/26/7XHeIG5yxkbPwih.png" alt="alt VLAN-Access验证"></p>
-</li>
-<li><p>解释</p>
-<ul>
-<li>S1、S2、S3都是Access端口模式，S2是默认Hybrid端口模式，因为没有配置其他策略，等于是Access模式</li>
-<li>PC1到PC3路径，PC1到S1交换发送不带Tag的数据帧，S1收到数据帧会添加VLANID为10的Tag</li>
-<li>S1向PVID为10的端口发送ARP广播帧，端口2的PVID为10，会收到广播帧。</li>
-<li>端口2的类型是Access，会将PVID为10的广播帧的Tag剥离发送出去。</li>
-<li>S2的端口2收到无Tag的数据帧，会将端口的VLANID添加Tag中，此时VLANID为1。</li>
-<li>同样S2将数据帧转发出去的时候也会将Tag剥离，所以端口全是Access的时候，都可以ping通</li>
-</ul>
-</li>
-<li></li>
-</ul>
-<ol start="3">
-<li><p>验证</p>
-</li>
-<li><p>抓包</p>
-</li>
-</ol>
-<h3 id="高级实验"><a href="#高级实验" class="headerlink" title="高级实验"></a>高级实验</h3><ol>
-<li>拓扑</li>
-</ol>
-<ol start="2">
-<li></li>
-</ol>
-
-          
+          <h1 id="物理链路"><a href="#物理链路" class="headerlink" title="物理链路"></a>物理链路</h1><h2 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h2><p><img src="https://i.loli.net/2021/04/29/obpTc5aEtWnYy1O.png" alt="alt VLAN间路由物理链路"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/28/HCNA/%E4%BA%A4%E6%8D%A2/vlan/vlan%E9%97%B4%E8%B7%AF%E7%94%B1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -601,7 +448,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -646,7 +493,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -657,7 +504,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
