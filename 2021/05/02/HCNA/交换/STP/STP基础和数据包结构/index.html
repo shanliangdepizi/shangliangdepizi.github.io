@@ -87,17 +87,24 @@
 
 
 
-<meta name="description" content="STP操作">
+<meta name="description" content="STP基础操作流程通过构造一颗树来消除交换网络中的环路 选举一条根桥 在非根桥中选举一个根接口 选举指定接口 阻塞剩余接口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STP基础和数据包结构">
 <meta property="og:url" content="http://myblog.wuchao.space/2021/05/02/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E5%9F%BA%E7%A1%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="STP操作">
+<meta property="og:description" content="STP基础操作流程通过构造一颗树来消除交换网络中的环路 选举一条根桥 在非根桥中选举一个根接口 选举指定接口 阻塞剩余接口">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/CaclxGvpBe94umH.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/Ugox9NwFKvQyZ64.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/Ui5MsbGEDrSJk2v.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/ziDbhQuX5f1jtLx.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/OHsFAVt7KjnLp1m.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/03/RPQVdHiz9rGn2hg.png">
 <meta property="article:published_time" content="2021-05-02T13:26:20.684Z">
-<meta property="article:modified_time" content="2021-05-02T13:28:13.941Z">
+<meta property="article:modified_time" content="2021-05-03T10:52:19.081Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="交换机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/05/03/CaclxGvpBe94umH.png">
 
 
 
@@ -403,7 +410,169 @@
       
 
       
-        <h1 id="STP操作"><a href="#STP操作" class="headerlink" title="STP操作"></a>STP操作</h1>
+        <h1 id="STP基础"><a href="#STP基础" class="headerlink" title="STP基础"></a>STP基础</h1><h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><h3 id="通过构造一颗树来消除交换网络中的环路"><a href="#通过构造一颗树来消除交换网络中的环路" class="headerlink" title="通过构造一颗树来消除交换网络中的环路"></a>通过构造一颗树来消除交换网络中的环路</h3><ol>
+<li>选举一条根桥</li>
+<li>在非根桥中选举一个根接口</li>
+<li>选举指定接口</li>
+<li>阻塞剩余接口</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="STP数据包结构"><a href="#STP数据包结构" class="headerlink" title="STP数据包结构"></a>STP数据包结构</h1><h2 id="BPDU"><a href="#BPDU" class="headerlink" title="BPDU"></a>BPDU</h2><ol>
+<li>BPDU Bridge Protocol Data Unit 桥协议数据单元</li>
+<li>使用组播，组播的MAC地址为 01-80-C2-00-00-00</li>
+</ol>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/03/CaclxGvpBe94umH.png" alt="alt BPDU类型"></p>
+<h2 id="BPDU数据包"><a href="#BPDU数据包" class="headerlink" title="BPDU数据包"></a>BPDU数据包</h2><h3 id="四个ID"><a href="#四个ID" class="headerlink" title="四个ID"></a>四个ID</h3><ol>
+<li>PID<ul>
+<li>Protocol Identifier 协议ID</li>
+<li>都是Spanning Tree Protocol(0x0000)，不会变</li>
+</ul>
+</li>
+<li>PVIID<ul>
+<li>Protocol Version Identifier 协议版本ID</li>
+<li>STP模式     Spanning Tree(0) </li>
+<li>RSTP模式 Rapid Spanning Tree (2)  </li>
+<li>MSTP模式 Multiple Spanning Tree(3)</li>
+</ul>
+</li>
+<li>RID<ul>
+<li>Root Identifier  根桥ID</li>
+</ul>
+</li>
+<li>BID<ul>
+<li>Bridge Identifier 桥ID</li>
+</ul>
+</li>
+<li>PID<ul>
+<li>Port Identifier 端口ID</li>
+</ul>
+</li>
+</ol>
+<h3 id="BPDU类型（BPDU-Type）"><a href="#BPDU类型（BPDU-Type）" class="headerlink" title="BPDU类型（BPDU Type）"></a>BPDU类型（BPDU Type）</h3><ol>
+<li>配置类型<ul>
+<li>BPDU Type : Configuration</li>
+<li>选举根交换机以及确定每个端口的角色和状态</li>
+<li>在初始化过程中，每个桥都会主动发送配置BPDU</li>
+<li>网络拓扑稳定之后，只有根交换机主动发送BPDU，其他交换机只有在收到上游传来的配置BPDU，才会发送自己的配置BPDU</li>
+<li>发送周期为 Hello Time</li>
+<li>老化时间为 Max Age   </li>
+</ul>
+</li>
+<li>TCN类型 <ul>
+<li>BPDU Type : Topology Change Notification(0x80) 拓扑变更通知</li>
+<li>下游交换机感知到拓扑发生变化时，给上游交换机发送的拓扑变化通知</li>
+<li>BPDU Flags : 0x00</li>
+<li>Topology Change Acknowledgement : No  拓扑变更确认</li>
+<li>Topology Change : No  拓扑变更</li>
+</ul>
+</li>
+</ol>
+<h3 id="选举时主要参数-用于检测最优配置BPDU"><a href="#选举时主要参数-用于检测最优配置BPDU" class="headerlink" title="选举时主要参数(用于检测最优配置BPDU)"></a>选举时主要参数(用于检测最优配置BPDU)</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Root Identifier</td>
+<td>发送配置BPDU的交换机认为的根交换机的标识</td>
+</tr>
+<tr>
+<td>Root Path Cost</td>
+<td>发送此配置BPDU的交换机到达根交换机的最短路径总开销<br>包含此交换机根端口的开销，<br>不含此交换机发送此配置BPDU端口的开销</td>
+</tr>
+<tr>
+<td>Bridge Identifier</td>
+<td>发送配置BPDU的交换机的标识</td>
+</tr>
+<tr>
+<td>Port Identifier</td>
+<td>发送配置BPDU的交换机端口标识</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>BID 桥ID</p>
+<ul>
+<li><p>用于STP中唯一标识一个交换机</p>
+</li>
+<li><p>由两部分组成</p>
+<ul>
+<li>桥优先位：高16位 缺省值是：32768</li>
+<li>桥MAC地址：低48位</li>
+</ul>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/03/Ugox9NwFKvQyZ64.png" alt="alt BID-桥ID"></p>
+</li>
+</ul>
+</li>
+<li><p>PID 端口ID</p>
+<ul>
+<li><p>用于在STP中唯一标识交换机端口的</p>
+</li>
+<li><p>由两部分组成：</p>
+<ul>
+<li>端口优先级：高8位 ， 缺省值为128</li>
+<li>端口编号： 低8位 ，只是一个流水号，与端口名称没有关系</li>
+</ul>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/03/Ui5MsbGEDrSJk2v.png" alt="alt PID-端口ID"></p>
+</li>
+</ul>
+</li>
+<li><p>PC 路径开销（Path Cost）</p>
+<ul>
+<li><p>路径开销，衡量交换机路径之间的优劣的，越低越好</p>
+</li>
+<li><p>STP中每条链路都具有开销值</p>
+</li>
+<li><p>链路开销标准</p>
+<p><img src="https://i.loli.net/2021/05/03/ziDbhQuX5f1jtLx.png" alt="alt 链路开销标准"></p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/03/OHsFAVt7KjnLp1m.png" alt="alt Path Cost-路径开销"></p>
+</li>
+</ul>
+</li>
+<li><p>RPC 根路径开销（Root Path Cost）</p>
+<ul>
+<li><p>确定到达根交换机的最短路径，并生成无环树状网络</p>
+</li>
+<li><p>到根交换机的所有路径开销之和</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/03/RPQVdHiz9rGn2hg.png" alt="alt RPC-根路径开销"></p>
+</li>
+</ul>
+</li>
+<li><p>Hello Time 发送周期</p>
+<ul>
+<li>STP的发送时间间隔</li>
+<li>默认为2s</li>
+</ul>
+</li>
+<li><p>Max Age 老化时间</p>
+<ul>
+<li>STP老化的时间</li>
+<li>默认是20s</li>
+</ul>
+</li>
+<li><p>Forward Delay</p>
+<ul>
+<li>转发延迟</li>
+</ul>
+</li>
+<li><p>Message Age</p>
+</li>
+</ol>
+
       
     </div>
 
@@ -459,6 +628,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/03/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B%E4%B8%8E%E6%A1%88%E4%BE%8B/" rel="prev" title="STP选举过程与案例">
+                STP选举过程与案例 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -537,7 +710,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -628,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STP操作"><span class="nav-number">1.</span> <span class="nav-text">STP操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STP基础"><span class="nav-number">1.</span> <span class="nav-text">STP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作流程"><span class="nav-number">1.1.</span> <span class="nav-text">操作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过构造一颗树来消除交换网络中的环路"><span class="nav-number">1.1.1.</span> <span class="nav-text">通过构造一颗树来消除交换网络中的环路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STP数据包结构"><span class="nav-number">2.</span> <span class="nav-text">STP数据包结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BPDU"><span class="nav-number">2.1.</span> <span class="nav-text">BPDU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图示"><span class="nav-number">2.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BPDU数据包"><span class="nav-number">2.3.</span> <span class="nav-text">BPDU数据包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四个ID"><span class="nav-number">2.3.1.</span> <span class="nav-text">四个ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BPDU类型（BPDU-Type）"><span class="nav-number">2.3.2.</span> <span class="nav-text">BPDU类型（BPDU Type）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选举时主要参数-用于检测最优配置BPDU"><span class="nav-number">2.3.3.</span> <span class="nav-text">选举时主要参数(用于检测最优配置BPDU)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
