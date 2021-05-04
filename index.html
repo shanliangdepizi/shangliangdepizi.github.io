@@ -471,13 +471,34 @@
 <li>根交换的端口是指定端口，所以SC的Gi0/1与Gi0/10是指定端口</li>
 <li>SA交换的Fa0/1端口发送STP数据帧时的RPC值为200000</li>
 <li>SB交换的Fa0/2端口发送STP数据帧时的RPC值为200000</li>
-<li>SA交换的Fa0/1端口与SB交换的Fa0/2端口的RPC值一致，比较两个端口发送数据帧时候的BID，两个端口的优先级值一致都是0021，SA交换的Fa0/1端口的MAC地址为1bee.a700，SB交换的Fa0/2端口的MAC地址为1c91.0d80，所以SA交换的Fa0/1端口为指点端口</li>
+<li>SA交换的Fa0/1端口发送STP数据帧时的RPC值为200000，而SB交换的Fa0/2端口发送STP数据帧时的RPC值是20000+200000=220000，所以SA交换的Fa0/1端口为指点端口</li>
 <li>SD换的Gi0/1端口发送STP数据帧时的RPC值为20000，所以是指点端口</li>
 <li>四个交换中只有SB交换的Fa0/2端口是阻塞端口</li>
 </ul>
 </li>
 </ol>
-
+<h2 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h2><h3 id="图示-5"><a href="#图示-5" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/d6MLCHDYUkzx4tZ.png" alt="alt STP选举案例三"></p>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>根交换<ul>
+<li>SC为根交换</li>
+<li>SC与SA、SB、SD三个交换的BID进行比较，SC交换的优先级的值为0000，最小，所以SC为根交换</li>
+</ul>
+</li>
+<li>非根交换的根端口<ul>
+<li>SA交换的根端口为10Gb/s线连接的端口，10Gb/s线连接的端口的RPC值为2000，1Gb/s线连接的端口的RPC值为20000+20000=40000，所以，10Gb/s线连接的端口为根端口</li>
+<li>SB交换的根端口是斜着的1Gb/s线连接的端口，斜着的1Gb/s线连接的端口的RPC的值为20000，直的1Gb/s线连接的端口的RPC值为2000+20000=22000，所以斜着1Gb/s线连接的端口</li>
+<li>SD交换机的根端口是直着的1Gb/s线连接的端口，直着的1Gb/s线连接的端口的RPC值为20000，斜着的1Gb/s线连接的端口的RPC值为2000+20000=22000</li>
+</ul>
+</li>
+<li>指定端口<ul>
+<li>根交换的口都是指定端口</li>
+<li>SA剩余的口是指定端口，因为它发送STP数据帧中的RPC值为2000</li>
+<li>SD与SB剩余的口是阻塞端口，虽然它发送STP数据帧中的RPC值与SD发送STP数据帧中的RPC值一致，但是它的优先级的值更小</li>
+</ul>
+</li>
+</ol>
+<h2 id="案例四"><a href="#案例四" class="headerlink" title="案例四"></a>案例四</h2><h3 id="图示-6"><a href="#图示-6" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/MVPKJcrw3E5zmGe.png" alt="alt STP选举案例四"></p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3>
           
         
       
