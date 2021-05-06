@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/03/OHsFAVt7KjnLp1m.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/03/RPQVdHiz9rGn2hg.png">
 <meta property="article:published_time" content="2021-05-02T13:26:20.684Z">
-<meta property="article:modified_time" content="2021-05-03T10:52:19.081Z">
+<meta property="article:modified_time" content="2021-05-06T00:49:02.962Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="交换机">
 <meta name="twitter:card" content="summary">
@@ -562,14 +562,23 @@
 <ul>
 <li>STP老化的时间</li>
 <li>默认是20s</li>
+<li>保持阻塞的时间</li>
+<li>20s内没有收到比我BPDU更好的数据帧，我将解除阻塞，开始监听、学习</li>
 </ul>
 </li>
 <li><p>Forward Delay</p>
 <ul>
 <li>转发延迟</li>
+<li>默认是15秒</li>
+<li>Listening状态到Learning状态的时间15s</li>
 </ul>
 </li>
 <li><p>Message Age</p>
+<ul>
+<li>当前的年龄</li>
+<li>BPDU报文，每经过一个交换机，Message Age 都会加1</li>
+<li>如果Message Age 大于 Max Age , 非根桥会丢弃该配置BPDU</li>
+</ul>
 </li>
 </ol>
 
@@ -710,7 +719,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

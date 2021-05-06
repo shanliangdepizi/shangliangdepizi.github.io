@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/" itemprop="url">
-                  OSPF数据包与状态
+                <a class="post-title-link" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/" itemprop="url">
+                  邻居建立的条件（必须三层直连）
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:01:36+08:00">
-                2021-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-11T15:25:36+08:00">
+                2021-04-11
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/11/HCNA/路由/OSPF/OSPF邻居建立条件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,52 +404,34 @@
 
       
         
-          <h1 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h1><ul>
-<li><p>概述</p>
+          <h1 id="邻居发现"><a href="#邻居发现" class="headerlink" title="邻居发现"></a>邻居发现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h3 id="RID唯一"><a href="#RID唯一" class="headerlink" title="RID唯一"></a>RID唯一</h3><ol>
+<li><p>邻居路由器设置相同的RID</p>
 <ul>
-<li>运行OSPF协议之前，必须选取一个RID</li>
-<li>用来标识唯一的OSPF路由器</li>
-<li>RID可以自动选取，也可以手动配置</li>
-</ul>
+<li><p>R1路由器设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]ospf 1 rout</span><br><span class="line">[R1]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>选取规则</p>
-<ul>
-<li><p>图表</p>
-<table>
-<thead>
-<tr>
-<th align="left">规则</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">RID选取顺序规则</td>
-<td>1. 手动配置（推荐使用）<br>2. 活动的回环接口上选择IP地址最高的<br>3. 活动的物理接口上选择IP地址最高的</td>
-</tr>
-<tr>
-<td align="left">PS</td>
-<td>RID的选取具有非抢占性，除非重启OSPF进程</td>
-</tr>
-</tbody></table>
+<li><p>R2路由器设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">[R2]ospf 1 rout	</span><br><span class="line">[R2]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 </li>
-</ul>
+</ol>
+<ol start="2">
+<li><p>抓包情况</p>
 <ul>
-<li><p>手动配置方式</p>
+<li><p>正常情况下</p>
 <ul>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line"># 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
+<li><p>R1的RID</p>
+<p><img src="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png" alt="alt OSPF邻居建立-RID1"></p>
 </li>
-</ul>
-</li>
-<li><p>图表</p>
-<ul>
-<li><img src="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png" alt="alt RID选取规则"></li>
-</ul></li></ul>
+<li><p>R2的RID</p>
+<p><img src="https://i.loli.net/2021/04/11/vjyS2ga9lVWQqYd.png" alt="alt 邻居建立RID2"></p></li></ul></li></ul></li></ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#more" rel="contents">
+            <a class="btn" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -490,7 +472,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/26/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/26/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -535,7 +517,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
