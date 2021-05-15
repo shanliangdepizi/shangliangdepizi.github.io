@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/02/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E5%9F%BA%E7%A1%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/06/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E7%8A%B6%E6%80%81%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/05/02/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E5%9F%BA%E7%A1%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84/" itemprop="url">
-                  STP基础和数据包结构
+                <a class="post-title-link" href="/2021/05/06/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E7%8A%B6%E6%80%81%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/" itemprop="url">
+                  STP状态和计时器
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-02T21:26:20+08:00">
-                2021-05-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-06T08:31:03+08:00">
+                2021-05-06
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/02/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E5%9F%BA%E7%A1%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84/#comments" itemprop="discussionUrl">
+                <a href="/2021/05/06/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E7%8A%B6%E6%80%81%E4%B8%8E%E8%AE%A1%E6%97%B6%E5%99%A8/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/05/02/HCNA/交换/STP/STP基础和数据包结构/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/05/06/HCNA/交换/STP/STP状态与计时器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,19 +404,97 @@
 
       
         
-          <h1 id="STP基础"><a href="#STP基础" class="headerlink" title="STP基础"></a>STP基础</h1><h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><h3 id="通过构造一颗树来消除交换网络中的环路"><a href="#通过构造一颗树来消除交换网络中的环路" class="headerlink" title="通过构造一颗树来消除交换网络中的环路"></a>通过构造一颗树来消除交换网络中的环路</h3><ol>
-<li>选举一条根桥</li>
-<li>在非根桥中选举一个根接口</li>
-<li>选举指定接口</li>
-<li>阻塞剩余接口</li>
+          
+            <h1 id="STP状态"><a href="#STP状态" class="headerlink" title="STP状态"></a>STP状态</h1><table>
+<thead>
+<tr>
+<th>STP端口状态</th>
+<th>接收BPDU</th>
+<th>转发BPDU</th>
+<th>学习MAC</th>
+<th>转发数据</th>
+<th>过渡状态</th>
+<th>稳定状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Disabled</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Blocking</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Listening</td>
+<td>√</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>√</td>
+<td>ⅹ</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>√</td>
+<td>ⅹ</td>
+</tr>
+<tr>
+<td>Forwarding</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<h1 id="STP计时器"><a href="#STP计时器" class="headerlink" title="STP计时器"></a>STP计时器</h1><h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><table>
+<thead>
+<tr>
+<th>计时器</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hello</td>
+<td>2s，根交换机发送BPDU的间隔时间</td>
+</tr>
+<tr>
+<td>Forward Delay</td>
+<td>15s，监听和学习的持续时间</td>
+</tr>
+<tr>
+<td>Max Age</td>
+<td>20s，保持阻塞的最大时间（没有收到BPDU，20s后会改变状态）</td>
+</tr>
+</tbody></table>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/06/H53XYoKUnWtqxlI.png" alt="alt STP计时器"></p>
+<p><img src="https://i.loli.net/2021/05/06/GHlc6BZu7yM1Koi.png" alt="alt STP计时器"></p>
+<h1 id="STP端口状态转换"><a href="#STP端口状态转换" class="headerlink" title="STP端口状态转换"></a>STP端口状态转换</h1><h2 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/06/EDOdXiGZ2HqwQgJ.png" alt="alt 端口状态转化"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li>端口初始化或者开启，从Disabled状态转到Blocking状态</li>
+<li>端口被指定为根端口或者指定端口，从Blocking状态进入Listening状态</li>
+<li>端口不再是根端口或者指定端口，并成Blocking状态</li>
+<li>Forward Delay 计时器超时，Listening状态15s后进入Learning状态，15后进入Forwarding状态</li>
+<li>端口禁用或者失效，进入Disabled状态</li>
 </ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/05/02/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E5%9F%BA%E7%A1%80%E5%92%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+          
         
       
     </div>
@@ -453,7 +531,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -498,7 +576,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -509,7 +587,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
