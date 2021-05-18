@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2020/07/25/Java%E7%BA%BF%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/" itemprop="url">
-                  Java线程
+                <a class="post-title-link" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/" itemprop="url">
+                  OSPF数据包与状态
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T12:14:41+08:00">
-                2020-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T09:01:36+08:00">
+                2021-04-10
               </time>
             
 
@@ -312,6 +312,61 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/" itemprop="url" rel="index">
+                    <span itemprop="name">HCNA</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/OSPF%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">OSPF协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -320,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/07/25/Java线程/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/10/HCNA/路由/OSPF/OSPF数据包与状态/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -349,25 +404,52 @@
 
       
         
-          <p>title: Java线程<br>date: 2020-07-25 12:14:41<br>tags:<br>categories:</p>
+          <h1 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h1><ul>
+<li><p>概述</p>
 <ul>
-<li>面试题</li>
-<li>Java线程</li>
-</ul>
-<h1 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h1><ol>
-<li>何为线程、进程<ul>
-<li>进程<ul>
-<li>程序执行一次的过程</li>
-<li>程序执行的最小单位 </li>
+<li>运行OSPF协议之前，必须选取一个RID</li>
+<li>用来标识唯一的OSPF路由器</li>
+<li>RID可以自动选取，也可以手动配置</li>
 </ul>
 </li>
-<li>线程<ul>
-<li>线程是进程的一个小单元，一个进程可能有一个或者多个线程</li>
-<li>线程之间共享堆内存和方法区</li>
-<li>每个线程有自己独有的本地方法栈、虚拟机栈以及程序计数器</li></ul></li></ul></li></ol>
+<li><p>选取规则</p>
+<ul>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th align="left">规则</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">RID选取顺序规则</td>
+<td>1. 手动配置（推荐使用）<br>2. 活动的回环接口上选择IP地址最高的<br>3. 活动的物理接口上选择IP地址最高的</td>
+</tr>
+<tr>
+<td align="left">PS</td>
+<td>RID的选取具有非抢占性，除非重启OSPF进程</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>手动配置方式</p>
+<ul>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ospf 1 route-id 1.1.1.1</span><br><span class="line"># 重启 OSPF 进程</span><br><span class="line">&lt;R1&gt;reset ospf process</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>图表</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/09/7A1ieJdDFcMIY2b.png" alt="alt RID选取规则"></li>
+</ul></li></ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/25/Java%E7%BA%BF%E7%A8%8B/#more" rel="contents">
+            <a class="btn" href="/2021/04/10/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%8E%E7%8A%B6%E6%80%81/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -408,7 +490,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/36/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/34/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/36/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -453,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -464,7 +546,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
