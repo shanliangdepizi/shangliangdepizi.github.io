@@ -87,17 +87,30 @@
 
 
 
-<meta name="description" content="HDLC协议简介简介 HDLC(High-Level Data Link Control)高级数据链接控制协议  PPP协议">
+<meta name="description" content="HDLC协议简介简介 HDLC(High-Level Data Link Control)高级数据链接控制协议 华为设备默认运行的是PPP协议  图示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PPP">
 <meta property="og:url" content="http://myblog.wuchao.space/2021/05/18/HCNA/PPP/PPP/index.html">
 <meta property="og:site_name" content="工匠">
-<meta property="og:description" content="HDLC协议简介简介 HDLC(High-Level Data Link Control)高级数据链接控制协议  PPP协议">
+<meta property="og:description" content="HDLC协议简介简介 HDLC(High-Level Data Link Control)高级数据链接控制协议 华为设备默认运行的是PPP协议  图示">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/iezWR7sINCm65YA.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/lDJBgwxRp3y2i1u.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/KDudxbNmMpOgBY8.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/RGMkBcO4SdzFL7T.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/AeDzPWb1GxOVnui.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/kz6xR2WVP9ulc1s.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/64cr27b5QDysWFl.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/Y5Xr2DLkZCzt3Sh.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/x2RTVG5J3IeYq81.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/wurpkAZQez5soHc.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/zSWAPCUHj91RMVs.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/20/K4nfxaSuEZhgdOq.png">
 <meta property="article:published_time" content="2021-05-18T08:32:38.688Z">
-<meta property="article:modified_time" content="2021-05-18T13:29:34.670Z">
+<meta property="article:modified_time" content="2021-05-20T09:02:29.347Z">
 <meta property="article:author" content="吴超">
 <meta property="article:tag" content="交换机">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/05/20/iezWR7sINCm65YA.png">
 
 
 
@@ -394,8 +407,213 @@
       
         <h1 id="HDLC协议"><a href="#HDLC协议" class="headerlink" title="HDLC协议"></a>HDLC协议</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
 <li>HDLC(High-Level Data Link Control)高级数据链接控制协议</li>
+<li>华为设备默认运行的是PPP协议</li>
 </ol>
-<h1 id="PPP协议"><a href="#PPP协议" class="headerlink" title="PPP协议"></a>PPP协议</h1>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/20/iezWR7sINCm65YA.png" alt="alt HDLC基本配置"></p>
+<a id="more"></a>
+
+<h2 id="HDLC应用"><a href="#HDLC应用" class="headerlink" title="HDLC应用"></a>HDLC应用</h2><h3 id="接口地址借用"><a href="#接口地址借用" class="headerlink" title="接口地址借用"></a>接口地址借用</h3><ol>
+<li><p>串行接口可以借助回环口（Loopback）接口的IP地址建立连接</p>
+</li>
+<li><p>节省地址</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/20/lDJBgwxRp3y2i1u.png" alt="alt HDLC接口地址租用"></p>
+</li>
+</ol>
+<h3 id="接口地址租用的配置"><a href="#接口地址租用的配置" class="headerlink" title="接口地址租用的配置"></a>接口地址租用的配置</h3><ol>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R1-Serial4&#x2F;0&#x2F;0]undo ip add</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]int loopback 0</span><br><span class="line">[R1-LoopBack0]ip add 12.0.0.1 24</span><br><span class="line">[R1-LoopBack0]q</span><br><span class="line">[R1]int s4&#x2F;0&#x2F;0</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]ip address unnumbered interface LoopBack 0</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]q</span><br><span class="line">[R1]ip route-static 12.0.0.2 32 s4&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>验证</p>
+<p><img src="https://i.loli.net/2021/05/20/KDudxbNmMpOgBY8.png" alt="alt 验证"></p>
+</li>
+</ol>
+<h2 id="HDLC配置"><a href="#HDLC配置" class="headerlink" title="HDLC配置"></a>HDLC配置</h2><h3 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="https://i.loli.net/2021/05/20/RGMkBcO4SdzFL7T.png" alt="alt HDLC配置拓扑"></p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]</span><br><span class="line">[Huawei]sys R1</span><br><span class="line">[R1]</span><br><span class="line">[R1]int s4&#x2F;0&#x2F;0</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]link-protocol hdlc</span><br><span class="line">Warning: The encapsulation protocol of the link will be changed. Continue? [Y&#x2F;N]</span><br><span class="line">:y</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]ip add 12.0.0.1 24</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p><img src="https://i.loli.net/2021/05/20/AeDzPWb1GxOVnui.png" alt="alt HDLC验证"></p>
+<h1 id="PPP协议"><a href="#PPP协议" class="headerlink" title="PPP协议"></a>PPP协议</h1><h2 id="PPP协议应用"><a href="#PPP协议应用" class="headerlink" title="PPP协议应用"></a>PPP协议应用</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/20/kz6xR2WVP9ulc1s.png" alt="alt PPP协议应用"></p>
+<h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><ol>
+<li>一种点对点协议</li>
+<li>用于全双工的同步、异步链路上进行进行点对点的数据传输</li>
+</ol>
+<h2 id="PPP协议与HDLC协议对比"><a href="#PPP协议与HDLC协议对比" class="headerlink" title="PPP协议与HDLC协议对比"></a>PPP协议与HDLC协议对比</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>认证</th>
+<th>认证错误检测</th>
+<th>错误恢复</th>
+<th>支持同步或异步链路</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HDLC</td>
+<td>ⅹ</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+</tr>
+<tr>
+<td>PPP</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<h2 id="PPP组件"><a href="#PPP组件" class="headerlink" title="PPP组件"></a>PPP组件</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">LCP Link Control Protocol<br>链路控制协议</td>
+<td align="center">用来建立、拆除和监控PPP数据链路以及认证</td>
+</tr>
+<tr>
+<td align="center">NCP Network Control Protocol<br>网络层控制协议</td>
+<td align="center">用于对不同的网络层协议进行连接建立和参数协商</td>
+</tr>
+</tbody></table>
+<h2 id="PPP认证概述"><a href="#PPP认证概述" class="headerlink" title="PPP认证概述"></a>PPP认证概述</h2><h3 id="认证模式"><a href="#认证模式" class="headerlink" title="认证模式"></a>认证模式</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PAP PassWord Authentication Protocol<br>密码认证协议</td>
+<td>明文方式直接发送密码<br>二次握手机制<br>可以做无限次尝试（暴力破解）<br>只在链路建立的时候验证，链路建立之后不再验证</td>
+</tr>
+<tr>
+<td>CHAP Chanllege Handshake Authentication Protocol<br>挑战/质询握手认证机制</td>
+<td>以MD5加密信息<br>三次握手机制<br>由认证方发起<br>避免暴力破解<br>链路建立之后，有再次认证检测机制<br>在企业网中，远程接入环境中使用</td>
+</tr>
+</tbody></table>
+<h3 id="PAP"><a href="#PAP" class="headerlink" title="PAP"></a>PAP</h3><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/20/64cr27b5QDysWFl.png" alt="alt PAP认证"></p>
+</li>
+<li><p>认证流程</p>
+<ul>
+<li>被认证方发送 Authenticate-Request包，包内是明文发送的用户名密码</li>
+<li>认证方检查被认证方发送的信息，并回复给被认证方认证成功（Authenticate-ACK）或者失败（Authenticate-Nak）</li>
+</ul>
+</li>
+</ol>
+<h3 id="CHAP"><a href="#CHAP" class="headerlink" title="CHAP"></a>CHAP</h3><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/20/Y5Xr2DLkZCzt3Sh.png" alt="alt CHAP认证"></p>
+</li>
+<li><p>认证流程</p>
+<ul>
+<li>认证方发起Challenge，将信息MD5加密</li>
+<li>被认证方将收到的Challenge信息Respose给认证方</li>
+<li>认证方将收到的信息进行比对，回复给被认证方Success后者Failure</li>
+</ul>
+</li>
+</ol>
+<h2 id="PPP认证配置"><a href="#PPP认证配置" class="headerlink" title="PPP认证配置"></a>PPP认证配置</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>认证方配置：</td>
+<td></td>
+</tr>
+<tr>
+<td>aaa<br>       local-user 用户名 password cipher 密码<br>       local-user 用户名 service-type PPP</td>
+<td>创建PPP认证用户</td>
+</tr>
+<tr>
+<td>ppp autentication-mode pap/chap</td>
+<td>开启PAP/CHAP认证模式</td>
+</tr>
+<tr>
+<td>被认证方配置：</td>
+<td></td>
+</tr>
+<tr>
+<td>ppp pap local-user 用户名 password cipher 密码</td>
+<td>配置PAP凭证</td>
+</tr>
+<tr>
+<td>ppp chap user 用户名<br>   ppp chap password cipher 密码</td>
+<td>配置CHAP凭证</td>
+</tr>
+</tbody></table>
+<h3 id="PAP配置"><a href="#PAP配置" class="headerlink" title="PAP配置"></a>PAP配置</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/05/20/x2RTVG5J3IeYq81.png" alt="alt PAP认证"></p>
+</li>
+<li><p>命令</p>
+<ul>
+<li><p>认证方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">link-protocol ppp</span><br><span class="line">q</span><br><span class="line">#配置PPP认证信息</span><br><span class="line">aaa</span><br><span class="line">local-user wuchao password cipher wu110119</span><br><span class="line">local-user wuchao service-type ppp</span><br><span class="line">[R1]int s4&#x2F;0&#x2F;0</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]ppp authentication-mode pap</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>被认证方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">link-protocol ppp</span><br><span class="line"># 配置PAP凭证</span><br><span class="line">ppp pap local-user wuchao password cipher wu110119</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>抓包</p>
+<p><img src="https://i.loli.net/2021/05/20/wurpkAZQez5soHc.png" alt="alt PAP认证抓包"></p>
+</li>
+</ol>
+<h3 id="CHAP配置"><a href="#CHAP配置" class="headerlink" title="CHAP配置"></a>CHAP配置</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/05/20/zSWAPCUHj91RMVs.png" alt="alt CHAP认证拓扑"></p>
+</li>
+<li><p>命令</p>
+<ul>
+<li><p>认证方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">link-protocol ppp</span><br><span class="line">q</span><br><span class="line">#配置PPP认证信息</span><br><span class="line">aaa</span><br><span class="line">local-user wuchao password cipher wu110119</span><br><span class="line">local-user wuchao service-type ppp</span><br><span class="line">[R1]int s4&#x2F;0&#x2F;0</span><br><span class="line">[R1-Serial4&#x2F;0&#x2F;0]ppp authentication-mode chap</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>被认证方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">link-protocol ppp</span><br><span class="line"># 配置PAP凭证</span><br><span class="line">ppp chap user wuchao</span><br><span class="line">ppp chap password cipher wu110119</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>抓包</p>
+<p><img src="https://i.loli.net/2021/05/20/K4nfxaSuEZhgdOq.png" alt="alt CHAP认证抓包"></p>
+</li>
+</ol>
+
       
     </div>
 
@@ -451,6 +669,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/20/HCNA/HCNA%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C/" rel="prev" title="HCNA综合实验">
+                HCNA综合实验 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -529,7 +751,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -620,7 +842,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HDLC协议"><span class="nav-number">1.</span> <span class="nav-text">HDLC协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PPP协议"><span class="nav-number">2.</span> <span class="nav-text">PPP协议</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HDLC协议"><span class="nav-number">1.</span> <span class="nav-text">HDLC协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">1.1.2.</span> <span class="nav-text">图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDLC应用"><span class="nav-number">1.2.</span> <span class="nav-text">HDLC应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口地址借用"><span class="nav-number">1.2.1.</span> <span class="nav-text">接口地址借用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口地址租用的配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">接口地址租用的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDLC配置"><span class="nav-number">1.3.</span> <span class="nav-text">HDLC配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑"><span class="nav-number">1.3.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.3.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.3.3.</span> <span class="nav-text">验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PPP协议"><span class="nav-number">2.</span> <span class="nav-text">PPP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PPP协议应用"><span class="nav-number">2.1.</span> <span class="nav-text">PPP协议应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">2.1.2.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPP协议与HDLC协议对比"><span class="nav-number">2.2.</span> <span class="nav-text">PPP协议与HDLC协议对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPP组件"><span class="nav-number">2.3.</span> <span class="nav-text">PPP组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPP认证概述"><span class="nav-number">2.4.</span> <span class="nav-text">PPP认证概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#认证模式"><span class="nav-number">2.4.1.</span> <span class="nav-text">认证模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PAP"><span class="nav-number">2.4.2.</span> <span class="nav-text">PAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CHAP"><span class="nav-number">2.4.3.</span> <span class="nav-text">CHAP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPP认证配置"><span class="nav-number">2.5.</span> <span class="nav-text">PPP认证配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">2.5.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PAP配置"><span class="nav-number">2.5.2.</span> <span class="nav-text">PAP配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CHAP配置"><span class="nav-number">2.5.3.</span> <span class="nav-text">CHAP配置</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
