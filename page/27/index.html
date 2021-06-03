@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/" itemprop="url">
-                  路由综合实验错误
+                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" itemprop="url">
+                  动态路由
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-16T09:53:21+08:00">
-                2021-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:00+08:00">
+                2021-04-17
               </time>
             
 
@@ -346,8 +346,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">错误集锦</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">动态路由</span>
                   </a>
                 </span>
 
@@ -364,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/16/HCNA/错误集锦/路由实验/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/17/HCNA/路由/动态路由/动态路由/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -394,53 +405,153 @@
       
         
           
-            <h1 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h1><p><img src="https://i.loli.net/2021/04/16/hUdCIRBH5xP2wa3.png" alt="alt 路由综合实验拓扑图"></p>
-<h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><ol>
-<li>注意路由区域</li>
-<li>R1、R2配置RIP</li>
-<li>R4、R5、R6、R7配置OSPF</li>
-<li>R1、R2、R4只能配置一条静态路由</li>
-<li>R5、R6、R7不能配置静态路由</li>
-<li>R3只能配置静态路由</li>
-<li>全网互通</li>
-</ol>
-<h1 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h1><h2 id="RIP配置"><a href="#RIP配置" class="headerlink" title="RIP配置"></a>RIP配置</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
-<li><p>配置结束，R1 ping 不通R2</p>
-<p><img src="https://i.loli.net/2021/04/16/SVhvzngMlqyDcZ2.png" alt="alt R2ping不通R1"></p>
+            <h1 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h1><ol>
+<li><p>简介</p>
+<ul>
+<li>路由器使用路由协议从其他路由器那获悉的路由</li>
+<li>当网络拓扑发生变化时，路由器会自动更新路由信息</li>
+</ul>
 </li>
-<li><p>查看路由表 没有RIP协议的路由</p>
-<p><img src="https://i.loli.net/2021/04/16/thrqLkU6I9TzC7x.png" alt="alt 没有RIP路由"></p>
+<li><p>路由协议</p>
+<ul>
+<li><p>概述</p>
+<p>  路由器之间交互信息的一种语言</p>
+<p>  共享路由信息</p>
+<p>  维护路由表、提供最佳转发路径</p>
 </li>
-</ol>
-<h3 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h3><ol>
-<li><p>路由接口地址配错</p>
-<p><img src="https://i.loli.net/2021/04/16/7x9msF5kbzWuypA.png" alt="alt RIP接口地址配错"></p>
+<li><p>win10中的路由表</p>
 </li>
-<li><p>zheng </p>
+</ul>
 </li>
 </ol>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
-<li><p>路由接口地址应该是10段的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]undo ip add</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br><span class="line">Apr 16 2021 10:28:57-08:00 R2 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[0]:The line protocol IP </span><br><span class="line">on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the DOWN state. </span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ip add 10.1.1.2 30</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br><span class="line">Apr 16 2021 10:29:05-08:00 R2 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[1]:The line protocol IP </span><br><span class="line">on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the UP state. </span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>路由协议总览</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/06/Xsc8aTrmHJGjZIY.png" alt="alt 路由协议总览"></p>
+</li>
+<li><p>分类依据（作用范围）</p>
+<p><img src="https://i.loli.net/2021/04/06/DJFedA6NhVbgXr4.png" alt="alt 路由协议分类"></p>
+</li>
+<li><p>协议分类</p>
+<ul>
+<li><p>作用范围分类</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IGP(Interior Gateway Protocol)内部网关协议</td>
+<td>用于一个AS内部路由交换信息。如：OSPF、IS-IS、RIP</td>
+</tr>
+<tr>
+<td>EGP(Enterior Getaway Protocol)外部网关协议</td>
+<td>用于多个AS之间交换路由信息。如：BGP</td>
+</tr>
+<tr>
+<td>AS(Autonomous System) 自治系统</td>
+<td>处于单个管理机制下的网络（企业、电信、联通、移动）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>  + 根据协议算法分类
+
+    | 类型                        | 备注                                                         |
+    | --------------------------- | ------------------------------------------------------------ |
+    | DV(Distance-Vector)距离矢量 | 基于距离矢量算法，路由器并不了解网络拓扑结构。类似路牌、道听途书。如：RIP、EIGRP |
+    | LS(Link-State)链路状态      | 基于SPF(Shortest Path First最短路径优先)算法，路由器了解网路拓扑，类似于地图。如：OSPF、IS-IS |
+
+  + DV（距离矢量）与LS（链路状态）的区别
+
+    拓扑图
+
+     ![alt DV与LS区别的拓扑图](https://i.loli.net/2021/04/06/4SvhLXscw2k8Oiu.png)    
 
 
 
-</li>
-</ol>
-<h3 id="解决之后"><a href="#解决之后" class="headerlink" title="解决之后"></a>解决之后</h3><ol>
-<li><p>R1中有RIP协议的路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;dis ip rout	</span><br><span class="line">&lt;R1&gt;dis ip routing-table pro rip</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Public routing table : RIP</span><br><span class="line">         Destinations : 1        Routes : 1        </span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Active&gt;</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.2.2.2&#x2F;32  RIP     100  1           D   10.1.1.2        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Inactive&gt;</span><br><span class="line">         Destinations : 0        Routes : 0</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;</span><br></pre></td></tr></table></figure>
+    DV所选路径（RIP）   
 
+    ![alt DV所选路径](https://i.loli.net/2021/04/06/cFElufTr6C28jeU.png)LS所选路径（OSPF）
 
+    ![alt LS所选路径-OSPF](https://i.loli.net/2021/04/06/cMP9tmg6x7hTe4Z.png)
 
+  * 根据发送的更新是否携带掩码
+
+    | 类型          | 属性                                         |
+    | ------------- | -------------------------------------------- |
+    | Classful 有类 | 不携带掩码。如：RIPv1、IGRP                  |
+    | Classless无类 | 携带掩码。如：RIPv2、EIGRP、OSPF、IS-IS、BGP |
+
+    图示
+
+    ![alt 发送的更新是否携带掩码](https://i.loli.net/2021/04/06/2pdVvYNFI7gMlUo.png)
+
+  * 根据业务应用分类
+
+    | 类型                                    | 备注                             |
+    | --------------------------------------- | -------------------------------- |
+    | Unicast Routing Protocol 单播路由协议   | 如：RIP、EIGRP、OSPF、IS-IS、BGP |
+    | Multicast Routing Protocol 组播路由协议 | 如：DVMRP、PIM-SM、PIM-DM        |
+
+* 路由协议操作规则
+
+  * 协议是在接口上运行
+
+  * 只能学习和发布相同协议的路由信息
+
+  * 如果不同的路由协议见需要交换路由信息，就需要进行注入（import）
+
+  * 图示
+
+    ![alt 路由操作规则](https://i.loli.net/2021/04/06/JmKRhvL1YjAseTX.png)
+
+    ![alt 路由操作规则](https://i.loli.net/2021/04/06/EjfCrSqB4aTkyoQ.png)</code></pre><ul>
+<li><p>路由器收敛</p>
+<ul>
+<li>当所有路由表包含相同网络可达性信息</li>
+<li>网络（路由）进入一个稳定状态</li>
+<li>网络达到收敛前无法完全正常工作</li>
+</ul>
 </li>
-</ol>
-<ol start="2">
-<li><p>R1与R2能互通</p>
-<p><img src="https://i.loli.net/2021/04/16/CzUSHoP9VGLhDmk.png" alt="alt R1与R2能ping通"></p>
+<li><p>衡量动态路由协议的一些性能指标</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正确性</td>
+<td>能够正确找到最优的路由，且无自环</td>
+</tr>
+<tr>
+<td>快收敛</td>
+<td>当拓扑结构发生变化之后，能够快速做出相应的路由变化</td>
+</tr>
+<tr>
+<td>低开销</td>
+<td>协议自身的开销（内存、CPU、网络带宽）最小</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>协议自身不易受攻击，有安全机制</td>
+</tr>
+<tr>
+<td>普适性</td>
+<td>适应各种拓扑结构和各种规模的网络</td>
+</tr>
+</tbody></table>
 </li>
-<li></li>
-</ol>
+</ul>
 
           
         
@@ -479,7 +590,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/28/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/26/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/45/">45</a><a class="extend next" rel="next" href="/page/28/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -524,7 +635,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
