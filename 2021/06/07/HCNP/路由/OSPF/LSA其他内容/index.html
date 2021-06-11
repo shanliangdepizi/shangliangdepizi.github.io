@@ -1,0 +1,1461 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OSPF," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="LSA更新规则序列号（sequence）内容 LSDB中的每个LSA都有一个序列号 4个字节的数字 以0x80000001开始 以7FFFFFFF结束   OSPF每30分钟泛洪一次LSA 每一次，序列号增加1 具有更高（更新）序列号的表示最新的LSA   最后，序列号会返回到0x80000001 现有LSA的生存时间提前到达最大生存时间MAX Age（一小时），并且已经刷新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF-LSA其他内容">
+<meta property="og:url" content="http://myblog.wuchao.space/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="LSA更新规则序列号（sequence）内容 LSDB中的每个LSA都有一个序列号 4个字节的数字 以0x80000001开始 以7FFFFFFF结束   OSPF每30分钟泛洪一次LSA 每一次，序列号增加1 具有更高（更新）序列号的表示最新的LSA   最后，序列号会返回到0x80000001 现有LSA的生存时间提前到达最大生存时间MAX Age（一小时），并且已经刷新">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/YgDReiJEhITqAak.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/gjN5yeK8Sn3VlcD.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/ULB6DQc4hyqkwWG.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/vNpZVtxqfsDrKLj.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/P5ofV64iCcbWBh9.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/QDK3PLctVOJmuxR.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/KOJhD7qGUdjeHia.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/gSNHOvroIiZJPVR.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/lTbczCFkUnuiEjW.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/P5zW3oIBb2DQhrG.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/5VYDW2BRQIq6Pyv.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/F6my7qtIB1Cg9ba.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/1wgjJ6ITLuqVR2A.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/OhVjtw5kxQfcyU4.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/wlic35yERaD8kxW.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/ANL8XBgyhkFRzvw.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/oehGOK2Br8TqYXi.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/K89vixOrlQPZGns.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/v9NkYECj8mL6hUo.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/c5OgW8nzpXYxrI1.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/uJKQRVUp8bABGEI.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/wCOEJLQvu7k82YM.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/7fuNeLSA2dgXRWF.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/WIloLdKCBN3bGQ1.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/TWxVzFwXNSIe3U9.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/UFM82tqjfVynkwW.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/hk1p9sqLOvWFI2V.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/NBu7WOVfc6U1den.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/08/BJ1CZd3HG92SDwc.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/4ylorUIDKhJtnOF.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/X5y8mxYz4sAafTC.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/fnqOGXJVrMvRz7w.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/fHYkWX5EwCQ8lFy.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/ngNdsbGQkOvTRh5.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/BKGMo1rvLVWjf4D.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/Fod1AqgHN8EmLli.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/By798RPcD6E1pQS.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/Gj2uAsyp57V4Sql.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/gGin64vbjqoepZL.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/sGydYAK47k5PjCc.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/L6ve2saINmuni5K.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/cV5XNj7JSFT3nBv.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/WHugcItqMAR7mxf.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/jNhwHTEGzWtKiXy.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/fn39ka5dp4PcyZ7.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/ZOm3V42QznAY9Kk.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/ALPFGf1gtvDWCOh.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/09/1WHVjvUStNqiDbQ.png">
+<meta property="article:published_time" content="2021-06-06T23:52:40.075Z">
+<meta property="article:modified_time" content="2021-06-11T01:59:11.975Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="OSPF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/07/YgDReiJEhITqAak.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2021/06/07/HCNP/路由/OSPF/LSA其他内容/"/>
+
+
+
+
+
+  <title> OSPF-LSA其他内容 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                OSPF-LSA其他内容
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-07T07:52:40+08:00">
+                2021-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/" itemprop="url" rel="index">
+                    <span itemprop="name">HCNP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/%E8%B7%AF%E7%94%B1/OSPF%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">OSPF协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2021/06/07/HCNP/路由/OSPF/LSA其他内容/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="LSA更新规则"><a href="#LSA更新规则" class="headerlink" title="LSA更新规则"></a>LSA更新规则</h1><h2 id="序列号（sequence）"><a href="#序列号（sequence）" class="headerlink" title="序列号（sequence）"></a>序列号（sequence）</h2><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>LSDB中的每个LSA都有一个序列号<ul>
+<li>4个字节的数字</li>
+<li>以0x80000001开始</li>
+<li>以7FFFFFFF结束</li>
+</ul>
+</li>
+<li>OSPF每30分钟泛洪一次LSA<ul>
+<li>每一次，序列号增加1</li>
+<li>具有更高（更新）序列号的表示最新的LSA</li>
+</ul>
+</li>
+<li>最后，序列号会返回到0x80000001<ul>
+<li>现有LSA的生存时间提前到达最大生存时间MAX Age（一小时），并且已经刷新</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="序列号判断重复的LSA"><a href="#序列号判断重复的LSA" class="headerlink" title="序列号判断重复的LSA"></a>序列号判断重复的LSA</h3><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/07/YgDReiJEhITqAak.png" alt="alt 序列号判断重复的LSA"></p>
+</li>
+<li><p>分析</p>
+<ul>
+<li>路由器收到其他路由器发送的LSA，判断该LSA是否在LSDB中，如果不在，则添加到LSDB中并发送LS ACK给其他路由器，泛洪LSA，运行SPF算法计算路由，形成新的路由表</li>
+<li>如果收到其他路由器发送的LSA的序列号与之前已有的LSA序列号重复，忽略该LSA</li>
+<li>如果没有重复，则判断其他路由器发送的LSA与路由器原有的LSA哪个的序列号高，序列号高的代表LSA较新，如果其他路由器发送来的LSA的序列号高，添加该LSA到LSDB</li>
+<li>如果路由器原有的LSA的序列号高，则将原有的LSA发送给其他路由器</li>
+</ul>
+</li>
+</ol>
+<h2 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h2><h3 id="刷新时间Refresh-Age"><a href="#刷新时间Refresh-Age" class="headerlink" title="刷新时间Refresh Age"></a>刷新时间Refresh Age</h3><ol>
+<li><p>内容</p>
+<ul>
+<li>LS Age的单位是S，随时间而增长，越小代表LSA越新</li>
+<li>一条LSA在向外泛洪之前，LS Age的值需要增加Inf Trans Delay（该值可以在端口上设置，缺省为1s，表示在链路上传输的延迟）</li>
+<li>如果一条LSA的LS Age达到LS Refresh Time（30分钟），重新生成该LSA（Age重新计算，序列号+1）</li>
+</ul>
+</li>
+<li><p>验证</p>
+<ul>
+<li><p>R4中宣告一条路由</p>
+<p><img src="https://i.loli.net/2021/06/07/gjN5yeK8Sn3VlcD.png" alt="alt R4中宣告一条路由"></p>
+</li>
+<li><p>R1中会出现一条新的LSA</p>
+<p><img src="https://i.loli.net/2021/06/07/ULB6DQc4hyqkwWG.png" alt="alt R1中有新的LSA"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Max-Age"><a href="#Max-Age" class="headerlink" title="Max Age"></a>Max Age</h3><ol>
+<li><p>内容</p>
+<ul>
+<li>如果一条LSA的LS Age达到了Max Age（1小时），这条LSA将会被删除</li>
+<li>如果路由器希望将某条自己此前生成的LSA删除，则可以重新生成这条LSA实例，并将LS Age设置成MAX Age</li>
+<li>如果路由器收到一条LS Age为MAX Age的LSA，则从LSDB中删除此LSA（前提是LSDB中存在此LSA）</li>
+</ul>
+</li>
+<li><p>验证</p>
+<ul>
+<li><p>R4删除一条路由</p>
+<p><img src="https://i.loli.net/2021/06/07/vNpZVtxqfsDrKLj.png" alt="alt R4不宣告"></p>
+</li>
+<li><p>抓包看</p>
+<p><img src="https://i.loli.net/2021/06/07/P5ofV64iCcbWBh9.png" alt="alt 删除一条LSA"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="引入外部路由"><a href="#引入外部路由" class="headerlink" title="引入外部路由"></a>引入外部路由</h1><h2 id="外部路由类型"><a href="#外部路由类型" class="headerlink" title="外部路由类型"></a>外部路由类型</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一类外部路由<br>（External Type 1）</td>
+<td>AS内部Cost+AS外部Cost</td>
+</tr>
+<tr>
+<td>第二类外部路由<br>（External Type 2）</td>
+<td>AS外部Cost</td>
+</tr>
+</tbody></table>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/07/QDK3PLctVOJmuxR.png" alt="alt 引入外部路由"></p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>当路由Cost相同的时候，外部路由的Type1 优于 Type 2</p>
+<p><img src="https://i.loli.net/2021/06/07/KOJhD7qGUdjeHia.png" alt="alt 外部路由引入类型区别"> </p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="https://i.loli.net/2021/06/07/gSNHOvroIiZJPVR.png" alt="alt 引入外部路由类型实验拓扑"></p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>import-route static/rip/ospf/bgp/isis<br>      limit：配置引入外部路由的最大数量<br>      cost：配置外部路由的开销，默认为1<br>      route-policy：配置路由策略<br>      tag：配置标签，用于路由策略，默认为1<br>      type：配置引入外部路由的类型，默认为2</td>
+<td>引入外部路由的命令</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>上面路由器的配置</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.0.1.1 24</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 1</span><br><span class="line">net 10.0.1.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.0.1.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.0.2.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line">net 10.0.1.2 0.0.0.0</span><br><span class="line">area 0</span><br><span class="line">net 10.0.2.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.0.2.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.0.3.1 24</span><br><span class="line">q</span><br><span class="line">ip rpute-static 4.4.4.4 32 10.0.3.2</span><br><span class="line"></span><br><span class="line">[R3]acl 2000</span><br><span class="line">[R3-acl-basic-2000]rule 1 per	</span><br><span class="line">[R3-acl-basic-2000]rule 1 permit sr	</span><br><span class="line">[R3-acl-basic-2000]rule 1 permit sour	</span><br><span class="line">[R3-acl-basic-2000]rule 1 permit source 10.0.3.0 0.0.0.255</span><br><span class="line">[R3-acl-basic-2000]rule 2 permit so	</span><br><span class="line">[R3-acl-basic-2000]rule 2 permit source 4.4.4.4 0.0.0.0</span><br><span class="line">[R3-acl-basic-2000]q</span><br><span class="line">[R3]rout	</span><br><span class="line">[R3]route-p	</span><br><span class="line">[R3]route-policy wuchao permit node 10</span><br><span class="line">Info: New Sequence of this List.</span><br><span class="line">[R3-route-policy]if-ma	</span><br><span class="line">[R3-route-policy]if-match acl 2000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">import-route direct route-policy wuchao</span><br><span class="line">import-route static</span><br><span class="line">area 0</span><br><span class="line">net 10.0.2.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.0.3.2 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 4.4.4.4 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>修改Cost</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-ospf-1]import-route static cost 10</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>修改Type</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-ospf-1]import-route direct route-policy wuchao type 1</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ol>
+<li><p>此时R1中会有两条外部路由，且开销都是1</p>
+<p><img src="https://i.loli.net/2021/06/07/lTbczCFkUnuiEjW.png" alt="alt Type2-Cost"></p>
+</li>
+<li><p>修改引入外部路由的Cost</p>
+<p><img src="https://i.loli.net/2021/06/07/P5zW3oIBb2DQhrG.png" alt="alt 修改Cost"></p>
+</li>
+<li><p>修改外部路由器引入的类型</p>
+<p><img src="https://i.loli.net/2021/06/07/5VYDW2BRQIq6Pyv.png" alt="alt 修改外部路由器的引入类型"></p>
+</li>
+</ol>
+<h1 id="Forwarding-Address（次优外部路由）"><a href="#Forwarding-Address（次优外部路由）" class="headerlink" title="Forwarding Address（次优外部路由）"></a>Forwarding Address（次优外部路由）</h1><h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/07/F6my7qtIB1Cg9ba.png" alt="alt 次优外部路由的原因"></p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>A与B之间跑OSPF协议</li>
+<li>B与C之间跑RIP协议</li>
+<li>A、B、C属于同一个局域网</li>
+<li>A到C的数据包：A把数据包发送B，又从B的同一个接口将数据包发给C；而A可以直接将数据包发给C，就用到Forwarding Address</li>
+</ol>
+<h3 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>如果引入OSPF的外部路由的下一跳与引入外部路由的路由器（OSPF协议）接口在同一个局域网</li>
+<li>则在描述该外部路由的AS-External LSA中</li>
+<li>Forwarding Address 应该被设置成ADBR路由表中该路由的下一跳</li>
+</ol>
+<h2 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/06/07/1wgjJ6ITLuqVR2A.png" alt="alt 解决次优路由的方法"></p>
+<h2 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h2><h3 id="拓扑-1"><a href="#拓扑-1" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="https://i.loli.net/2021/06/07/OhVjtw5kxQfcyU4.png" alt="alt 次优路由Forwarding Address实验拓扑"></p>
+<h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 192.168.1.1 24</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">are 0</span><br><span class="line">net 192.168.1.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 192.168.1.2 24</span><br><span class="line">ip route-static 3.3.3.3 32 192.168.1.3</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">import-route static</span><br><span class="line">are 0</span><br><span class="line">net 192.168.1.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>R3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 192.168.1.3 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 3.3.3.3 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h3><ol>
+<li><p>R1中有外部路由3.3.3.3</p>
+<p><img src="https://i.loli.net/2021/06/07/wlic35yERaD8kxW.png" alt="alt R1中有外部路由"></p>
+</li>
+<li><p>R1的外部路由详细信息中有Forwarding Address 指向R3</p>
+<p><img src="https://i.loli.net/2021/06/07/ANL8XBgyhkFRzvw.png" alt="alt R1中外部路由详细信息"></p>
+</li>
+</ol>
+<h1 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>将路由表中的多条路由汇总成一条路由，从而减少路由表的规模，提高性能和扩展性</li>
+<li>OSPFF的汇总只能在ABR和ASBR中配置</li>
+</ol>
+<h3 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>area 0 （需要在ABR所要宣告的路由的区域内配置）<br>abr-summary 192.168.0.0 255.255.252.0<br>      advertise ：发布汇总路由，默认<br>      not-advertise：不发布汇总路由（可以屏蔽某段路由）<br>      cost：开销 （多条路由汇总，默认用Cost最大的值作为汇总后的Cost）</td>
+<td>ABR区域间路由汇总</td>
+</tr>
+<tr>
+<td>asbr-summary 192.168.0.0. 255.255.252.0</td>
+<td>ASBR外部路由汇总</td>
+</tr>
+</tbody></table>
+<h2 id="区域间路由汇总"><a href="#区域间路由汇总" class="headerlink" title="区域间路由汇总"></a>区域间路由汇总</h2><p><img src="https://i.loli.net/2021/06/07/oehGOK2Br8TqYXi.png" alt="atl 区域间路由汇总"></p>
+<h2 id="外部路由汇总"><a href="#外部路由汇总" class="headerlink" title="外部路由汇总"></a>外部路由汇总</h2><p><img src="https://i.loli.net/2021/06/07/K89vixOrlQPZGns.png" alt="alt 外部路由汇总"></p>
+<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><h3 id="拓扑-2"><a href="#拓扑-2" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="https://i.loli.net/2021/06/07/v9NkYECj8mL6hUo.png" alt="alt  外部路由汇总实验总结"></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 1</span><br><span class="line">192.168.0.1&#x2F;24</span><br><span class="line">int lo 2</span><br><span class="line">192.168.1.1&#x2F;24</span><br><span class="line">int lo 3</span><br><span class="line">192.168.2.1&#x2F;24</span><br><span class="line">int lo 4</span><br><span class="line">192.168.3.1&#x2F;24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br><span class="line">net 192.168.0.1 0.0.0.255</span><br><span class="line">net 192.168.1.1 0.0.0.255</span><br><span class="line">net 192.168.2.1 0.0.0.255</span><br><span class="line">net 192.168.3.1 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">#路由器策略</span><br><span class="line">q</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 permit source 3.3.3.3 0.0.0.0</span><br><span class="line">q</span><br><span class="line">route-policy wuchao permit node 10</span><br><span class="line">if-match acl 2000</span><br><span class="line">q</span><br><span class="line">ip route-static 3.3.3.3 32 23.0.0.2</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">import-route static route-policy wuchao</span><br><span class="line">area 0 </span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line"></span><br><span class="line">#路由汇总</span><br><span class="line">abr-summay 192.168.0.0 255.255.252.0  # 后面可以加参数</span><br><span class="line">                                      # Cost 修改汇总后的Cost</span><br><span class="line">                                      # advertise 宣告汇总路由（默认）</span><br><span class="line">                                      # not-advertise 不宣告汇总路由（可以屏蔽一些路由）</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>R3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 23.0.0.2 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 3.3.3.3 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="验证-2"><a href="#验证-2" class="headerlink" title="验证"></a>验证</h3><ol>
+<li><p>没有汇总之前的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/07/c5OgW8nzpXYxrI1.png" alt="alt 没有汇总之前的LSDB"></p>
+</li>
+<li><p>汇总之后的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/07/uJKQRVUp8bABGEI.png" alt="alt 汇总之后的LSDB"></p>
+</li>
+</ol>
+<h1 id="特殊区域"><a href="#特殊区域" class="headerlink" title="特殊区域"></a>特殊区域</h1><h2 id="stub区域与Totally-Stub区域"><a href="#stub区域与Totally-Stub区域" class="headerlink" title="stub区域与Totally Stub区域"></a>stub区域与Totally Stub区域</h2><h3 id="图示-3"><a href="#图示-3" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/08/wCOEJLQvu7k82YM.png" alt="alt 特殊区域图示"></p>
+<h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>特殊区域</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stub</td>
+<td>末节区域，屏蔽LSA 4/5<br>区域内不能有ASBR、不能是区域0（核心区域）、不能有虚连接<br>由ABR向该区域发送一条LSA 3类型的缺省路由</td>
+</tr>
+<tr>
+<td>Totally Stub</td>
+<td>完全末节区域，屏蔽LSA 3/4/5类型<br>区域内不能是ASBR、不能是区域0（核心区域）、不能有虚连接<br>由ABR向该区域发送一条LSA 3类型的缺省路由</td>
+</tr>
+</tbody></table>
+<h2 id="stub区域"><a href="#stub区域" class="headerlink" title="stub区域"></a>stub区域</h2><h3 id="内容-3"><a href="#内容-3" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>末节区域</li>
+<li>屏蔽LSA 4/5类型</li>
+<li>不能是核心区域</li>
+<li>不能有ASBR</li>
+<li>不能有虚连接</li>
+<li>由ABR发送一条LSA 3类型的缺省路由</li>
+</ol>
+<h3 id="图示-4"><a href="#图示-4" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/08/7fuNeLSA2dgXRWF.png" alt="alt Stub区域图示"></p>
+<h3 id="实验-3"><a href="#实验-3" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/08/WIloLdKCBN3bGQ1.png" alt="alt Stub试验拓扑"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 1</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br><span class="line"># 设置成末节区域</span><br><span class="line">stub</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sy R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line"></span><br><span class="line"># 设置成末节区域</span><br><span class="line">stub</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 23.0.0.2 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 192.168.11.1 24</span><br><span class="line">int lo 2</span><br><span class="line">ip add 192.168.12.1 24</span><br><span class="line">int lo 3</span><br><span class="line">ip add 192.168.13.1 24</span><br><span class="line">int lo 4</span><br><span class="line">ip add 192.168.14.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>验证</p>
+<ul>
+<li><p>没有特殊区域之前的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/08/TWxVzFwXNSIe3U9.png" alt="alt 没有特殊区域之前的LSDB"></p>
+</li>
+<li><p>设置Stub之后的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/08/UFM82tqjfVynkwW.png" alt="alt 设置Stub之后的LSDB"></p>
+</li>
+</ul>
+</li>
+<li><p>路由表</p>
+<p><img src="https://i.loli.net/2021/06/09/hk1p9sqLOvWFI2V.png" alt="alt Stub区域路由表"></p>
+</li>
+</ol>
+<h2 id="Totally-Stub-区域"><a href="#Totally-Stub-区域" class="headerlink" title="Totally Stub 区域"></a>Totally Stub 区域</h2><h3 id="内容-4"><a href="#内容-4" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>完全末节区域</li>
+<li>屏蔽LSA 3/4/5类型</li>
+<li>不能是核心区域</li>
+<li>不能有ASBR</li>
+<li>不能有虚连接</li>
+<li>由ABR发送一条LSA 3类型的缺省路由</li>
+</ol>
+<h3 id="图示-5"><a href="#图示-5" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/08/NBu7WOVfc6U1den.png" alt="alt Totally Stub图示"></p>
+<h3 id="实验-4"><a href="#实验-4" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/08/BJ1CZd3HG92SDwc.png" alt="alt Totally Stub实验拓扑"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>area1 内部路由器R1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 1</span><br><span class="line"></span><br><span class="line"># 配置Stub区域</span><br><span class="line">stub</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>area 1 边界路由ABR配置（R2）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sy R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line"># 配置Totaly Stub</span><br><span class="line">stub no-summary</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>验证</p>
+<ul>
+<li><p>3类、4类、5类LSA被一条3类LSA的缺省路由代替</p>
+<p><img src="https://i.loli.net/2021/06/09/4ylorUIDKhJtnOF.png" alt="alt 3类缺省路由"></p>
+</li>
+<li><p>没有设置Totally Stub</p>
+<p><img src="https://i.loli.net/2021/06/09/X5y8mxYz4sAafTC.png" alt="alt 没有设置Totally Stub"></p>
+</li>
+</ul>
+</li>
+<li><p>路由表</p>
+<p><img src="https://i.loli.net/2021/06/09/fnqOGXJVrMvRz7w.png" alt="alt Totally Stub 路由表"></p>
+</li>
+</ol>
+<h2 id="Stub与Totally-Stub区域的问题"><a href="#Stub与Totally-Stub区域的问题" class="headerlink" title="Stub与Totally Stub区域的问题"></a>Stub与Totally Stub区域的问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ol>
+<li>OSPF的area被定义为Stub或Totally区域后，无法作为ASBR引入外部路由</li>
+<li>会出现次优路由</li>
+</ol>
+<h3 id="问题图示"><a href="#问题图示" class="headerlink" title="问题图示"></a>问题图示</h3><p><img src="https://i.loli.net/2021/06/09/fHYkWX5EwCQ8lFy.png" alt="alt Stub和Totally Stub问题"></p>
+<h2 id="NSSA与Totally-NSSA"><a href="#NSSA与Totally-NSSA" class="headerlink" title="NSSA与Totally NSSA"></a>NSSA与Totally NSSA</h2><h3 id="图表-2"><a href="#图表-2" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>特殊区域</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NSSA Not-So-Stubby-Area</td>
+<td>不是那么末节的区域，屏蔽LSA 4/5类<br>区域内允许有ASBR<br>为了传递外部路由，该区域内使用LSA7类代替LSA5类<br>该区域的外部路由去往其他区域需要将LSA7类转化成LSA5类<br>该区域ABR会发送一条LSA 7的缺省路由</td>
+</tr>
+<tr>
+<td>Totally NSSA</td>
+<td>完全不是那么末节的区域，屏蔽LSA 3/4/5类<br>区域内允许有ASBR<br>为了传递外部路由，该区域使用LSA7类代替LSA5类<br>该区域的外部路由去往其他区域需要将LSA7类转化成LSA5类<br>该区域的ABR会发送一条LSA 3类和LSA7类的缺省路由</td>
+</tr>
+</tbody></table>
+<h3 id="图示-6"><a href="#图示-6" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/09/ngNdsbGQkOvTRh5.png" alt="alt NASA与Totally NASA"></p>
+<h2 id="NSSA（Not-So-Stubby-Area）"><a href="#NSSA（Not-So-Stubby-Area）" class="headerlink" title="NSSA（Not So Stubby Area）"></a>NSSA（Not So Stubby Area）</h2><h3 id="内容-5"><a href="#内容-5" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>不是那么末节的区域，屏蔽LSA 4/5类LSA</li>
+<li>允许该区域有ASBR，外部路由</li>
+<li>因为Stub区域不允许有4类和5类LSA，此时这个区域使用LSA7类代替LSA5类</li>
+<li>为了传递该区域的外部路由到其他区域，ABR会将LSA7类转化成LSA5类</li>
+<li>该区域会发布一条LSA7类的缺省路由</li>
+</ol>
+<h3 id="图示-7"><a href="#图示-7" class="headerlink" title="图示"></a>图示</h3><p><img src alt="alt NSSA区域图示"></p>
+<h3 id="实验-5"><a href="#实验-5" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/09/BKGMo1rvLVWjf4D.png" alt="alt NSSA区域试验拓扑"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>末节路由器配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 9.9.9.9 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">import-route direct</span><br><span class="line">area 1</span><br><span class="line"></span><br><span class="line"># 配置NSSA区域</span><br><span class="line">nssa</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>ABR路由器配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sy R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line"># 配置NSSA</span><br><span class="line">nssa  no-summary</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>验证</p>
+<ul>
+<li><p>不配置特殊区域的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/09/Fod1AqgHN8EmLli.png" alt="alt 不配置特殊区域的LSDB"></p>
+</li>
+<li><p>配置Stub的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/09/By798RPcD6E1pQS.png" alt="alt 配置Stub的LSDB"></p>
+</li>
+<li><p>配置NSSA的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/09/Gj2uAsyp57V4Sql.png" alt="atl 配置NSSA的LSDB"></p>
+</li>
+<li><p>末节区域内全部路由器配置NSSA后的LSDB</p>
+<p><img src="https://i.loli.net/2021/06/09/gGin64vbjqoepZL.png" alt="atl 末节区域内全部路由器配置NSSA后的LSDB"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Totally-NSSA"><a href="#Totally-NSSA" class="headerlink" title="Totally NSSA"></a>Totally NSSA</h2><h3 id="内容-6"><a href="#内容-6" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>完全不那么末节的区域，屏蔽LSA 3/4/5类LSA</li>
+<li>允许末节区域内有外部路由</li>
+<li>末节区域内外部路由是LSA7类</li>
+<li>末节区域内的外部路由宣告给其他区域，需要将LSA7类转化成LSA5类</li>
+<li>末节区域内发送一条LSA3类缺省路由和LSA7类缺省路由</li>
+</ol>
+<h3 id="图示-8"><a href="#图示-8" class="headerlink" title="图示"></a>图示</h3><h3 id="实验-6"><a href="#实验-6" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/09/sGydYAK47k5PjCc.png" alt="Totally NSSA实验拓扑"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>末节区域ABR的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sy R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line"># 配置Totally NSSA</span><br><span class="line">NSSA no-summary</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>末节区域引入外部路由的路由器配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 9.9.9.9 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">import-route direct</span><br><span class="line">area 1</span><br><span class="line"></span><br><span class="line"># 配置NSSA区域</span><br><span class="line">nasa</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>验证</p>
+<ul>
+<li><p>没有配置特殊区域</p>
+<p><img src="https://i.loli.net/2021/06/09/L6ve2saINmuni5K.png" alt="alt 没有配置特殊区域NSSA"></p>
+</li>
+<li><p>配置Totally NSSA区域</p>
+<p><img src="https://i.loli.net/2021/06/09/cV5XNj7JSFT3nBv.png" alt="alt 配置Totally NSSA区域"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>LSA3</th>
+<th>LSA4</th>
+<th>LSA5</th>
+<th>LSA7</th>
+<th>自动发布缺省路由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stub</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Totally Stub</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>√</td>
+</tr>
+<tr>
+<td>NSSA</td>
+<td>√</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ/√</td>
+</tr>
+<tr>
+<td>Totally NSSA</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ</td>
+<td>ⅹ/√</td>
+</tr>
+</tbody></table>
+<h3 id="Stub区域"><a href="#Stub区域" class="headerlink" title="Stub区域"></a>Stub区域</h3><p><img src="https://i.loli.net/2021/06/09/WHugcItqMAR7mxf.png" alt="alt Stub区域总结"></p>
+<h3 id="Totally-Stub区域"><a href="#Totally-Stub区域" class="headerlink" title="Totally Stub区域"></a>Totally Stub区域</h3><p><img src="https://i.loli.net/2021/06/09/jNhwHTEGzWtKiXy.png" alt="alt Totally Stub区域总结"></p>
+<h3 id="NSSA区域"><a href="#NSSA区域" class="headerlink" title="NSSA区域"></a>NSSA区域</h3><p><img src="https://i.loli.net/2021/06/09/fn39ka5dp4PcyZ7.png" alt="atl NSSA区域总结"></p>
+<h3 id="Stub-区域总结"><a href="#Stub-区域总结" class="headerlink" title="Stub 区域总结"></a>Stub 区域总结</h3><p><img src="https://i.loli.net/2021/06/09/ZOm3V42QznAY9Kk.png" alt="atl Stub区域总结"></p>
+<h3 id="Totally-Stub区域总结"><a href="#Totally-Stub区域总结" class="headerlink" title="Totally Stub区域总结"></a>Totally Stub区域总结</h3><p><img src="https://i.loli.net/2021/06/09/ALPFGf1gtvDWCOh.png" alt="alt Totally Stub区域总结1"></p>
+<h3 id="NSSA区域总结"><a href="#NSSA区域总结" class="headerlink" title="NSSA区域总结"></a>NSSA区域总结</h3><p><img src="https://i.loli.net/2021/06/09/1WHVjvUStNqiDbQ.png" alt="alt NSSA区域总结1"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="https://i.loli.net/2021/05/02/IAV8ecyQoqDBdNH.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OSPF/" rel="tag"># OSPF</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/06/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSOF-LSA%E7%B1%BB%E5%9E%8B4%E4%B8%8E5/" rel="next" title="OSPF-LSA类型4与5">
+                <i class="fa fa-chevron-left"></i> OSPF-LSA类型4与5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/09/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/" rel="prev" title="OSPF综合应用">
+                OSPF综合应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LSA更新规则"><span class="nav-number">1.</span> <span class="nav-text">LSA更新规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列号（sequence）"><span class="nav-number">1.1.</span> <span class="nav-text">序列号（sequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">1.1.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列号判断重复的LSA"><span class="nav-number">1.1.2.</span> <span class="nav-text">序列号判断重复的LSA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过期时间"><span class="nav-number">1.2.</span> <span class="nav-text">过期时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刷新时间Refresh-Age"><span class="nav-number">1.2.1.</span> <span class="nav-text">刷新时间Refresh Age</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-Age"><span class="nav-number">1.2.2.</span> <span class="nav-text">Max Age</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引入外部路由"><span class="nav-number">2.</span> <span class="nav-text">引入外部路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外部路由类型"><span class="nav-number">2.1.</span> <span class="nav-text">外部路由类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">2.1.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示"><span class="nav-number">2.1.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">2.1.3.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">2.2.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑"><span class="nav-number">2.2.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.2.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">2.2.3.</span> <span class="nav-text">验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forwarding-Address（次优外部路由）"><span class="nav-number">3.</span> <span class="nav-text">Forwarding Address（次优外部路由）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产生原因"><span class="nav-number">3.1.</span> <span class="nav-text">产生原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释"><span class="nav-number">3.1.2.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-1"><span class="nav-number">3.1.3.</span> <span class="nav-text">内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图示-2"><span class="nav-number">3.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-1"><span class="nav-number">3.3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证-1"><span class="nav-number">3.3.3.</span> <span class="nav-text">验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汇总"><span class="nav-number">4.</span> <span class="nav-text">汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-2"><span class="nav-number">4.1.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令-2"><span class="nav-number">4.1.2.</span> <span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区域间路由汇总"><span class="nav-number">4.2.</span> <span class="nav-text">区域间路由汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部路由汇总"><span class="nav-number">4.3.</span> <span class="nav-text">外部路由汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验-2"><span class="nav-number">4.4.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑-2"><span class="nav-number">4.4.1.</span> <span class="nav-text">拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">4.4.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证-2"><span class="nav-number">4.4.3.</span> <span class="nav-text">验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊区域"><span class="nav-number">5.</span> <span class="nav-text">特殊区域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#stub区域与Totally-Stub区域"><span class="nav-number">5.1.</span> <span class="nav-text">stub区域与Totally Stub区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-3"><span class="nav-number">5.1.1.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图表-1"><span class="nav-number">5.1.2.</span> <span class="nav-text">图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stub区域"><span class="nav-number">5.2.</span> <span class="nav-text">stub区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-3"><span class="nav-number">5.2.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-4"><span class="nav-number">5.2.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验-3"><span class="nav-number">5.2.3.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Totally-Stub-区域"><span class="nav-number">5.3.</span> <span class="nav-text">Totally Stub 区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-4"><span class="nav-number">5.3.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-5"><span class="nav-number">5.3.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验-4"><span class="nav-number">5.3.3.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stub与Totally-Stub区域的问题"><span class="nav-number">5.4.</span> <span class="nav-text">Stub与Totally Stub区域的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">5.4.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题图示"><span class="nav-number">5.4.2.</span> <span class="nav-text">问题图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSSA与Totally-NSSA"><span class="nav-number">5.5.</span> <span class="nav-text">NSSA与Totally NSSA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图表-2"><span class="nav-number">5.5.1.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-6"><span class="nav-number">5.5.2.</span> <span class="nav-text">图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSSA（Not-So-Stubby-Area）"><span class="nav-number">5.6.</span> <span class="nav-text">NSSA（Not So Stubby Area）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-5"><span class="nav-number">5.6.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-7"><span class="nav-number">5.6.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验-5"><span class="nav-number">5.6.3.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Totally-NSSA"><span class="nav-number">5.7.</span> <span class="nav-text">Totally NSSA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容-6"><span class="nav-number">5.7.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示-8"><span class="nav-number">5.7.2.</span> <span class="nav-text">图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验-6"><span class="nav-number">5.7.3.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.8.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stub区域"><span class="nav-number">5.8.1.</span> <span class="nav-text">Stub区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Totally-Stub区域"><span class="nav-number">5.8.2.</span> <span class="nav-text">Totally Stub区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSSA区域"><span class="nav-number">5.8.3.</span> <span class="nav-text">NSSA区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stub-区域总结"><span class="nav-number">5.8.4.</span> <span class="nav-text">Stub 区域总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Totally-Stub区域总结"><span class="nav-number">5.8.5.</span> <span class="nav-text">Totally Stub区域总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSSA区域总结"><span class="nav-number">5.8.6.</span> <span class="nav-text">NSSA区域总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/';
+          this.page.identifier = '2021/06/07/HCNP/路由/OSPF/LSA其他内容/';
+          this.page.title = 'OSPF-LSA其他内容';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
