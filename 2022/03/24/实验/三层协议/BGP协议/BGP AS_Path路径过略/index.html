@@ -1,0 +1,1010 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="BGP AS_Path过滤," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="组网需求 Router A与Router B、Router B与Router C之间建立EBGP连接 用户希望AS10的设备与AS30的设备无法互相通信  组网图 配置思路 在Router A和Router B之间、Router B和Router C之间分别配置EBGP连接，并引入直连路由，实现AS之间通过EBGP互联互通 在Router B上配置AS_Path过滤器，并应用该过滤规则，使AS 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BGP AS_Path路径过滤示例">
+<meta property="og:url" content="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="组网需求 Router A与Router B、Router B与Router C之间建立EBGP连接 用户希望AS10的设备与AS30的设备无法互相通信  组网图 配置思路 在Router A和Router B之间、Router B和Router C之间分别配置EBGP连接，并引入直连路由，实现AS之间通过EBGP互联互通 在Router B上配置AS_Path过滤器，并应用该过滤规则，使AS 2">
+<meta property="og:image" content="https://s2.loli.net/2022/03/22/SqQHvylfjYptzLW.jpg">
+<meta property="article:published_time" content="2022-03-24T03:33:51.179Z">
+<meta property="article:modified_time" content="2022-03-22T02:52:11.592Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="BGP AS_Path过滤">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/22/SqQHvylfjYptzLW.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2022/03/24/实验/三层协议/BGP协议/BGP AS_Path路径过略/"/>
+
+
+
+
+
+  <title> BGP AS_Path路径过滤示例 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                BGP AS_Path路径过滤示例
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:33:51+08:00">
+                2022-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">三层协议</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">BGP路由协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2022/03/24/实验/三层协议/BGP协议/BGP AS_Path路径过略/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
+<li>Router A与Router B、Router B与Router C之间建立EBGP连接</li>
+<li>用户希望AS10的设备与AS30的设备无法互相通信</li>
+</ol>
+<h2 id="组网图"><a href="#组网图" class="headerlink" title="组网图"></a>组网图</h2><p><img src="https://s2.loli.net/2022/03/22/SqQHvylfjYptzLW.jpg" alt></p>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
+<li>在Router A和Router B之间、Router B和Router C之间分别配置EBGP连接，并引入直连路由，实现AS之间通过EBGP互联互通</li>
+<li>在Router B上配置AS_Path过滤器，并应用该过滤规则，使AS 20不向AS 10发布AS 30的路由，也不向AS 30发布AS 10的路由</li>
+</ol>
+<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
+<li><p>配置各个路由器基本功能以及各个接口IP</p>
+<ul>
+<li><p>Router A配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 200.1.2.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 9.1.1.1 32</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 1.1.1.1 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 200.1.2.2 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 200.1.3.1 30</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 2.2.2.2 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router C配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 200.1.3.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 10.1.1.1 32</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 3.3.3.3 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="2">
+<li><p>配置EBGP邻居并引入直连路由</p>
+<ul>
+<li><p>Router A 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  router-id 1.1.1.1</span><br><span class="line">  peer 200.1.2.2 as-number 20</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>Router B 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 2.2.2.2</span><br><span class="line">  peer 200.1.2.1 as-number 10</span><br><span class="line">  peer 200.1.3.2 as-number 30</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router C 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 30</span><br><span class="line">  router-id 3.3.3.3</span><br><span class="line">  peer 200.1.3.1 as-number 20</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>配置过略AS 30 的路由</p>
+<ul>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip as-path-filter filter_as30 deny _30_</span><br><span class="line">ip as-path-filter filter_as30 permit .*</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="4">
+<li><p>配置过略AS10 的路由</p>
+<ul>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip as-path-filter filter_as10 deny _10_</span><br><span class="line">ip as-path-filter filter_as10 permit .*</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="5">
+<li><p>应用AS路由过略</p>
+<ul>
+<li><p>Router  B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 100.1.2.1 as-path-filter filter_as30</span><br><span class="line">  peer 100.1.3.2 as-path-filter filter_as10</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="结果查看"><a href="#结果查看" class="headerlink" title="结果查看"></a>结果查看</h2><ol>
+<li><p>查看固定邻居的BGP路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 8</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         200.1.3.1                             0      20 30?</span><br><span class="line"> *&gt;   9.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   100.1.1.1/32       200.1.3.1                             0      20 30?</span><br><span class="line"> *&gt;   200.1.2.0          200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.3.1       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>查看BGP路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router C&gt;dis bgp routing-table </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 3.3.3.3 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 12</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   9.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   100.1.1.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0          200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       0.0.0.0         0                     0      ?</span><br><span class="line">                         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.2/32       0.0.0.0         0                     0      ?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>查看过略AS10 后的路由表（Router C为例）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router C&gt;dis bgp routing-table </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 3.3.3.3 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 9</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   100.1.1.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       0.0.0.0         0                     0      ?</span><br><span class="line">                         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.2/32       0.0.0.0         0                     0      ?</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看过略AS30 后的路由表（Router A为例）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;dis bgp routing-table</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 1.1.1.1 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 12</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   1.1.1.1/32         0.0.0.0         0                     0      ?</span></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   9.0.0.0            127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   9.1.1.1/32         0.0.0.0         0                     0      ?</span></span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0          127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   200.1.2.0/30       0.0.0.0         0                     0      ?</span></span><br><span class="line">                         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.2.2       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>查看固定邻居的路由表</p>
+<ul>
+<li><p>与Router A邻居的路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table peer 200.1.2.1 advertised-routers</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.2.1 advertised-routes </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 3</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.2.2       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>与Router C邻居的路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table peer 200.1.3.2 advertise-routers</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 3</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.3.1       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="https://i.loli.net/2021/05/02/IAV8ecyQoqDBdNH.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BGP-AS-Path%E8%BF%87%E6%BB%A4/" rel="tag"># BGP AS_Path过滤</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/" rel="next" title="IS-IS与静态BFD联动示例">
+                <i class="fa fa-chevron-left"></i> IS-IS与静态BFD联动示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E7%A4%BA%E4%BE%8B/" rel="prev" title="BGP基本功能示例">
+                BGP基本功能示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组网需求"><span class="nav-number">1.</span> <span class="nav-text">组网需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组网图"><span class="nav-number">2.</span> <span class="nav-text">组网图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置思路"><span class="nav-number">3.</span> <span class="nav-text">配置思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置命令"><span class="nav-number">4.</span> <span class="nav-text">配置命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果查看"><span class="nav-number">5.</span> <span class="nav-text">结果查看</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/';
+          this.page.identifier = '2022/03/24/实验/三层协议/BGP协议/BGP AS_Path路径过略/';
+          this.page.title = 'BGP AS_Path路径过滤示例';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
