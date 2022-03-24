@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E8%A1%A8%E3%80%81%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E3%80%81%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/VLAN%E7%9A%84%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E8%A1%A8%E3%80%81%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E3%80%81%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/" itemprop="url">
-                  路由表、直连路由、静态路由
+                <a class="post-title-link" href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/VLAN%E7%9A%84%E9%85%8D%E7%BD%AE/" itemprop="url">
+                  VLAN的配置
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:30+08:00">
-                2021-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-26T08:52:14+08:00">
+                2021-04-26
               </time>
             
 
@@ -346,8 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
-                    <span itemprop="name">路由</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/" itemprop="url" rel="index">
+                    <span itemprop="name">交换</span>
                   </a>
                 </span>
 
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
-                    <span itemprop="name">路由基础</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/" itemprop="url" rel="index">
+                    <span itemprop="name">VLAN</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E8%A1%A8%E3%80%81%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E3%80%81%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/26/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/VLAN%E7%9A%84%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/17/HCNA/路由/路由基础/路由表、直连路由、静态路由/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/26/HCNA/交换/VLAN/VLAN的配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,169 +405,164 @@
       
         
           
-            <h1 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h1><ol>
-<li><p>路由表的形成、来源</p>
-<ul>
-<li><p>直连路由</p>
-<p>路由器接口上直接连接的网络（接口上配地址并且开启）</p>
+            <h1 id="VLAN规划"><a href="#VLAN规划" class="headerlink" title="VLAN规划"></a>VLAN规划</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>VLAN5</th>
+<th>VLAN10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基于端口</td>
+<td>G0/0/1、G0/0/7</td>
+<td>G0/0/2 G0/0/9</td>
+</tr>
+<tr>
+<td>基于MAC地址</td>
+<td>00-01-02-02-04-QQ</td>
+<td>00-01-02-03-04-WW</td>
+</tr>
+<tr>
+<td>基于IP子网划分</td>
+<td>10.0.1.*</td>
+<td>10.0.2.*</td>
+</tr>
+<tr>
+<td>基于协议划分</td>
+<td>IP</td>
+<td>IPX</td>
+</tr>
+<tr>
+<td>基于策略</td>
+<td>10.0.1.* + G0/0/1 + 00-01-02-03-04-AA</td>
+<td>10.0.2.* + G0/0/2 + 00-01-02-03-04-BB</td>
+</tr>
+</tbody></table>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/26/OdpnAwcisZRubVH.png" alt="alt VLAN规划"></p>
+<h1 id="VLAN配置"><a href="#VLAN配置" class="headerlink" title="VLAN配置"></a>VLAN配置</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VLAN 10</td>
+<td>创建单个VLAN</td>
+</tr>
+<tr>
+<td>vlan batch 10 to 20</td>
+<td>创建多个VLAN</td>
+</tr>
+<tr>
+<td>port link-type access/trunk/hybrid</td>
+<td>配置接口类型</td>
+</tr>
+<tr>
+<td>port default vlan 10</td>
+<td>配置Access关联VLAN/PVID</td>
+</tr>
+<tr>
+<td>port trunk allow-pass vlan 10</td>
+<td>配置Trunk允许VLAN<br>默认只允许VLAN1</td>
+</tr>
+<tr>
+<td>port trunk pvid vlan 10</td>
+<td>配置Trunk的PVID</td>
+</tr>
+<tr>
+<td>port hybrid tagged/untagged vlan 10</td>
+<td>配置Hybrid的PVID</td>
+</tr>
+<tr>
+<td>port hybrid pvid vlan 10</td>
+<td>配置Hybrid的PVID</td>
+</tr>
+<tr>
+<td>display vlan</td>
+<td>验证VLAN</td>
+</tr>
+<tr>
+<td>display port vlan</td>
+<td>验证VLAN</td>
+</tr>
+</tbody></table>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><p>将Access端口配置给某个VLAN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Access端口模式下</span><br><span class="line"></span><br><span class="line">port default vlan xxx</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-<li><p>静态路由</p>
-<p>管理员手工添加的网络</p>
+</ol>
+<ol start="2">
+<li><p>Trunk端口下配置VLAN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Trunk端口模式下</span><br><span class="line"></span><br><span class="line">   #配置Trunk允许列表</span><br><span class="line">   port trunk allow-pass vlan xxx </span><br><span class="line">   </span><br><span class="line">   #配置Trunk端口的PVID</span><br><span class="line">   port trunk pvid vlan xxx</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-<li><p>动态路由</p>
-<p>路由器之间动态学习到的网络</p>
+</ol>
+<ol start="3">
+<li><p>Hybrid端口下配置VLAN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Hybrid 端口配置VLAN</span><br><span class="line">   </span><br><span class="line">   # 配置带不带标签</span><br><span class="line">   port hybrid tagged&#x2F;untagged vlan xxx</span><br><span class="line">   </span><br><span class="line">   # 配置PVID</span><br><span class="line">   port hybrid pvid vlan xxx</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-</ul>
-</li>
-<li><p>直连路由</p>
-<ul>
-<li><p>拓扑图</p>
-<p><img src="https://i.loli.net/2021/04/05/T3HcivS5CgyF9Np.png" alt="alt 直连路由拓扑图"></p>
-</li>
-<li><p>配置命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[V200R003C00]</span><br><span class="line">#</span><br><span class="line"> sysname R1</span><br><span class="line">#</span><br><span class="line"> snmp-agent local-engineid 800007DB03000000000000</span><br><span class="line"> snmp-agent</span><br><span class="line">#</span><br><span class="line"> clock timezone BJ add 08:00:00</span><br><span class="line">#</span><br><span class="line">portal local-server load portalpage.zip</span><br><span class="line">#</span><br><span class="line"> drop illegal-mac alarm</span><br><span class="line">#</span><br><span class="line"> set cpu-usage threshold 80 restore 75</span><br><span class="line">#</span><br><span class="line">aaa</span><br><span class="line"> authentication-scheme default</span><br><span class="line"> authorization-scheme default</span><br><span class="line"> accounting-scheme default</span><br><span class="line"> domain default</span><br><span class="line"> domain default_admin</span><br><span class="line"> local-user admin password cipher %$%$K8m.Nt84DZ&#125;e#&lt;0&#96;8bmE3Uw&#125;%$%$</span><br><span class="line"> local-user admin service-type http</span><br><span class="line"> local-user wuchao password cipher %$%$C%Rk5fw&#123;%M^+hRC,e5nMeJ$&quot;%$%$</span><br><span class="line"> local-user wuchao privilege level 15</span><br><span class="line"> local-user wuchao service-type telnet</span><br><span class="line">#</span><br><span class="line">firewall zone Local</span><br><span class="line"> priority 15</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> ip address 192.168.100.254 255.255.255.0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode password</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br><span class="line"> idle-timeout 10 0</span><br><span class="line">user-interface vty 16 20</span><br><span class="line">#</span><br><span class="line">wlan ac</span><br><span class="line">#</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>路由表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;dis ip rou</span><br><span class="line">&lt;R1&gt;dis ip routing-table</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 7        Routes : 7</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line"># 网络路由</span><br><span class="line">  192.168.100.0&#x2F;24  Direct  0    0           D   192.168.100.254 GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"># 主机路由</span><br><span class="line">192.168.100.254&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"># 广播路由</span><br><span class="line">192.168.100.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>静态路由</p>
-<ul>
-<li><p>拓扑图</p>
-<p><img src="https://i.loli.net/2021/04/05/ZU4o7rGtJ8HXSqT.png" alt="alt 静态路由拓扑图"></p>
+</ol>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="普通实验"><a href="#普通实验" class="headerlink" title="普通实验"></a>普通实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/04/26/elyx8OFgrZGa2un.png" alt="alt VLAN配置实验拓扑"></p>
 </li>
 <li><p>配置</p>
-<p>局域直连配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]interface g0&#x2F;0&#x2F;1</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;1]ip add 2.0.0.1 24</span><br><span class="line">[R1]dis interface brief</span><br><span class="line"></span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        down  down        0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br></pre></td></tr></table></figure>
-
-<p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int</span><br><span class="line">[R1]interface g0&#x2F;0&#x2F;2</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;2]ip add 12.0.0.1 24</span><br><span class="line">[R1-GigabitEthernet0&#x2F;0&#x2F;2]q</span><br><span class="line">[R1]dis int</span><br><span class="line">[R1]dis interface br</span><br><span class="line">[R1]dis interface brief</span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        up    up          0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br></pre></td></tr></table></figure>
-
-<p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]sysname R2</span><br><span class="line">[R2]user-int	</span><br><span class="line">[R2]user-interface vty 0 4</span><br><span class="line">[R2-ui-vty0-4]aut	</span><br><span class="line">[R2-ui-vty0-4]authentication-mode aaa</span><br><span class="line">[R2-ui-vty0-4]aaa</span><br><span class="line">[R2-aaa]local	</span><br><span class="line">[R2-aaa]local-user wuchao pas	</span><br><span class="line">[R2-aaa]local-user wuchao password ci	</span><br><span class="line">[R2-aaa]local-user wuchao password cipher 110119</span><br><span class="line">Info: Add a new user.</span><br><span class="line">[R2-aaa]local-us	</span><br><span class="line">[R2-aaa]local-user wuchao pri	</span><br><span class="line">[R2-aaa]local-user wuchao privilege le	</span><br><span class="line">[R2-aaa]local-user wuchao privilege level 15</span><br><span class="line">[R2-aaa]local	</span><br><span class="line">[R2-aaa]local-user wuchao ser	</span><br><span class="line">[R2-aaa]local-user wuchao service-type telnet</span><br><span class="line">[R2-aaa]q</span><br><span class="line">[R2]telnet ser	</span><br><span class="line">[R2]telnet server en	</span><br><span class="line">[R2]telnet server enable </span><br><span class="line">[R2]int	</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ip add	</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ip address 12.0.0.2 24</span><br><span class="line">Apr  5 2021 11:37:57-08:00 R2 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[0]:The line protocol IP </span><br><span class="line">on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the UP state. </span><br><span class="line">[R2]int	</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;1</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;1]ip add 4.0.0.1 24</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;1]q</span><br><span class="line">[R2]dis int	</span><br><span class="line">[R2]dis interface br	</span><br><span class="line">[R2]dis interface brief </span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        down  down        0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br></pre></td></tr></table></figure>
-
-<p>静态路由配置</p>
 <ul>
-<li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]ip rout</span><br><span class="line">[R1]ip route-s</span><br><span class="line">[R1]ip route-static 4.0.0.0 24 12.0.0.2</span><br><span class="line">[R1]dis ip r</span><br><span class="line">[R1]dis ip rout</span><br><span class="line">[R1]dis ip routing-table</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 14       Routes : 14</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.0.0.0&#x2F;24  Direct  0    0           D   2.0.0.1         GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        2.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">      2.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        4.0.0.0&#x2F;24  Static  60   0          RD   12.0.0.2        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       12.0.0.0&#x2F;24  Direct  0    0           D   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       12.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">     12.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">  192.168.100.0&#x2F;24  Direct  0    0           D   192.168.100.1   GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">  192.168.100.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">192.168.100.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]ip rout	</span><br><span class="line">[R2]ip route-s	</span><br><span class="line">[R2]ip route-static 192.168.100.0 24 12.0.0.1</span><br><span class="line">[R2]ip route-static 2.0.0.0 24 12.0.0.1</span><br><span class="line">&lt;R2&gt;dis ip rou	</span><br><span class="line">&lt;R2&gt;dis ip routing-table </span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 12       Routes : 12       </span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.0.0.0&#x2F;24  Static  60   0          RD   12.0.0.1        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">        4.0.0.0&#x2F;24  Direct  0    0           D   4.0.0.1         GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">        4.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">      4.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">       12.0.0.0&#x2F;24  Direct  0    0           D   12.0.0.2        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">       12.0.0.2&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">     12.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">  192.168.100.0&#x2F;24  Static  60   0          RD   12.0.0.1        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>静态路由概述</p>
-<p>优点：</p>
-<ul>
-<li>配置简单，开销小</li>
-<li>通过手动进行添加和威化</li>
-<li></li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>无法根据拓扑的变化进行动态响应</li>
-<li>适用于小型网络环境，如果网络规模过大，维护成本升高</li>
-</ul>
-<p>大型网路中适合使用动静结合的路由策略</p>
-</li>
-<li><p>配置命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 配置静态路由</span><br><span class="line">ip route-static 目标网络 子网掩码（前缀） 下一跳路由接口IP地址&#x2F;出接口</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果出接口是以太网口，必须写下一跳路由接口IP地址</li>
-<li>如果出接口是串口，下一跳路由接口IP地址或者出接口都可以</li>
-<li>通信是双向的，不要忘记配置返回流量的路由</li>
-</ul>
-</li>
-<li><p>静态路由配置的形式</p>
-<ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/3n4ByHb1hpd6iZc.png" alt="alt 静态路由配置形式"></p>
-</li>
-</ul>
-</li>
-<li><p>负载均衡</p>
-<ul>
-<li><p>拓扑图</p>
-<p><img src="https://i.loli.net/2021/04/05/RPoG39bmyHvIwVX.png" alt="alt 负载均衡拓扑图"></p>
-</li>
-<li><p>命令配置</p>
-<ul>
-<li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]int</span><br><span class="line">[R1]interface E4&#x2F;0&#x2F;0</span><br><span class="line">[R1-Ethernet4&#x2F;0&#x2F;0]ip add 34.0.0.1 24</span><br><span class="line">[R1-Ethernet4&#x2F;0&#x2F;0]q</span><br><span class="line">[R1]dis int</span><br><span class="line">[R1]dis interface bri</span><br><span class="line">[R1]dis interface brief</span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">Ethernet4&#x2F;0&#x2F;0               up    up          0%     0%          0          0</span><br><span class="line">Ethernet4&#x2F;0&#x2F;1               down  down        0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        up    up          0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br><span class="line">[R1]dis ip in</span><br><span class="line">[R1]dis ip interface br</span><br><span class="line">[R1]dis ip interface brief</span><br><span class="line">*down: administratively down</span><br><span class="line">^down: standby</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">The number of interface that is UP in Physical is 5</span><br><span class="line">The number of interface that is DOWN in Physical is 1</span><br><span class="line">The number of interface that is UP in Protocol is 5</span><br><span class="line">The number of interface that is DOWN in Protocol is 1</span><br><span class="line"></span><br><span class="line">Interface                         IP Address&#x2F;Mask      Physical   Protocol</span><br><span class="line">Ethernet4&#x2F;0&#x2F;0                     34.0.0.1&#x2F;24          up         up</span><br><span class="line">Ethernet4&#x2F;0&#x2F;1                     unassigned           down       down</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0              192.168.100.1&#x2F;24     up         up</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1              2.0.0.1&#x2F;24           up         up</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2              12.0.0.1&#x2F;24          up         up</span><br><span class="line">NULL0                             unassigned           up         up(s)</span><br><span class="line"></span><br><span class="line">#配置第二条路由</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]ip rout</span><br><span class="line">[R1]ip route-s</span><br><span class="line">[R1]ip route-static 4.0.0.0 24 34.0.0.2</span><br><span class="line">[R1]dis ip rout</span><br><span class="line">[R1]dis ip routing-table</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 17       Routes : 18</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.0.0.0&#x2F;24  Direct  0    0           D   2.0.0.1         GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        2.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">      2.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        4.0.0.0&#x2F;24  Static  60   0          RD   12.0.0.2        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">                    Static  60   0          RD   34.0.0.2        Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">       12.0.0.0&#x2F;24  Direct  0    0           D   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       12.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">     12.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       34.0.0.0&#x2F;24  Direct  0    0           D   34.0.0.1        Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">       34.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">     34.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">  192.168.100.0&#x2F;24  Direct  0    0           D   192.168.100.1   GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">  192.168.100.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">192.168.100.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
+<li><p>全部配置成Access端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;S3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S3]sys S3</span><br><span class="line">[S3]int g0&#x2F;0&#x2F;1</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]q</span><br><span class="line">[S3]q</span><br><span class="line">&lt;S3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S3]sys S3</span><br><span class="line"></span><br><span class="line"># 创建VLAN 10</span><br><span class="line">[S3]vlan 10</span><br><span class="line">[S3-vlan10]int g0&#x2F;0&#x2F;1</span><br><span class="line"></span><br><span class="line"># 配置端口类型</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]port link-type access</span><br><span class="line"></span><br><span class="line">#配置端口VLAN</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]port default vlan 10</span><br><span class="line"></span><br><span class="line"># 验证端口配置</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;1]int g0&#x2F;0&#x2F;2</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]port link-type access</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]p</span><br><span class="line">Apr 26 2021 23:12:04-08:00 S3 DS&#x2F;4&#x2F;DATASYNC_CFGCHANGE:OID 1.3.6.1.4.1.2011.5.25.</span><br><span class="line">191.3.1 configurations have been changed. The current change number is 13, the c</span><br><span class="line">hange loop count is 0, and the maximum number of records is 4095.</span><br><span class="line">Error: The interface is already a L2 interface.</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]port default vlan 10</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]</span><br><span class="line">Apr 26 2021 23:12:22-08:00 S3 %%01IFNET&#x2F;4&#x2F;IF_STATE(l)[0]:Interface Vlanif1 has t</span><br><span class="line">urned into DOWN state.</span><br><span class="line">Apr 26 2021 23:12:24-08:00 S3 DS&#x2F;4&#x2F;DATASYNC_CFGCHANGE:OID 1.3.6.1.4.1.2011.5.25.</span><br><span class="line">191.3.1 configurations have been changed. The current change number is 14, the c</span><br><span class="line">hange loop count is 0, and the maximum number of records is 4095.</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S3-GigabitEthernet0&#x2F;0&#x2F;2]</span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 </li>
 </ol>
-<pre><code>  + R2配置
-
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]inter</span><br><span class="line">[R2]interface G0&#x2F;0&#x2F;2</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]ip add 34.0.0.2 24</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]q</span><br><span class="line">[R2]dis int</span><br><span class="line">[R2]dis interface br</span><br><span class="line">[R2]dis interface brief</span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        up    up          0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br><span class="line">[R2]dis ip int</span><br><span class="line">[R2]dis ip interface br</span><br><span class="line">[R2]dis ip interface brief</span><br><span class="line">*down: administratively down</span><br><span class="line">^down: standby</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">The number of interface that is UP in Physical is 4</span><br><span class="line">The number of interface that is DOWN in Physical is 0</span><br><span class="line">The number of interface that is UP in Protocol is 4</span><br><span class="line">The number of interface that is DOWN in Protocol is 0</span><br><span class="line"></span><br><span class="line">Interface                         IP Address&#x2F;Mask      Physical   Protocol</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0              12.0.0.2&#x2F;24          up         up</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1              4.0.0.1&#x2F;24           up         up</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2              34.0.0.2&#x2F;24          up         up</span><br><span class="line">NULL0                             unassigned           up         up(s)</span><br><span class="line"></span><br><span class="line">#配置第二条路由</span><br><span class="line"></span><br><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]inter</span><br><span class="line">[R2]interface G0&#x2F;0&#x2F;2</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]ip add 34.0.0.2 24</span><br><span class="line">[R2]dis ip routing-table</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 15       Routes : 16</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.0.0.0&#x2F;24  Static  60   0          RD   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">                    Static  60   0          RD   34.0.0.1        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">        4.0.0.0&#x2F;24  Direct  0    0           D   4.0.0.1         GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        4.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">      4.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">       12.0.0.0&#x2F;24  Direct  0    0           D   12.0.0.2        GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">       12.0.0.2&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">     12.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">       34.0.0.0&#x2F;24  Direct  0    0           D   34.0.0.2        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       34.0.0.2&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">     34.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">  192.168.100.0&#x2F;24  Static  60   0          RD   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-
-+ 图示
-
-  ![alt 负载均衡图示](https://i.loli.net/2021/04/05/95EJ748BIniZoWs.png)</code></pre><ul>
-<li><p>主备备份</p>
-<ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/QRbv8WzGt7Acqxy.png" alt="alt 主备备份"></p>
-</li>
-<li><p>命令实现</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R1]ip rout</span><br><span class="line">[R1]ip route-s</span><br><span class="line">[R1]ip route-static 4.0.0.0 24 12.0.0.2 pre</span><br><span class="line">[R1]ip route-static 4.0.0.0 24 12.0.0.2 preference 61</span><br><span class="line">Info: Succeeded in modifying route.</span><br><span class="line">[R1]dis ip rou</span><br><span class="line">[R1]dis ip routing-table</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 17       Routes : 17</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.0.0.0&#x2F;24  Direct  0    0           D   2.0.0.1         GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        2.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">      2.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line">        4.0.0.0&#x2F;24  Static  60   0          RD   34.0.0.2        Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">       12.0.0.0&#x2F;24  Direct  0    0           D   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       12.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">     12.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line">       34.0.0.0&#x2F;24  Direct  0    0           D   34.0.0.1        Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">       34.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">     34.0.0.255&#x2F;32  Direct  0    0           D   127.0.0.1       Ethernet4&#x2F;0&#x2F;0</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">  192.168.100.0&#x2F;24  Direct  0    0           D   192.168.100.1   GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">  192.168.100.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">192.168.100.255&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]ip rout</span><br><span class="line">[R2]ip route-s</span><br><span class="line">[R2]ip route-static 2.0.0.2 24 12.0.0.1 pre</span><br><span class="line">[R2]ip route-static 2.0.0.2 24 12.0.0.1 preference 61</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结果显示</p>
-<p>修改优先级之后，路由走34.0.0.0/24段</p>
-<p><img src="https://i.loli.net/2021/04/05/MjJHQS1XTl8bZ9U.png" alt="alt 主备路由结果"></p>
-<p>关闭其中一个端口，路由走备份路由12.0.0.0/24段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;2</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]shut</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]shutdown</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]q</span><br><span class="line">[R2]dis int</span><br><span class="line">[R2]dis interface br</span><br><span class="line">[R2]dis interface brief</span><br><span class="line">PHY: Physical</span><br><span class="line">*down: administratively down</span><br><span class="line">(l): loopback</span><br><span class="line">(s): spoofing</span><br><span class="line">(b): BFD down</span><br><span class="line">^down: standby</span><br><span class="line">(e): ETHOAM down</span><br><span class="line">(d): Dampening Suppressed</span><br><span class="line">InUti&#x2F;OutUti: input utility&#x2F;output utility</span><br><span class="line">Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;1        up    up          0%     0%          0          0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;2        *down down        0%     0%          0          0</span><br><span class="line">NULL0                       up    up(s)       0%     0%          0          0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;S1&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[S1]sys S1</span><br><span class="line">[S1]vlan 10</span><br><span class="line">[S1-vlan10]int g0&#x2F;0&#x2F;1</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]port link-type access</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]port default vlan 10</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;1]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]port link-type access</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]port default vlan 10</span><br><span class="line">[S1-GigabitEthernet0&#x2F;0&#x2F;2]dis this</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;2</span><br><span class="line"> port link-type access</span><br><span class="line"> port default vlan 10</span><br><span class="line">#</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2021/04/05/RZXQP1q4OCS6egE.png" alt="alt 主备路由结果2"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>缺省路由</p>
-<ul>
-<li><p>定义</p>
-<p>一种特殊的路由，可以匹配所有的目标网络</p>
-</li>
-<li><p>配置方式</p>
-<p> 可以通过静态路由来实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 0.0.0.0 0 下一跳路由接口IP地址</span><br></pre></td></tr></table></figure>
 
-<p>可以通过动态协议实现</p>
-</li>
-<li><p>路由表中显示</p>
-<p>0.0.0.0  0 下一跳地址</p>
-</li>
-<li><p>通常用于末梢网络</p>
-<p>家庭上网</p>
-<p>企业出口</p>
+
 </li>
 </ul>
-</li>
-<li><p>loopback 回环口（逻辑、虚拟的接口）</p>
 <ul>
-<li>模拟直连网段，用于测试</li>
-<li>设备管理</li>
-<li>供其他协议使用(OSPF、BGP、MPLS)</li>
-<li>SNMP Traps消息的源地址</li>
+<li><p>验证</p>
+<p><img src="https://i.loli.net/2021/04/26/7XHeIG5yxkbPwih.png" alt="alt VLAN-Access验证"></p>
+</li>
+<li><p>解释</p>
+<ul>
+<li>S1、S2、S3都是Access端口模式，S2是默认Hybrid端口模式，因为没有配置其他策略，等于是Access模式</li>
+<li>PC1到PC3路径，PC1到S1交换发送不带Tag的数据帧，S1收到数据帧会添加VLANID为10的Tag</li>
+<li>S1向PVID为10的端口发送ARP广播帧，端口2的PVID为10，会收到广播帧。</li>
+<li>端口2的类型是Access，会将PVID为10的广播帧的Tag剥离发送出去。</li>
+<li>S2的端口2收到无Tag的数据帧，会将端口的VLANID添加Tag中，此时VLANID为1。</li>
+<li>同样S2将数据帧转发出去的时候也会将Tag剥离，所以端口全是Access的时候，都可以ping通</li>
 </ul>
 </li>
+<li></li>
 </ul>
+<ol start="3">
+<li><p>验证</p>
+</li>
+<li><p>抓包</p>
+</li>
+</ol>
+<h3 id="高级实验"><a href="#高级实验" class="headerlink" title="高级实验"></a>高级实验</h3><ol>
+<li>拓扑</li>
+</ol>
+<ol start="2">
+<li></li>
+</ol>
 
           
         
@@ -606,7 +601,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/27/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -651,7 +646,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -662,7 +657,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -673,7 +668,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -749,7 +744,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
