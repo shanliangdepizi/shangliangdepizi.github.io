@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/10/HCNA/%E4%BA%A4%E6%8D%A2/DHCP/DHCP%E5%AE%9E%E9%AA%8C%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/05/10/HCNA/%E4%BA%A4%E6%8D%A2/DHCP/DHCP%E5%AE%9E%E9%AA%8C%E4%B8%8E%E9%85%8D%E7%BD%AE/" itemprop="url">
-                  DHCP实验与配置
+                <a class="post-title-link" href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/" itemprop="url">
+                  ACL配置
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-10T21:01:03+08:00">
-                2021-05-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-16T21:17:20+08:00">
+                2021-05-16
               </time>
             
 
@@ -346,19 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/" itemprop="url" rel="index">
-                    <span itemprop="name">交换</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/DHCP/" itemprop="url" rel="index">
-                    <span itemprop="name">DHCP</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/ACL/" itemprop="url" rel="index">
+                    <span itemprop="name">ACL</span>
                   </a>
                 </span>
 
@@ -375,9 +364,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/10/HCNA/%E4%BA%A4%E6%8D%A2/DHCP/DHCP%E5%AE%9E%E9%AA%8C%E4%B8%8E%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+                <a href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/05/10/HCNA/交换/DHCP/DHCP实验与配置/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/05/16/HCNA/ACL/ACL配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,7 +393,7 @@
 
       
         
-          <h1 id="DHCP配置"><a href="#DHCP配置" class="headerlink" title="DHCP配置"></a>DHCP配置</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
+          <h1 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
 <thead>
 <tr>
 <th>命令</th>
@@ -412,93 +401,37 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>dhcp enable</td>
-<td>开启DHCP功能</td>
+<td>acl number 2000</td>
+<td>创建一个基本ACL</td>
 </tr>
 <tr>
-<td>以下都是在接口模式下：：</td>
-<td></td>
+<td>rule 5 permit/deny source 192.168.1.0 0.0.0.255</td>
+<td>配置ACL的规则：<br>允许或者拒绝192.168.1.0这个网段内的所有流量</td>
 </tr>
 <tr>
-<td>dhcp select interface</td>
-<td>关联接口与接口地址池</td>
+<td>acl number 3000</td>
+<td>创建一个高级ACL</td>
 </tr>
 <tr>
-<td>dhcp server dns-list</td>
-<td>配置接口地址池的DNS服务器地址</td>
+<td>rule 5 permit/deny tcp<br>source192.168.1.0 0.0.0.255<br>destination 8.8.8.8 0<br>destination-port eq 80</td>
+<td>配置ACL规则：<br>允许后者禁止192.168.1.0网段的地址<br>到8.8.8.8这个地址的HTTP流量</td>
 </tr>
 <tr>
-<td>dhcp server lease 数字</td>
-<td>配置接口地址池的租期，默认为1天</td>
+<td>traffic-filter inbound/outbound acl 2000</td>
+<td>接口调用ACL过滤流量</td>
 </tr>
 <tr>
-<td>dhcp server excluded-ip-address 地址</td>
-<td>配置接口地址池的排除地址范围</td>
+<td>dis acl 2000</td>
+<td>验证ACL的配置</td>
 </tr>
 <tr>
-<td>dhcp server static-bind-ip-address <br>x.x.x.x mac-address xxx-xxxx-xxxx</td>
-<td>配置静态绑定</td>
-</tr>
-<tr>
-<td>dhcp select global</td>
-<td>关联接口和全局地址池</td>
-</tr>
-<tr>
-<td>ip pool 名称</td>
-<td>创建全局地址池</td>
-</tr>
-<tr>
-<td>以下都是在 ip pool 下配置</td>
-<td>配置全局地址池的详细配置</td>
-</tr>
-<tr>
-<td>network 地址</td>
-<td>可分配的网段地址</td>
-</tr>
-<tr>
-<td>gateway-list地址</td>
-<td>网关地址</td>
-</tr>
-<tr>
-<td>dns-list 地址</td>
-<td>DNS服务器地址</td>
-</tr>
-<tr>
-<td>lease 数字</td>
-<td>租期，默认是1天</td>
-</tr>
-<tr>
-<td>excluded-ip-address 地址</td>
-<td>排除的地址范围</td>
-</tr>
-<tr>
-<td>查看配置命令</td>
-<td></td>
-</tr>
-<tr>
-<td>display ip pool [interface 接口名 all]</td>
-<td>查看接口地址池的属性</td>
-</tr>
-<tr>
-<td>dis ip pool interface vlanif20 used</td>
-<td>查看接口地址池已使用的IP</td>
-</tr>
-<tr>
-<td>PC端的命令（win系统）</td>
-<td></td>
-</tr>
-<tr>
-<td>ipconfig /release</td>
-<td>释放租期</td>
-</tr>
-<tr>
-<td>ipconfig /renew</td>
-<td>重新获取</td>
+<td>dis traffic-filter applied-record</td>
+<td>查看设备上所有基于ACL的调用情况</td>
 </tr>
 </tbody></table>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/10/HCNA/%E4%BA%A4%E6%8D%A2/DHCP/DHCP%E5%AE%9E%E9%AA%8C%E4%B8%8E%E9%85%8D%E7%BD%AE/#more" rel="contents">
+            <a class="btn" href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -539,7 +472,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" href="/page/31/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/31/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -584,7 +517,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -606,7 +539,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
