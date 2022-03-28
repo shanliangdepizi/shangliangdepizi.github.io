@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B&DR&BDR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/" itemprop="url">
-                  邻居建立的条件（必须三层直连）
+                <a class="post-title-link" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B&DR&BDR/" itemprop="url">
+                  OSPF网络类型（基于接口）、DR、BDR
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-11T15:25:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-11T17:24:15+08:00">
                 2021-04-11
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B&DR&BDR/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/11/HCNA/路由/OSPF/OSPF邻居建立条件/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/11/HCNA/路由/OSPF/OSPF网络类型&DR&BDR/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,38 +404,259 @@
 
       
         
-          <h1 id="邻居发现"><a href="#邻居发现" class="headerlink" title="邻居发现"></a>邻居发现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h3 id="RID唯一"><a href="#RID唯一" class="headerlink" title="RID唯一"></a>RID唯一</h3><ol>
-<li><p>邻居路由器设置相同的RID</p>
-<ul>
-<li><p>R1路由器设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]ospf 1 rout</span><br><span class="line">[R1]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+          
+            <h1 id="OSPF网络类型-基于接口"><a href="#OSPF网络类型-基于接口" class="headerlink" title="OSPF网络类型(基于接口)"></a>OSPF网络类型(基于接口)</h1><h2 id="广播类型-Broadcast（BMA-以太网接口）"><a href="#广播类型-Broadcast（BMA-以太网接口）" class="headerlink" title="广播类型  Broadcast（BMA 以太网接口）"></a>广播类型  Broadcast（BMA 以太网接口）</h2><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/haVQtJfNHPO4z9R.png" alt="alt OSPF广播类型"></p>
 </li>
-<li><p>R2路由器设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">[R2]ospf 1 rout	</span><br><span class="line">[R2]ospf 1 router-id 1.1.1.1</span><br><span class="line">[R2-ospf-1]area 0	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]networ	</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+<li><p>以太网封装，怎么判断是是否在以太网封装，主要是看接口，如果是Ethernet，就是以太网封装</p>
+</li>
+<li><p>缺省情况下，OSPF认为以太网的网络类型是广播类型（Broadcast）</p>
+</li>
+</ol>
+<h2 id="点对点-P2P（串口–广域网）"><a href="#点对点-P2P（串口–广域网）" class="headerlink" title="点对点 P2P（串口–广域网）"></a>点对点 P2P（串口–广域网）</h2><ol>
+<li><p>一般是PPP、HDLC封装的，华为默认是PPP</p>
+</li>
+<li><p>端口都是串口Serial</p>
+</li>
+<li><p>实验</p>
+<ul>
+<li><p>拓扑结构</p>
+<p><img src="https://i.loli.net/2021/04/11/ROymIfsajZhcnxz.png" alt="alt OSPF-P2P拓扑"></p>
+</li>
+<li><p>命令</p>
+<ul>
+<li><p>R1命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">a 0</span><br><span class="line">net 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
 
 
 
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ol>
+<pre><code>* R2命令
+
+
+
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  sys</span><br><span class="line">  sys R2</span><br><span class="line">  int s4&#x2F;0&#x2F;0</span><br><span class="line">  ip add 12.0.0.2 24</span><br><span class="line">  ospf 1 router-id 2.2.2.2</span><br><span class="line">  a 0</span><br><span class="line">net 12.0.0.0 0.0.0.255</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><p>抓包</p>
+<p><img src="https://i.loli.net/2021/04/11/i7xGpjwSetcQUDO.png" alt="alt OSPF-P2P抓包"></p>
+</li>
+</ul>
+<ol start="4">
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/EUielFMa8PLG6dR.png" alt="alt OSPF点对点网络"></p>
+</li>
+</ol>
+<h2 id="非广播多路访问-NBMA"><a href="#非广播多路访问-NBMA" class="headerlink" title="非广播多路访问 NBMA"></a>非广播多路访问 NBMA</h2><ol>
+<li><p>FR（帧中继网络） 、异步传输网络（ATM）</p>
+</li>
+<li><p>缺省情况下，OSPF认为帧中继网络类型是NBMA</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/H8FsueoqrnKS1DO.png" alt="alt OSPF帧中继网络"></p>
+</li>
+</ol>
+<h2 id="点到多点"><a href="#点到多点" class="headerlink" title="点到多点"></a>点到多点</h2><ol>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/8I3SqnPbwgvlTza.png" alt="alt OSPF点对多点"></p>
+</li>
+</ol>
+<h2 id="判断接口类型"><a href="#判断接口类型" class="headerlink" title="判断接口类型"></a>判断接口类型</h2><ol>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis ospf int 4&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ol>
 <ol start="2">
-<li><p>抓包情况</p>
-<ul>
-<li><p>正常情况下</p>
-<ul>
-<li><p>R1的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/L65Wzo9ROrVSU3a.png" alt="alt OSPF邻居建立-RID1"></p>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/bqKsXlZcte3jH8W.png" alt="alt OSPF网络接口类型"></p>
+<p><img src="https://i.loli.net/2021/04/11/XA5Zn1dkrGYQlTV.png" alt="atl OSPF网络数据类型Broadcast"></p>
 </li>
-<li><p>R2的RID</p>
-<p><img src="https://i.loli.net/2021/04/11/vjyS2ga9lVWQqYd.png" alt="alt 邻居建立RID2"></p></li></ul></li></ul></li></ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/04/11/HCNA/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E6%9D%A1%E4%BB%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+</ol>
+<h2 id="修改OSPF网络接口类型"><a href="#修改OSPF网络接口类型" class="headerlink" title="修改OSPF网络接口类型"></a>修改OSPF网络接口类型</h2><ul>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">link-protocol fr</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/11/QsVS2Y5oFqUJHEP.png" alt="alt OSPF修改网络接口类型"></p>
+</li>
+</ul>
+<h1 id="DR（Designated-Router）与BDR-Backup-Designated-Router"><a href="#DR（Designated-Router）与BDR-Backup-Designated-Router" class="headerlink" title="DR（Designated Router）与BDR(Backup Designated Router)"></a>DR（Designated Router）与BDR(Backup Designated Router)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="DR、BDR的作用"><a href="#DR、BDR的作用" class="headerlink" title="DR、BDR的作用"></a>DR、BDR的作用</h3><ol>
+<li>必须是在多路网络环境的情况下，BMA、NBMA</li>
+<li>较少邻接关系的数量</li>
+<li>较少数据包的数量，节省带宽</li>
+<li>较少路由器的负载，减少路由处理能力的压力</li>
+</ol>
+<h3 id="DR、BDR选举过程"><a href="#DR、BDR选举过程" class="headerlink" title="DR、BDR选举过程"></a>DR、BDR选举过程</h3><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/12/IEfC5MacJTuolxG.png" alt="alt OSPF-DR&amp;BDR"></p>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DR（Designated Router）</td>
+<td>指定路由器，类似于班长、总经理</td>
+</tr>
+<tr>
+<td>BDR（Backup Designated Router）</td>
+<td>备用指定路由，类似于副班长、副经理</td>
+</tr>
+<tr>
+<td>DROthers</td>
+<td>其他路由器，类似于普通学生、普通员工</td>
+</tr>
+<tr>
+<td>关系</td>
+<td>DR、BDR、DROthers之间都是邻接关系（Full）<br>DROther之间是邻居关系（2-way）</td>
+</tr>
+<tr>
+<td>地址</td>
+<td>224.0.0.5向所有OSPF路由器发送链路状态更新<br>224.0.0.6向DR、BDR发送链路状态更新</td>
+</tr>
+<tr>
+<td>选举规则</td>
+<td>1. 首先看Hello报文中的优先级，优先级最高的为DR，次高的为BDR<br>2. 优先级一致情况下，比较BID的大小，越大越优先<br>3. 选举具有非抢占性，除非DR、BDR失效或者OSPF进程重启</td>
+</tr>
+</tbody></table>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="https://i.loli.net/2021/04/12/AskdBHmweGu6O3b.png" alt="alt OSPF-DR&amp;BDR实验拓扑"></p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>R1开启OSPF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 1.0.0.1 24</span><br><span class="line">q</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">a 0</span><br><span class="line">network 1.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>R2开启OSPF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 1.0.0.2 24</span><br><span class="line">q</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">a 0</span><br><span class="line">network 1.0.0.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>R3开启OSPF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 1.0.0.3 24</span><br><span class="line">q</span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">a 0</span><br><span class="line">network 1.0.0.3 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>R4开启OSPF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 1.0.0.4 24</span><br><span class="line">q</span><br><span class="line">ospf 1 router-id 4.4.4.4</span><br><span class="line">a 0</span><br><span class="line">network 1.0.0.4 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h3><ol>
+<li><p>R1开启OSPF</p>
+<p><img src="https://i.loli.net/2021/04/12/bki4tuCr7ypM6L3.png" alt="alt OSPF-DR&amp;BDR-R1抓包"></p>
+</li>
+<li><p>R2开启OSPF</p>
+<p><img src="https://i.loli.net/2021/04/12/HBadISPEzY2oZNb.png" alt="alt OSPF-DR&amp;BDR-R2抓包"></p>
+</li>
+<li><p>R3开启OSPF</p>
+<p><img src="https://i.loli.net/2021/04/12/QwNY6v5oHgc1SfT.png" alt="alt OSPF-DR&amp;BDR-R3抓包"></p>
+</li>
+<li><p>R4开启OSPF</p>
+<p><img src="https://i.loli.net/2021/04/12/RmFZhBg6w3K29Oo.png" alt="alt OSPF-DR&amp;BDR-R4抓包"></p>
+</li>
+</ol>
+<h3 id="路由器状态"><a href="#路由器状态" class="headerlink" title="路由器状态"></a>路由器状态</h3><ol>
+<li><p>R1开启OSPF，路由器状态</p>
+<p><img src="https://i.loli.net/2021/04/12/3bJgYp1TVslGS5B.png" alt="alt OSPF-DR&amp;BDR-R1路由状态"></p>
+</li>
+<li><p>R2开启OSPF，路由器状态</p>
+<p><img src="https://i.loli.net/2021/04/12/1OCpujy6mw2DRdl.png" alt="OSPF-DR&amp;BDR-R2路由器状态"></p>
+</li>
+<li><p>R3开启OSPF，路由器状态</p>
+<p><img src="https://i.loli.net/2021/04/12/K8VnUw19hdqmMtF.png" alt="alt OSPF-DR&amp;BDR-R3路由器状态"></p>
+</li>
+<li><p>R4开启OSPF，路由器状态</p>
+<p><img src="https://i.loli.net/2021/04/12/ADLcE5MJ4YuiKsx.png" alt="alt OSPF-DR&amp;BDR-R4路由状态"></p>
+</li>
+</ol>
+<p><img src="https://i.loli.net/2021/04/12/IHdk9zO4iN2meXp.png" alt="alt OSPF-DR&amp;BDR-R4与其他OSPF状态"></p>
+<h2 id="选举"><a href="#选举" class="headerlink" title="选举"></a>选举</h2><h3 id="选举Hello报文中携带的优先级"><a href="#选举Hello报文中携带的优先级" class="headerlink" title="选举Hello报文中携带的优先级"></a>选举Hello报文中携带的优先级</h3><ol>
+<li>优先级范围是0-255，默认是1</li>
+<li>优先级最高的，选举为DR，次高的选举为BDR</li>
+<li>优先级为0的不参与选举</li>
+</ol>
+<h3 id="优先级一致情况"><a href="#优先级一致情况" class="headerlink" title="优先级一致情况"></a>优先级一致情况</h3><ul>
+<li>优先级一致，比较RID的大小</li>
+<li>RID最大的选举为DR，次大的选举为BDR</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>DR、BDR选举具有非抢占性</li>
+<li>除非当DR、BDR失效或者OSPF进程重启</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><ol>
+<li><img src="https://i.loli.net/2021/04/12/PIqKD8BOWpsh3NQ.png" alt="alt OSPF-DR&amp;BDR案例1"></li>
+</ol>
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><h3 id="224-0-0-5"><a href="#224-0-0-5" class="headerlink" title="224.0.0.5"></a>224.0.0.5</h3><ol>
+<li><p>DR、BDR通过组播地址224.0.0.5将LSA更新发送给所有OSPF路由器</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/12/WkPF6GmavZ4MDjs.png" alt="alt OSPF-DR&amp;BDR地址"></p>
+</li>
+<li><p>DR配置一个路由更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;sys</span><br><span class="line">[R1]int lo 1</span><br><span class="line">[R1-LoopBack1]ip add 1.1.1.1 24</span><br><span class="line">[R1-LoopBack1]ospf 1</span><br><span class="line">[R1-ospf-1]a 0</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]net	</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 1.1.1.1 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>抓包</p>
+<p><img src="https://i.loli.net/2021/04/12/cAidl5zGgunD9re.png" alt="alt OSPF-DR&amp;BDR-路由更新"></p>
+</li>
+</ol>
+<h3 id="224-0-0-6"><a href="#224-0-0-6" class="headerlink" title="224.0.0.6"></a>224.0.0.6</h3><ol>
+<li><p>DROthers通过组播地址224.0.0.6将LSA更新发送给DR、BDR路由器</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/12/wmzhpgyqn1Jk6Ms.png" alt="alt OSPF-DR&amp;BDR地址"></p>
+</li>
+<li><p>DROthers配置一条路由更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;R3&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R3]int lo 1</span><br><span class="line">[R3-LoopBack1]ip add 3.3.3.3 24</span><br><span class="line">[R3-LoopBack1]ospf 1</span><br><span class="line">[R3-ospf-1]a 0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]net 3.3.3.3 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>抓包</p>
+<ul>
+<li>DROthers更新LSA，通过组播地址224.0.0.6发送给DR接口的路由器</li>
+<li>DR接口的路由器收到更新信息后，通过组播地址224.0.0.5发送给所有OSPF协议的路由器</li>
+<li>BDR接口的路由器收到更新信息后，通过组播地址224.0.0.5发送所有OSPF协议的路由器ACK确认信息</li>
+<li>DROthers收到更新信息后，通过组播地址224.0.0.6给DR、BDR发送ACK确认信息</li>
+<li>如图：</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/12/dLF2C5DKq8PupM7.png" alt="alt OSPF-DR&amp;BDR"></p>
+</li>
+</ol>
+<p>​       </p>
+
+          
         
       
     </div>
@@ -472,7 +693,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/57/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/59/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/57/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/59/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -517,7 +738,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -539,7 +760,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

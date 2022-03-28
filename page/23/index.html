@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/06/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSOF-LSA%E7%B1%BB%E5%9E%8B4%E4%B8%8E5/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/06/06/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSOF-LSA%E7%B1%BB%E5%9E%8B4%E4%B8%8E5/" itemprop="url">
-                  OSPF-LSA类型4与5
+                <a class="post-title-link" href="/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/" itemprop="url">
+                  OSPF-LSA其他内容
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-06T20:10:20+08:00">
-                2021-06-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-07T07:52:40+08:00">
+                2021-06-07
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/06/06/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSOF-LSA%E7%B1%BB%E5%9E%8B4%E4%B8%8E5/#comments" itemprop="discussionUrl">
+                <a href="/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/06/06/HCNP/路由/OSPF/OSOF-LSA类型4与5/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/06/07/HCNP/路由/OSPF/LSA其他内容/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,205 +404,30 @@
 
       
         
-          
-            <h1 id="外部路由引入"><a href="#外部路由引入" class="headerlink" title="外部路由引入"></a>外部路由引入</h1><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/06/06/Wn1frujgp8kwYlB.png" alt="alt 外部路由引入"></p>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 建一个回环口</span><br><span class="line">int lo 3</span><br><span class="line">ip add 10.0.0.3 32</span><br><span class="line"># 设置策略</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 permit source 10.0.0.3 0</span><br><span class="line">q</span><br><span class="line">route-policy wuchao permit node 10</span><br><span class="line">if-match acl 2000</span><br><span class="line"># OSPF注入</span><br><span class="line">ospf 1</span><br><span class="line">import-route direct route-policy wuchao</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="4类LSA（ASBR-Summary-LSA）"><a href="#4类LSA（ASBR-Summary-LSA）" class="headerlink" title="4类LSA（ASBR-Summary LSA）"></a>4类LSA（ASBR-Summary LSA）</h1><h2 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/06/06/hLDsOr8wjvdx5PS.png" alt="alt ASBR Summary LSA"></p>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ol>
-<li>由ABR产生</li>
-<li>在ABR所在的域内泛洪（不包括ASBR所在的域）</li>
-<li>然后由其他的ABR重新生成</li>
-<li>描述的是ASBR的路由信息</li>
+          <h1 id="LSA更新规则"><a href="#LSA更新规则" class="headerlink" title="LSA更新规则"></a>LSA更新规则</h1><h2 id="序列号（sequence）"><a href="#序列号（sequence）" class="headerlink" title="序列号（sequence）"></a>序列号（sequence）</h2><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>LSDB中的每个LSA都有一个序列号<ul>
+<li>4个字节的数字</li>
+<li>以0x80000001开始</li>
+<li>以7FFFFFFF结束</li>
+</ul>
+</li>
+<li>OSPF每30分钟泛洪一次LSA<ul>
+<li>每一次，序列号增加1</li>
+<li>具有更高（更新）序列号的表示最新的LSA</li>
+</ul>
+</li>
+<li>最后，序列号会返回到0x80000001<ul>
+<li>现有LSA的生存时间提前到达最大生存时间MAX Age（一小时），并且已经刷新</li>
+</ul>
+</li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/06/06/BbHnYeA35SCc7qN.png" alt="alt ASBR Summary LSA总结"></p>
-<h1 id="5类LSA（AS-External-LSA）"><a href="#5类LSA（AS-External-LSA）" class="headerlink" title="5类LSA（AS External LSA）"></a>5类LSA（AS External LSA）</h1><h2 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/06/06/I8FNmQuOU3CfGqa.png" alt="alt AS External LSA"></p>
-<h2 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h2><ol>
-<li>有ASBR产生</li>
-<li>在整个AS域内泛洪</li>
-<li>描述的是AS外部引入的路由信息</li>
-<li>不会重新生成LSA</li>
-</ol>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/06/06/V2CfUdrDPoxNlQw.png" alt="alt  AS External LSA 总结"></p>
-<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://i.loli.net/2021/06/06/Ml75gLBYEZq28er.png" alt="alt LSA4与5实验拓扑"></p>
-<h2 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h2><h3 id="R1命令"><a href="#R1命令" class="headerlink" title="R1命令"></a>R1命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 1</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R2命令"><a href="#R2命令" class="headerlink" title="R2命令"></a>R2命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 1</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R3命令"><a href="#R3命令" class="headerlink" title="R3命令"></a>R3命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 23.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 34.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 0</span><br><span class="line">net 23.0.0.2 0.0.0.0</span><br><span class="line">area 2</span><br><span class="line">net 34.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R4命令"><a href="#R4命令" class="headerlink" title="R4命令"></a>R4命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 34.0.0.2 24</span><br><span class="line">ospf 1 router-id 4.4.4.4</span><br><span class="line">area 2</span><br><span class="line">net 34.0.0.2 0.0.0.0</span><br><span class="line"></span><br><span class="line">#引入外部路由</span><br><span class="line"># 建一个回环口</span><br><span class="line">int lo 3</span><br><span class="line">ip add 10.0.0.3 32</span><br><span class="line"># 设置策略</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 permit source 10.0.0.3 0</span><br><span class="line">q</span><br><span class="line">route-policy wuchao permit node 10</span><br><span class="line">if-match acl 2000</span><br><span class="line"># OSPF注入</span><br><span class="line">ospf 1</span><br><span class="line">import-route direct route-policy wuchao</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="R4只有5类LSA"><a href="#R4只有5类LSA" class="headerlink" title="R4只有5类LSA"></a>R4只有5类LSA</h3><p><img src="https://i.loli.net/2021/06/06/bzKiEpBnXq7N6lf.png" alt="alt R4只有5类LSA"></p>
-<h3 id="R1有1条4类LSA，一条5类LSA"><a href="#R1有1条4类LSA，一条5类LSA" class="headerlink" title="R1有1条4类LSA，一条5类LSA"></a>R1有1条4类LSA，一条5类LSA</h3><p><img src="https://i.loli.net/2021/06/06/pj5F2ReSKzHqG7w.png" alt="alt R1有1条4类LSA，一条5类LSA"></p>
-<h3 id="5类LSA"><a href="#5类LSA" class="headerlink" title="5类LSA"></a>5类LSA</h3><p><img src="https://i.loli.net/2021/06/06/ftN5s28XrAx7HDg.png" alt="alt 5类LSA"></p>
-<h3 id="4类LSA"><a href="#4类LSA" class="headerlink" title="4类LSA"></a>4类LSA</h3><p><img src="https://i.loli.net/2021/06/06/xgtvOwNMhyWPXak.png" alt="alt 4类LSA"></p>
-<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><h3 id="4类与5类"><a href="#4类与5类" class="headerlink" title="4类与5类"></a>4类与5类</h3><p><img src="https://i.loli.net/2021/06/06/taBINk3vyq86uCn.png" alt="alt 4类与5类"></p>
-<h3 id="4类LSA-1"><a href="#4类LSA-1" class="headerlink" title="4类LSA"></a>4类LSA</h3><p><img src="https://i.loli.net/2021/06/06/McZBCt3PfLpg2eD.png" alt="alt 4类LSA总结"></p>
-<h3 id="5类LSA-1"><a href="#5类LSA-1" class="headerlink" title="5类LSA"></a>5类LSA</h3><p><img src="https://i.loli.net/2021/06/06/Imw9BNEDGJT3UYc.png" alt="alt 5类LSA总结"></p>
-<h1 id="LSA总结"><a href="#LSA总结" class="headerlink" title="LSA总结"></a>LSA总结</h1><h2 id="图示-3"><a href="#图示-3" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/06/06/9tprAqzZCjPxnHS.png" alt="alt LSA总结"></p>
-<h2 id="LSA不同类型"><a href="#LSA不同类型" class="headerlink" title="LSA不同类型"></a>LSA不同类型</h2><h3 id="Advertising-Router"><a href="#Advertising-Router" class="headerlink" title="Advertising Router"></a>Advertising Router</h3><table>
-<thead>
-<tr>
-<th>LSA Type</th>
-<th>LSA名称</th>
-<th>Advertising Router</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>Router LSA</td>
-<td>Router自己</td>
-<td>Intra-Area Link</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Network LSA</td>
-<td>DR</td>
-<td>Network Link</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Network Summary LSA</td>
-<td>ABR</td>
-<td>Inter-Area Link</td>
-</tr>
-<tr>
-<td>4</td>
-<td>ASBR Summary LSA</td>
-<td>ABR</td>
-<td>ASBR Summary Link</td>
-</tr>
-<tr>
-<td>5</td>
-<td>AS External LSA</td>
-<td>ASBR</td>
-<td>AS External Link</td>
-</tr>
-<tr>
-<td>6</td>
-<td></td>
-<td>All Routers</td>
-<td>Group Membership Link</td>
-</tr>
-<tr>
-<td>7</td>
-<td>NSSA External LSA</td>
-<td>ASBR</td>
-<td>NSSA AS External Link</td>
-</tr>
-<tr>
-<td>8</td>
-<td></td>
-<td></td>
-<td>External Attributes LSA</td>
-</tr>
-<tr>
-<td>9</td>
-<td></td>
-<td></td>
-<td>Opaque LSA（Link-Local）</td>
-</tr>
-<tr>
-<td>10</td>
-<td></td>
-<td></td>
-<td>Opaque LSA（Area-Local）</td>
-</tr>
-<tr>
-<td>11</td>
-<td></td>
-<td></td>
-<td>Opaque LSA（AS-Local）</td>
-</tr>
-</tbody></table>
-<h3 id="Link-State-ID"><a href="#Link-State-ID" class="headerlink" title="Link State ID"></a>Link State ID</h3><table>
-<thead>
-<tr>
-<th>LSA名称</th>
-<th>Link State ID</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Router-LSA</td>
-<td>生成这条LSA的路由器的Router ID</td>
-</tr>
-<tr>
-<td>Network-LSA</td>
-<td>所描述网段上DR接口的IP地址</td>
-</tr>
-<tr>
-<td>Network-Summary-LSA</td>
-<td>所描述的目的网段的地址</td>
-</tr>
-<tr>
-<td>ASBR-Summary-LSA</td>
-<td>所描述的ASBR的Router ID</td>
-</tr>
-<tr>
-<td>AS-External-LSA</td>
-<td>所描述的目的网段的地址</td>
-</tr>
-</tbody></table>
-<h3 id="传播范围"><a href="#传播范围" class="headerlink" title="传播范围"></a>传播范围</h3><table>
-<thead>
-<tr>
-<th>LSA类型</th>
-<th>通告路由器</th>
-<th>LSA内容</th>
-<th>传播范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Router LSA(Type-1)</td>
-<td>OSPF Router</td>
-<td>拓扑信息+路由信息</td>
-<td>本区域内</td>
-</tr>
-<tr>
-<td>Network LSA(Type-2)</td>
-<td>DR</td>
-<td>拓扑信息+路由信息</td>
-<td>本区域内</td>
-</tr>
-<tr>
-<td>Network Summary LSA(Type-3)</td>
-<td>ABR</td>
-<td>域间路由信息</td>
-<td>非（Totally）STUB区域</td>
-</tr>
-<tr>
-<td>ASBR Summary LSA(Type 4)</td>
-<td>ABR</td>
-<td>ASBR的Router ID</td>
-<td>非（Totally）STUB区域</td>
-</tr>
-<tr>
-<td>AS External LSA（Type 5）</td>
-<td>ASBR</td>
-<td>外部路由信息</td>
-<td>非（Totally）STUB区域</td>
-</tr>
-<tr>
-<td>NSSA LSA(Type 7)</td>
-<td>ASBR</td>
-<td>NSSA域外部路由信息</td>
-<td>（Totally）NSSA区域</td>
-</tr>
-</tbody></table>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/06/07/HCNP/%E8%B7%AF%E7%94%B1/OSPF/LSA%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -639,7 +464,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/22/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/24/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -684,7 +509,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -706,7 +531,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

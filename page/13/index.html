@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E8%B7%AF%E7%94%B1%E8%81%9A%E5%90%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  IS-IS快速收敛示例
+                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E8%B7%AF%E7%94%B1%E8%81%9A%E5%90%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" itemprop="url">
+                  IS-IS路由聚合示例
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:30:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:30:18+08:00">
                 2022-03-24
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E8%B7%AF%E7%94%B1%E8%81%9A%E5%90%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/03/24/实验/三层协议/IS-IS协议/IS-IS快速收敛示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/03/24/实验/三层协议/IS-IS协议/IS-IS路由聚合配置文件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,107 +406,41 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>两台路由器通过交换机相连，并通过IS-IS协议实现互联互通</li>
-<li>要求提高两台路由器的收敛速度</li>
+<li>三台路由器通过IS-IS协议实现互联互通，Router A为Level-2路由器，Router B为Level-1-2路由器，Router C为Level-1路由器</li>
+<li>IS-IS路由条目太多，造成Router A负载过重，要求降低Router A的系统资源消耗</li>
 </ol>
-<h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="https://s2.loli.net/2022/02/18/d6VpTLNFBb2POfX.png" alt></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>路由器基础配置以及IP地址</li>
-<li>配置IS-IS协议，实现互联互通</li>
-<li>Router A 和Router B上配置BFD会话，提高设备对链路故障的感知</li>
-<li>Router A和Router B上配置收敛时间参数，实现IS-IS网络的快速收敛</li>
+<li>配置路由器基本功能以及IP地址</li>
+<li>配置IS-IS进程、Network-Entity</li>
+<li>配置接口使能IS-IS协议，并发送Small-Hello包</li>
+<li>在Level-1-2设备上配置路由聚合（在IS-IS进程下使用Summary命令实现）</li>
 </ol>
-<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>路由器基础配置以及IP地址</p>
-<ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RouterA-L2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 基本配置</span></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 192.168.1.1/30</span><br><span class="line">  q</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置IS-IS进程</span></span><br><span class="line">isis 1</span><br><span class="line">  is-level level-1</span><br><span class="line">  network-entity 20.1921.6800.1001.00</span><br><span class="line">  q</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置接口使能IS-IS协议</span></span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
 </li>
 </ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.2 30</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
 <ol start="2">
-<li><p>配置IS-IS协议以及接口使能IS-IS协议</p>
-<ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 1000.0100.1001.00</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RouterB-L1-2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 基本配置</span></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 192.168.1.2 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 172.1.1.13 30</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置IS-IS进程</span></span><br><span class="line">isis 1</span><br><span class="line">  is-level level-1-2</span><br><span class="line">  network-entity 10.1720.0100.1013.00</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置接口使能IS-IS协议</span></span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enbale 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置路由聚合</span></span><br><span class="line">isis 1</span><br><span class="line">  summary 172.1.1.0 28</span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
 </li>
 </ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">  isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 1000.0100.1002.00</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
 <ol start="3">
-<li><p>配置IS-IS协议与静态BFD会话</p>
-<ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置全局BFD</span></span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置静态BFD并绑定邻居</span></span><br><span class="line">bfd A-To-B bind peer-ip 100.1.1.2 interface g0/0/0</span><br><span class="line"><span class="meta">  #</span><span class="bash">配置本地和远程识别器</span></span><br><span class="line">  discriminator local 1</span><br><span class="line">  discriminator remote 2</span><br><span class="line">  commit</span><br><span class="line">  quit</span><br><span class="line"><span class="meta">#</span><span class="bash">接口使能IS-IS与BFD绑定</span></span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd static</span><br><span class="line">  quit</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  sys</span><br><span class="line">  </span><br><span class="line"><span class="meta">#</span><span class="bash">配置全局BFD</span></span><br><span class="line">  bfd</span><br><span class="line">  q</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash">配置静态BFD并绑定IS-IS邻居</span></span><br><span class="line">  bfd B-To-A bind peer-ip 100.1.1.1 interface g0/0/0</span><br><span class="line">    #配置本地和远程是识别器</span><br><span class="line">    discrimination local 2</span><br><span class="line">    discrimination remote 1</span><br><span class="line">    commit</span><br><span class="line">    quit</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash">接口使能IS-IS与BFD绑定</span></span><br><span class="line">  int g0/0/0</span><br><span class="line">    isis bfd static</span><br><span class="line">    quit</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="4">
-<li><p>配置收敛时间参数</p>
-<ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash">配置收敛时间  使能LSP快速收敛</span></span><br><span class="line">  flash-flood #Configure the flash(快速发送) flood（泛洪） feature（特性）</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash"> The timer <span class="keyword">for</span> SPF calculations 设置SPF计算的时间间隔</span></span><br><span class="line">  timer spf </span><br><span class="line">    1 # Maximum interval between ISPFs 设置ISPF之间的最大时间间隔，默认为5秒,单位为秒</span><br><span class="line">    20 #Initial interval betweeen ISPFs 设置ISPF之间的初始时间间隔，默认为50毫秒，单位为毫秒</span><br><span class="line">    120 #Incremental interval between ISPFs 设置ISPF之间的增加时间间隔，默认为200毫秒，单位是毫秒</span><br><span class="line">    </span><br><span class="line"><span class="meta">  #</span><span class="bash"> Set the intelligent(智能的) timer <span class="keyword">for</span> LSP generation（产生） 设置产生LSP的延迟时间，缺省值为2秒</span></span><br><span class="line">  timer lsp-generation </span><br><span class="line">    1 # Set the intelligent(智能的) timer maximum（最大的） interval（间隔），单位为秒</span><br><span class="line">    1 # Set the intelligent(智能的) timer initial（最初的） interval(间隔)，单位为毫秒</span><br><span class="line">    120 # Set the intelligent(智能的) timer increment（增加） interval(间隔)，单位为毫秒</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash">使能LSP快速收敛</span></span><br><span class="line">  flash-flood</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash"> The timer <span class="keyword">for</span> SPF calculations 设置SPF计算时间间隔</span></span><br><span class="line">  timer spf </span><br><span class="line">    1 # Maximum interval between ISPFs 设置ISPF之间的最大时间间隔，默认为5秒，单位为秒</span><br><span class="line">    1 # Initial interval between ISPFs 设置ISPF之间的最初时间间隔，默认为50毫秒，单位为毫秒</span><br><span class="line">    120 # Incremental interval between ISPFs 设置ISPF之间的增加时间间隔，默认为200毫秒，单位为好</span><br><span class="line">    </span><br><span class="line"><span class="meta">  #</span><span class="bash"> Set the intelligent timer <span class="keyword">for</span> LSP generation 设置LSP产生的时间间隔，缺省值为2秒</span></span><br><span class="line">  timer lsp-generation</span><br><span class="line">    1 # Set the intelligent timer maximum interval，设置智能时间的最大时间间隔，单位为秒</span><br><span class="line">    1 # Set the intelligent timer initial interval，设置智能时间的最初时间间隔，单位为毫秒</span><br><span class="line">    120 # Set the intelligent timer increment interval，设置智能时间的增长时间间隔，单位为毫秒</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h2><ol>
-<li><p>将Router B端口down掉</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[Router B]int g0/0/0</span><br><span class="line">[Router B-GigabitEthernet0/0/0]shutdown</span><br><span class="line"></span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01IFPDT/4/IF_STATE(l)[0]:Interface Gigabit</span><br><span class="line">Ethernet0/0/0 has turned into DOWN state.</span><br><span class="line">[Router B-GigabitEthernet0/0/0]</span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01BFD/4/STACHG_TODWN(l)[1]:BFD session cha</span><br><span class="line">nged to Down. (SlotNumber=0, Discriminator=33554432, Diagnostic=DetectDown, Appl</span><br><span class="line">ications=None, ProcessPST=False, BindInterfaceName=GigabitEthernet0/0/0, Interfa</span><br><span class="line">cePhysicalState=Up, InterfaceProtocolState=Up) </span><br><span class="line">[Router B-GigabitEthernet0/0/0]</span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01ISIS/4/PEER_DOWN_BFDDOWN(l)[2]:ISIS 256 </span><br><span class="line">neighbor 1000.0100.1001 was Down on interface GE0/0/0 because the BFD node was d</span><br><span class="line">own. The Hello packet was received at 09:32:38 last time; the maximum interval f</span><br><span class="line">or sending Hello packets was 1276641280; the local router sent 3423272960 Hello </span><br><span class="line">packets and received 100663296 packets; the type of the Hello packet was Lan Lev</span><br><span class="line">el-2. </span><br><span class="line">[Router B-GigabitEthernet0/0/0]</span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[3]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1001, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=up, ChangeType=L2_BFD_DOWN, Level=Level-2) </span><br><span class="line">[Router B-GigabitEthernet0/0/0]</span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[4]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1001, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=down, ChangeType=L2_HOLDTIMER_EXPIRED, Level=Level-2) </span><br><span class="line">[Router B-GigabitEthernet0/0/0]</span><br><span class="line">Feb 18 2022 09:40:25-08:00 Router B %%01IFNET/4/LINK_STATE(l)[5]:The line protoc</span><br><span class="line">ol IP on the interface GigabitEthernet0/0/0 has entered the DOWN state.</span><br></pre></td></tr></table></figure>
+<li><p>Router C配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置基本功能以及IP地址</span></span><br><span class="line">sys RouterC-L1</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 172.1.1.14 30</span><br><span class="line">int loopback 0</span><br><span class="line">  ip add 172.1.1.1 30</span><br><span class="line">int loopback 1</span><br><span class="line">  ip add 172.1.1.5 30</span><br><span class="line">int loopback 0</span><br><span class="line">  ip add 172.1.1.9 30</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置IS-IS进程</span></span><br><span class="line">isis 1</span><br><span class="line">  is-level level-1</span><br><span class="line">  network-entity 10.1720.0100.1014.00</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置接口使能IS-IS协议</span></span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int loopback 0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int loopback 1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int loopback 2</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
-<ol start="2">
-<li>Router A的邻居消失</li>
-</ol>
+<h2 id="查看配置命令"><a href="#查看配置命令" class="headerlink" title="查看配置命令"></a>查看配置命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis isis route</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -545,7 +479,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/14/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/12/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/14/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -590,7 +524,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -612,7 +546,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

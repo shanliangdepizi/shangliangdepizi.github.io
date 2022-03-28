@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/" itemprop="url">
-                  路由综合实验错误
+                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP/" itemprop="url">
+                  RIP路由协议
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-16T09:53:21+08:00">
-                2021-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:20:44+08:00">
+                2021-04-17
               </time>
             
 
@@ -346,8 +346,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">错误集锦</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/RIP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">RIP协议</span>
                   </a>
                 </span>
 
@@ -364,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/16/HCNA/%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/16/HCNA/错误集锦/路由实验/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/17/HCNA/路由/RIP/RIP/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -394,54 +405,298 @@
       
         
           
-            <h1 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h1><p><img src="https://i.loli.net/2021/04/16/hUdCIRBH5xP2wa3.png" alt="alt 路由综合实验拓扑图"></p>
-<h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><ol>
-<li>注意路由区域</li>
-<li>R1、R2配置RIP</li>
-<li>R4、R5、R6、R7配置OSPF</li>
-<li>R1、R2、R4只能配置一条静态路由</li>
-<li>R5、R6、R7不能配置静态路由</li>
-<li>R3只能配置静态路由</li>
-<li>全网互通</li>
-</ol>
-<h1 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h1><h2 id="RIP配置"><a href="#RIP配置" class="headerlink" title="RIP配置"></a>RIP配置</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
-<li><p>配置结束，R1 ping 不通R2</p>
-<p><img src="https://i.loli.net/2021/04/16/SVhvzngMlqyDcZ2.png" alt="alt R2ping不通R1"></p>
+            <h1 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h1><ol>
+<li><p>RIP概述</p>
+<ul>
+<li>优点<ul>
+<li>配置简单</li>
+<li>易于维护</li>
+<li>适用于小型网络</li>
+</ul>
 </li>
-<li><p>查看路由表 没有RIP协议的路由</p>
-<p><img src="https://i.loli.net/2021/04/16/thrqLkU6I9TzC7x.png" alt="alt 没有RIP路由"></p>
+<li>RIP（Routing Infomation Protocol）路由信息协议<ul>
+<li>距离矢量（DV）路由协议，属于IGP（Interior Gateway Protocol）内部网关协议</li>
+<li>适用于中小型网络，有RIPv1和RIPv2两个版本</li>
+<li>基于UDP，端口号为520</li>
+<li>周期性更新（一般25s-30s更新一次）</li>
+<li>支持水平分割（Split  Horizon）、毒性反转（Poison Reverse）和触发更新等防环特性</li>
+</ul>
 </li>
-</ol>
-<h3 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h3><ol>
-<li><p>路由接口地址配错</p>
-<p><img src="https://i.loli.net/2021/04/16/7x9msF5kbzWuypA.png" alt="alt RIP接口地址配错"></p>
+</ul>
 </li>
-<li><p>zheng </p>
+<li><p>RIP工作原理</p>
+<ul>
+<li><p>RIP工作原理</p>
+<ul>
+<li>路由器运行RIP后，会首先发送更新请求Request</li>
+<li>收到请求的路由器会将自己的路由表封装到Response中响应（周期性的更新）给请求的路由器</li>
+<li>网络稳定后，路由器会周期性（25s-30s）的响应路由更新信息</li>
+</ul>
 </li>
-</ol>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
-<li><p>路由接口地址应该是10段的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]undo ip add</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br><span class="line">Apr 16 2021 10:28:57-08:00 R2 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[0]:The line protocol IP </span><br><span class="line">on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the DOWN state. </span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]ip add 10.1.1.2 30</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br><span class="line">Apr 16 2021 10:29:05-08:00 R2 %%01IFNET&#x2F;4&#x2F;LINK_STATE(l)[1]:The line protocol IP </span><br><span class="line">on the interface GigabitEthernet0&#x2F;0&#x2F;0 has entered the UP state. </span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]</span><br></pre></td></tr></table></figure>
-
-
-
+<li><p>图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/06/8GHiX3WLqw7u6PE.png" alt="alt RIP工作原理"></li>
+</ul>
 </li>
-</ol>
-<h3 id="解决之后"><a href="#解决之后" class="headerlink" title="解决之后"></a>解决之后</h3><ol>
-<li><p>R1中有RIP协议的路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;dis ip rout	</span><br><span class="line">&lt;R1&gt;dis ip routing-table pro rip</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Public routing table : RIP</span><br><span class="line">         Destinations : 1        Routes : 1        </span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Active&gt;</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.2.2.2&#x2F;32  RIP     100  1           D   10.1.1.2        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Inactive&gt;</span><br><span class="line">         Destinations : 0        Routes : 0</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;</span><br></pre></td></tr></table></figure>
-
-
-
+</ul>
 </li>
 </ol>
-<ol start="2">
-<li><p>R1与R2能互通</p>
-<p><img src="https://i.loli.net/2021/04/16/CzUSHoP9VGLhDmk.png" alt="alt R1与R2能ping通"></p>
+<ol start="3">
+<li><p>RIP度量（开销）</p>
+<ul>
+<li><p>RIP使用跳数作为度量值，来衡量到达目的网络的距离</p>
 </li>
+<li><p>缺省情况下，直连网络的路由跳数为0，当路由器发送路由更新的时候度量值会+1</p>
+</li>
+<li><p>RIP规定超过15条为网络不可达</p>
+</li>
+<li><p>图示</p>
+<ul>
 <li></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
+<ol start="4">
+<li><p>RIPv1与RIPv2</p>
+<ul>
+<li><p>RIPv1</p>
+<ul>
+<li>RIPv1以全广播的方式发送报文</li>
+<li>RIPv1是有类别路由协议，不支持VLSM和CIDR</li>
+<li>不支持认证</li>
+</ul>
+</li>
+<li><p>RIPv2</p>
+<ul>
+<li>RIPv2支持广播或组播的方式发送报文，组播地址是：224.0.0.9</li>
+<li>RIPv2是无类别路由协议，支持VLSM、路由聚合和CIDR</li>
+<li>支持明文认证和MD5密文认证</li>
+</ul>
+</li>
+<li><p>RIPv1报文与解析</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/06/wnZJUpYIkMXLxQg.png" alt="alt RIPv1 报文"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>+ 解析
 
+  ![alt RIPv1报文解析](https://i.loli.net/2021/04/06/FV4QWGAfMpnCH1O.png)</code></pre><ul>
+<li><p>RIPv2报文与解析</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/23/tfbToHkapzeWi16.png" alt="alt RIPv2 报文"></p>
+</li>
+<li><p>解析</p>
+<p><img src="https://i.loli.net/2021/05/23/zvHPoxnywVA2O8C.png" alt="alt RIPv2 解析"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>RIPv2认证</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/23/S4BCt5DeYzk6nlm.png" alt="alt RIPv2认证"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li><p>RIP环路</p>
+<ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/23/hAfo5ediXIjQrkv.png" alt="alt RIP环路"></p>
+</li>
+<li><p>RIP配置</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1  #开启RIP进程，默认是1</span><br><span class="line">ver 2  #开启RIPv2</span><br><span class="line">network 12.0.0.0 #network 宣告网络，指定运行RIP的接口，只需要输入主类网络地址即可。目的是该地址是否匹配某个接口</span><br><span class="line">network 1.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>* network 1.0.0.0 如果只有部分子网对应的接口走RIP协议，怎么将别的接口不走RIP协议
+
+* 不同的进程号表示不同的数据库
+
+* 可以在RIP中注入RIP
+
+* R2 配置
+
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1</span><br><span class="line">ver 2</span><br><span class="line">network 12.0.0.0</span><br><span class="line">network 2.0.0.0</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><p>RIP环路演示</p>
+<ul>
+<li><p>去除端口的水平分割</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">undo rip split-horizon</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>  * R2配置
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">undo rip split-horizon</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+* 环路产生流程
+
+  * 正常情况
+    * 在R1与R2都开启RIP之后
+    * R1将自己直连的路由，通过RIP宣告给R2，对R1来说是0跳，对R2来说是1跳，R2也将自己从R1学习到有关R1直连设备的路由信息发送给R1，此时R1收到关于自己的直连设备的路由信息是0跳和2跳，在开启RIP机制的情况下，R1不会相信R2发过来有关自己直连的设备的路由信息。此时，就不会产生RIP环路
+    * R2将自己直连的路由，通过RIP宣告给R1，对R2来说是0跳，对R1来说是1跳
+  * 环路情况
+    * RIP会周期性宣告自己的路由更新
+    * R1将自己直连的路由，通过RIP宣告给R2，对R1来说是0跳，对R2来说是1跳
+    * R2会将自己从R1学到的有关R1直连设备的路由更新信息再次发给R1，此时R1收到两条有关自己直连设备的路由信息；当R1直连设备宕机的情况下，R1路由器将标记这条路由处于不可达的状态（即该条路由是16跳）。然而，R1需要等到路由信息更新时候才会将这条不可达的路由宣告出去（R1在30s左右时间更新路由信息），此时，R1会相信从R2学过来的有关自己直连设备的路由信息（即此时R1到自己直连设备的路由为2跳，并且下一跳为R2路由器的接口地址），此时，RIP协议的路由就产生了环路。知道RIP路由跳数是16后停止
+
+* 避免环路的机制
+
+  * 水平分割（split-horison）
+    * 路由器从某个接口学到的路由，不会从该接口再发回给邻居路由器
+    * 图示
+      * 
+  * 毒性反转（Poison-reverse）
+    * 路由器从某个接口学到的路由后，将该路由的条数设置成16跳，并将从原接收接口发回给邻居路由器
+    * 与水平分割是矛盾的，默认是不开启的，当两个都开启的时候，优先执行毒性反转（poison reverse）机制
+    * 图示
+      * ![alt 毒性反转](https://i.loli.net/2021/04/08/hy8NefgCHjTz2Bx.png)
+  * 触发更新
+    * 当路由信息发生变化的时候，立即向邻居设备发送触发更新的报文
+    * 图示
+      * ![alt 触发更新](https://i.loli.net/2021/04/08/fgI2UXhM6jxE8Nu.png)</code></pre><ul>
+<li><p>RIP高级配置</p>
+<ul>
+<li><p>Output</p>
+<ul>
+<li>图示<ul>
+<li><img src="https://i.loli.net/2021/04/08/bI6HGYdorTXZPE1.png" alt="alt RIP配置-Output"></li>
+</ul>
+</li>
+<li>在路由器的接口上可以禁止该接口发送RIP报文</li>
+</ul>
+</li>
+<li><p>Input</p>
+<ul>
+<li>在路由器的接口上可以禁止该接口接收RIP报文</li>
+<li>图示<ul>
+<li><img src="https://i.loli.net/2021/04/08/7KsBxHPyNF5bmAj.png" alt="alt RIP配置-Input"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>抑制接口</p>
+<ul>
+<li><p>配置路由器的某个接口为抑制状态，只接受RIP报文</p>
+</li>
+<li><p>此命令的优先级大于rip input 与 rip output</p>
+</li>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rip 1</span><br><span class="line">[R1-rip-1]silent-interface GigabitEthernet 0&#x2F;0&#x2F;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/08/HUJagtp5YmRfIsk.png" alt="alt 抑制接口"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>水平分割（Split-horizon）与毒性反转（Poison-reverse）</p>
+<ul>
+<li><p>查看RIP详细信息的命令</p>
+<p>图示</p>
+<ul>
+<li><img src="https://i.loli.net/2021/04/08/cqP2QrmNXbGSDgp.png" alt="alt 水平分割与毒性反转"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip 1 interface g0&#x2F;0&#x2F;2 verbose</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/05/23/qAv2LkWz4ZCebHx.png" alt="alt 水平分割与毒性反转"></p>
+</li>
+<li><p>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;2</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip spri</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip split</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip split-horizon</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip poi</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip poison-reverse</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]&lt;R2&gt;sys</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 查看RIP相关信息
+
+  * 查看RIP接口详细信息
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip 1 # 1代表RIP进程号</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+  * 查看RIP信息
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip int g0&#x2F;0&#x2F;0 verbose</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+* 调整度量值
+
+  * Metricout
+
+    * 发送RIP路由信息的时候，将度量值（开销）变成N
+
+    * 命令
+
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricout</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricout 5 #将所有从此接口出去的RIP路由信息的Cost该为5</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]dis this</span><br><span class="line">[V200R003C00]</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> ip address 12.0.0.2 255.255.255.0</span><br><span class="line"> rip metricout 5</span><br><span class="line"> rip poison-reverse</span><br><span class="line">#</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+    * 图示
+
+      ![alt RIP配置-Metricout](https://i.loli.net/2021/05/23/j9QmLtEHRGfXoC7.png)
+
+  * Metricin
+
+    * 接受RIP路由信息的时候，Cost自动增加N个
+
+    * 命令
+
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricin</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricin 5 # 路由器的该接口在接受RIP路由信息后，Cost自动增加5</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]dis this</span><br><span class="line">[V200R003C00]</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> ip address 12.0.0.2 255.255.255.0</span><br><span class="line"> rip metricin 5</span><br><span class="line"> rip metricout 5</span><br><span class="line"> rip poison-reverse</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]q</span><br><span class="line">[R2]dis ip rout</span><br><span class="line">[R2]dis ip routing-table pro rip</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Public routing table : RIP</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Active&gt;</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        1.0.0.0&#x2F;24  RIP     100  6  #Cost的值1+5        D   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Inactive&gt;</span><br><span class="line">         Destinations : 0        Routes : 0</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+    * 图示
+
+      ![alt RIP配置-Metricin](https://i.loli.net/2021/05/23/GsR1AqbE6jNwJmB.png)</code></pre>
           
         
       
@@ -479,7 +734,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/50/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" href="/page/52/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/50/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><span class="page-number current">51</span><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/52/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -524,7 +779,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -546,7 +801,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
