@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E5%8A%A8%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E5%8A%A8%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  IS-IS与动态BFD联动示例
+                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/" itemprop="url">
+                  IS-IS与静态BFD联动示例
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:30:49+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:31:01+08:00">
                 2022-03-24
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E5%8A%A8%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/03/24/实验/三层协议/IS-IS协议/IS-IS与动态BFD联动示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/03/24/实验/三层协议/IS-IS协议/IS-IS与静态BFD联动示例/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,23 +406,22 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>三台路由器通过IS-IS协议实现互联互通</li>
-<li>Router A与Router B之间通过一台二层交换机互联</li>
-<li>要求Router A与Router B之间故障，两台路由器能够快速对故障做出反应，并将流量切到Router C链路转发</li>
+<li>网络中有三台路由器通过IS-IS协议实现互联互通</li>
+<li>Router A与Router B之间通过二层交换实现互联</li>
+<li>要求当Router A与Router B之间路由器故障能够对故障结果做出反应，重新建立邻居</li>
 </ol>
-<h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="https://s2.loli.net/2022/03/02/OoQdBmI5LVxZF29.jpg" alt></p>
+<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p><img src="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E6%8B%93%E6%89%91.jpg" alt="IS-IS与静态BFD联动网络拓扑"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
 <li>配置路由器基本功能以及IP地址</li>
-<li>配置IS-IS协议以及接口使能IS-IS</li>
-<li>配置IS-IS接口开销值控制路由选路，Router A到Router B作为主链路</li>
-<li>配置动态BFD</li>
-<li>接口使能IS-IS与BFD联动</li>
+<li>配置IS-IS协议以及接口使能IS-IS协议</li>
+<li>配置静态BFD</li>
+<li>配置IS-IS协议与BFD联动</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
 <li><p>配置路由器基本功能以及IP地址</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 3.3.3.1 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 1.1.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.1 30</span><br></pre></td></tr></table></figure>
 
 
 
@@ -432,7 +431,7 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 3.3.3.2 30</span><br><span class="line">int g0/0/2</span><br><span class="line">  ip add 2.2.2.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.2 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 100.2.1.1 30</span><br></pre></td></tr></table></figure>
 
 
 
@@ -440,7 +439,7 @@
 </ul>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 1.1.1.2 30</span><br><span class="line">int g0/0/2</span><br><span class="line">  ip add 2.2.2.2 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 100.2.1.2 30</span><br></pre></td></tr></table></figure>
 
 
 
@@ -450,7 +449,7 @@
 <li><p>配置IS-IS协议以及接口使能IS-IS协议</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.0030.0300.3001.00</span><br><span class="line">  q</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0100.1001.00</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
@@ -460,7 +459,7 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.0030.0300.3002.00</span><br><span class="line">  q</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/2</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0100.1002.00</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
@@ -468,17 +467,17 @@
 </ul>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.0010.0100.1002.00</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/2</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0200.1002.00</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>配置IS-IS接口开销值控制路由选路</p>
+<li><p>配置静态BFD</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis cost 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">bfd A-to-B bind peer-ip 100.1.1.2 int g0/0/0</span><br><span class="line">  discriminator local 1</span><br><span class="line">  discriminator remote 2</span><br><span class="line">  commit</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
 
 
 
@@ -488,17 +487,17 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis cost 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">bfd B-to-A bind peer-ip 100.1.1.1 int g0/0/0</span><br><span class="line">  discriminator local 2</span><br><span class="line">  discriminator remote 1</span><br><span class="line">  commit</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="4">
-<li><p>配置动态BFD，并与IS-IS协议联动</p>
+<li><p>配置IS-IS接口使能BFD</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">isis 1</span><br><span class="line">  bfd all-interface enable</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd static</span><br></pre></td></tr></table></figure>
 
 
 
@@ -508,66 +507,32 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">isis 1</span><br><span class="line">  bfd all-interface enable</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd static</span><br></pre></td></tr></table></figure>
 
 
-
-</li>
-</ul>
-<ul>
-<li><p>Router C配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">isis 1</span><br><span class="line">  bfd all-interface enable</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="5">
-<li><p>接口使能IS-IS BFD，并配置特性</p>
-<ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd enable</span><br><span class="line">  isis bfd min-tx-interval 100</span><br><span class="line">  isis bfd min-rx-interval 100</span><br><span class="line">  isis bfd detect-multiplier 4</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd enable</span><br><span class="line">  isis bfd min-tx-interval 100</span><br><span class="line">  isis bfd min-rx-interval 100</span><br><span class="line">  isis bfd detect-multiplier 4</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><ol>
-<li><p>查看IS-IS邻居</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dis isis peer</span><br><span class="line">&lt;Router A&gt;dis isis peer</span><br><span class="line"></span><br><span class="line">                          Peer information for ISIS(1)</span><br><span class="line"></span><br><span class="line">  System Id     Interface          Circuit Id       State HoldTime Type     PRI</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">0030.0300.3002  GE0/0/0            0030.0300.3001.01 Up   28s      L2       64 </span><br><span class="line">0010.0100.1002  GE0/0/1            0010.0100.1002.01 Up   8s       L2       64 </span><br><span class="line"></span><br><span class="line">Total Peer(s): 2</span><br></pre></td></tr></table></figure>
+<li><p>查看命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看IS-IS邻居</span></span><br><span class="line">dis isis peer</span><br><span class="line">&lt;Router A&gt;dis isis peer</span><br><span class="line"></span><br><span class="line">                          Peer information for ISIS(1)</span><br><span class="line"></span><br><span class="line">  System Id     Interface          Circuit Id       State HoldTime Type     PRI</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1000.0100.1002  GE0/0/0            1000.0100.1001.01 Up   20s      L2       64 </span><br><span class="line"></span><br><span class="line">Total Peer(s): 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看IS-IS路由</span></span><br><span class="line">dis isis route</span><br><span class="line">&lt;Router A&gt;dis isis route </span><br><span class="line"></span><br><span class="line">                         Route information for ISIS(1)</span><br><span class="line">                         -----------------------------</span><br><span class="line"></span><br><span class="line">                        ISIS(1) Level-2 Forwarding Table</span><br><span class="line">                        --------------------------------</span><br><span class="line"></span><br><span class="line">IPV4 Destination     IntCost    ExtCost ExitInterface   NextHop         Flags</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">100.1.1.0/30         10         NULL    GE0/0/0         Direct          D/-/L/-</span><br><span class="line">100.2.1.0/30         20         NULL    GE0/0/0         100.1.1.2       A/-/-/-</span><br><span class="line">     Flags: D-Direct, A-Added to URT, L-Advertised in LSPs, S-IGP Shortcut,</span><br><span class="line">                               U-Up/Down Bit Set</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看BFD会话状态</span></span><br><span class="line">dis bfd session all</span><br><span class="line">&lt;Router A&gt;dis bfd session all</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Local Remote     PeerIpAddr      State     Type        InterfaceName            </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">1     2          100.1.1.2       Up        S_IP_IF     GigabitEthernet0/0/0     </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">     Total UP/DOWN Session Number : 1/0</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>查看路由表</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router A&gt;dis ip routing-table </span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 12       Routes : 12       </span><br><span class="line"></span><br><span class="line">Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        1.1.1.0/30  Direct  0    0           D   1.1.1.1         GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        1.1.1.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        1.1.1.3/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        2.2.2.0/30  ISIS-L2 15   15          D   3.3.3.2         GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">        3.3.3.0/30  Direct  0    0           D   3.3.3.1         GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">        3.3.3.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">        3.3.3.3/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">     172.16.1.1/32  ISIS-L2 15   5           D   3.3.3.2         GigabitEthernet   # 选择主链路</span><br><span class="line">0/0/0</span><br><span class="line">255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
+<li><p>打开终端日志信息功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">terminal logging</span><br><span class="line"></span><br><span class="line">terminal monitor</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="3">
-<li><p>查看IS-IS与BFD联动会话状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">dis isis bfd session all</span><br><span class="line">&lt;Router A&gt;dis isis bfd session all</span><br><span class="line"></span><br><span class="line">                      BFD session information for ISIS(1)</span><br><span class="line">                      -----------------------------------</span><br><span class="line"></span><br><span class="line">Peer System ID : 0030.0300.3002        Interface : GE0/0/0     </span><br><span class="line">TX : 100           BFD State : up      Peer IP Address : 3.3.3.2 </span><br><span class="line">RX : 100           LocDis : 8195       Local IP Address: 3.3.3.1 </span><br><span class="line">Multiplier : 4     RemDis : 8195       Type : L2</span><br><span class="line">Diag : No diagnostic information</span><br><span class="line"></span><br><span class="line">Peer System ID : 0010.0100.1002        Interface : GE0/0/1     </span><br><span class="line">TX : 1000          BFD State : up      Peer IP Address : 1.1.1.2 </span><br><span class="line">RX : 1000          LocDis : 8193       Local IP Address: 1.1.1.1 </span><br><span class="line">Multiplier : 3     RemDis : 8192       Type : L2</span><br><span class="line">Diag : No diagnostic information</span><br><span class="line"></span><br><span class="line">Total BFD session(s): 2</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="4">
-<li><p>测试结果</p>
+<li><p>测试</p>
 <ul>
-<li><p>Router B的端口Down</p>
+<li><p>Router B端口down掉</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  shutdown</span><br></pre></td></tr></table></figure>
 
 
@@ -577,10 +542,8 @@
 </li>
 </ol>
 <ul>
-<li><p>Router A选择备用链路</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">dis ip routing-table</span><br><span class="line">&lt;Router A&gt;dis ip routing-table </span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 12       Routes : 12       </span><br><span class="line"></span><br><span class="line">Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        1.1.1.0/30  Direct  0    0           D   1.1.1.1         GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        1.1.1.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        1.1.1.3/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        2.2.2.0/30  ISIS-L2 15   20          D   1.1.1.2         GigabitEthernet</span><br><span class="line">0/0/1</span><br><span class="line">        3.3.3.0/30  Direct  0    0           D   3.3.3.1         GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">        3.3.3.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">        3.3.3.3/32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0/0/0</span><br><span class="line">      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">     172.16.1.1/32  ISIS-L2 15   20          D   1.1.1.2         GigabitEthernet     # 选择备用链路</span><br><span class="line">0/0/1</span><br><span class="line">255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
-
-
+<li><p>Router A日志信息和BFD状态以及IS-IS邻居状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 日志信息</span></span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01BFD/4/STACHG_TODWN(l)[0]:BFD session cha</span><br><span class="line">nged to Down. (SlotNumber=0, Discriminator=16777216, Diagnostic=DetectDown, Appl</span><br><span class="line">ications=None, ProcessPST=False, BindInterfaceName=GigabitEthernet0/0/0, Interfa</span><br><span class="line">cePhysicalState=Up, InterfaceProtocolState=Up) </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/PEER_DOWN_BFDDOWN(l)[1]:ISIS 256 </span><br><span class="line">neighbor 1000.0100.1002 was Down on interface GE0/0/0 because the BFD node was d</span><br><span class="line">own. The Hello packet was received at 11:18:26 last time; the maximum interval f</span><br><span class="line">or sending Hello packets was 270991360; the local router sent 4127719424 Hello p</span><br><span class="line">ackets and received 83886080 packets; the type of the Hello packet was Lan Level</span><br><span class="line">-2. </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[2]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1002, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=up, ChangeType=L2_BFD_DOWN, Level=Level-2) </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[3]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1002, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=down, ChangeType=L2_HOLDTIMER_EXPIRED, Level=Level-2)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> BFD会话状态</span></span><br><span class="line">&lt;Router A&gt;dis bfd session all</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Local Remote     PeerIpAddr      State     Type        InterfaceName            </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">1     2          100.1.1.2       Down      S_IP_IF     GigabitEthernet0/0/0     </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">     Total UP/DOWN Session Number : 0/1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> IS-IS邻居</span></span><br><span class="line">dis isis peer</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">dis isis route</span></span><br><span class="line">&lt;Router A&gt;dis isis route</span><br><span class="line"></span><br><span class="line">                         Route information for ISIS(1)</span><br><span class="line">                         -----------------------------</span><br><span class="line"></span><br><span class="line">                        ISIS(1) Level-2 Forwarding Table</span><br><span class="line">                        --------------------------------</span><br><span class="line"></span><br><span class="line">IPV4 Destination     IntCost    ExtCost ExitInterface   NextHop         Flags</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">100.1.1.0/30         10         NULL    GE0/0/0         Direct          D/-/L/-</span><br><span class="line">     Flags: D-Direct, A-Added to URT, L-Advertised in LSPs, S-IGP Shortcut,</span><br><span class="line">                               U-Up/Down Bit Set</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -622,7 +585,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><a class="extend next" rel="next" href="/page/13/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/11/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><a class="extend next" rel="next" href="/page/13/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -667,7 +630,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -689,7 +652,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
