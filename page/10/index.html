@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  IS-IS与静态BFD联动示例
+                <a class="post-title-link" href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/" itemprop="url">
+                  BGP AS_Path路径过滤示例
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:31:01+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T11:33:51+08:00">
                 2022-03-24
               </time>
             
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">IS-IS路由协议</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">BGP路由协议</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20AS_Path%E8%B7%AF%E5%BE%84%E8%BF%87%E7%95%A5/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/03/24/实验/三层协议/IS-IS协议/IS-IS与静态BFD联动示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/03/24/实验/三层协议/BGP协议/BGP AS_Path路径过略/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,22 +406,19 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>网络中有三台路由器通过IS-IS协议实现互联互通</li>
-<li>Router A与Router B之间通过二层交换实现互联</li>
-<li>要求当Router A与Router B之间路由器故障能够对故障结果做出反应，重新建立邻居</li>
+<li>Router A与Router B、Router B与Router C之间建立EBGP连接</li>
+<li>用户希望AS10的设备与AS30的设备无法互相通信</li>
 </ol>
-<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p><img src="/2022/03/24/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/IS-IS%E5%8D%8F%E8%AE%AE/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E7%A4%BA%E4%BE%8B/IS-IS%E4%B8%8E%E9%9D%99%E6%80%81BFD%E8%81%94%E5%8A%A8%E6%8B%93%E6%89%91.jpg" alt="IS-IS与静态BFD联动网络拓扑"></p>
+<h2 id="组网图"><a href="#组网图" class="headerlink" title="组网图"></a>组网图</h2><p><img src="https://s2.loli.net/2022/03/22/SqQHvylfjYptzLW.jpg" alt></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>配置路由器基本功能以及IP地址</li>
-<li>配置IS-IS协议以及接口使能IS-IS协议</li>
-<li>配置静态BFD</li>
-<li>配置IS-IS协议与BFD联动</li>
+<li>在Router A和Router B之间、Router B和Router C之间分别配置EBGP连接，并引入直连路由，实现AS之间通过EBGP互联互通</li>
+<li>在Router B上配置AS_Path过滤器，并应用该过滤规则，使AS 20不向AS 10发布AS 30的路由，也不向AS 30发布AS 10的路由</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>配置路由器基本功能以及IP地址</p>
+<li><p>配置各个路由器基本功能以及各个接口IP</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 200.1.2.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 9.1.1.1 32</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 1.1.1.1 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -431,7 +428,7 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 100.1.1.2 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 100.2.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">  ip add 200.1.2.2 30</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 200.1.3.1 30</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 2.2.2.2 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -439,17 +436,17 @@
 </ul>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 100.2.1.2 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">  ip add 200.1.3.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 10.1.1.1 32</span><br><span class="line">int LoopBack 1</span><br><span class="line">  ip add 3.3.3.3 32</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>配置IS-IS协议以及接口使能IS-IS协议</p>
+<li><p>配置EBGP邻居并引入直连路由</p>
 <ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0100.1001.00</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<li><p>Router A 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  router-id 1.1.1.1</span><br><span class="line">  peer 200.1.2.2 as-number 20</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
 
 
 
@@ -458,26 +455,26 @@
 </li>
 </ol>
 <ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0100.1002.00</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<li><p>Router B 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 2.2.2.2</span><br><span class="line">  peer 200.1.2.1 as-number 10</span><br><span class="line">  peer 200.1.3.2 as-number 30</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ul>
-<li><p>Router C配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 86.0010.1000.0200.1002.00</span><br><span class="line">int g0/0/1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+<li><p>Router C 配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 30</span><br><span class="line">  router-id 3.3.3.3</span><br><span class="line">  peer 200.1.3.1 as-number 20</span><br><span class="line">  import-route direct</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>配置静态BFD</p>
+<li><p>配置过略AS 30 的路由</p>
 <ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">bfd A-to-B bind peer-ip 100.1.1.2 int g0/0/0</span><br><span class="line">  discriminator local 1</span><br><span class="line">  discriminator remote 2</span><br><span class="line">  commit</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip as-path-filter filter_as30 deny _30_</span><br><span class="line">ip as-path-filter filter_as30 permit .*</span><br></pre></td></tr></table></figure>
 
 
 
@@ -485,19 +482,11 @@
 </ul>
 </li>
 </ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line">bfd B-to-A bind peer-ip 100.1.1.1 int g0/0/0</span><br><span class="line">  discriminator local 2</span><br><span class="line">  discriminator remote 1</span><br><span class="line">  commit</span><br><span class="line">  q</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
 <ol start="4">
-<li><p>配置IS-IS接口使能BFD</p>
+<li><p>配置过略AS10 的路由</p>
 <ul>
-<li><p>Router A配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd static</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip as-path-filter filter_as10 deny _10_</span><br><span class="line">ip as-path-filter filter_as10 permit .*</span><br></pre></td></tr></table></figure>
 
 
 
@@ -505,35 +494,50 @@
 </ul>
 </li>
 </ol>
+<ol start="5">
+<li><p>应用AS路由过略</p>
 <ul>
-<li><p>Router B配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  isis bfd static</span><br></pre></td></tr></table></figure>
+<li><p>Router  B配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 100.1.2.1 as-path-filter filter_as30</span><br><span class="line">  peer 100.1.3.2 as-path-filter filter_as10</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><ol>
-<li><p>查看命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看IS-IS邻居</span></span><br><span class="line">dis isis peer</span><br><span class="line">&lt;Router A&gt;dis isis peer</span><br><span class="line"></span><br><span class="line">                          Peer information for ISIS(1)</span><br><span class="line"></span><br><span class="line">  System Id     Interface          Circuit Id       State HoldTime Type     PRI</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1000.0100.1002  GE0/0/0            1000.0100.1001.01 Up   20s      L2       64 </span><br><span class="line"></span><br><span class="line">Total Peer(s): 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看IS-IS路由</span></span><br><span class="line">dis isis route</span><br><span class="line">&lt;Router A&gt;dis isis route </span><br><span class="line"></span><br><span class="line">                         Route information for ISIS(1)</span><br><span class="line">                         -----------------------------</span><br><span class="line"></span><br><span class="line">                        ISIS(1) Level-2 Forwarding Table</span><br><span class="line">                        --------------------------------</span><br><span class="line"></span><br><span class="line">IPV4 Destination     IntCost    ExtCost ExitInterface   NextHop         Flags</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">100.1.1.0/30         10         NULL    GE0/0/0         Direct          D/-/L/-</span><br><span class="line">100.2.1.0/30         20         NULL    GE0/0/0         100.1.1.2       A/-/-/-</span><br><span class="line">     Flags: D-Direct, A-Added to URT, L-Advertised in LSPs, S-IGP Shortcut,</span><br><span class="line">                               U-Up/Down Bit Set</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看BFD会话状态</span></span><br><span class="line">dis bfd session all</span><br><span class="line">&lt;Router A&gt;dis bfd session all</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Local Remote     PeerIpAddr      State     Type        InterfaceName            </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">1     2          100.1.1.2       Up        S_IP_IF     GigabitEthernet0/0/0     </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">     Total UP/DOWN Session Number : 1/0</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="结果查看"><a href="#结果查看" class="headerlink" title="结果查看"></a>结果查看</h2><ol>
+<li><p>查看固定邻居的BGP路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 8</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         200.1.3.1                             0      20 30?</span><br><span class="line"> *&gt;   9.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   100.1.1.1/32       200.1.3.1                             0      20 30?</span><br><span class="line"> *&gt;   200.1.2.0          200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.3.1       0                     0      20?</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>打开终端日志信息功能</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">terminal logging</span><br><span class="line"></span><br><span class="line">terminal monitor</span><br></pre></td></tr></table></figure>
+<li><p>查看BGP路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router C&gt;dis bgp routing-table </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 3.3.3.3 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 12</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   9.0.0.0            200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   100.1.1.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0          200.1.3.1                             0      20 10?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       0.0.0.0         0                     0      ?</span><br><span class="line">                         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.2/32       0.0.0.0         0                     0      ?</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="3">
-<li><p>测试</p>
+<li><p>查看过略AS10 后的路由表（Router C为例）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router C&gt;dis bgp routing-table </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 3.3.3.3 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 9</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   3.3.3.3/32         0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   100.1.1.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       0.0.0.0         0                     0      ?</span><br><span class="line">                         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.2/32       0.0.0.0         0                     0      ?</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看过略AS30 后的路由表（Router A为例）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;dis bgp routing-table</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 1.1.1.1 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 12</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   1.0.0.0            127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   1.1.1.1/32         0.0.0.0         0                     0      ?</span></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   9.0.0.0            127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   9.1.1.1/32         0.0.0.0         0                     0      ?</span></span><br><span class="line"> *&gt;   127.0.0.0          0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   127.0.0.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.2.0          127.0.0.1                             0      ?</span><br><span class="line"><span class="meta"> s&gt;</span><span class="bash">   200.1.2.0/30       0.0.0.0         0                     0      ?</span></span><br><span class="line">                         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.1/32       0.0.0.0         0                     0      ?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.2.2       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>查看固定邻居的路由表</p>
 <ul>
-<li><p>Router B端口down掉</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0/0/0</span><br><span class="line">  shutdown</span><br></pre></td></tr></table></figure>
+<li><p>与Router A邻居的路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table peer 200.1.2.1 advertised-routers</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.2.1 advertised-routes </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 3</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.2.2       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.2.2       0                     0      20?</span><br></pre></td></tr></table></figure>
 
 
 
@@ -542,8 +546,10 @@
 </li>
 </ol>
 <ul>
-<li><p>Router A日志信息和BFD状态以及IS-IS邻居状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 日志信息</span></span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01BFD/4/STACHG_TODWN(l)[0]:BFD session cha</span><br><span class="line">nged to Down. (SlotNumber=0, Discriminator=16777216, Diagnostic=DetectDown, Appl</span><br><span class="line">ications=None, ProcessPST=False, BindInterfaceName=GigabitEthernet0/0/0, Interfa</span><br><span class="line">cePhysicalState=Up, InterfaceProtocolState=Up) </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/PEER_DOWN_BFDDOWN(l)[1]:ISIS 256 </span><br><span class="line">neighbor 1000.0100.1002 was Down on interface GE0/0/0 because the BFD node was d</span><br><span class="line">own. The Hello packet was received at 11:18:26 last time; the maximum interval f</span><br><span class="line">or sending Hello packets was 270991360; the local router sent 4127719424 Hello p</span><br><span class="line">ackets and received 83886080 packets; the type of the Hello packet was Lan Level</span><br><span class="line">-2. </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[2]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1002, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=up, ChangeType=L2_BFD_DOWN, Level=Level-2) </span><br><span class="line">&lt;Router A&gt;</span><br><span class="line">Mar  2 2022 11:25:10-08:00 Router A %%01ISIS/4/ADJ_CHANGE_LEVEL(l)[3]:The neighb</span><br><span class="line">or of ISIS was changed. (IsisProcessId=256, Neighbor=1000.0100.1002, InterfaceNa</span><br><span class="line">me=GE0/0/0, CurrentState=down, ChangeType=L2_HOLDTIMER_EXPIRED, Level=Level-2)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> BFD会话状态</span></span><br><span class="line">&lt;Router A&gt;dis bfd session all</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Local Remote     PeerIpAddr      State     Type        InterfaceName            </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">1     2          100.1.1.2       Down      S_IP_IF     GigabitEthernet0/0/0     </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">     Total UP/DOWN Session Number : 0/1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> IS-IS邻居</span></span><br><span class="line">dis isis peer</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">dis isis route</span></span><br><span class="line">&lt;Router A&gt;dis isis route</span><br><span class="line"></span><br><span class="line">                         Route information for ISIS(1)</span><br><span class="line">                         -----------------------------</span><br><span class="line"></span><br><span class="line">                        ISIS(1) Level-2 Forwarding Table</span><br><span class="line">                        --------------------------------</span><br><span class="line"></span><br><span class="line">IPV4 Destination     IntCost    ExtCost ExitInterface   NextHop         Flags</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">100.1.1.0/30         10         NULL    GE0/0/0         Direct          D/-/L/-</span><br><span class="line">     Flags: D-Direct, A-Added to URT, L-Advertised in LSPs, S-IGP Shortcut,</span><br><span class="line">                               U-Up/Down Bit Set</span><br></pre></td></tr></table></figure>
+<li><p>与Router C邻居的路由表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table peer 200.1.3.2 advertise-routers</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp routing-table peer 200.1.3.2 advertised-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 3</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   2.2.2.2/32         200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.2.0/30       200.1.3.1       0                     0      20?</span><br><span class="line"> *&gt;   200.1.3.0/30       200.1.3.1       0                     0      20?</span><br></pre></td></tr></table></figure>
+
+
 
 </li>
 </ul>
@@ -585,7 +591,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" href="/page/11/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><a class="extend next" rel="next" href="/page/11/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -630,7 +636,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
