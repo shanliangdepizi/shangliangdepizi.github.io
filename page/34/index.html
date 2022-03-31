@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/17/HCNA/NAT/NAT%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/" itemprop="url">
-                  ACL配置
+                <a class="post-title-link" href="/2021/05/17/HCNA/NAT/NAT%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF/" itemprop="url">
+                  NAT技术背景
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-16T21:17:20+08:00">
-                2021-05-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-17T16:00:42+08:00">
+                2021-05-17
               </time>
             
 
@@ -346,8 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/ACL/" itemprop="url" rel="index">
-                    <span itemprop="name">ACL</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/NAT/" itemprop="url" rel="index">
+                    <span itemprop="name">NAT</span>
                   </a>
                 </span>
 
@@ -364,9 +364,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+                <a href="/2021/05/17/HCNA/NAT/NAT%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/05/16/HCNA/ACL/ACL配置/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/05/17/HCNA/NAT/NAT技术背景/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,45 +393,19 @@
 
       
         
-          <h1 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>acl number 2000</td>
-<td>创建一个基本ACL</td>
-</tr>
-<tr>
-<td>rule 5 permit/deny source 192.168.1.0 0.0.0.255</td>
-<td>配置ACL的规则：<br>允许或者拒绝192.168.1.0这个网段内的所有流量</td>
-</tr>
-<tr>
-<td>acl number 3000</td>
-<td>创建一个高级ACL</td>
-</tr>
-<tr>
-<td>rule 5 permit/deny tcp<br>source192.168.1.0 0.0.0.255<br>destination 8.8.8.8 0<br>destination-port eq 80</td>
-<td>配置ACL规则：<br>允许后者禁止192.168.1.0网段的地址<br>到8.8.8.8这个地址的HTTP流量</td>
-</tr>
-<tr>
-<td>traffic-filter inbound/outbound acl 2000</td>
-<td>接口调用ACL过滤流量</td>
-</tr>
-<tr>
-<td>dis acl 2000</td>
-<td>验证ACL的配置</td>
-</tr>
-<tr>
-<td>dis traffic-filter applied-record</td>
-<td>查看设备上所有基于ACL的调用情况</td>
-</tr>
-</tbody></table>
+          <h1 id="NAT技术背景"><a href="#NAT技术背景" class="headerlink" title="NAT技术背景"></a>NAT技术背景</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>NAT（Network Address Translation）</li>
+<li>主要用于实现位于内部网络的主机访问外部网络的功能</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ol>
+<li>企业或家庭使用的是私有网络，运营商维护的是公有网络</li>
+<li>私有地址不能再公网中路由</li>
+<li>NAT一般配置在连接内网与外网的网关设备上</li>
+</ol>
+<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/17/Neki2saJMHtgbY5.png" alt="alt NAT应用场景"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/16/HCNA/ACL/ACL%E9%85%8D%E7%BD%AE/#more" rel="contents">
+            <a class="btn" href="/2021/05/17/HCNA/NAT/NAT%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -472,7 +446,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/33/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/">71</a><a class="extend next" rel="next" href="/page/35/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/33/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><a class="extend next" rel="next" href="/page/35/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -517,7 +491,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -528,7 +502,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -539,7 +513,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
