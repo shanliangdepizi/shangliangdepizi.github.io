@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/30/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20GTSM%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/03/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AEGRE%20over%20IPv4%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/03/30/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20GTSM%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  BGP GTSM示例
+                <a class="post-title-link" href="/2022/04/03/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AEGRE%20over%20IPv4%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%EF%BC%89/" itemprop="url">
+                  配置GRE over IPv4示例（静态路由）
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T21:03:35+08:00">
-                2022-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-03T11:03:02+08:00">
+                2022-04-03
               </time>
             
 
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">BGP路由协议</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">GRE隧道技术</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/03/30/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%20GTSM%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/04/03/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AEGRE%20over%20IPv4%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%EF%BC%89/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/03/30/实验/三层协议/BGP协议/BGP GTSM示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/04/03/实验/三层协议/GRE隧道/配置GRE over IPv4示例（静态路由）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,21 +406,24 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>Router A属于AS 10，Router B、Router C、Router D属于AS 20</li>
-<li>所有路由器运行BGP协议，要求Router B免受CPU利用类型的攻击</li>
+<li>Router A、Router B、Router C使用OSPF协议路由可达</li>
+<li>需要在Router A与Router C之间建立直连链路（部署GRE隧道）</li>
+<li>通过静态路由指定到达对端的报文通过Tunnel接口转发，实现PC1与PC2可以互相通信</li>
+<li>PC1和PC2分别指定Router A、Router C为自己的缺省网关</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/03/30/k6rhXAtjfHJBU9l.jpg" alt="BGP GTSM示例"></p>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/03/bg6TBOrIAnqEKlF.jpg" alt="GRE over IPv4示例拓扑图"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>在AS 20的路由器Router B、Router C、Router D上配置OSPF协议，实现AS 20内部互通</li>
-<li>在Router A和Router B之间建立EBGP连接</li>
-<li>在Router B、Router C、Router D之间使用Loop Back 接口建立IBGP全连接，实现各个AS互通</li>
-<li>在Router A、Router B、Router C和Router D上配置GTSM功能，保障Router B免受CPU利用类型的攻击</li>
+<li>各路由器之间配置OSPF协议实现互联互通</li>
+<li>在Router A和Router C之间创建Tunnel接口，配置GRE隧道，指点Tunnel的源地址和目的地址，使报文封装后通过OSPF路由转发</li>
+<li>Tunnel的源地址为发出报文的物理接口的IP地址，目的地址为接收报文的物理接口的IP地址</li>
+<li>PC1与PC2之间的流量通过GRE隧道传输，Router A与Router C上配置静态路由</li>
+<li>以对端PC所在网段为目的地址，出接口为本端配置的Tunnel接口</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>配置各个路由器基本功能以及各个接口IP地址</p>
+<li><p>配置路由器基本功能以及各个接口IP地址</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 10.1.1.1 30</span><br><span class="line">int LoopBack </span><br><span class="line">  ip add 1.1.1.9 32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 20.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 10.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 1.1.1.1 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -430,7 +433,7 @@
 </ol>
 <ul>
 <li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 10.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 20.1.2.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 2.2.2.9 32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 20.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 30.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 2.2.2.2 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -438,15 +441,7 @@
 </ul>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 20.1.2.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 20.1.3.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 3.3.3.9 32</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>Router D配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router D</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 20.1.4.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 20.1.3.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 4.4.4.9 32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 30.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 10.2.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 3.3.3.3 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -455,8 +450,8 @@
 <ol start="2">
 <li><p>配置OSPF协议</p>
 <ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 2.2.2.9</span><br><span class="line">  area 0</span><br><span class="line">    network 20.1.1.0 0.0.0.3</span><br><span class="line">    network 2.2.2.9 0.0.0.0</span><br></pre></td></tr></table></figure>
+<li><p>Router  A配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">  area 0</span><br><span class="line">    network 20.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
@@ -465,26 +460,26 @@
 </li>
 </ol>
 <ul>
-<li><p>Router C配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 3.3.3.9</span><br><span class="line">  area 0</span><br><span class="line">    network 20.1.1.0 0.0.0.3</span><br><span class="line">    network 20.1.2.0 0.0.0.3</span><br><span class="line">    network 3.3.3.9 0.0.0.0</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">  area 0</span><br><span class="line">    network 20.1.1.0 0.0.0.3</span><br><span class="line">    network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ul>
-<li><p>Router D配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 4.4.4.9</span><br><span class="line">  area 0</span><br><span class="line">    network 20.1.2.0 0.0.0.3</span><br><span class="line">    network 20.1.3.0 0.0.0.3</span><br><span class="line">    network 4.4.4.9 0.0.0.0</span><br></pre></td></tr></table></figure>
+<li><p>Router C配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">  area 0</span><br><span class="line">    network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>配置IBGP全连接</p>
+<li><p>配置Tunnel接口（接口协议为GRE、接口IP地址、源地址、目的地址）</p>
 <ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 2.2.2.9</span><br><span class="line">  peer 3.3.3.9 as-number 20</span><br><span class="line">  peer 3.3.3.9 connect-interface LoopBack 0</span><br><span class="line">  peer 3.3.3.9 next-hop-local</span><br><span class="line">  peer 4.4.4.9 as-number 20</span><br><span class="line">  peer 4.4.4.9 connect-interface LoopBack 0</span><br><span class="line">  peer 4.4.4.9 next-hop-local</span><br></pre></td></tr></table></figure>
+<li><p>Router A配置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> Tunnel <span class="number">0</span>/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  tunnel-protocol gre</span><br><span class="line">  ip add <span class="number">40.1</span><span class="number">.1</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line">  source <span class="number">20.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  destination <span class="number">30.1</span><span class="number">.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -494,65 +489,17 @@
 </ol>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 3.3.3.9</span><br><span class="line">  peer 2.2.2.9 as-number 20</span><br><span class="line">  peer 2.2.2.9 connect-interface LoopBack 0</span><br><span class="line">  peer 4.4.4.9 as-number 20</span><br><span class="line">  peer 4.4.4.9 connect-interface LoopBack 0</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>Router D配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 4.4.4.9</span><br><span class="line">  peer 2.2.2.9 as-number 20</span><br><span class="line">  peer 2.2.2.9 connect-interface LoopBack 0</span><br><span class="line">  peer 3.3.3.9 as-number 20</span><br><span class="line">  peer 3.3.3.9 connect-interface LoopBack 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">  tunnel-protocol gre</span><br><span class="line">  ip add 40.1.1.2 30</span><br><span class="line">  source 30.1.1.1</span><br><span class="line">  destination 20.1.1.1</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="4">
-<li><p>配置EBGP连接</p>
+<li><p>配置静态路由</p>
 <ul>
 <li><p>Router A配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  router-id 1.1.1.9</span><br><span class="line">  peer 10.1.1.2 as-number 20</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  peer 10.1.1.1 as-number 10</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="5">
-<li><p>配置Router A与Router B之间的GTSM</p>
-<ul>
-<li><p>Router A配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  peer 10.1.1.2 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 10.1.1.1 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="6">
-<li><p>配置Router B与Router C之间的GTSM</p>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.1.2 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip route-static 10.2.1.0 30 Tunnel 0&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
 
 
 
@@ -562,68 +509,39 @@
 </ol>
 <ul>
 <li><p>Router C配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.1.1 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="7">
-<li><p>配置Router B与Router D之间的GTSM</p>
-<ul>
-<li><p>Router B配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.2.2 valid-ttl-hops 2</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router D配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.1.1 valid-ttl-hops 2</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="8">
-<li><p>配置Router C与Router D之间的GTSM</p>
-<ul>
-<li><p>Router C配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.2.2 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>Router D配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  peer 20.1.2.1 valid-ttl-hops 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip route-static 10.1.1.0 30 Tunnel 0&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
-<li><p>查看BGP的对等体（以Router B为例）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">display bgp peer</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp peer</span><br><span class="line"></span><br><span class="line"> BGP local router ID : 2.2.2.2</span><br><span class="line"> Local AS number : 20</span><br><span class="line"> Total number of peers : 3		  Peers in established state : 3</span><br><span class="line"></span><br><span class="line">  Peer            V          AS  MsgRcvd  MsgSent  OutQ  Up&#x2F;Down       State Pre</span><br><span class="line">fRcv</span><br><span class="line"></span><br><span class="line">  3.3.3.9         4          20       26       27     0 00:24:02 Established    </span><br><span class="line">   0</span><br><span class="line">  4.4.4.9         4          20       25       26     0 00:23:58 Established    </span><br><span class="line">   0</span><br><span class="line">  10.1.1.1        4          10       26       26     0 00:24:37 Established    </span><br><span class="line">   0</span><br></pre></td></tr></table></figure>
+<li><p>查看OSPF路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">display ip routing-table protocol ospf</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;display ip routing-table protocol ospf</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Public routing table : OSPF</span><br><span class="line">         Destinations : 1        Routes : 1        </span><br><span class="line"></span><br><span class="line">OSPF routing table status : &lt;Active&gt;</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">       30.1.1.0&#x2F;30  OSPF    10   2           D   20.1.1.2        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">OSPF routing table status : &lt;Inactive&gt;</span><br><span class="line">         Destinations : 0        Routes : 0</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>查看GTSM功能配置情况（以Router B为例）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">display bgp peer 20.1.1.1 verbose</span><br><span class="line"></span><br><span class="line">&lt;Router B&gt;dis bgp peer 10.1.1.1 verbose </span><br><span class="line"></span><br><span class="line">	BGP Peer is 10.1.1.1,  remote AS 10  </span><br><span class="line">	Type: EBGP link</span><br><span class="line">	BGP version 4, Remote router ID 1.1.1.1</span><br><span class="line">	Update-group ID: 0  </span><br><span class="line">	BGP current state: Established, Up for 00h27m05s </span><br><span class="line">	BGP current event: KATimerExpired</span><br><span class="line">	BGP last state: OpenConfirm</span><br><span class="line">	BGP Peer Up count: 1</span><br><span class="line">	Received total routes: 0</span><br><span class="line">	Received active routes total: 0</span><br><span class="line">	Advertised total routes: 0</span><br><span class="line">	Port:  Local - 50063	Remote - 179</span><br><span class="line">	Configured: Connect-retry Time: 32 sec</span><br><span class="line">	Configured: Active Hold Time: 180 sec	Keepalive Time:60 sec</span><br><span class="line">	Received  : Active Hold Time: 180 sec</span><br><span class="line">	Negotiated: Active Hold Time: 180 sec	Keepalive Time:60 sec</span><br><span class="line">	Peer optional capabilities:</span><br><span class="line">	Peer supports bgp multi-protocol extension</span><br><span class="line">	Peer supports bgp route refresh capability</span><br><span class="line">	Peer supports bgp 4-byte-as capability</span><br><span class="line">	Address family IPv4 Unicast: advertised and received</span><br><span class="line"> Received: Total 29 messages</span><br><span class="line">		 Update messages 		0 </span><br><span class="line">		 Open messages 			1 </span><br><span class="line">		 KeepAlive messages 		28 </span><br><span class="line">		 Notification messages  	0 </span><br><span class="line">		 Refresh messages 		0</span><br><span class="line"> Sent: Total 29 messages</span><br><span class="line">		 Update messages 		0 </span><br><span class="line">		 Open messages 			1 </span><br><span class="line">		 KeepAlive messages 		28 </span><br><span class="line">		 Notification messages  	0 </span><br><span class="line">		 Refresh messages 		0</span><br><span class="line"> Authentication type configured: None</span><br><span class="line"> Last keepalive received: 2022&#x2F;03&#x2F;30 20:59:30 UTC-08:00    </span><br><span class="line"> Last keepalive sent    : 2022&#x2F;03&#x2F;30 20:59:31 UTC-08:00    </span><br><span class="line"> Minimum route advertisement interval is 30 seconds</span><br><span class="line"> Optional capabilities:</span><br><span class="line"> Route refresh capability has been enabled</span><br><span class="line"> 4-byte-as capability has been enabled</span><br><span class="line">     &#x2F;&#x2F; GTSM功能已经配置</span><br><span class="line"> GTSM has been enabled, valid-ttl-hops: 1</span><br><span class="line"> Peer Preferred Value: 0</span><br><span class="line"> Routing policy configured:</span><br><span class="line"> No routing policy is configured</span><br></pre></td></tr></table></figure>
+<li><p>查看Tunnel隧道是否建立成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ping -a 40.1.1.1 40.1.1.2</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;ping -a 40.1.1.1 40.1.1.2</span><br><span class="line">  PING 40.1.1.2: 56  data bytes, press CTRL_C to break</span><br><span class="line">    Reply from 40.1.1.2: bytes&#x3D;56 Sequence&#x3D;1 ttl&#x3D;255 time&#x3D;20 ms</span><br><span class="line">    Reply from 40.1.1.2: bytes&#x3D;56 Sequence&#x3D;2 ttl&#x3D;255 time&#x3D;20 ms</span><br><span class="line">    Reply from 40.1.1.2: bytes&#x3D;56 Sequence&#x3D;3 ttl&#x3D;255 time&#x3D;20 ms</span><br><span class="line">    Reply from 40.1.1.2: bytes&#x3D;56 Sequence&#x3D;4 ttl&#x3D;255 time&#x3D;20 ms</span><br><span class="line">    Reply from 40.1.1.2: bytes&#x3D;56 Sequence&#x3D;5 ttl&#x3D;255 time&#x3D;30 ms</span><br><span class="line"></span><br><span class="line">  --- 40.1.1.2 ping statistics ---</span><br><span class="line">    5 packet(s) transmitted</span><br><span class="line">    5 packet(s) received</span><br><span class="line">    0.00% packet loss</span><br><span class="line">    round-trip min&#x2F;avg&#x2F;max &#x3D; 20&#x2F;22&#x2F;30 ms</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-<li><p>查看GTSM统计信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display gtsm statistics all</span><br></pre></td></tr></table></figure>
+</ol>
+<ol start="3">
+<li><p>查看到目的地址10.2.1.2 的路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">display ip routing-table 10.2.1.2</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;display ip routing-table 10.2.1.2</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Table : Public</span><br><span class="line">Summary Count : 1</span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">       10.2.1.0&#x2F;30  Static  60   0           D   40.1.1.1        Tunnel0&#x2F;0&#x2F;0</span><br></pre></td></tr></table></figure>
 
 
+
+</li>
+</ol>
+<ol start="4">
+<li><p>ping和trace地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ping 10.2.1.2</span><br><span class="line">tracert 10.2.1.2</span><br><span class="line"></span><br><span class="line">PC&gt;ping 10.2.1.2</span><br><span class="line"></span><br><span class="line">Ping 10.2.1.2: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">Request timeout!</span><br><span class="line">From 10.2.1.2: bytes&#x3D;32 seq&#x3D;2 ttl&#x3D;126 time&#x3D;31 ms</span><br><span class="line">From 10.2.1.2: bytes&#x3D;32 seq&#x3D;3 ttl&#x3D;126 time&#x3D;32 ms</span><br><span class="line">From 10.2.1.2: bytes&#x3D;32 seq&#x3D;4 ttl&#x3D;126 time&#x3D;31 ms</span><br><span class="line">From 10.2.1.2: bytes&#x3D;32 seq&#x3D;5 ttl&#x3D;126 time&#x3D;15 ms</span><br><span class="line"></span><br><span class="line">--- 10.2.1.2 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  4 packet(s) received</span><br><span class="line">  20.00% packet loss</span><br><span class="line">  round-trip min&#x2F;avg&#x2F;max &#x3D; 0&#x2F;27&#x2F;32 ms</span><br><span class="line"></span><br><span class="line">PC&gt;tracert 10.2.1.2</span><br><span class="line"></span><br><span class="line">traceroute to 10.2.1.2, 8 hops max</span><br><span class="line">(ICMP), press Ctrl+C to stop</span><br><span class="line"> 1  10.1.1.1   16 ms  &lt;1 ms  15 ms</span><br><span class="line"> 2  40.1.1.2   16 ms  31 ms  32 ms</span><br><span class="line"> 3  10.2.1.2   15 ms  31 ms  16 ms</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -665,7 +583,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/8/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/8/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -710,7 +628,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -732,7 +650,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
