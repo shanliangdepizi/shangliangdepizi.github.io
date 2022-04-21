@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/09/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/11/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/06/09/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/" itemprop="url">
-                  OSPF综合应用
+                <a class="post-title-link" href="/2021/06/11/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A6%82%E8%BF%B0/" itemprop="url">
+                  OSPF概述
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-09T10:31:40+08:00">
-                2021-06-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-11T20:52:49+08:00">
+                2021-06-11
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/06/09/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/#comments" itemprop="discussionUrl">
+                <a href="/2021/06/11/HCNP/%E8%B7%AF%E7%94%B1/OSPF/OSPF%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/06/09/HCNP/路由/OSPF/OSPF综合应用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/06/11/HCNP/路由/OSPF/OSPF概述/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,8 +405,125 @@
       
         
           
-            <h1 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h1><h2 id="实验图"><a href="#实验图" class="headerlink" title="实验图"></a>实验图</h2><p><img src="https://i.loli.net/2021/06/09/P5gAoXmxYb7268l.png" alt="alt OSPF综合应用"></p>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><table>
+            <h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><h2 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h2><ol>
+<li><p>网络规模扩大</p>
+</li>
+<li><p>网络可靠性要求提高</p>
+</li>
+<li><p>网络异构化趋势加强</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/8u3IA2KLdo7jB9Z.png" alt="alt OSPF技术背景"></p>
+</li>
+</ol>
+<h2 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h2><h3 id="RIP协议缺点"><a href="#RIP协议缺点" class="headerlink" title="RIP协议缺点"></a>RIP协议缺点</h3><ol>
+<li><p>逐跳收敛，收敛速度慢（周期30s），故障恢复时间长</p>
+</li>
+<li><p>分布式路由计算，缺少对全局网络拓扑的了解</p>
+</li>
+<li><p>以“跳数”为度量，存在选择次优路径的风险</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/LvtHrqzAb7Oly6Z.png" alt="alt RIP协议缺点"></p>
+</li>
+</ol>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>RIP的问题</th>
+<th>优化或解决方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>收敛速度慢</td>
+<td>触发式更新</td>
+</tr>
+<tr>
+<td>缺少对全局网络拓扑的了解</td>
+<td>路由器基于拓扑信息，独立计算路由</td>
+</tr>
+<tr>
+<td>存在选择次优路由的风险</td>
+<td>将链路带宽作为选路参考值</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/GJcwXhE8DRt1e7j.png" alt="alt RIP协议问题的解决方法"></p>
+</li>
+</ol>
+<h1 id="OSPF协议"><a href="#OSPF协议" class="headerlink" title="OSPF协议"></a>OSPF协议</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ol>
+<li>路由信息的传递（LSA）与路由计算（SPF算法）分离</li>
+<li>基于SPF算法</li>
+<li>以“累计链路开销”作为选路参考值</li>
+<li>链路状态路由协议LSA</li>
+</ol>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/01/xsPZtbyVluSpzdn.png" alt="alt OSPF协议"></p>
+<h2 id="OSPF工作流程"><a href="#OSPF工作流程" class="headerlink" title="OSPF工作流程"></a>OSPF工作流程</h2><h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li><p>建立邻居（Hello包，OSPF状态）</p>
+</li>
+<li><p>同步数据链路状态</p>
+</li>
+<li><p>计算路由</p>
+</li>
+<li><p>通过LSDB掌握全网的拓扑结构，一个区域内的LSDB都是同步的</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/a4CgymGpXvWH7lO.png" alt="alt OSPF工作过程"></p>
+</li>
+<li><p>设备内部的变化</p>
+<p><img src="https://i.loli.net/2021/06/01/kZymDCFTKJAgIf9.png" alt="alt OSPF设备内部变化"></p>
+</li>
+<li><p>OSPF流程</p>
+<p><img src="https://i.loli.net/2021/06/01/WkNyXHQnE7axDmC.png" alt="alt OSPF流程"></p>
+</li>
+</ol>
+<h2 id="OSPF-RID"><a href="#OSPF-RID" class="headerlink" title="OSPF RID"></a>OSPF RID</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
+<li><p>用于自治系统中来标识唯一的路由器，每台运行OSPF的路由器都有一个唯一的Router ID</p>
+</li>
+<li><p>配置方式：自动或者手动</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/z2RBqig1JdIFxvL.png" alt="alt OSPF Router ID"></p>
+</li>
+</ol>
+<h3 id="Router-ID配置方式"><a href="#Router-ID配置方式" class="headerlink" title="Router ID配置方式"></a>Router ID配置方式</h3><ol>
+<li>自动配置<ul>
+<li>首先看有没有回环口，有回环口则用回环口的IP地址</li>
+<li>如果没有回环口，则从物理接口或者虚拟接口中选择IP地址最大的作为Router ID</li>
+<li>如果没有配置Router ID，则Router ID为0.0.0.0，此时OSPF协议没有启动起来</li>
+</ul>
+</li>
+<li>手动配置<ul>
+<li>在开启OSPF协议的同时，直接设置Router ID</li>
+<li>强烈建议手动配置</li>
+</ul>
+</li>
+</ol>
+<h2 id="OSPF建立邻居"><a href="#OSPF建立邻居" class="headerlink" title="OSPF建立邻居"></a>OSPF建立邻居</h2><h3 id="OSPF邻居建立的过程"><a href="#OSPF邻居建立的过程" class="headerlink" title="OSPF邻居建立的过程"></a>OSPF邻居建立的过程</h3><ol>
+<li><p>两个三层设备没有开启OSPF协议之前，down状态</p>
+</li>
+<li><p>当两个三层设备同时开启OSPF协议，此时两个三层设备都会同时发送Hello数据包</p>
+</li>
+<li><p>A设备给B设备发送Hello包，其中没有与B设备相关的路由信息，B设备也给A设备发送Hello包，也没有与A设备相关的路由信息，此时两个设备进入init状态</p>
+</li>
+<li><p>当两个设备发送Hello包，同时也互相包含了对方的路由信息，此时两个设备都进入2-way状态，也是建立邻居的状态</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/r6wFhlpNeiuVZKo.png" alt="alt OSPF邻居建立状态"></p>
+</li>
+</ol>
+<h3 id="手动建立邻居"><a href="#手动建立邻居" class="headerlink" title="手动建立邻居"></a>手动建立邻居</h3><ol>
+<li><p>OSPF支持通过单播方式建立邻居关系</p>
+</li>
+<li><p>对于不支持组播的网络通过手动配置实现邻居的发现与维护</p>
+</li>
+<li><p>图表</p>
+<table>
 <thead>
 <tr>
 <th>命令</th>
@@ -414,115 +531,397 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>stub</td>
-<td>配置区域为Stub<br>区域内所有路由器都需要配置</td>
+<td>ospf 1 router id 1.1.1.1</td>
+<td>创建OSPF进程</td>
 </tr>
 <tr>
-<td>stub no-summary</td>
-<td>配置区域为Totally Stub<br>只用于Stub区域内的ABR</td>
-</tr>
-<tr>
-<td>nssa</td>
-<td>配置区域为NSSA<br>区域内所有路由器都需要配置</td>
-</tr>
-<tr>
-<td>nssa(default-route-advertise)</td>
-<td>只用于NSSA区域内的ABR或ASBR<br>在ABR上无论路由表中是否存在缺省路由，都会产生Type7 LSA缺省路由<br>在ASBR上只有当路由表中存在缺省路由，才会产生Type 7 LSA缺省路由</td>
-</tr>
-<tr>
-<td>nssa no-summary</td>
-<td>屏蔽区域间路由<br>产生一条Type 3 LSA 向该区域发布缺省路由（类似于Totally Stub）</td>
+<td>peer 192.168.1.1</td>
+<td>手动创建邻居</td>
 </tr>
 </tbody></table>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="R1配置"><a href="#R1配置" class="headerlink" title="R1配置"></a>R1配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 13.0.0.1 24</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">ip add 14.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br><span class="line">net 13.0.0.1 0.0.0.0</span><br><span class="line">net 14.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R2配置"><a href="#R2配置" class="headerlink" title="R2配置"></a>R2配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 25.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br><span class="line">area 1</span><br><span class="line">net 25.0.0.1 0.0.0.0</span><br><span class="line">#设置成Stub区域</span><br><span class="line">stub no-summary</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R3配置"><a href="#R3配置" class="headerlink" title="R3配置"></a>R3配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 13.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 38.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 0</span><br><span class="line">net 13.0.0.2 0.0.0.0</span><br><span class="line">area 3</span><br><span class="line">net 38.0.0.1 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R4配置"><a href="#R4配置" class="headerlink" title="R4配置"></a>R4配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 14.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 46.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 4.4.4.4</span><br><span class="line">area 0</span><br><span class="line">net 14.0.0.2 0.0.0.0</span><br><span class="line">area 2</span><br><span class="line">net 46.0.0.1 0.0.0.0</span><br><span class="line"># 设置NSSA区域</span><br><span class="line">nssa no-summary</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R5配置"><a href="#R5配置" class="headerlink" title="R5配置"></a>R5配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R5</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 25.0.0.2 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 5.5.5.5</span><br><span class="line">area 1</span><br><span class="line">net 25.0.0.2 0.0.0.0</span><br><span class="line">stub no-summary</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R6配置"><a href="#R6配置" class="headerlink" title="R6配置"></a>R6配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R6</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 46.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 67.0.0.1 24</span><br><span class="line"></span><br><span class="line"># 设置策略</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 permit source 67.0.0.0 0.0.0.255</span><br><span class="line">route-policy wuchao permit node 10</span><br><span class="line">if-match acl 2000</span><br><span class="line">ospf 1 router-id 6.6.6.6</span><br><span class="line">import-route direct route-policy wuchao</span><br><span class="line">area 2</span><br><span class="line">net 46.0.0.2 0.0.0.0</span><br><span class="line"># 设置NSSA区域</span><br><span class="line">nssa no-summary</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R7配置"><a href="#R7配置" class="headerlink" title="R7配置"></a>R7配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R7</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 67.0.0.2 24</span><br><span class="line">ip route-static 0.0.0.0 0.0.0.0 67.0.0.1</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R8配置"><a href="#R8配置" class="headerlink" title="R8配置"></a>R8配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R8</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 38.0.0.2 24</span><br><span class="line"></span><br><span class="line">ospf router-id 8.8.8.8</span><br><span class="line">area 3</span><br><span class="line">net 38.0.0.2 0.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="未设置特殊区域前的LSDB"><a href="#未设置特殊区域前的LSDB" class="headerlink" title="未设置特殊区域前的LSDB"></a>未设置特殊区域前的LSDB</h3><ol>
-<li><p>area 0中LSDB</p>
-<p><img src="https://i.loli.net/2021/06/09/PDtIlxnqpKYUrHi.png" alt="alt area 0中LSDB"></p>
-</li>
-<li><p>area 1区域ABR路由器的LSDB</p>
-<p><img src="https://i.loli.net/2021/06/09/nzNXgkeim8vS4Vb.png" alt="alt area 1区域ABR路由器的LSDB"></p>
-</li>
-<li><p>area 2区域ABR路由器的LSDB</p>
-<p><img src="https://i.loli.net/2021/06/09/xO5PQZr89chkLDp.png" alt="alt area 1区域ABR路由器的LSDB"></p>
-</li>
-<li><p>area 3区域ABR路由器的LSDB</p>
-<p><img src="https://i.loli.net/2021/06/09/xnKdTmFl3WvDjNt.png" alt="alt area 1区域ABR路由器的LSDB"></p>
 </li>
 </ol>
-<h3 id="将area1设置成Stub区域"><a href="#将area1设置成Stub区域" class="headerlink" title="将area1设置成Stub区域"></a>将area1设置成Stub区域</h3><ol>
-<li><p>设置之前</p>
-<p><img src="https://i.loli.net/2021/06/09/JKxwRDzrQ7BFGjg.png" alt="alt area1设置成Stub区域之前"></p>
-</li>
-<li><p>设置之后</p>
-<p><img src="https://i.loli.net/2021/06/09/D2Insk6pgYF5q83.png" alt="alt area1设置成Stub区域"></p>
+<ol start="4">
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/qxSuBDR18g54GfL.png" alt="alt OSPF手动创建邻居"></p>
 </li>
 </ol>
-<h3 id="将area2设置成NSSA区域"><a href="#将area2设置成NSSA区域" class="headerlink" title="将area2设置成NSSA区域"></a>将area2设置成NSSA区域</h3><p><img src="https://i.loli.net/2021/06/09/FscBrQWxGC8mtVf.png" alt="alt 将area2设置成NSSA区域"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>配置Totally NSSA的时候，需要ABR与末节路由器走配置NSSA no-summary</li>
+<h2 id="OSPF建立邻接"><a href="#OSPF建立邻接" class="headerlink" title="OSPF建立邻接"></a>OSPF建立邻接</h2><h3 id="LSDB同步"><a href="#LSDB同步" class="headerlink" title="LSDB同步"></a>LSDB同步</h3><ol>
+<li>创建邻居关系（2-way状态）后，开启OSPF协议的三层设备进入ExStart状态，两个三层设备互相发送DD（Database Description）数据包，此时两个三层设备的DD数据包中，都表明自己是Master</li>
+<li>当两个设备都收到对方的DD数据包之后，会比较两个三层设备的Router ID，Router ID大的作为Master，选举Master的作用为了遵从Master的序列号</li>
+<li>选举完Master之后，进入ExChange状态，此时两个三层设备会发送DD数据包，比较两个三层设备的LSDB数据库，只更新自己LSDB数据库中没有的路由信息</li>
+<li>此时进入Loading状态，两个设备会发送LS Request数据包，请求对方发送自己LSDB中没有的路由信息</li>
+<li>收到LS Request 的设备会发送LS Update 数据包，将路由信息发送给请求方</li>
+<li>请求方收到LS Update之后，会给发送方回复确认信息的LS ACK的数据包，此时进入Full状态</li>
 </ol>
-<h1 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><p><img src="https://i.loli.net/2021/06/11/wceBNWI63tjbfmr.png" alt="alt 实验要求"></p>
-<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://i.loli.net/2021/06/11/pEH5ITFDYrdSs8Z.png" alt="alt 实验2拓扑"></p>
-<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><h3 id="RTA配置"><a href="#RTA配置" class="headerlink" title="RTA配置"></a>RTA配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTA</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.123.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.1.123.5 30</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line"># 引入外部路由的时候使用类型1，计算AS内部的Cost</span><br><span class="line">import-route direct type 1</span><br><span class="line">area 0</span><br><span class="line">net 10.1.123.0 0.0.0.7</span><br></pre></td></tr></table></figure>
+<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/01/qRZySpDgm8FI6V5.png" alt="alt LSDB同步"></p>
+<h2 id="OSPF区域划分"><a href="#OSPF区域划分" class="headerlink" title="OSPF区域划分"></a>OSPF区域划分</h2><h3 id="OSPF单区域问题"><a href="#OSPF单区域问题" class="headerlink" title="OSPF单区域问题"></a>OSPF单区域问题</h3><ol>
+<li><p>收到LSA通告太多，LSDB过于庞大，OSPF路由器的负担会很大</p>
+</li>
+<li><p>内部动荡会引起全网路由器重新进行SPF计算</p>
+</li>
+<li><p>资源消耗过多，LSDB庞大，设备性能下降，影响数据转发的效率</p>
+</li>
+<li><p>每台路由器都需要维护的路由表越来越庞大，单区域无法进行汇总</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/EzItVa5exXumHLO.png" alt="alt OSPF单区域的问题"></p>
+</li>
+</ol>
+<h3 id="OSPF单区域问题解决办法（划分区域）"><a href="#OSPF单区域问题解决办法（划分区域）" class="headerlink" title="OSPF单区域问题解决办法（划分区域）"></a>OSPF单区域问题解决办法（划分区域）</h3><ol>
+<li><p>较少LSA泛洪的范围，有效的把拓扑控制在区域内，达到优化网络的目的、</p>
+</li>
+<li><p>在区域边界可以做路由汇总，较少路由表</p>
+</li>
+<li><p>充分利用OSPF特殊区域的特性，进一步减少LSA泛洪，从而优化路由</p>
+</li>
+<li><p>多区域提高了网路的扩展性，有利于组建更大规模的网络</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/01/JDnZbuYPG6tvS81.png" alt="alt OSPF单区域问题的解决方法"></p>
+</li>
+</ol>
+<h3 id="OSPF单区域配置案例"><a href="#OSPF单区域配置案例" class="headerlink" title="OSPF单区域配置案例"></a>OSPF单区域配置案例</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/02/WrRZAo1gMzGXp7L.png" alt="alt OSPF单区域实验拓扑"></p>
+</li>
+<li><p>实验结果对比</p>
+<p><img src="https://i.loli.net/2021/06/02/Cl7cei2BzvjSZPw.png" alt="alt 第一种结果对比"></p>
+</li>
+<li><p>以太网段的也运行OSPF</p>
+<p><img src="https://i.loli.net/2021/06/02/Sw8sg6NPzDMTOWG.png" alt="alt OSPF单区域实验2"></p>
+</li>
+<li><p>结果</p>
+<p><img src="https://i.loli.net/2021/06/02/lcirahepHIq1t3G.png" alt="结果"></p>
+</li>
+<li><p>验证命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dis ospf peer brief</td>
+<td>查看邻居状态</td>
+</tr>
+<tr>
+<td>dis ospf routing</td>
+<td>查看OSPF路由表</td>
+</tr>
+<tr>
+<td>dis ospf lsdb</td>
+<td>查看OSPF的LSDB</td>
+</tr>
+<tr>
+<td>dis ospf interface</td>
+<td>查看OSPF接口</td>
+</tr>
+<tr>
+<td>dis ospf abr-asbr</td>
+<td>查看ABR和ASBR</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="OSPF-度量值Cost"><a href="#OSPF-度量值Cost" class="headerlink" title="OSPF 度量值Cost"></a>OSPF 度量值Cost</h2><h3 id="OSPF度量值计算"><a href="#OSPF度量值计算" class="headerlink" title="OSPF度量值计算"></a>OSPF度量值计算</h3><ol>
+<li><p>公式：Cost = 带宽参考值/实际带宽</p>
+</li>
+<li><p>更改Cost的两种方式</p>
+<ul>
+<li>直接在接口上配置</li>
+<li>修改带宽参考值（所有路由器都需要修改，确保选路一致）</li>
+</ul>
+</li>
+<li><p>路由Cost计算三层设备哪个接口的Cost</p>
+<ul>
+<li>数据发送方式，看的是出接口</li>
+<li>路由方向，看的是入接口</li>
+</ul>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/QwPH8Og2AoBrExF.png" alt="alt OSPF度量值计算"></p>
+</li>
+</ol>
+<h1 id="网络类型（基于接口）"><a href="#网络类型（基于接口）" class="headerlink" title="网络类型（基于接口）"></a>网络类型（基于接口）</h1><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><table>
+<thead>
+<tr>
+<th>网络类型</th>
+<th>常见链路层协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P2P Point-to-Point</td>
+<td>PPP链路，HDLC链路</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>Ethernet链路</td>
+</tr>
+<tr>
+<td>NBMA</td>
+<td>FR链路、ATM链路</td>
+</tr>
+<tr>
+<td>P2MP Point-to-MultiOoint</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Virtual Link VC</td>
+<td>虚连接</td>
+</tr>
+</tbody></table>
+<h2 id="P2P网络"><a href="#P2P网络" class="headerlink" title="P2P网络"></a>P2P网络</h2><ol>
+<li><p>仅两台路由器互联</p>
+</li>
+<li><p>支持广播、组播</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/Sb7RmXflEeuJs3z.png" alt="alt P2P网络"></p>
+</li>
+</ol>
+<h2 id="BMA-广播型网络"><a href="#BMA-广播型网络" class="headerlink" title="BMA 广播型网络"></a>BMA 广播型网络</h2><ol>
+<li><p>两台或者两台以上的路由器通过共享介质互联</p>
+</li>
+<li><p>支持广播、组播</p>
+</li>
+<li><p>选举DR、BDR</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/4hFd6GJX7QtU2oK.png" alt="alt BMA广播型多路网络"></p>
+</li>
+</ol>
+<h2 id="NBMA网络"><a href="#NBMA网络" class="headerlink" title="NBMA网络"></a>NBMA网络</h2><ol>
+<li><p>非广播多路访问</p>
+</li>
+<li><p>两台或两台以上路由器通过VC互连</p>
+</li>
+<li><p>DLCI，Data Link Connection Identifier数据链路连接标识符，约等于交换机的二层MAC地址</p>
+</li>
+<li><p>不支持广播、组播，单播建立邻居</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/RclsBS3QIAv4in9.png" alt="alt NBMA非广播多路访问"></p>
+</li>
+</ol>
+<h2 id="P2MP网络"><a href="#P2MP网络" class="headerlink" title="P2MP网络"></a>P2MP网络</h2><ol>
+<li><p>点到多点</p>
+</li>
+<li><p>两台或两台以上路由器通过VC互连</p>
+</li>
+<li><p>支持广播、组播</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/BrRIu2qeY1FnQJx.png" alt="alt P2MP点到多点"></p>
+</li>
+</ol>
+<h2 id="虚连接（Virtual-Link）"><a href="#虚连接（Virtual-Link）" class="headerlink" title="虚连接（Virtual Link）"></a>虚连接（Virtual Link）</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ol>
+<li>为了避免区域（area）间的环路，OSPF规定：不允许直接在两个非骨干区域之间发布路由信息。只允许在一个区域内部或者在骨干区与非骨干区之间发布路由信息</li>
+<li>每个ABR（边界路由器）必须直接连接到骨干区域。即要求所有非骨干区域必须与骨干区域连接，同时骨干区域之间也必须连接</li>
+<li>由于网络设计、升级、合并、改造等因素，从而造成不规范区域架构，最终导致路由学习不完整 ，解决方法：使用虚链路</li>
+<li>虚链路的存在增加网络的复杂性，使得故障的排除比较困难。应该尽量避免使用虚链路</li>
+<li>虚链路作为：修复无法避免：的网络拓扑问题的一种临时手段</li>
+<li>虚链路可以作为标明网络的某个部分是否需要重新规划设计的标志</li>
+</ol>
+<h3 id="域内区域间环路"><a href="#域内区域间环路" class="headerlink" title="域内区域间环路"></a>域内区域间环路</h3><ol>
+<li><p>路由环路</p>
+<p><img src="https://i.loli.net/2021/06/03/dfjKsaXot8HTFnb.png" alt="alt OSPF域内路由环路"></p>
+</li>
+<li><p>不规范的路由架构</p>
+<p><img src="https://i.loli.net/2021/06/03/jAykWq2dBE3MsPu.png" alt="alt 不规范的区域架构"></p>
+</li>
+<li><p>避免域间环路</p>
+<p><img src="https://i.loli.net/2021/06/03/iaIpzfMnFWxN1mT.png" alt="alt 避免域间路由"></p>
+</li>
+<li></li>
+</ol>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/03/ISMhBHgKf8iamOy.png" alt="alt OSPF虚连接拓扑"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vlink peer x.x.x.x</td>
+<td>配置虚连接，使用端口Router ID</td>
+</tr>
+<tr>
+<td>display ospf vlink</td>
+<td>验证虚连接</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 1.1.1.1 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.0 0.0.0.255</span><br><span class="line">net 1.1.1.1 0.0.0.0</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="RTB配置"><a href="#RTB配置" class="headerlink" title="RTB配置"></a>RTB配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTB</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.123.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.1.24.1 24</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 0</span><br><span class="line">net 10.1.123.0 0.0.0.3</span><br><span class="line">area 1</span><br><span class="line">net 10.1.24.0 0.0.0.255</span><br><span class="line"># 设置NSSA区域 节省设备资源</span><br><span class="line">nass no-summary</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.0 0.0.0.255</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.0 0.0.0.255</span><br><span class="line">vlink-peer 3.3.3.3</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="RTC配置"><a href="#RTC配置" class="headerlink" title="RTC配置"></a>RTC配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTC</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.123.6 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.1.35.1 24</span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 0</span><br><span class="line">net 10.1.123.4 0.0.0.3</span><br><span class="line">area 2</span><br><span class="line">net 10.1.35.0 0.0.0.255</span><br><span class="line"># 配置虚链路实现与办事处的通信</span><br><span class="line">vlink-peer 5.5.5.5</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>R3 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 23.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 34.0.0.1 24</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">area 2</span><br><span class="line">net 34.0.0.0 0.0.0.255</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.0 0.0.0.255</span><br><span class="line">vlink-peer 2.2.2.2</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="RTD配置"><a href="#RTD配置" class="headerlink" title="RTD配置"></a>RTD配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTD</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.24.2 24</span><br><span class="line">ospf 1 router-id 4.4.4.4</span><br><span class="line">area 1</span><br><span class="line">net 10.1.24.0 0.0.0.255</span><br><span class="line"># 设置NSSA区域节省设备资源</span><br><span class="line">nass no-summary</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 34.0.0.2 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 4.4.4.4 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 4.4.4.4</span><br><span class="line">area 2</span><br><span class="line">net 34.0.0.0 0.0.0.255</span><br><span class="line">net 4.4.4.4 0.0.0.0</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="RTE配置"><a href="#RTE配置" class="headerlink" title="RTE配置"></a>RTE配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTE</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.35.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 10.1.56.1 24</span><br><span class="line">ospf 1 router-id 5.5.5.5</span><br><span class="line">area 2</span><br><span class="line">net 10.1.35.0 0.0.0.255</span><br><span class="line">vlink-peer 3.3.3.3</span><br><span class="line">area 3</span><br><span class="line">net 10.1.56.0 0.0.0.255</span><br><span class="line"># 设置认证模式 保证通信安全</span><br><span class="line">authentication-mode md5 1 plain wu110119</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li><p>验证 </p>
+<ul>
+<li><p>抓包</p>
+<p><img src="https://i.loli.net/2021/06/03/u2frFmlKYBJMV46.png" alt="alt 虚连接抓包"></p>
+</li>
+<li><p>虚链路发送的包</p>
+<p><img src="https://i.loli.net/2021/06/03/kDjo82SuXc1JThz.png" alt="alt 虚链路发送的包"></p>
+</li>
+<li><p>ping</p>
+<p><img src="https://i.loli.net/2021/06/03/4pVXMPczfFYJwsN.png" alt="alt ping"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://i.loli.net/2021/06/03/c8gmEuOzhKjfH42.png" alt="alt 总结"></p>
+<p><img src="https://i.loli.net/2021/06/03/AhF23HqEV5JYKnI.png" alt="alt 总结"></p>
+<h2 id="邻居邻接关系"><a href="#邻居邻接关系" class="headerlink" title="邻居邻接关系"></a>邻居邻接关系</h2><table>
+<thead>
+<tr>
+<th>网络类型</th>
+<th>是否和邻居建立邻接关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P2P</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>DR与BDR、DR Others建立邻接关系<br>BDR与DR、DR Others建立邻接关系<br>DR Others之间建立邻居关系</td>
+</tr>
+<tr>
+<td>NBMA</td>
+<td>DR与BDR、DR Others建立邻接关系<br>BDR与DR、DR Others建立邻接关系<br>DR Others之间建立邻居关系</td>
+</tr>
+<tr>
+<td>P2MP</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h2 id="DR与BDR"><a href="#DR与BDR" class="headerlink" title="DR与BDR"></a>DR与BDR</h2><h3 id="MA网络中的问题"><a href="#MA网络中的问题" class="headerlink" title="MA网络中的问题"></a>MA网络中的问题</h3><ol>
+<li><p>需要n x (n-1)/2个邻接关系，管理复杂</p>
+</li>
+<li><p>重复的LSA泛洪，造成资源浪费</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/584JBNZVz2l7HKm.png" alt="alt MA网络中的问题"></p>
+</li>
+</ol>
+<h3 id="DR与BDR作用"><a href="#DR与BDR作用" class="headerlink" title="DR与BDR作用"></a>DR与BDR作用</h3><ol>
+<li><p>减少邻接关系</p>
+</li>
+<li><p>降低OSPF协议流量</p>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/03/ltFs5Ix3YoRVLc6.png" alt="alt DR与BDR作用"></p>
+</li>
+</ol>
+<h3 id="DR与BDR选举"><a href="#DR与BDR选举" class="headerlink" title="DR与BDR选举"></a>DR与BDR选举</h3><ol>
+<li>选举原则<ul>
+<li>基于接口</li>
+<li>DR、BDR选举具有非抢占性</li>
+</ul>
+</li>
+<li>选举规则<ul>
+<li>首先看接口的优先级 ，优先级越大的越优先</li>
+<li>接口的优先级相同的时候，看接口的router-id，router-id越大越优先</li>
+</ul>
+</li>
+<li>图示</li>
+</ol>
+<h1 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h1><h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://i.loli.net/2021/06/03/XItDlVLbAqB1w6f.png" alt="alt FR实验拓扑"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="帧中继DLCI配置"><a href="#帧中继DLCI配置" class="headerlink" title="帧中继DLCI配置"></a>帧中继DLCI配置</h3><ol>
+<li><p>到对端的路径</p>
+<p><img src="https://i.loli.net/2021/06/03/XkPlufB5xA4Uw9K.png" alt="alt FR到对端的路径配置"></p>
+</li>
+<li><p>关闭</p>
+</li>
+</ol>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ospf network-type<br>        broadcast<br>        nbma<br>        p2mp<br>        p2p</td>
+<td>配置接口OSPF网路类型<br>回环口/32主机路由现象：<br>OSPF认为回环口只有一个地址，因此在传递时<br>自动变成/32主机路由信息，可以通过修改网络累心为Broadcast来进行还原</td>
+</tr>
+<tr>
+<td>peer x.x.x.x</td>
+<td>手动配置邻居</td>
+</tr>
+<tr>
+<td>ospf dr-priority 100</td>
+<td>配置接口优先级<br>默认为1<br>只有Broadcast和NBMA接口会进行DR与BDR选举</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="2">
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ip add 123.0.0.1 24</span><br><span class="line">link-protocol fr</span><br><span class="line"></span><br><span class="line">#关闭</span><br><span class="line"></span><br><span class="line">undo fr inarp</span><br><span class="line"></span><br><span class="line">#手动配置FR映射</span><br><span class="line">fr map ip 123.0.0.2 102 broadcast</span><br><span class="line">fr map ip 123.0.0.3 103 broadcast</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#帧中继交换中配置DLCI</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">net 123.0.0.0 0.0.0.255</span><br><span class="line">q</span><br><span class="line">#手动配置邻居</span><br><span class="line">peer 123.0.0.2</span><br><span class="line">peer 123.0.0.3</span><br><span class="line"></span><br><span class="line">#接口网络累心修改</span><br><span class="line">int s4&#x2F;0&#x2F;0</span><br><span class="line">ospf network-type p2mp</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="RTF配置"><a href="#RTF配置" class="headerlink" title="RTF配置"></a>RTF配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys RTF</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 10.1.56.2 24</span><br><span class="line">ospf 1 router-id 6.6.6.6</span><br><span class="line">area 3</span><br><span class="line">net 10.1.56.0 0.0.0.255</span><br><span class="line"># 设置认证模式 保证通信安全</span><br><span class="line">authentication-mode md5 1 plain wu110119</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h3><ol>
+<li><p>FR抓包</p>
+<p><img src="https://i.loli.net/2021/06/03/jncfhZ65H7yF3Ab.png" alt="alt FR实验抓包验证"></p>
+</li>
+<li><p>OSPF端口状态</p>
+<p><img src="https://i.loli.net/2021/06/03/8bol9J1HPB5wfnW.png" alt="alt OSPF端口状态"></p>
+</li>
+<li><p>OSPF Attempt状态</p>
+<p><img src="https://i.loli.net/2021/06/03/guTBEVvFwGCPY9n.png" alt="alt OSPF Attempt状态"></p>
+</li>
+<li><p>OSPF接口网络类型修改</p>
+<p><img src="https://i.loli.net/2021/06/03/sWEQqbtoYclJF7n.png" alt="alt OSPF接口网络类型修改"></p>
+</li>
+</ol>
 
-
-
-<h2 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h2><h3 id="实现与办事处C通信（area-2建立虚连接）"><a href="#实现与办事处C通信（area-2建立虚连接）" class="headerlink" title="实现与办事处C通信（area 2建立虚连接）"></a>实现与办事处C通信（area 2建立虚连接）</h3><p><img src="https://i.loli.net/2021/06/11/jGCIhSVH3vByMXk.png" alt="alt 实现与办事处C通信（area 2建立虚连接）"></p>
-<h3 id="节省分公司A的设备资源（设置NSSA区域）"><a href="#节省分公司A的设备资源（设置NSSA区域）" class="headerlink" title="节省分公司A的设备资源（设置NSSA区域）"></a>节省分公司A的设备资源（设置NSSA区域）</h3><p><img src="https://i.loli.net/2021/06/11/2I4UflERONTgAF3.png" alt="alt 节省分公司A的设备资源"></p>
-<h3 id="保证办事处C的路由交互安全（设置认证模式）"><a href="#保证办事处C的路由交互安全（设置认证模式）" class="headerlink" title="保证办事处C的路由交互安全（设置认证模式）"></a>保证办事处C的路由交互安全（设置认证模式）</h3><p><img src="https://i.loli.net/2021/06/11/BmDYIEn3W7FjheR.png" alt="alt 保证办事处C的路由交互安全"></p>
-<h3 id="RTA引入外部路由考虑OSPF域内开销（设置引入类型为1）"><a href="#RTA引入外部路由考虑OSPF域内开销（设置引入类型为1）" class="headerlink" title="RTA引入外部路由考虑OSPF域内开销（设置引入类型为1）"></a>RTA引入外部路由考虑OSPF域内开销（设置引入类型为1）</h3><p><img src="https://i.loli.net/2021/06/11/EzZAnIDCUbpXryS.png" alt="alt RTA引入外部路由考虑OSPF域内开销"></p>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2>
           
         
       
@@ -560,7 +959,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/36/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/34/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/82/">82</a><a class="extend next" rel="next" href="/page/36/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -605,7 +1004,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -627,7 +1026,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
