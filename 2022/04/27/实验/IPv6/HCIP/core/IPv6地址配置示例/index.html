@@ -1,0 +1,994 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IPv6静态地址、无状态自动配置、有状态自动配置、DHCPv6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="组网需求 R1的所有接口使用静态的方式配置地址 R2的所有接口通过无状态自动配置的方式获取地址 R3的所有接口通过DHCPv6的方式获取地址  组网拓扑 配置思路 R1的G0&#x2F;0&#x2F;1和G0&#x2F;0&#x2F;2接口使用静态的方式配置地址 R2的G0&#x2F;0&#x2F;1口使用无状态自动配置的方式获取地址（在R1接口使能RA功能） R3的G0&#x2F;0&#x2F;1口使用DHCP的方式获取地址（R1上配置DHCP服务器）  配置命令 配置全局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv6地址配置示例络示例">
+<meta property="og:url" content="http://myblog.wuchao.space/2022/04/27/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/core/IPv6%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="组网需求 R1的所有接口使用静态的方式配置地址 R2的所有接口通过无状态自动配置的方式获取地址 R3的所有接口通过DHCPv6的方式获取地址  组网拓扑 配置思路 R1的G0&#x2F;0&#x2F;1和G0&#x2F;0&#x2F;2接口使用静态的方式配置地址 R2的G0&#x2F;0&#x2F;1口使用无状态自动配置的方式获取地址（在R1接口使能RA功能） R3的G0&#x2F;0&#x2F;1口使用DHCP的方式获取地址（R1上配置DHCP服务器）  配置命令 配置全局">
+<meta property="og:image" content="https://s2.loli.net/2022/04/24/54oBHcvjNUl7m2J.jpg">
+<meta property="article:published_time" content="2022-04-27T08:34:25.852Z">
+<meta property="article:modified_time" content="2022-04-24T03:13:06.656Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="IPv6静态地址、无状态自动配置、有状态自动配置、DHCPv6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/24/54oBHcvjNUl7m2J.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2022/04/27/实验/IPv6/HCIP/core/IPv6地址配置示例/"/>
+
+
+
+
+
+  <title> IPv6地址配置示例络示例 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/27/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/core/IPv6%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                IPv6地址配置示例络示例
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-27T16:34:25+08:00">
+                2022-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/" itemprop="url" rel="index">
+                    <span itemprop="name">IPv6</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/HCIP/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/04/27/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/core/IPv6%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2022/04/27/实验/IPv6/HCIP/core/IPv6地址配置示例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
+<li>R1的所有接口使用静态的方式配置地址</li>
+<li>R2的所有接口通过无状态自动配置的方式获取地址</li>
+<li>R3的所有接口通过DHCPv6的方式获取地址</li>
+</ol>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/24/54oBHcvjNUl7m2J.jpg" alt="IPv6地址配置示例拓扑图"></p>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
+<li>R1的G0/0/1和G0/0/2接口使用静态的方式配置地址</li>
+<li>R2的G0/0/1口使用无状态自动配置的方式获取地址（在R1接口使能RA功能）</li>
+<li>R3的G0/0/1口使用DHCP的方式获取地址（R1上配置DHCP服务器）</li>
+</ol>
+<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
+<li><p>配置全局和接口使能IPv6功能</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">ipv6</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">ipv6</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">ipv6</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="2">
+<li><p>配置接口自动配置链路本地地址</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>配置R1接口的全局单播地址（静态方式）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">12</span>::<span class="number">1</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">13</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>配置R2接口无状态自动配置地址（ICMPv6方式）</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  undo ipv6 nd ra halt</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 address auto global</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="5">
+<li><p>配置R3接口有状态自动配置地址（DHCPv6方式）</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">dhcp enable</span><br><span class="line">dhcpv6 pool pool1</span><br><span class="line">  address prefix <span class="number">2001</span>:db8:<span class="number">13</span>::/<span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  dhcpv6 server pool1</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">dhcp enbale</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 address auto dhcp</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
+<li><p>查看接口状态（以R1为例）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">display ipv6 <span class="class"><span class="keyword">interface</span> <span class="title">g0</span>/0/1</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&lt;<span class="title">R1</span>&gt;<span class="title">dis</span> <span class="title">ipv6</span> <span class="title">int</span> <span class="title">g0</span>/0/1</span></span><br><span class="line">GigabitEthernet0/0/1 current state : UP </span><br><span class="line">IPv6 protocol current state : UP</span><br><span class="line">IPv6 is enabled, link-local address is FE80::<span class="number">2E0</span>:FCFF:FE2C:<span class="number">2E98</span></span><br><span class="line">  <span class="function">Global unicast <span class="title">address</span><span class="params">(es)</span>:</span></span><br><span class="line"><span class="function">    2001:DB8:12::1, subnet is 2001:DB8:12::/64</span></span><br><span class="line"><span class="function">  Joined group <span class="title">address</span><span class="params">(es)</span>:</span></span><br><span class="line"><span class="function">    FF02::1:FF00:1</span></span><br><span class="line"><span class="function">    FF02::2</span></span><br><span class="line"><span class="function">    FF02::1</span></span><br><span class="line"><span class="function">    FF02::1:FF2C:2E98</span></span><br><span class="line"><span class="function">  MTU is 1500 bytes</span></span><br><span class="line"><span class="function">  ND DAD is enabled, number of DAD attempts: 1</span></span><br><span class="line"><span class="function">  ND reachable time is 30000 milliseconds</span></span><br><span class="line"><span class="function">  ND retransmit interval is 1000 milliseconds</span></span><br><span class="line"><span class="function">  ND advertised reachable time is 0 milliseconds</span></span><br><span class="line"><span class="function">  ND advertised retransmit interval is 0 milliseconds</span></span><br><span class="line"><span class="function">  ND router advertisement max interval 600 seconds, min interval 200 seconds</span></span><br><span class="line"><span class="function">  ND router advertisements live <span class="keyword">for</span> 1800 seconds</span></span><br><span class="line"><span class="function">  ND router advertisements hop-limit 64</span></span><br><span class="line"><span class="function">  ND <span class="keyword">default</span> router preference medium</span></span><br><span class="line"><span class="function">  Hosts use stateless autoconfig <span class="keyword">for</span> addresses</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>查看邻居状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">display ipv6 neighbor</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis ipv6 neighbors </span><br><span class="line">-----------------------------------------------------------------------------</span><br><span class="line">IPv6 Address : FE80::<span class="number">2E0</span>:FCFF:FEB1:<span class="number">2735</span>                          </span><br><span class="line">Link-layer   : <span class="number">00e0</span>-fcb1-<span class="number">2735</span>                     State : STALE        </span><br><span class="line">Interface    : GE0/<span class="number">0</span>/<span class="number">1</span>                            Age   : <span class="number">20</span>                  </span><br><span class="line">VLAN         : -                                  CEVLAN: -                   </span><br><span class="line">VPN name     :                                    Is Router: TRUE             </span><br><span class="line">Secure FLAG  : UN-SECURE                          </span><br><span class="line"></span><br><span class="line">IPv6 Address : FE80::<span class="number">2E0</span>:FCFF:FE99:<span class="number">414</span>A                          </span><br><span class="line">Link-layer   : <span class="number">00e0</span>-fc99-<span class="number">414</span>a                     State : STALE        </span><br><span class="line">Interface    : GE0/<span class="number">0</span>/<span class="number">2</span>                            Age   : <span class="number">30</span>                  </span><br><span class="line">VLAN         : -                                  CEVLAN: -                   </span><br><span class="line">VPN name     :                                    Is Router: TRUE             </span><br><span class="line">Secure FLAG  : UN-SECURE                          </span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------------------</span><br><span class="line">Total: <span class="number">2</span>       Dynamic: <span class="number">2</span>       Static: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看DHCPv6 Client 地址分配情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">display dhcpv6 client</span><br><span class="line"></span><br><span class="line">&lt;R3&gt;dis dhcpv6 client</span><br><span class="line">GigabitEthernet0/<span class="number">0</span>/<span class="number">2</span> is in stateful DHCPv6 client mode.</span><br><span class="line">State is BOUND.</span><br><span class="line">Preferred server DUID   : <span class="number">0003000100E0F</span>C2C2E97</span><br><span class="line">  Reachable via address : FE80::<span class="number">2E0</span>:FCFF:FE2C:<span class="number">2E99</span></span><br><span class="line">IA NA IA ID <span class="number">0x00000051</span> T1 <span class="number">43200</span> T2 <span class="number">69120</span></span><br><span class="line">  Obtained     : <span class="number">2022</span>-<span class="number">04</span>-<span class="number">24</span> <span class="number">11</span>:<span class="number">08</span>:<span class="number">58</span></span><br><span class="line">  Renews       : <span class="number">2022</span>-<span class="number">04</span>-<span class="number">24</span> <span class="number">23</span>:<span class="number">08</span>:<span class="number">58</span></span><br><span class="line">  Rebinds      : <span class="number">2022</span>-<span class="number">04</span>-<span class="number">25</span> <span class="number">06</span>:<span class="number">20</span>:<span class="number">58</span></span><br><span class="line">  Address      : <span class="number">2001</span>:DB8:<span class="number">13</span>::<span class="number">2</span></span><br><span class="line">    Lifetime valid <span class="number">172800</span> seconds, preferred <span class="number">86400</span> seconds</span><br><span class="line">    Expires at <span class="number">2022</span>-<span class="number">04</span>-<span class="number">26</span> <span class="number">11</span>:<span class="number">08</span>:<span class="number">58</span>(<span class="number">172790</span> seconds left)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看DHCPv6服务器详细信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">display dhcpv6 server statistics</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis dhcpv6 server statistics </span><br><span class="line"> Message statistics of interface GigabitEthernet0/0/2:</span><br><span class="line">   Message                  Received</span><br><span class="line">   Solicit                  <span class="number">1</span>               </span><br><span class="line">   Request                  <span class="number">1</span>               </span><br><span class="line">   Confirm                  <span class="number">0</span>               </span><br><span class="line">   Renew                    <span class="number">0</span>               </span><br><span class="line">   Rebind                   <span class="number">0</span>               </span><br><span class="line">   Release                  <span class="number">0</span>               </span><br><span class="line">   Decline                  <span class="number">0</span>               </span><br><span class="line">   Information-request      <span class="number">0</span>               </span><br><span class="line">   Relay-forward            <span class="number">0</span>               </span><br><span class="line">   Leasequery               <span class="number">0</span>               </span><br><span class="line">   UnknownType              <span class="number">0</span>               </span><br><span class="line"></span><br><span class="line">   Message                  Sent</span><br><span class="line">   Advertise                <span class="number">1</span>               </span><br><span class="line">   Reply                    <span class="number">1</span>               </span><br><span class="line">   Relay-reply              <span class="number">0</span>               </span><br><span class="line">   Leasequery-reply         <span class="number">0</span>               </span><br><span class="line">   Reconfigure              <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="https://i.loli.net/2021/05/02/IAV8ecyQoqDBdNH.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IPv6%E9%9D%99%E6%80%81%E5%9C%B0%E5%9D%80%E3%80%81%E6%97%A0%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E3%80%81%E6%9C%89%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E3%80%81DHCPv6/" rel="tag"># IPv6静态地址、无状态自动配置、有状态自动配置、DHCPv6</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/04/27/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/IPv6%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%A4%BA%E4%BE%8B/" rel="next" title="IPv6静态路由配置示例">
+                <i class="fa fa-chevron-left"></i> IPv6静态路由配置示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组网需求"><span class="nav-number">1.</span> <span class="nav-text">组网需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组网拓扑"><span class="nav-number">2.</span> <span class="nav-text">组网拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置思路"><span class="nav-number">3.</span> <span class="nav-text">配置思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置命令"><span class="nav-number">4.</span> <span class="nav-text">配置命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看结果"><span class="nav-number">5.</span> <span class="nav-text">查看结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2022/04/27/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/core/IPv6%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/';
+          this.page.identifier = '2022/04/27/实验/IPv6/HCIP/core/IPv6地址配置示例/';
+          this.page.title = 'IPv6地址配置示例络示例';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
