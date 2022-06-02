@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" itemprop="url">
-                  路由基础
+                <a class="post-title-link" href="/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/" itemprop="url">
+                  交换机VLAN
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:30+08:00">
-                2021-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-20T15:51:02+08:00">
+                2021-04-20
               </time>
             
 
@@ -346,8 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
-                    <span itemprop="name">路由</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/" itemprop="url" rel="index">
+                    <span itemprop="name">交换</span>
                   </a>
                 </span>
 
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
-                    <span itemprop="name">路由基础</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/" itemprop="url" rel="index">
+                    <span itemprop="name">VLAN</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/17/HCNA/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/17/HCNA/路由/路由基础/路由基础/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/20/HCNA/交换/VLAN/交换机VLAN/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,158 +405,149 @@
       
         
           
-            <h1 id="路由基础"><a href="#路由基础" class="headerlink" title="路由基础"></a>路由基础</h1><ol>
-<li><p>关键术语</p>
-<ul>
-<li><p>路由（Routing）</p>
-<p>从源头到目的的路径</p>
-<p>不同网络间的转发过程</p>
+            <h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><h2 id="没有VLAN"><a href="#没有VLAN" class="headerlink" title="没有VLAN"></a>没有VLAN</h2><p><img src="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png" alt="alt 没有VLAN的情况"></p>
+<h2 id="VLAN引入"><a href="#VLAN引入" class="headerlink" title="VLAN引入"></a>VLAN引入</h2><ol>
+<li><p>交换机的所有接口在同一个广播域，往往也是一个逻辑子网</p>
+<p><img src="https://i.loli.net/2021/04/20/6AvM9erWNcVSdbI.png" alt="alt 逻辑子网"></p>
 </li>
-<li><p>路由表（Routing Table）</p>
-<p>路由信息的集合</p>
-<p>路由的依据</p>
+<li><p>用户可以根据自己的需求灵活的隔离广播域</p>
+<p> <img src="https://i.loli.net/2021/04/20/zsYk3IhapNn8ixe.png" alt="alt 隔离广播域">]</p>
 </li>
-<li><p>路由器（Router）</p>
-<p>具有路由功能的设备</p>
+<li><p>随着网络规模的扩大，广播风暴给网络带来重大问题</p>
+<p><img src="https://i.loli.net/2021/04/20/Hury5QzY36L1s92.png" alt="alt 广播风暴"></p>
 </li>
-<li><p>默认网关（Default Gateway）</p>
-<p>通常是路由设备的接口IP地址</p>
+<li><p>VLAN引入 </p>
+<p><img src="https://i.loli.net/2021/04/20/yj9BDrRMwoNUb6W.png" alt="alt VLAN引入"></p>
 </li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/ItEiS8V41FAOn7L.png" alt="alt 关键术语"></p>
-</li>
-</ul>
+<li><p>多个交换机划分VLAN</p>
+<p><img src="https://i.loli.net/2021/04/20/wNFBUzO4xSd8KAm.png" alt="alt 多个交换机划分VLAN"></p>
 </li>
 </ol>
-<ol start="2">
-<li><p>路由过程图解</p>
-<ul>
-<li><p>路由过程</p>
-<p>RA路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.1.2.2，出口是RA路由器的E0</p>
-<p>RB路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.2.1.2，出口是RB路由器的E1</p>
-<p>RC路由器的路由表里面目的地址是10.4.1.0/24段，下一跳是10.4.1.1，出口是RC路由器的E1</p>
+<h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="VLAN优点"><a href="#VLAN优点" class="headerlink" title="VLAN优点"></a>VLAN优点</h2><ol>
+<li><p>有效的控制广播域的范围</p>
 </li>
-<li><p>路由详细过程</p>
-<p>当三层设备收到一个IP数据包之后，会查看IP数据包头部中的目的IP的地址，并在路由表中进行查找，匹配到最优路径之后，将IP数据包扔给出接口和下一跳路由，下一跳路由接着处理IP数据包</p>
+<li><p>增强网络的安全性</p>
 </li>
-<li><p>最长匹配原则</p>
-<p>路由表中的路由越详细，越优先使用</p>
+<li><p>灵活的构建虚拟工作组</p>
 </li>
-<li><p>下一跳</p>
-<p>下一跳与出接口要一一对应</p>
-<p>下一跳是下一个路由器接口的IP地址</p>
+<li><p>简化网络管理</p>
 </li>
-<li><p>出接口</p>
-<p>出接口是当前路由的连接下一个路由器的接口</p>
-</li>
-<li><p>基础命令</p>
-<p>用户模式下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">dis ip routing-table</span><br><span class="line"># 查看某个协议的路由表</span><br><span class="line">dis ip routing-table protocol static</span><br></pre></td></tr></table></figure>
-
-<p>系统模式下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置静态路由</span><br><span class="line">#进入系统模式</span><br><span class="line">sys</span><br><span class="line">ip route-static Destination Mask NextHop</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/04/20/jcUQIZHsVe6dKvT.png" alt="alt VLAN优点"></p>
 </li>
 </ol>
-<ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/3vPpUYfrmE25nLS.png" alt="alt 路由过程图解"></p>
+<h2 id="VLAN概述"><a href="#VLAN概述" class="headerlink" title="VLAN概述"></a>VLAN概述</h2><h3 id="Virtual-LAN-虚拟局域网"><a href="#Virtual-LAN-虚拟局域网" class="headerlink" title="Virtual LAN 虚拟局域网"></a>Virtual LAN 虚拟局域网</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
+<li>将一个物理局域网在逻辑上划分成多个广播域</li>
+<li>1VLAN = 1广播域 = 1子网</li>
+<li>广播不会在VLAN之间转发，被限制在自己的VLAN中</li>
+<li>不同的VLAN之间通信需要借助三层设备</li>
+</ol>
+<h2 id="VLAN范围"><a href="#VLAN范围" class="headerlink" title="VLAN范围"></a>VLAN范围</h2><ol>
+<li>0~4095</li>
+<li>0和4095保留</li>
+<li>1为默认</li>
+</ol>
+<h2 id="VLAN标签（Tags）"><a href="#VLAN标签（Tags）" class="headerlink" title="VLAN标签（Tags）"></a>VLAN标签（Tags）</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
+<li><p>IEEE 802.1q: dot1q，是VLAN的正式标准，对Ethernet帧格式进行修改，在源MAC地址字段和协议类型字段之间加入4字节的802.1q Tag</p>
 </li>
-</ul>
-<ol start="3">
-<li><p>路由器转发数据包</p>
-<ul>
-<li><p>关键术语</p>
-<p>目的地址 Destination/Mask</p>
-<p>下一跳 NextHop 下一跳路由器接口的地址</p>
-<p>出接口 Interface 本路由器连接下一个路由器的接口</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/mdheuARFQlycUrI.png" alt="alt 路由器转发数据包"></p>
-</li>
-</ul>
-</li>
-<li><p>路由选路</p>
-<ul>
-<li><p>路由器负责给数据包选择一条最优路径，并负责转发数据包</p>
+<li><p>每台支持802.1q协议的交换机发送的数据包都会包含VLAN ID，以表明交换机的接口属于哪个VLAN</p>
 </li>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/bDI2UPRnZoWdeF4.png" alt="alt 路由选路"></p>
-</li>
-</ul>
-</li>
-<li><p>路由器的工作内容</p>
-<ul>
-<li>收到数据包查看目标IP地址</li>
-<li>在路由表中选择最佳路径</li>
-<li>维护路由表</li>
-</ul>
-</li>
-<li><p>路由表解析</p>
-<ul>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看路由表</span><br><span class="line">display ip routing-table</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/fZK4TxEMVPDwW2u.png" alt="alt IP路由表"></p>
-</li>
-<li><p>解析上面路由表</p>
-<p>路由表包含了路由器可以到达的目的网络（Destination/Mask），Mask也决定了路由匹配规则</p>
-<p>目的网络在路由表中不存在的数据包将会被丢弃</p>
-<p>1). Destination</p>
-<p>   目标，用来标识IP数据包中的目的地址或网络</p>
-<p>2). Mask</p>
-<p>  掩码，选择最佳路径的判断依据（最长匹配原则）</p>
-<p>3). Protocol</p>
-<p>  协议，路由的来源、学习方式</p>
-<p>4). Preference</p>
-<p>  优先级，比较不同网络来源到达相同目标网络的优先级，越低越优先</p>
-<p>5). Cost</p>
-<p>  度量值、开销，比较相同路由来源到达相同目标网络的不同路径的优先级，越低越优先</p>
-<p>6). NextHop</p>
-<p>  下一跳，指明IP数据包所经过的下一个路由器的接口地址</p>
-<p>7). Interface</p>
-<p>  出接口，指明IP数据包将从当前路由器的哪个接口转发出去</p>
-</li>
-<li><p>路由优先级（Preference）</p>
-<p>图示：</p>
-<p><img src="https://i.loli.net/2021/04/05/L98SDfOgewQ4HNX.png" alt="alt 路由优先级"></p>
-<p><img src="https://i.loli.net/2021/04/05/PHanl5kuJpcL2ME.png" alt="alt 路由优先级比喻"></p>
-</li>
-<li><p>路由度量值（开销）Cost</p>
-<p><img src="https://i.loli.net/2021/04/05/oq7c61GdpVTXynA.png" alt="alt 路由度量值（开销）"></p>
-<p><img src="https://i.loli.net/2021/04/05/dfkDcS86KiyphZQ.png" alt="alt 路由度量值（开销）"></p>
-</li>
-</ul>
-</li>
-<li><p>等价路由（ECMP Equal Cost Multi-Path）</p>
-<ul>
-<li><p>同一个路由来源，到达同一个目标网络，有几条相同度量值（开销）的路由，这几个路由都会加入到路由表中，数据包会在这几条路由上负载均衡</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/5oQ49trYwUKEufe.png" alt="alt 等价路由"></p>
-</li>
-</ul>
-</li>
-<li><p>最长匹配原则（最终数据包匹配最佳路由的算法-Msak的作用）</p>
-<ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/05/VUcojXqang8Zfwz.png" alt="alt 最长匹配原则"></p>
-</li>
-<li><p>示例解析</p>
-<p>图示：</p>
-<p><img src="https://i.loli.net/2021/04/05/PzJaeIEOqr39lWx.png" alt="alt 最长匹配原则举例"></p>
-<p>解析：</p>
-<p><img src="https://i.loli.net/2021/04/05/G5Wu1mCBsnIRjAv.png" alt="alt 最长匹配原则解析"></p>
-</li>
-</ul>
+<p><img src="https://i.loli.net/2021/04/20/UfxAv5Q7dbwT1Xc.png" alt="image-20210420211227099"></p>
 </li>
 </ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有标记帧（tagged frame）</td>
+<td>加入4字节802.1q Tag的帧</td>
+</tr>
+<tr>
+<td>无标记帧（untagged frame）</td>
+<td>原始的、未加入4字节802.1q Tag的帧</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="VLAN链路类型"><a href="#VLAN链路类型" class="headerlink" title="VLAN链路类型"></a>VLAN链路类型</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access Link<br>接入链路</td>
+<td>用于连接交换机和终端之间的链路<br>此链路上传输的帧都是untagged</td>
+</tr>
+<tr>
+<td>Trunk Link<br>干道/中继链路</td>
+<td>用于交换机之间互联或者交换机与路由器之间连接的链路<br>干道链路上传输的帧都是tagged帧，用于两端识别</td>
+</tr>
+</tbody></table>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/hQEnJzBp9v3CkDW.png" alt="alt VLAN链路类型"></p>
+<h3 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display port vlan </span><br><span class="line">dispaly vlan</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="PVID"><a href="#PVID" class="headerlink" title="PVID"></a>PVID</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><ol>
+<li>Port VLAN ID，代表端口的缺省VLAN</li>
+<li>默认的PVID为1</li>
+</ol>
+<h3 id="修改命令"><a href="#修改命令" class="headerlink" title="修改命令"></a>修改命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#端口模式下</span><br><span class="line">port default vlan 100</span><br></pre></td></tr></table></figure>
+
+<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/Sy3HCJdsvBbXRup.png" alt="alt PVID"></p>
+<h2 id="VLAN端口类型"><a href="#VLAN端口类型" class="headerlink" title="VLAN端口类型"></a>VLAN端口类型</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access<br>接入端口</td>
+<td>用于连接终端<br>收到数据帧后，会添加VLAN Tag，VLAN ID与端口的PVID相同<br>转发数据前，会移除VLAN Tag<br><img src="https://i.loli.net/2021/04/20/QHga7nTd5FZDYxE.png" alt="alt Access端口"></td>
+</tr>
+<tr>
+<td>Trunk<br>干道/中继端口</td>
+<td>用于交换机与交换机、交换机与路由器之间连接<br>收到帧  时<br>1. 如果帧不包含标签Tag，将打上接口的PVID<br>2. 如果帧包含标签Tag，则不改变<br>发送帧时，该帧的VLAN ID在Trunk的允许发送列表（Trunk VLAN List）<br>1. 与端口的PVID一致，则剥离Tag发送<br>2. 与端口的PVID不一致，则直接发送（包含Tag）<br><img src="https://i.loli.net/2021/04/20/oayP8CFweZnM46s.png" alt="alt Trunk端口"></td>
+</tr>
+<tr>
+<td>Hybrid<br>混杂端口</td>
+<td>既可以连接主机，也可以l连接其他交换机<br>既可以连接接入链路，又可以连接干道链路<br>允许多个VLAN的帧通过，并可以在出接口位置将某些帧的Tag剥离（命令实现）<br><img src="https://i.loli.net/2021/04/25/jf83sYyFUzdNKTb.png" alt="alt Hybrid混合端口"></td>
+</tr>
+</tbody></table>
+<h3 id="不同端口详解"><a href="#不同端口详解" class="headerlink" title="不同端口详解"></a>不同端口详解</h3><ol>
+<li>Access端口<ul>
+<li>收到数据帧，默认添加Tags，数据帧的VLANID与端口PVID相同</li>
+<li>发送数据帧的时候，会剥离数据帧中的Tags</li>
+</ul>
+</li>
+<li>Trunk端口<ul>
+<li>收到数据帧的时候<ul>
+<li>如果数据帧没有Tags，打上端口的PVID</li>
+<li>如果数据帧有Tags，VLANID不变</li>
+</ul>
+</li>
+<li>发送数据帧的时候<ul>
+<li>首先，确定VLANID是在Trunk允许列表中</li>
+<li>如果发送的时候，数据帧的VLANID与端口的PVID相同，剥离Tags发送。</li>
+<li>如果发送的时候，数据帧的VLANID与端口的PVID不相同，数据帧带Tags发送。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hybrid端口</li>
+</ol>
+<h2 id="VLAN转发流程"><a href="#VLAN转发流程" class="headerlink" title="VLAN转发流程"></a>VLAN转发流程</h2><h3 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/25/SDwGZFHQyIB8J3A.png" alt="alt VLAN转发过程"></p>
+<h3 id="释义"><a href="#释义" class="headerlink" title="释义"></a>释义</h3>
           
         
       
@@ -594,7 +585,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/64/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/">84</a><a class="extend next" rel="next" href="/page/66/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/64/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><a class="extend next" rel="next" href="/page/66/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -639,7 +630,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">88</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -661,7 +652,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

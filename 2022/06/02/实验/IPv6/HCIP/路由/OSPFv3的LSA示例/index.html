@@ -1,0 +1,1014 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IPv6 OSPFv3," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="组网需求 R1、R2、R3和R4运行OSPFv3路由协议，且均部署在骨干区域 网络稳定后，查看R2的LSDB，可以看到Router-LSA（Type 1）、Network-LSA（Type 2）、Link-LSA（Type 8）和Intra-Area-Prefix-LSA（Type 9）  组网拓扑 配置思路 配置路由器使能IPv6功能，各个接口使能IPv6功能并配置全局单播地址 配置OSPFv3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv6 OSPFv3的LSA示例">
+<meta property="og:url" content="http://myblog.wuchao.space/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/OSPFv3%E7%9A%84LSA%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="工匠">
+<meta property="og:description" content="组网需求 R1、R2、R3和R4运行OSPFv3路由协议，且均部署在骨干区域 网络稳定后，查看R2的LSDB，可以看到Router-LSA（Type 1）、Network-LSA（Type 2）、Link-LSA（Type 8）和Intra-Area-Prefix-LSA（Type 9）  组网拓扑 配置思路 配置路由器使能IPv6功能，各个接口使能IPv6功能并配置全局单播地址 配置OSPFv3">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/fTrvcGFl7WDqUO5.jpg">
+<meta property="article:published_time" content="2022-06-02T03:02:10.779Z">
+<meta property="article:modified_time" content="2022-05-03T02:40:08.411Z">
+<meta property="article:author" content="吴超">
+<meta property="article:tag" content="IPv6 OSPFv3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/03/fTrvcGFl7WDqUO5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://myblog.wuchao.space/2022/06/02/实验/IPv6/HCIP/路由/OSPFv3的LSA示例/"/>
+
+
+
+
+
+  <title> IPv6 OSPFv3的LSA示例 | 工匠 </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">工匠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/OSPFv3%E7%9A%84LSA%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wuchao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="工匠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                IPv6 OSPFv3的LSA示例
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-02T11:02:10+08:00">
+                2022-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/" itemprop="url" rel="index">
+                    <span itemprop="name">IPv6</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/HCIP/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/HCIP/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/OSPFv3%E7%9A%84LSA%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2022/06/02/实验/IPv6/HCIP/路由/OSPFv3的LSA示例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
+<li>R1、R2、R3和R4运行OSPFv3路由协议，且均部署在骨干区域</li>
+<li>网络稳定后，查看R2的LSDB，可以看到Router-LSA（Type 1）、Network-LSA（Type 2）、Link-LSA（Type 8）和Intra-Area-Prefix-LSA（Type 9）</li>
+</ol>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/05/03/fTrvcGFl7WDqUO5.jpg" alt="OSPFv3的LSA示例拓扑图"></p>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
+<li>配置路由器使能IPv6功能，各个接口使能IPv6功能并配置全局单播地址</li>
+<li>配置OSPFv3路由协议，并指定Router-ID</li>
+<li>接口使能OSPFv3路由协议并指定区域号</li>
+<li>查看各种LSA</li>
+</ol>
+<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
+<li><p>配置路由器使能IPv6功能，各个接口使能IPv6功能并配置全局单播地址</p>
+<ul>
+<li><p>R1 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">12</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">12</span>::<span class="number">2</span>/<span class="number">64</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">23</span>::<span class="number">2</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address 2001:db8:2345:23::3&#x2F;64</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">23</span>::<span class="number">4</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="2">
+<li><p>配置OSPFv3路由协议，并指定Router-ID</p>
+<ul>
+<li><p>R1 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospfv3 <span class="number">1</span></span><br><span class="line">  router-id <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospfv3 <span class="number">1</span></span><br><span class="line">  router-id <span class="number">10.1</span><span class="number">.2</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospfv3 <span class="number">1</span></span><br><span class="line">  router-id <span class="number">10.1</span><span class="number">.3</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospfv3 <span class="number">1</span></span><br><span class="line">  router-id <span class="number">10.1</span><span class="number">.4</span><span class="number">.4</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="3">
+<li><p>接口使能OSPFv3路由协议并指定区域号</p>
+<ul>
+<li><p>R1 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
+<li><p>查看R2 的LSDB</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">display ospfv3 lsdb</span><br><span class="line"></span><br><span class="line">&lt;R2&gt;dis ospfv3 lsdb</span><br><span class="line"></span><br><span class="line">* indicates STALE LSA</span><br><span class="line"></span><br><span class="line">           <span class="function">OSPFv3 Router with <span class="title">ID</span> <span class="params">(<span class="number">10.1</span><span class="number">.2</span><span class="number">.2</span>)</span> <span class="params">(Process <span class="number">1</span>)</span></span></span><br><span class="line"><span class="function">               Link-<span class="title">LSA</span> <span class="params">(Interface GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Link State ID   Origin Router    Age   Seq#       CkSum  Prefix</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.1.1         0080  0x80000003 0xbb9d      1</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.2.2         0078  0x80000003 0x6d8a      1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Link-<span class="title">LSA</span> <span class="params">(Interface GigabitEthernet0/<span class="number">0</span>/<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Link State ID   Origin Router    Age   Seq#       CkSum  Prefix</span></span><br><span class="line"><span class="function">0.0.0.4         10.1.2.2         0078  0x80000003 0x02e2      1</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.3.3         0071  0x80000003 0x9ab0      1</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.4.4         0068  0x80000003 0x2449      1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Router-<span class="title">LSA</span> <span class="params">(Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Link State ID   Origin Router    Age   Seq#       CkSum    Link</span></span><br><span class="line"><span class="function">0.0.0.0         10.1.1.1         0031  0x80000006 0x7681      1</span></span><br><span class="line"><span class="function">0.0.0.0         10.1.2.2         0020  0x80000008 0x5d69      2</span></span><br><span class="line"><span class="function">0.0.0.0         10.1.3.3         0019  0x80000007 0xb03e      1</span></span><br><span class="line"><span class="function">0.0.0.0         10.1.4.4         0029  0x80000005 0xa747      1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Network-<span class="title">LSA</span> <span class="params">(Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Link State ID   Origin Router    Age   Seq#       CkSum</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.2.2         0040  0x80000002 0x9d5c</span></span><br><span class="line"><span class="function">0.0.0.3         10.1.4.4         0030  0x80000003 0xdafe</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Intra-Area-Prefix-<span class="title">LSA</span> <span class="params">(Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Link State ID   Origin Router    Age   Seq#       CkSum  Prefix  Reference</span></span><br><span class="line"><span class="function">0.0.0.2         10.1.2.2         0013  0x80000005 0x033a      1  Network-LSA</span></span><br><span class="line"><span class="function">0.0.0.1         10.1.4.4         0022  0x80000004 0xe63f      1  Network-LSA</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>查看指定Link State ID的LSA信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">display ospfv3 lsdb link <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line"></span><br><span class="line">&lt;R2&gt;display ospfv3 lsdb link <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">           <span class="function">OSPFv3 Router with <span class="title">ID</span> <span class="params">(<span class="number">10.1</span><span class="number">.2</span><span class="number">.2</span>)</span> <span class="params">(Process <span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Link-<span class="title">LSA</span> <span class="params">(Interface GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 267                                     <span class="comment">//LSA的老化时间</span></span></span><br><span class="line"><span class="function">  LS Type: Link-LSA                               <span class="comment">//LSA的类型（Router-LSA、Network-LSA等）</span></span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.3                          <span class="comment">//LSA报头中的链路状态ID（用于确定唯一LSA的参数之一）</span></span></span><br><span class="line"><span class="function">  Originating Router: 10.1.1.1                    <span class="comment">//产生该LSA的路由器</span></span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000003                      <span class="comment">//LSA的序列号，序列号数值越大代表LSA越新</span></span></span><br><span class="line"><span class="function">  Retransmit Count: 0                            <span class="comment">//。。。。。</span></span></span><br><span class="line"><span class="function">  Checksum: 0xBB9D                               <span class="comment">//LSA的校验和</span></span></span><br><span class="line"><span class="function">  Length: 56                                     <span class="comment">//LSA报文长度</span></span></span><br><span class="line"><span class="function">  Priority: 1                                    <span class="comment">//该Link-LSA对应接口的优先级</span></span></span><br><span class="line"><span class="function">  Options: 0<span class="title">x000013</span> <span class="params">(-|R|-|-|E|V6)</span>               <span class="comment">//Options的值</span></span></span><br><span class="line"><span class="function">  Link-Local Address: FE80::2E0:FCFF:FE62:66F4   <span class="comment">//本地链路地址</span></span></span><br><span class="line"><span class="function">  Number of Prefixes: 1                          <span class="comment">//该LSA中包含的IPv6前缀的数量</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:12::/64                <span class="comment">//IPv6前缀</span></span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span>               <span class="comment">//IPv6前缀Options值</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 265</span></span><br><span class="line"><span class="function">  LS Type: Link-LSA</span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.3 </span></span><br><span class="line"><span class="function">  Originating Router: 10.1.2.2</span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000003</span></span><br><span class="line"><span class="function">  Retransmit Count: 0</span></span><br><span class="line"><span class="function">  Checksum: 0x6D8A</span></span><br><span class="line"><span class="function">  Length: 56</span></span><br><span class="line"><span class="function">  Priority: 1</span></span><br><span class="line"><span class="function">  Options: 0<span class="title">x000013</span> <span class="params">(-|R|-|-|E|V6)</span></span></span><br><span class="line"><span class="function">  Link-Local Address: FE80::2E0:FCFF:FE4A:AC8</span></span><br><span class="line"><span class="function">  Number of Prefixes: 1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:12::/64</span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Link-<span class="title">LSA</span> <span class="params">(Interface GigabitEthernet0/<span class="number">0</span>/<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 259</span></span><br><span class="line"><span class="function">  LS Type: Link-LSA</span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.3 </span></span><br><span class="line"><span class="function">  Originating Router: 10.1.3.3</span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000003</span></span><br><span class="line"><span class="function">  Retransmit Count: 0</span></span><br><span class="line"><span class="function">  Checksum: 0x9AB0</span></span><br><span class="line"><span class="function">  Length: 56</span></span><br><span class="line"><span class="function">  Priority: 1</span></span><br><span class="line"><span class="function">  Options: 0<span class="title">x000013</span> <span class="params">(-|R|-|-|E|V6)</span></span></span><br><span class="line"><span class="function">  Link-Local Address: FE80::2E0:FCFF:FEF3:388A</span></span><br><span class="line"><span class="function">  Number of Prefixes: 1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:23::/64</span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 257</span></span><br><span class="line"><span class="function">  LS Type: Link-LSA</span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.3 </span></span><br><span class="line"><span class="function">  Originating Router: 10.1.4.4</span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000003</span></span><br><span class="line"><span class="function">  Retransmit Count: 0</span></span><br><span class="line"><span class="function">  Checksum: 0x2449</span></span><br><span class="line"><span class="function">  Length: 56</span></span><br><span class="line"><span class="function">  Priority: 1</span></span><br><span class="line"><span class="function">  Options: 0<span class="title">x000013</span> <span class="params">(-|R|-|-|E|V6)</span></span></span><br><span class="line"><span class="function">  Link-Local Address: FE80::2E0:FCFF:FE91:4BB5</span></span><br><span class="line"><span class="function">  Number of Prefixes: 1</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:23::/64</span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>查看指定LSA的信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">display ospfv3 lsdb intra-prefix</span><br><span class="line">    </span><br><span class="line"> &lt;R2&gt;display ospfv3 lsdb intra-prefix</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">           <span class="function">OSPFv3 Router with <span class="title">ID</span> <span class="params">(<span class="number">10.1</span><span class="number">.2</span><span class="number">.2</span>)</span> <span class="params">(Process <span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">               Intra-Area-Prefix-<span class="title">LSA</span> <span class="params">(Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 644</span></span><br><span class="line"><span class="function">  LS Type: Intra-Area-Prefix-LSA</span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.2 </span></span><br><span class="line"><span class="function">  Originating Router: 10.1.2.2</span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000005</span></span><br><span class="line"><span class="function">  Retransmit Count: 0</span></span><br><span class="line"><span class="function">  Checksum: 0x033A</span></span><br><span class="line"><span class="function">  Length: 44</span></span><br><span class="line"><span class="function">  Number of Prefixes: 1</span></span><br><span class="line"><span class="function">  Referenced LS Type: 0x2002               <span class="comment">//由DR产生的Network-LSA</span></span></span><br><span class="line"><span class="function">  Referenced Link State ID: 0.0.0.3</span></span><br><span class="line"><span class="function">  Referenced Originating Router: 10.1.2.2</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:12::/64           <span class="comment">//有DR产生的，路由器直连的传输网段的IPv6地址前缀</span></span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span></span></span><br><span class="line"><span class="function">      Metric: 0</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  LS Age: 653</span></span><br><span class="line"><span class="function">  LS Type: Intra-Area-Prefix-LSA</span></span><br><span class="line"><span class="function">  Link State ID: 0.0.0.1 </span></span><br><span class="line"><span class="function">  Originating Router: 10.1.4.4</span></span><br><span class="line"><span class="function">  LS Seq Number: 0x80000004</span></span><br><span class="line"><span class="function">  Retransmit Count: 0</span></span><br><span class="line"><span class="function">  Checksum: 0xE63F</span></span><br><span class="line"><span class="function">  Length: 44</span></span><br><span class="line"><span class="function">  Number of Prefixes: 1</span></span><br><span class="line"><span class="function">  Referenced LS Type: 0x2002</span></span><br><span class="line"><span class="function">  Referenced Link State ID: 0.0.0.3</span></span><br><span class="line"><span class="function">  Referenced Originating Router: 10.1.4.4</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">   Prefix: 2001:DB8:2345:23::/64</span></span><br><span class="line"><span class="function">    Prefix Options: 0 <span class="params">(-|-|-|-|-)</span></span></span><br><span class="line"><span class="function">      Metric: 0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="https://i.loli.net/2021/05/02/IAV8ecyQoqDBdNH.jpg" alt="吴超 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IPv6-OSPFv3/" rel="tag"># IPv6 OSPFv3</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/IPv6-ISIS%E5%8F%8C%E6%A0%88%E7%A4%BA%E4%BE%8B/" rel="next" title="IPv6 ISIS双栈示例">
+                <i class="fa fa-chevron-left"></i> IPv6 ISIS双栈示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/OSPF%E5%8F%8C%E6%A0%88%E7%A4%BA%E4%BE%8B/" rel="prev" title="IPv6 OSPF双栈示例">
+                IPv6 OSPF双栈示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wuchao.jpg"
+               alt="吴超" />
+          <p class="site-author-name" itemprop="name">吴超</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shanliangdepizi/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wuchao.code@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.zihang.xin" title="风的颜色" target="_blank">风的颜色</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组网需求"><span class="nav-number">1.</span> <span class="nav-text">组网需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组网拓扑"><span class="nav-number">2.</span> <span class="nav-text">组网拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置思路"><span class="nav-number">3.</span> <span class="nav-text">配置思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置命令"><span class="nav-number">4.</span> <span class="nav-text">配置命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看结果"><span class="nav-number">5.</span> <span class="nav-text">查看结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="true"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://wuchao.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://myblog.wuchao.space/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/OSPFv3%E7%9A%84LSA%E7%A4%BA%E4%BE%8B/';
+          this.page.identifier = '2022/06/02/实验/IPv6/HCIP/路由/OSPFv3的LSA示例/';
+          this.page.title = 'IPv6 OSPFv3的LSA示例';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://wuchao.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

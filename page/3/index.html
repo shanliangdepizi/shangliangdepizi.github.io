@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/IPv6-ISIS%E5%8F%8C%E6%A0%88%E7%A4%BA%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/" itemprop="url">
-                  配置一个双栈网络示例
+                <a class="post-title-link" href="/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/IPv6-ISIS%E5%8F%8C%E6%A0%88%E7%A4%BA%E4%BE%8B/" itemprop="url">
+                  IPv6 ISIS双栈示例
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-21T10:07:39+08:00">
-                2022-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-02T11:01:48+08:00">
+                2022-06-02
               </time>
             
 
@@ -357,8 +357,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">基础内容</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/HCIP/" itemprop="url" rel="index">
+                    <span itemprop="name">HCIP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCIE/IPv6/HCIP/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                    <span itemprop="name">路由</span>
                   </a>
                 </span>
 
@@ -375,9 +386,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/#comments" itemprop="discussionUrl">
+                <a href="/2022/06/02/%E5%AE%9E%E9%AA%8C/IPv6/HCIP/%E8%B7%AF%E7%94%B1/IPv6-ISIS%E5%8F%8C%E6%A0%88%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/04/21/实验/IPv6/HCIA/配置一个双栈网络/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/06/02/实验/IPv6/HCIP/路由/IPv6-ISIS双栈示例/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,21 +417,17 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>配置R1、R2的接口IP地址</li>
-<li>在R1、R2上分别配置OSPFv2和OSPFv3，实现PC1与PC2的双栈访问</li>
+<li>某公司通过部署IS-IS实现IPv4网络的互联互通，同时部署IPv6网络进行业务测试，需要在IS-IS中使能IPv6功能</li>
+<li>由于设备性能不同，通过修改开销值，实现IPv4和IIPv6业务优先不同的路径，且IPv6网络单独计算拓扑</li>
+<li>所有路由器运行IS-IS协议，整个网络都处于区域49.0001中国，且路由器均为level-2路由器</li>
+<li>配置完成后，每台路由器都应该学到AS内的所有网段的IPv4路由和IPv6路由</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/21/7rWNzfPCyVDJw4s.jpg" alt="配置一个双栈网络拓扑"></p>
-<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>R1、R2全局和相关接口使能IPv6功能</li>
-<li>在PC、R1、R2相应接口配置IPv4和IPv6全球单播地址</li>
-<li>在R1、R2上配置OSPFv2，PC1、PC2可以通过IPv4网络通信</li>
-<li>在R1、R2上配置OSPFv3，PC1、PC2可以通过IPv6网络通信</li>
-</ol>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/05/07/RJAIY74zUevM2L9.jpg" alt="IPv6-ISIS配置示例拓扑图"></p>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>配置R1、R2全局和接口使能IPv6功能</p>
+<li><p>配置路由器基本功能以及各个接口IPv4地址</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 enable</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.12</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.13</span><span class="number">.1</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -430,17 +437,33 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.12</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.24</span><span class="number">.2</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.13</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.34</span><span class="number">.1</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.24</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>在PC1、R1、R2相应接口配置IPv4和IPv6全球单播地址</p>
+<li><p>配置IS-IS（IPv4）路由协议以及接口使能IS-IS路由协议</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 10.0.12.1 30</span><br><span class="line">  ipv6 add 2001:db8:1::1&#x2F;64</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 192.168.1.1 30</span><br><span class="line">  ipv6 add 2001:db8:2::1&#x2F;64</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  is-level level-<span class="number">2</span></span><br><span class="line">  network-entity <span class="number">49.0001</span><span class="number">.0000</span><span class="number">.0001</span><span class="number">.00</span></span><br><span class="line">  quit</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br><span class="line">  isis cost <span class="number">40</span> level-<span class="number">2</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -450,17 +473,33 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.0</span><span class="number">.12</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line">  ipv6 add <span class="number">2001</span>:db8:<span class="number">1</span>::<span class="number">2</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">192.168</span><span class="number">.2</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line">  ipv6 add <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis 1</span><br><span class="line">  is-level level-2</span><br><span class="line">  network-entity 49.0001.0000.0002.00</span><br><span class="line">  quit</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  isis enable 1</span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  is-level level-<span class="number">2</span></span><br><span class="line">  network-entity <span class="number">49.0001</span><span class="number">.0000</span><span class="number">.0003</span><span class="number">.00</span></span><br><span class="line">  quit</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  is-level level-<span class="number">2</span></span><br><span class="line">  network-entity <span class="number">49.0001</span><span class="number">.0000</span><span class="number">.0004</span><span class="number">.00</span></span><br><span class="line">  quit</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  isis enable <span class="number">1</span></span><br><span class="line">  isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>在R1、R2上配置OSPFv2、OSPFv3，使得网络互通</p>
+<li><p>配置使能IPv6以及配置IPv6接口地址</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf router-id <span class="number">10.0</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.0</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">192.168</span><span class="number">.1</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line">ospfv3</span><br><span class="line">  router-id <span class="number">10.0</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">12</span>::<span class="number">1</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">13</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -470,23 +509,83 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf router-id <span class="number">10.0</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.0</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">192.168</span><span class="number">.2</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line">ospfv3</span><br><span class="line">  router-id <span class="number">10.0</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">12</span>::<span class="number">2</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">24</span>::<span class="number">2</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
-<li><p>PC1 ping PC2（IPv4网络）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line">PC&gt;ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line">Ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: <span class="number">32</span> data bytes, Press Ctrl_C to <span class="keyword">break</span></span><br><span class="line">Request timeout!</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">2</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">3</span> ttl=<span class="number">126</span> time=<span class="number">15</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">4</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">5</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line"></span><br><span class="line">--- <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span> ping statistics ---</span><br><span class="line">  <span class="number">5</span> packet(s) transmitted</span><br><span class="line">  <span class="number">4</span> packet(s) received</span><br><span class="line">  <span class="number">20.00</span>% packet loss</span><br><span class="line">  round-trip min/avg/max = <span class="number">0</span>/<span class="number">15</span>/<span class="number">16</span> ms</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">13</span>::<span class="number">2</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 enbale</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">34</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enbale</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">24</span>::<span class="number">1</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">  ipv6 address <span class="number">2001</span>:db8:<span class="number">2345</span>:<span class="number">34</span>::<span class="number">2</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="4">
+<li><p>配置IS-IS（IPv6）路由协议以及接口使能ISIS（IPv6）</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  ipv6 enbale topology ipv6</span><br><span class="line">  quit</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  isis ipv6 enable <span class="number">1</span></span><br><span class="line">  isis ipv6 cost <span class="number">40</span> level-<span class="number">2</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis ipv6 enable <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  ipv6 enable topology ipv6</span><br><span class="line">  quit</span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R3配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  ipv6 enable topology ipv6</span><br><span class="line">  quit</span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>R4配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">isis <span class="number">1</span></span><br><span class="line">  ipv6 enable topology ipv6</span><br><span class="line">  quit</span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  isis ipv6 enbale <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h2><ol>
+<li><p>查看IS-IS（IPv6）接口信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">display isis <span class="class"><span class="keyword">interface</span> <span class="title">g0</span>/0/0 <span class="title">verbose</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&lt;<span class="title">R1</span>&gt;<span class="title">display</span> <span class="title">isis</span> <span class="title">interface</span> <span class="title">g0</span>/0/0 <span class="title">verbose</span> </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">                       <span class="title">Interface</span> <span class="title">information</span> <span class="title">for</span> <span class="title">ISIS</span>(1)</span></span><br><span class="line"><span class="class">                       ---------------------------------</span></span><br><span class="line"><span class="class"> <span class="title">Interface</span>       <span class="title">Id</span>      <span class="title">IPV4</span>.<span class="title">State</span>          <span class="title">IPV6</span>.<span class="title">State</span>      <span class="title">MTU</span>  <span class="title">Type</span>  <span class="title">DIS</span>   </span></span><br><span class="line"><span class="class"> <span class="title">GE0</span>/0/0         001         <span class="title">Up</span>                  <span class="title">Up</span>          1497 <span class="title">L1</span>/<span class="title">L2</span> <span class="title">No</span>/<span class="title">No</span> </span></span><br><span class="line">  Circuit MT State            : Standard  IPV6 </span><br><span class="line">  Circuit Parameters          : small-hello </span><br><span class="line">  Description                 : HUAWEI, AR Series, GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span> Interfac</span><br><span class="line">e</span><br><span class="line">  SNPA Address                : <span class="number">00e0</span>-fc2f-<span class="number">2</span>b3e</span><br><span class="line">  IP Address                  : <span class="number">10.1</span><span class="number">.12</span><span class="number">.1</span></span><br><span class="line">  IPV6 Link Local Address     : FE80::<span class="number">2E0</span>:FCFF:FE2F:<span class="number">2</span>B3E</span><br><span class="line">  <span class="function">IPV6 Global <span class="title">Address</span><span class="params">(es)</span>     : 2001:DB8:2345:12::1/64</span></span><br><span class="line"><span class="function">  Csnp Timer Value            :  L1    10  L2    10</span></span><br><span class="line"><span class="function">  Hello Timer Value           :  L1    10  L2    10</span></span><br><span class="line"><span class="function">  DIS Hello Timer Value       :  L1     3  L2     3</span></span><br><span class="line"><span class="function">  Hello Multiplier Value      :  L1     3  L2     3</span></span><br><span class="line"><span class="function">  LSP-Throttle Timer          :  L12    50</span></span><br><span class="line"><span class="function">  Cost                        :  L1    10  L2    10</span></span><br><span class="line"><span class="function">  Ipv6 Cost                   :  L1    10  L2    40</span></span><br><span class="line"><span class="function">  Priority                    :  L1    64  L2    64</span></span><br><span class="line"><span class="function">  Retransmit Timer Value      :  L12    5</span></span><br><span class="line"><span class="function">  Bandwidth-Value             :  Low 1000000000  High          0</span></span><br><span class="line"><span class="function">  Static Bfd                  :  NO</span></span><br><span class="line"><span class="function">  Dynamic Bfd                 :  NO</span></span><br><span class="line"><span class="function">  Fast-Sense Rpr              :  NO</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>PC1 ping PC2（IPv6网络）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span></span><br><span class="line"></span><br><span class="line">PC&gt;ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span></span><br><span class="line"></span><br><span class="line">Ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: <span class="number">32</span> data bytes, Press Ctrl_C to <span class="keyword">break</span></span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">1</span> hop limit=<span class="number">253</span> time=<span class="number">31</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">2</span> hop limit=<span class="number">253</span> time=<span class="number">32</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">3</span> hop limit=<span class="number">253</span> time=<span class="number">15</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">4</span> hop limit=<span class="number">253</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">5</span> hop limit=<span class="number">253</span> time=<span class="number">16</span> ms</span><br><span class="line"></span><br><span class="line">--- <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span> ping statistics ---</span><br><span class="line">  <span class="number">5</span> packet(s) transmitted</span><br><span class="line">  <span class="number">5</span> packet(s) received</span><br><span class="line">  <span class="number">0.00</span>% packet loss</span><br><span class="line">  round-trip min/avg/max = <span class="number">15</span>/<span class="number">22</span>/<span class="number">32</span> ms</span><br></pre></td></tr></table></figure>
+<li><p>查看IS-IS（IPv6）邻居信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">display isis <span class="number">1</span> peer verbose</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis isis <span class="number">1</span> peer verbose </span><br><span class="line"></span><br><span class="line">                          <span class="function">Peer information <span class="keyword">for</span> <span class="title">ISIS</span><span class="params">(<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  System Id     Interface          Circuit Id       State HoldTime Type     PRI</span></span><br><span class="line"><span class="function">-------------------------------------------------------------------------------</span></span><br><span class="line"><span class="function">0001.0000.0002* GE0/0/0            0001.0000.0002.01 Up   9s       L2       64 </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  MT IDs supported     : 0<span class="params">(UP)</span>  2<span class="params">(UP)</span> </span></span><br><span class="line"><span class="function">  Local MT IDs         : 0  2 </span></span><br><span class="line"><span class="function">  Area <span class="title">Address</span><span class="params">(es)</span>     : 49 </span></span><br><span class="line"><span class="function">  Peer IP <span class="title">Address</span><span class="params">(es)</span>  : 10.1.12.2       </span></span><br><span class="line"><span class="function">  Peer IPv6 <span class="title">Address</span><span class="params">(es)</span>: FE80::2E0:FCFF:FE40:4681</span></span><br><span class="line"><span class="function">  Uptime               : 06:59:14</span></span><br><span class="line"><span class="function">  Adj Protocol         : IPV4  IPV6 </span></span><br><span class="line"><span class="function">  Restart Capable      : YES</span></span><br><span class="line"><span class="function">  Suppressed Adj       : NO</span></span><br><span class="line"><span class="function">  Peer System Id       : 0001.0000.0002  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">0001.0000.0003* GE0/0/1            0001.0000.0003.01 Up   9s       L2       64 </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  MT IDs supported     : 0<span class="params">(UP)</span>  2<span class="params">(UP)</span> </span></span><br><span class="line"><span class="function">  Local MT IDs         : 0  2 </span></span><br><span class="line"><span class="function">  Area <span class="title">Address</span><span class="params">(es)</span>     : 49 </span></span><br><span class="line"><span class="function">  Peer IP <span class="title">Address</span><span class="params">(es)</span>  : 10.1.13.2       </span></span><br><span class="line"><span class="function">  Peer IPv6 <span class="title">Address</span><span class="params">(es)</span>: FE80::2E0:FCFF:FEF5:7FD6</span></span><br><span class="line"><span class="function">  Uptime               : 06:57:15</span></span><br><span class="line"><span class="function">  Adj Protocol         : IPV4  IPV6 </span></span><br><span class="line"><span class="function">  Restart Capable      : YES</span></span><br><span class="line"><span class="function">  Suppressed Adj       : NO</span></span><br><span class="line"><span class="function">  Peer System Id       : 0001.0000.0003  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Total <span class="title">Peer</span><span class="params">(s)</span>: 2</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>查看IS-IS（IPv6）路由信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">display isis route [process-id | vpn-instance vpn-instance name ] ipv6 [verbose | [level-<span class="number">1</span> | level-<span class="number">2</span>]| ipv6-address[prefix-length]]</span><br><span class="line"></span><br><span class="line">display isis route ipv6 </span><br><span class="line"> </span><br><span class="line">&lt;R1&gt;display isis route ipv6</span><br><span class="line"></span><br><span class="line">                         <span class="function">Route information <span class="keyword">for</span> <span class="title">ISIS</span><span class="params">(<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function">                         -----------------------------</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">                        <span class="title">ISIS</span><span class="params">(<span class="number">1</span>)</span> Level-2 Forwarding Table</span></span><br><span class="line"><span class="function">                        --------------------------------</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> IPV6 Dest.      ExitInterface   NextHop                       Cost       Flags</span></span><br><span class="line"><span class="function">-------------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"> 2001:DB8:2345:34::/64                       </span></span><br><span class="line"><span class="function">                 GE0/0/1         FE80::2E0:FCFF:FEF5:7FD6      20         A/-/-</span></span><br><span class="line"><span class="function"> 2001:DB8:2345:24::/64                       </span></span><br><span class="line"><span class="function">                 GE0/0/1         FE80::2E0:FCFF:FEF5:7FD6      30         A/-/-</span></span><br><span class="line"><span class="function"> 2001:DB8:2345:12::/64                       </span></span><br><span class="line"><span class="function">                 GE0/0/0         Direct                        40         D/L/-</span></span><br><span class="line"><span class="function"> 2001:DB8:2345:13::/64                       </span></span><br><span class="line"><span class="function">                 GE0/0/1         Direct                        10         D/L/-</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">     Flags: D-Direct, A-Added to URT, L-Advertised in LSPs, S-IGP Shortcut,</span></span><br><span class="line"><span class="function">                               U-Up/Down Bit Set</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -528,7 +627,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/">84</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -573,7 +672,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">88</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -595,7 +694,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
