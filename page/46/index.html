@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/23/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/06/12/HCNP/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/05/23/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" itemprop="url">
-                  RIP路由协议
+                <a class="post-title-link" href="/2021/06/12/HCNP/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5/" itemprop="url">
+                  路由策略
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-23T16:15:06+08:00">
-                2021-05-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-12T10:54:42+08:00">
+                2021-06-12
               </time>
             
 
@@ -335,8 +335,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/" itemprop="url" rel="index">
-                    <span itemprop="name">HCNA</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/" itemprop="url" rel="index">
+                    <span itemprop="name">HCNP</span>
                   </a>
                 </span>
 
@@ -346,7 +346,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/%E8%B7%AF%E7%94%B1/" itemprop="url" rel="index">
                     <span itemprop="name">路由</span>
                   </a>
                 </span>
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E8%B7%AF%E7%94%B1/RIP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">RIP协议</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNP/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">路由控制</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/23/HCNA/%E8%B7%AF%E7%94%B1/RIP/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/#comments" itemprop="discussionUrl">
+                <a href="/2021/06/12/HCNP/%E8%B7%AF%E7%94%B1/%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/05/23/HCNA/路由/RIP/RIP路由协议/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/06/12/HCNP/路由/路由控制/路由策略/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,177 +405,242 @@
       
         
           
-            <h1 id="RIP概述"><a href="#RIP概述" class="headerlink" title="RIP概述"></a>RIP概述</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li>距离矢量（DV）路由协议，属于IGP（Interior Gateway Protocol）内部网关协议</li>
-<li>适用于中小型网络，有RIPv1和RIPv2两个版本</li>
-<li>基于UDP，端口号为520</li>
-<li>周期性更新（一般25s-30s更新一次）</li>
-<li>支持水平分割（Split  Horizon）、毒性反转（Poison Reverse）和触发更新等防环特性</li>
-<li>Router Information Protocol 路由信息协议</li>
-</ul>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
-<li>配置简单</li>
-<li>易于维护</li>
-<li>适用于小型网络</li>
-</ul>
-<h1 id="RIP工作原理"><a href="#RIP工作原理" class="headerlink" title="RIP工作原理"></a>RIP工作原理</h1><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><ul>
-<li>路由器运行RIP后，会首先发送更新请求Request</li>
-<li>收到请求的路由器会将自己的路由表封装到Response中响应（周期性的更新）给请求的路由器</li>
-<li>网络稳定后，路由器会周期性（25s-30s）的响应路由更新信息</li>
-</ul>
-<h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/23/xUcHQKV5b8ZatRB.png" alt="alt RIP工作原理"></p>
-<h2 id="RIP开销（度量）"><a href="#RIP开销（度量）" class="headerlink" title="RIP开销（度量）"></a>RIP开销（度量）</h2><h3 id="RIP开销"><a href="#RIP开销" class="headerlink" title="RIP开销"></a>RIP开销</h3><ul>
-<li>RIP使用跳数作为度量值，来衡量到达目的网络的距离</li>
-<li>缺省情况下，直连网络的路由跳数为0，当路由器发送路由更新的时候度量值会+1</li>
-<li>RIP规定超过15条为网络不可达</li>
-</ul>
-<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/23/GOYs1gMj3fK8DUq.png" alt="alt RIP度量值（开销）"></p>
-<h1 id="RIPv1与RIPv2"><a href="#RIPv1与RIPv2" class="headerlink" title="RIPv1与RIPv2"></a>RIPv1与RIPv2</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="RIPv1"><a href="#RIPv1" class="headerlink" title="RIPv1"></a>RIPv1</h3><ul>
-<li>RIPv1以全广播的方式发送报文</li>
-<li>RIPv1是有类别路由协议，不支持VLSM和CIDR</li>
-<li>不支持认证</li>
-</ul>
-<h3 id="RIPv2"><a href="#RIPv2" class="headerlink" title="RIPv2"></a>RIPv2</h3><ul>
-<li>RIPv2支持广播或组播的方式发送报文，组播地址是：224.0.0.9</li>
-<li>RIPv2是无类别路由协议，支持VLSM、路由聚合和CIDR</li>
-<li>支持明文认证和MD5密文认证</li>
-</ul>
-<h2 id="报文"><a href="#报文" class="headerlink" title="报文"></a>报文</h2><h3 id="RIPv1-1"><a href="#RIPv1-1" class="headerlink" title="RIPv1"></a>RIPv1</h3><ol>
-<li><p>报文</p>
-<p><img src="https://i.loli.net/2021/05/23/oCM8aUXsOWlJQcE.png" alt="alt RIPv1 报文"></p>
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol>
+<li>通过一系列工具或者方法对路由进行各种控制的“策略”</li>
+<li>影响路由的产生、发布、选择等，进而影响报文的转发路径</li>
+</ol>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/12/goXM2Sb3Fd4lmBE.png" alt="alt 路由策略的目的"></p>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>目的</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>对路由进行过滤</td>
+<td>要不要这条路由</td>
+</tr>
+<tr>
+<td>修改路由属性</td>
+<td>将某条路由的某个属性值修改，达到修改路由选路的目的</td>
+</tr>
+</tbody></table>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
+<li>控制路由的接收、打不以及引入，保证网络的安全性</li>
+<li>修改路由属性，对网络流量进行合理规划，提高网络性能</li>
+</ol>
+<h2 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h2><ol>
+<li><p>路由策略的核心机制 是过滤器，通过过滤器定义一组匹配规则</p>
 </li>
-<li><p>解析</p>
-<p><img src="https://i.loli.net/2021/04/06/FV4QWGAfMpnCH1O.png" alt="alt RIPv1报文解析"></p>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th>应用范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>访问控制列表（ACL）</td>
+<td>各个动态路由协议</td>
+</tr>
+<tr>
+<td>地址前缀列表（IP-Prefix List）</td>
+<td>各个动态路由协议</td>
+</tr>
+<tr>
+<td>AS路径过滤器（AS-Path-Filter）</td>
+<td>BGP协议</td>
+</tr>
+<tr>
+<td>团体属性过滤器（Community Filter）</td>
+<td>BGP协议</td>
+</tr>
+<tr>
+<td>扩展团体属性过滤器（Extcommunity-Filter）</td>
+<td>VPN</td>
+</tr>
+<tr>
+<td>RD属性过滤器（Router Distinguisher-Filter）</td>
+<td>VPN</td>
+</tr>
+<tr>
+<td>路由策略（Route-Policy）</td>
+<td>各个动态路由协议</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Route-policy可以使用前面6种过滤器定义自己的匹配规则，不仅可以匹配路由路径，还可以修改路由属性</p>
 </li>
 </ol>
-<h3 id="RIPv2-1"><a href="#RIPv2-1" class="headerlink" title="RIPv2"></a>RIPv2</h3><ol>
-<li><p>报文</p>
-<p><img src="https://i.loli.net/2021/05/23/tfbToHkapzeWi16.png" alt="alt RIPv2 报文"></p>
-</li>
-<li><p>解析</p>
-<p><img src="https://i.loli.net/2021/05/23/zvHPoxnywVA2O8C.png" alt="alt RIPv2 解析"></p>
-</li>
-</ol>
-<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><p><img src="https://i.loli.net/2021/05/23/S4BCt5DeYzk6nlm.png" alt="alt RIPv2认证"></p>
-<h1 id="RIP环路"><a href="#RIP环路" class="headerlink" title="RIP环路"></a>RIP环路</h1><h2 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/05/23/hAfo5ediXIjQrkv.png" alt="alt RIP环路"></p>
-<h2 id="RIP环路配置"><a href="#RIP环路配置" class="headerlink" title="RIP环路配置"></a>RIP环路配置</h2><h3 id="R1配置"><a href="#R1配置" class="headerlink" title="R1配置"></a>R1配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1  #开启RIP进程，默认是1</span><br><span class="line">ver 2  #开启RIPv2</span><br><span class="line">network 12.0.0.0 #network 宣告网络，指定运行RIP的接口，只需要输入主类网络地址即可。目的是该地址是否匹配某个接口</span><br><span class="line">network 1.0.0.0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="R2-配置"><a href="#R2-配置" class="headerlink" title="R2 配置"></a>R2 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">rip 1</span><br><span class="line">ver 2</span><br><span class="line">network 12.0.0.0</span><br><span class="line">network 2.0.0.0</span><br></pre></td></tr></table></figure>
-
-<h3 id="其他的问题"><a href="#其他的问题" class="headerlink" title="其他的问题"></a>其他的问题</h3><ul>
-<li>network 1.0.0.0 如果只有部分子网对应的接口走RIP协议，怎么将别的接口不走RIP协议</li>
-<li>不同的进程号表示不同的数据库</li>
-<li>可以在RIP中注入RIP</li>
+<h2 id="路由策略各个工具之间的调用关系"><a href="#路由策略各个工具之间的调用关系" class="headerlink" title="路由策略各个工具之间的调用关系"></a>路由策略各个工具之间的调用关系</h2><h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/06/13/CJrQj3VBO9gFNUl.png" alt="alt 路由策略各个工具之间的调用关系"></p>
+<h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>条件工具</td>
+<td>把需要的路由给“抓取”出来</td>
+</tr>
+<tr>
+<td>策略工具</td>
+<td>被“抓取”出来的路由执行哪些操作（允许、拒绝、修改属性）</td>
+</tr>
+<tr>
+<td>调用工具</td>
+<td>将路由策略执行在某个具体的路由协议里面，或者其他配置中，使得路由策略生效</td>
+</tr>
+</tbody></table>
+<h1 id="条件工具"><a href="#条件工具" class="headerlink" title="条件工具"></a>条件工具</h1><h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>前面已经讲过。这省略了………..</p>
+<h2 id="IP-Prefix-List"><a href="#IP-Prefix-List" class="headerlink" title="IP-Prefix List"></a>IP-Prefix List</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ol>
+<li><p>内容</p>
+<ul>
+<li>能同时精确匹配网络号与子网掩码</li>
+<li>性能以及可控性比ACL更高（ACL无法精确网络号以及子网掩码）</li>
+<li>前缀列表不能用于过滤数据包</li>
 </ul>
-<h2 id="环路产生流程"><a href="#环路产生流程" class="headerlink" title="环路产生流程"></a>环路产生流程</h2><ol>
-<li>正常情况<ul>
-<li>在R1与R2都开启RIP之后</li>
-<li>R1将自己直连的路由，通过RIP宣告给R2，对R1来说是0跳，对R2来说是1跳，R2也将自己从R1学习到有关R1直连设备的路由信息发送给R1，此时R1收到关于自己的直连设备的路由信息是0跳和2跳，在开启RIP机制的情况下，R1不会相信R2发过来有关自己直连的设备的路由信息。此时，就不会产生RIP环路</li>
-<li>R2将自己直连的路由，通过RIP宣告给R1，对R2来说是0跳，对R1来说是1跳</li>
-</ul>
-</li>
-<li>环路情况<ul>
-<li>RIP会周期性宣告自己的路由更新</li>
-<li>R1将自己直连的路由，通过RIP宣告给R2，对R1来说是0跳，对R2来说是1跳</li>
-<li>R2会将自己从R1学到的有关R1直连设备的路由更新信息再次发给R1，此时R1收到两条有关自己直连设备的路由信息；当R1直连设备宕机的情况下，R1路由器将标记这条路由处于不可达的状态（即该条路由是16跳）。然而，R1需要等到路由信息更新时候才会将这条不可达的路由宣告出去（R1在30s左右时间更新路由信息），此时，R1会相信从R2学过来的有关自己直连设备的路由信息（即此时R1到自己直连设备的路由为2跳，并且下一跳为R2路由器的接口地址），此时，RIP协议的路由就产生了环路。知道RIP路由跳数是16后停止</li>
-</ul>
-</li>
-</ol>
-<h2 id="避免环路的机制"><a href="#避免环路的机制" class="headerlink" title="避免环路的机制"></a>避免环路的机制</h2><h3 id="水平分割（split-horison）"><a href="#水平分割（split-horison）" class="headerlink" title="水平分割（split-horison）"></a>水平分割（split-horison）</h3><ol>
-<li><p>路由器从某个接口学到的路由，不会从该接口再发回给邻居路由器</p>
 </li>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/08/FGdbq9v8zo6CR1J.png" alt="alt 水平分割"></p>
+<p><img src="https://i.loli.net/2021/06/13/u4DiXqkn6spAdNO.png" alt="alt 前缀列表"></p>
 </li>
 </ol>
-<h3 id="毒性反转（Poison-reverse）"><a href="#毒性反转（Poison-reverse）" class="headerlink" title="毒性反转（Poison-reverse）"></a>毒性反转（Poison-reverse）</h3><ol>
-<li><p>路由器从某个接口学到的路由后，将该路由的条数设置成16跳，并将从原接收接口发回给邻居路由器</p>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ol>
+<li><p>执行流程（所有条件都不匹配，默认是拒绝）</p>
+<p><img src="https://i.loli.net/2021/06/14/ocmhiKjaPbsGFA7.png" alt="alt IP IP-Prefix List执行流程"></p>
 </li>
-<li><p>与水平分割是矛盾的，默认是不开启的，当两个都开启的时候，优先执行毒性反转（poison reverse）机制</p>
+<li><p>语法规则</p>
+<ul>
+<li><p>路由信息首先匹配P-Prefix List第一条I，如果是允许操作，则直接接收或者发送路由信息</p>
+</li>
+<li><p>如果拒绝操作，则匹配IP-Prefix List第二条，依次这样执行</p>
+</li>
+<li><p>如果全部都不匹配，则执行拒绝操作，不会接收或者发送路由信息</p>
 </li>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/2fFCechYmRra7ZN.png" alt="alt 毒性反转"></p>
+<p><img src="https://i.loli.net/2021/06/15/KjBl12Tw8uivUQd.png" alt="alt IP-Prefix List案例"></p>
 </li>
-</ol>
-<h3 id="触发更新"><a href="#触发更新" class="headerlink" title="触发更新"></a>触发更新</h3><ol>
-<li><p>当路由信息发生变化的时候，立即向邻居设备发送触发更新的报文</p>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>语法规则</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不配置greater-equal和less-equal</td>
+<td>前缀长度=16</td>
+</tr>
+<tr>
+<td>配置greater-equal</td>
+<td>前缀长度=24~32</td>
+</tr>
+<tr>
+<td>配置less-equal</td>
+<td>前缀长度=16~28</td>
+</tr>
+<tr>
+<td>配置greater-equal和less-equal</td>
+<td>前缀长度=24~28</td>
+</tr>
+</tbody></table>
 </li>
+</ul>
+</li>
+<li><p>案例分析</p>
+<ul>
 <li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/DUxM7w9hYulAXBG.png" alt="alt 触发更新"></p>
+<p><img src="https://i.loli.net/2021/06/15/Vl2hDoxt4TkUE7p.png" alt="alt 案例"></p>
 </li>
-</ol>
-<h1 id="RIP高级配置"><a href="#RIP高级配置" class="headerlink" title="RIP高级配置"></a>RIP高级配置</h1><h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><ol>
-<li><p>在路由器的接口上可以禁止该接口发送RIP报文</p>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>permit 10.0.0.0 24</td>
+<td>仅匹配10.0.0.0/24 不匹配其他网络</td>
+</tr>
+<tr>
+<td>permit 10.0.0.0 24 greater-equal 25</td>
+<td>匹配10.0.0.0/24区间内的掩码大于25而小于32的网段</td>
+</tr>
+<tr>
+<td>permit 10.0.0.0 24 greater-equal 25 less-equal 30</td>
+<td>匹配10.0.0.0/24区间内掩码大于25而小于30的网段</td>
+</tr>
+<tr>
+<td>permit 0.0.0.0 0 greater-equal 16 less-equal 24</td>
+<td>.0.0.0 0 区间内掩码是大于16小于24的任意网络</td>
+</tr>
+<tr>
+<td>IP prefix-list test permit 10.0.0.0 24 less-equal 32</td>
+<td>10.0.0.0/24区间内路由通过过滤，其他的路由不能通过</td>
+</tr>
+<tr>
+<td>IP prefix-list test index 10 permit 10.0.0.0 24<br>IP prefix-list test index 20 permit 11.0.0.0 16</td>
+<td>只允许 10.0.0.0/24和11.0.0.0/16能够通过过滤，<br>其他路由不可以</td>
+</tr>
+</tbody></table>
 </li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/xYsO1u9oWMcBK5I.png" alt="alt RIP配置-Output"></p>
-</li>
-</ol>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><ol>
-<li><p>在路由器的接口上可以禁止该接口接收RIP报文</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/l7nLFKtcPebTuMj.png" alt="alt RIP配置-Input"></p>
-</li>
-</ol>
-<h2 id="抑制接口"><a href="#抑制接口" class="headerlink" title="抑制接口"></a>抑制接口</h2><ol>
-<li><p>配置路由器的某个接口为抑制状态，只接受RIP报文</p>
-</li>
-<li><p>此命令的优先级大于rip input 与 rip output</p>
-</li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rip 1</span><br><span class="line">[R1-rip-1]silent-interface GigabitEthernet 0&#x2F;0&#x2F;1</span><br></pre></td></tr></table></figure>
-
-
-
+</ul>
 </li>
 </ol>
 <ol start="4">
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/6NT3lG4DCWq9vPh.png" alt="alt 抑制接口"></p>
+<li><p>特殊路由</p>
+<table>
+<thead>
+<tr>
+<th>特殊路由</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.0.0.0 0 less-equal 32</td>
+<td>匹配所有路由</td>
+</tr>
+<tr>
+<td>0.0.0.0 0</td>
+<td>缺省路由</td>
+</tr>
+<tr>
+<td>主机地址 32</td>
+<td>主机路由</td>
+</tr>
+<tr>
+<td>0.0.0.0 0 greater-equal 32</td>
+<td>表示只匹配所有主机路由</td>
+</tr>
+</tbody></table>
 </li>
 </ol>
-<h2 id="水平分割（Split-horizon）与毒性反转（Poison-reverse）"><a href="#水平分割（Split-horizon）与毒性反转（Poison-reverse）" class="headerlink" title="水平分割（Split-horizon）与毒性反转（Poison-reverse）"></a>水平分割（Split-horizon）与毒性反转（Poison-reverse）</h2><h3 id="查看RIP详细信息的命令"><a href="#查看RIP详细信息的命令" class="headerlink" title="查看RIP详细信息的命令"></a>查看RIP详细信息的命令</h3><ol>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip 1 interface g0&#x2F;0&#x2F;2 verbose</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="2">
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/08/cqP2QrmNXbGSDgp.png" alt="alt 水平分割与毒性反转"></p>
-</li>
-</ol>
-<h3 id="图示-3"><a href="#图示-3" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/23/qAv2LkWz4ZCebHx.png" alt="alt 水平分割与毒性反转"></p>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;2</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip spri</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip split</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip split-horizon</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip poi</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]rip poison-reverse</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;2]&lt;R2&gt;sys</span><br></pre></td></tr></table></figure>
-
-<h2 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h2><h3 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h3><ol>
-<li><p>查看RIP接口详细信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip 1 # 1代表RIP进程号</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="2">
-<li><p>查看RIP信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis rip int g0&#x2F;0&#x2F;0 verbose</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="调整度量值"><a href="#调整度量值" class="headerlink" title="调整度量值"></a>调整度量值</h3><ol>
-<li><p>Metricout</p>
+<ol start="5">
+<li><p>练习</p>
 <ul>
-<li><p>接受RIP路由信息的时候，Cost自动增加N个</p>
+<li><p>192.168.4.0/24，192.168.5.0/24，192.168.6.0/24，192.168.7.0/24，最简洁的方式匹配这四个路由</p>
+<p>IP prefix-list test permit 192.168.4.0/22 greater-equal 24 less-equal 24</p>
 </li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricout</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricout 5 #将所有从此接口出去的RIP路由信息的Cost该为5</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]dis this</span><br><span class="line">[V200R003C00]</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> ip address 12.0.0.2 255.255.255.0</span><br><span class="line"> rip metricout 5</span><br><span class="line"> rip poison-reverse</span><br><span class="line">#</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<li><p>171.10.0.0/24，171.10.0.0/24，171.10.0.0/24，171.10.0.0/24四条路由用最少命令实现</p>
+<p>ip ip-prefix test permit 172.10.0.0/22 greater-equal 24 less-equal 24</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/15/BPWyYk5RoOA1c4u.png" alt="alt IP Prefix List实验图示"></p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line"># OSPF中应用IP-Prefix过滤出口路由</span><br><span class="line">filter-policy ip-prefix wuchao export</span><br><span class="line">import-route static</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.1 0.0.0.0</span><br><span class="line"></span><br><span class="line">ip route-static 192.168.0.0 16 NULL 0</span><br><span class="line">ip route-static 192.168.0.0 30 NULL 0</span><br><span class="line">ip route-static 192.168.0.0 24 NULL 0</span><br><span class="line">ip route-static 192.168.1.0 24 NULL 0</span><br><span class="line">ip route-static 192.168.2.0 24 NULL 0</span><br><span class="line">ip route-static 192.168.3.0 24 NULL 0</span><br><span class="line"># 配置IP-Prefix路由策略</span><br><span class="line">ip ip-prefix wuchao permit 192.168.0.0 22 greater-equal 24 less-equal 24</span><br><span class="line"></span><br><span class="line"># 当有一个不要，其他的都要的，一定要记得写全部的</span><br><span class="line">ip ip-prefix wuchao permit 0.0.0.0 0 less-equal 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -584,17 +649,99 @@
 </li>
 </ol>
 <ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/j9QmLtEHRGfXoC7.png" alt="alt RIP配置-Metricout"></p>
+<li><p>R2配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.2 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<ol start="2">
-<li><p>Metricin</p>
+<ol start="3">
+<li><p>验证</p>
 <ul>
-<li><p>接受RIP路由信息的时候，Cost自动增加N个</p>
+<li><p>没有配置前的路由</p>
+<p><img src="https://i.loli.net/2021/06/15/zBnUmoEcJSZWFXH.png" alt="alt 没有配置前的路由"></p>
 </li>
-<li><p>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;R2&gt;sys</span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[R2]int</span><br><span class="line">[R2]interface g0&#x2F;0&#x2F;0</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricin</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]rip metricin 5 # 路由器的该接口在接受RIP路由信息后，Cost自动增加5</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]dis this</span><br><span class="line">[V200R003C00]</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> ip address 12.0.0.2 255.255.255.0</span><br><span class="line"> rip metricin 5</span><br><span class="line"> rip metricout 5</span><br><span class="line"> rip poison-reverse</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">[R2-GigabitEthernet0&#x2F;0&#x2F;0]q</span><br><span class="line">[R2]dis ip rout</span><br><span class="line">[R2]dis ip routing-table pro rip</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Public routing table : RIP</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Active&gt;</span><br><span class="line">         Destinations : 1        Routes : 1</span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        1.0.0.0&#x2F;24  RIP     100  6  #Cost的值1+5        D   12.0.0.1        GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">RIP routing table status : &lt;Inactive&gt;</span><br><span class="line">         Destinations : 0        Routes : 0</span><br></pre></td></tr></table></figure>
+<li><p>配置IP-Prefix之后的路由</p>
+<p><img src="https://i.loli.net/2021/06/15/OK5rdHLAJS7s2YE.png" alt="alt 配置之后的路由"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="策略工具"><a href="#策略工具" class="headerlink" title="策略工具"></a>策略工具</h1><h1 id="调用工具"><a href="#调用工具" class="headerlink" title="调用工具"></a>调用工具</h1><h2 id="Filter-Policy"><a href="#Filter-Policy" class="headerlink" title="Filter-Policy"></a>Filter-Policy</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><ol>
+<li><p>内容</p>
+<ul>
+<li>一种常用的路由过滤工具</li>
+<li>只能过滤路由，不能过滤LSA</li>
+<li>不能修改路由属性</li>
+</ul>
+</li>
+<li><p>图示</p>
+<p><img src="https://i.loli.net/2021/06/16/XgOFacnTj7wEftv.png" alt="alt Filter-Policy图示"></p>
+</li>
+<li><p>图表</p>
+<table>
+<thead>
+<tr>
+<th>路由类型</th>
+<th>路由传递原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>距离矢量</td>
+<td>过滤路由的发送和接收</td>
+</tr>
+<tr>
+<td>链路状态</td>
+<td>过滤路由表的生产，不影响LSDB的完整性</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="不同路由类型的Filter-Policy"><a href="#不同路由类型的Filter-Policy" class="headerlink" title="不同路由类型的Filter-Policy"></a>不同路由类型的Filter-Policy</h3><ol>
+<li><p>距离矢量</p>
+<p><img src="https://i.loli.net/2021/06/16/m5s6Mj7FHSDwfTO.png" alt="alt 距离矢量的策略"></p>
+</li>
+<li><p>链路状态</p>
+<ul>
+<li><p>OSPF5类LSA执行的Export才可以起作用</p>
+<p><img src="https://i.loli.net/2021/06/16/5otlxaNgTL8uIbq.png" alt="alt OSPF区域内Filter-Policy"></p>
+<p>LSA形成LSDB，LSDB生成路由表，在LSDB生成路由表的过程中对路由进行过滤属于入方向的过滤</p>
+<p>当前路由器给本区域呢的其他路由器发送DD包，来同步LSDB时候，对路由进行过滤属于出方向过滤</p>
+</li>
+<li><p>OSPF同一区域</p>
+<p><img src="https://i.loli.net/2021/06/16/fYxNcRaJPBlDoeX.png" alt="alt OSPF同一区域内路由策略"></p>
+<p>Type 1的LSA泛洪给同一个区域内的所有路由器，在LSDB生成路由表的时候，执行路由过滤策略，此时该路由器的路由表中没有Type 1的路由信息</p>
+<p>因为LSDB的路由信息并没有变化，泛洪给同区域内的所有OSPF路由也没有变化，其他的路由器中还是会有Type 1的LSA</p>
+</li>
+<li><p>OSPF区域间</p>
+<p><img src="https://i.loli.net/2021/06/16/jHJXyFIcZY1bsCR.png" alt="alt OSPF区域间路由过滤策略"></p>
+<p>OSPF区域间路由策略会有Type 3 LSA，而Type 3 LSA是有ABR的路由表生成的，在ABR的LSDB生成路由表之前使用路由过滤策略，此时Type 3 LSA将不包括被过滤的路由，同时其他区域也不包括此条路由</p>
+</li>
+<li><p>RIP路由过滤</p>
+<p><img src="https://i.loli.net/2021/06/16/tTXes7uVlKWw3og.png" alt="alt RIP路由过滤"></p>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>RIP</p>
+<p><img src="https://i.loli.net/2021/06/16/uwU9NPeyW2qFXdK.png" alt="alt RIP总结"></p>
+</li>
+<li><p>OSPF</p>
+<p><img src="https://i.loli.net/2021/06/16/dx4BWSLQUDNVqGi.png" alt="alt OSPF总结"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>RIP实验</p>
+<ul>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/17/HreoMQi89nI3mW6.png" alt="alt  RIP过滤策略实验"></p>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># R1配置</span><br><span class="line"></span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 1</span><br><span class="line">ip add 1.0.0.1 24</span><br><span class="line">int lo 2</span><br><span class="line">ip add 2.0.0.1 24</span><br><span class="line">int lo 3</span><br><span class="line">ip add 3.0.0.1 24</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 permit source 1.0.0.0 0.0.0.255</span><br><span class="line">rule 2 permit source 2.0.0.0 0.0.0.255</span><br><span class="line">rip 1</span><br><span class="line">version 2</span><br><span class="line">net 12.0.0.0</span><br><span class="line">net 1.0.0.0</span><br><span class="line">net 2.0.0.0</span><br><span class="line">net 3.0.0.0</span><br><span class="line">filter-policy 2000 export</span><br><span class="line"></span><br><span class="line"># R2配置</span><br><span class="line"></span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">ip ip-prefix wuchao deny 2.0.0.0 16 greater-equal 24 less-equal 24</span><br><span class="line">ip ip-prefix wuchao permit 0.0.0.0 0 less-equal 32</span><br><span class="line">rip 1</span><br><span class="line">version 2</span><br><span class="line">net 12.0.0.0</span><br><span class="line">filter-policy ip-prefix wuchao import</span><br></pre></td></tr></table></figure>
 
 
 
@@ -603,8 +750,64 @@
 </li>
 </ol>
 <ul>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/05/23/GsR1AqbE6jNwJmB.png" alt="alt RIP配置-Metricin"></p>
+<li><p>验证</p>
+<p><img src="https://i.loli.net/2021/06/17/GNxesj8SiP6XVld.png" alt="alt 没有配置策略"></p>
+<p><img src="https://i.loli.net/2021/06/17/ecynzFXstCwWZi5.png" alt="alt 出方向过滤策略"></p>
+<p><img src="https://i.loli.net/2021/06/17/gStBIoQOeE9CZ7y.png" alt="alt 入方向前缀列表过滤"></p>
+</li>
+</ul>
+<ol start="2">
+<li><p>OSPF同区域实验</p>
+<ul>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/17/4CnSr8e97jOdyZs.png" alt="alt 实验拓扑"></p>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># R1配置</span><br><span class="line"></span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 0</span><br><span class="line">ip add 11.0.0.1 24</span><br><span class="line"></span><br><span class="line"># 过滤自己发给邻居的5类LSA</span><br><span class="line">ip ip-prefix wuchao deny 2.0.0.0 8 greater-equal 24 less-equal 32</span><br><span class="line">ip ip-prefix wuchao permit 0.0.0.0 0 less-equal 32</span><br><span class="line"></span><br><span class="line">ip route-static 1.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 2.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 3.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 2.0.0.0 8 NULL 0</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.1 0.0.0.255</span><br><span class="line">net 11.0.0.0 0.0.0.255</span><br><span class="line">import-route static</span><br><span class="line">filter-policy ip-prefix wuchao export</span><br><span class="line"></span><br><span class="line"># R2配置</span><br><span class="line"></span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">acl 2000</span><br><span class="line"></span><br><span class="line"># 过滤邻居泛洪的5类LSA</span><br><span class="line">rule 1 deny source 1.0.0.0 0.0.0.255</span><br><span class="line"># 过滤邻居泛洪的1类LSA</span><br><span class="line">rule 2 deny source 11.0.0.0 0.0.0.255</span><br><span class="line">rule 3 permit source any</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">filter-policy 2000 import</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.2 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>验证</p>
+<p>1类2类LSA过滤策略前</p>
+<p><img src="https://i.loli.net/2021/06/17/xC1gWtb8nyics2L.png" alt="alt 1类2类LSA过滤策略"></p>
+<p>1类2类LSA过滤策略后</p>
+<p><img src="https://i.loli.net/2021/06/17/bjpduIPDiWM7ton.png" alt="alt 1类2类LSA过滤策略后"></p>
+<p>5类LSA过滤前</p>
+<p><img src="https://i.loli.net/2021/06/17/uN4Air7PCJExqTk.png" alt="alt 5类LSA过滤前"></p>
+<p>5类LSA过滤后</p>
+<p><img src="https://i.loli.net/2021/06/17/tACxQu4eSyrORjZ.png" alt="alt 5类LSA过滤后"></p>
+</li>
+</ul>
+<ol start="3">
+<li><p>OSPF不同区域间实验</p>
+<ul>
+<li><p>拓扑</p>
+<p><img src="https://i.loli.net/2021/06/17/XMOtkbnGCPZhFls.png" alt="alt OSPF不同区域间实验"></p>
+</li>
+<li><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"># R1配置</span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int lo 0</span><br><span class="line">ip add 11.0.0.1 24</span><br><span class="line">int lo 2</span><br><span class="line">ip add 21.0.0.1 24</span><br><span class="line"></span><br><span class="line"># 将自己的5类LSA屏蔽</span><br><span class="line">acl 2000</span><br><span class="line">rule 1 deny source 1.0.0.0 0.0.0.255</span><br><span class="line">rule 2 permit source any</span><br><span class="line"></span><br><span class="line">ip route-static 1.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 2.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 3.0.0.0 24 NULL 0</span><br><span class="line">ip route-static 2.0.0.0 8 NULL 0</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 1.1.1.1</span><br><span class="line">import-route static</span><br><span class="line">filter-policy 2000 export</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.1 0.0.0.255</span><br><span class="line">net 11.0.0.0 0.0.0.255</span><br><span class="line">net 21.0.0.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">#R2配置</span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">ip add 23.0.0.1 24</span><br><span class="line"># 过滤邻居的五类LSA</span><br><span class="line">ip ip-prefix wuchao deny 2.0.0.0 8 greater-equal 24 less-equal 32</span><br><span class="line">ip ip-prefix wuchao permit 0.0.0.0 0 less-equal 32</span><br><span class="line"></span><br><span class="line">ospf 1 router-id 2.2.2.2</span><br><span class="line">filter-policy ip-prefix wuchao import</span><br><span class="line">area 0</span><br><span class="line">net 12.0.0.2 0.0.0.255</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.1 0.0.0.255</span><br><span class="line"></span><br><span class="line">#R3配置</span><br><span class="line"></span><br><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">ip add 23.0.0.2 24</span><br><span class="line"></span><br><span class="line">ip ip-prefix wuchao deny 3.0.0.0 24</span><br><span class="line">ip ip-prefix wuhcao permit 0.0.0.0 0 less-equal 32</span><br><span class="line"># 过滤area0中的1类LSA</span><br><span class="line">ip ip-prefix wuchao deny 21.0.0.0 24</span><br><span class="line">ospf 1 router-id 3.3.3.3</span><br><span class="line">filter-policy ip-preix wuchao import</span><br><span class="line">area 1</span><br><span class="line">net 23.0.0.2 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>验证</p>
+<p>area 0 过滤自己的5类LSA，area1中收不到路由</p>
+<p><img src="https://i.loli.net/2021/06/17/JhCZKOSDlmagHYI.png" alt="alt area 0 过滤自己的5类LSA，area1中收不到路由"></p>
+<p>OSPF中ABR过滤区域0内的5类LSA</p>
+<p><img src="https://i.loli.net/2021/06/17/ywB8Sa2xEt9IDRf.png" alt="alt OSPF中ABR过滤区域0内的1类LSA"></p>
+<p>OSPF中ABR过滤area 01类LSA影响</p>
+<p><img src="https://i.loli.net/2021/06/17/RQoPHx6XgmKwIi8.png" alt="alt "></p>
+<p>OSPF1区域1内过滤area0中1类LSA需要ABR中先过滤，否则不起作用</p>
+<p><img src="https://i.loli.net/2021/06/17/q6TV4yYDcpdAMIU.png" alt="alt "></p>
 </li>
 </ul>
 
@@ -645,7 +848,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/45/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/45/">45</a><span class="page-number current">46</span><a class="page-number" href="/page/47/">47</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><a class="extend next" rel="next" href="/page/47/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/45/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/45/">45</a><span class="page-number current">46</span><a class="page-number" href="/page/47/">47</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/47/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -690,7 +893,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">95</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -701,7 +904,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -712,7 +915,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

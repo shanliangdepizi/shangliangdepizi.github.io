@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/05/03/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B%E4%B8%8E%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/" itemprop="url">
-                  交换机VLAN
+                <a class="post-title-link" href="/2021/05/03/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B%E4%B8%8E%E6%A1%88%E4%BE%8B/" itemprop="url">
+                  STP选举过程与案例
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-20T15:51:02+08:00">
-                2021-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-03T18:51:13+08:00">
+                2021-05-03
               </time>
             
 
@@ -357,8 +357,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/" itemprop="url" rel="index">
-                    <span itemprop="name">VLAN</span>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/HCNA/%E4%BA%A4%E6%8D%A2/STP/" itemprop="url" rel="index">
+                    <span itemprop="name">STP</span>
                   </a>
                 </span>
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/20/HCNA/%E4%BA%A4%E6%8D%A2/VLAN/%E4%BA%A4%E6%8D%A2%E6%9C%BAVLAN/#comments" itemprop="discussionUrl">
+                <a href="/2021/05/03/HCNA/%E4%BA%A4%E6%8D%A2/STP/STP%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B%E4%B8%8E%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/20/HCNA/交换/VLAN/交换机VLAN/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/05/03/HCNA/交换/STP/STP选举过程与案例/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,149 +405,100 @@
       
         
           
-            <h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><h2 id="没有VLAN"><a href="#没有VLAN" class="headerlink" title="没有VLAN"></a>没有VLAN</h2><p><img src="https://i.loli.net/2021/04/20/Op7cmQTBen1Ha2V.png" alt="alt 没有VLAN的情况"></p>
-<h2 id="VLAN引入"><a href="#VLAN引入" class="headerlink" title="VLAN引入"></a>VLAN引入</h2><ol>
-<li><p>交换机的所有接口在同一个广播域，往往也是一个逻辑子网</p>
-<p><img src="https://i.loli.net/2021/04/20/6AvM9erWNcVSdbI.png" alt="alt 逻辑子网"></p>
-</li>
-<li><p>用户可以根据自己的需求灵活的隔离广播域</p>
-<p> <img src="https://i.loli.net/2021/04/20/zsYk3IhapNn8ixe.png" alt="alt 隔离广播域">]</p>
-</li>
-<li><p>随着网络规模的扩大，广播风暴给网络带来重大问题</p>
-<p><img src="https://i.loli.net/2021/04/20/Hury5QzY36L1s92.png" alt="alt 广播风暴"></p>
-</li>
-<li><p>VLAN引入 </p>
-<p><img src="https://i.loli.net/2021/04/20/yj9BDrRMwoNUb6W.png" alt="alt VLAN引入"></p>
-</li>
-<li><p>多个交换机划分VLAN</p>
-<p><img src="https://i.loli.net/2021/04/20/wNFBUzO4xSd8KAm.png" alt="alt 多个交换机划分VLAN"></p>
-</li>
+            <h1 id="STP选举过程"><a href="#STP选举过程" class="headerlink" title="STP选举过程"></a>STP选举过程</h1><h2 id="根交换选举"><a href="#根交换选举" class="headerlink" title="根交换选举"></a>根交换选举</h2><h3 id="选举过程"><a href="#选举过程" class="headerlink" title="选举过程"></a>选举过程</h3><ol>
+<li>交换机开启STP之后，会自动发送STP数据帧，数据帧中包括BPDU数据，其中有识别唯一交换机的BID，BID中有优先级+MAC地址</li>
+<li>根据交换机发送的STP数据帧中BID的优先级选举根交换，BID中优先级数字越小越优先</li>
+<li>如果有交换机的优先级最小且一致，则比较交换机的MAC地址大小，MAC地址越小越优先</li>
+<li>如果有交换机的MAC地址也一致，则比较交换机的PID（端口ID），STP数据帧中PID的大小是按顺序的</li>
 </ol>
-<h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="VLAN优点"><a href="#VLAN优点" class="headerlink" title="VLAN优点"></a>VLAN优点</h2><ol>
-<li><p>有效的控制广播域的范围</p>
-</li>
-<li><p>增强网络的安全性</p>
-</li>
-<li><p>灵活的构建虚拟工作组</p>
-</li>
-<li><p>简化网络管理</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/20/jcUQIZHsVe6dKvT.png" alt="alt VLAN优点"></p>
-</li>
+<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/1qR3KrVWnuzdtxg.png" alt="alt 根交换选举-BID"></p>
+<h2 id="非根交换的根端口选举"><a href="#非根交换的根端口选举" class="headerlink" title="非根交换的根端口选举"></a>非根交换的根端口选举</h2><h3 id="根端口选举过程"><a href="#根端口选举过程" class="headerlink" title="根端口选举过程"></a>根端口选举过程</h3><ol>
+<li>首先，比较非根交换机所有端口的RPC（Root Port Cost），就是各个端口到根交换的开销，开销越小越优先</li>
+<li>如果交换机有端口到根交换的开销是一致的，则比较交换机对端（对端指的发送端端口的STP数据帧）的BID（包括优先级+MAC地址）</li>
+<li>如果对端的BID一致，则比较对端PID；PID越小越优先</li>
+<li>如果对端PID一致，则比较本端的PID，PID越小越优先</li>
 </ol>
-<h2 id="VLAN概述"><a href="#VLAN概述" class="headerlink" title="VLAN概述"></a>VLAN概述</h2><h3 id="Virtual-LAN-虚拟局域网"><a href="#Virtual-LAN-虚拟局域网" class="headerlink" title="Virtual LAN 虚拟局域网"></a>Virtual LAN 虚拟局域网</h3><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
-<li>将一个物理局域网在逻辑上划分成多个广播域</li>
-<li>1VLAN = 1广播域 = 1子网</li>
-<li>广播不会在VLAN之间转发，被限制在自己的VLAN中</li>
-<li>不同的VLAN之间通信需要借助三层设备</li>
+<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/OLDZfa1uwRXeypq.png" alt="alt 根端口选举"></p>
+<h2 id="指定端口选举"><a href="#指定端口选举" class="headerlink" title="指定端口选举"></a>指定端口选举</h2><h3 id="选举过程-1"><a href="#选举过程-1" class="headerlink" title="选举过程"></a>选举过程</h3><ol>
+<li>根交换机的端口都是指定端口</li>
+<li>首先，比较交换机除了根段端口以外的端口的RPC（Root Port Cost），该端口发送出去的STP数据帧中的RPC，值越小越优先</li>
+<li>如果RPC一致，比较交换机除了根段端口以外的端口的BID（优先级+MAC地址），越小越优先</li>
+<li>如果BID一致，比较交换机除了根段端口以外的端口的PID（Port Identifier），越小越优先</li>
 </ol>
-<h2 id="VLAN范围"><a href="#VLAN范围" class="headerlink" title="VLAN范围"></a>VLAN范围</h2><ol>
-<li>0~4095</li>
-<li>0和4095保留</li>
-<li>1为默认</li>
-</ol>
-<h2 id="VLAN标签（Tags）"><a href="#VLAN标签（Tags）" class="headerlink" title="VLAN标签（Tags）"></a>VLAN标签（Tags）</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ol>
-<li><p>IEEE 802.1q: dot1q，是VLAN的正式标准，对Ethernet帧格式进行修改，在源MAC地址字段和协议类型字段之间加入4字节的802.1q Tag</p>
-</li>
-<li><p>每台支持802.1q协议的交换机发送的数据包都会包含VLAN ID，以表明交换机的接口属于哪个VLAN</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/20/UfxAv5Q7dbwT1Xc.png" alt="image-20210420211227099"></p>
-</li>
-</ol>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
-<li><p>图表</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>有标记帧（tagged frame）</td>
-<td>加入4字节802.1q Tag的帧</td>
-</tr>
-<tr>
-<td>无标记帧（untagged frame）</td>
-<td>原始的、未加入4字节802.1q Tag的帧</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h2 id="VLAN链路类型"><a href="#VLAN链路类型" class="headerlink" title="VLAN链路类型"></a>VLAN链路类型</h2><h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Access Link<br>接入链路</td>
-<td>用于连接交换机和终端之间的链路<br>此链路上传输的帧都是untagged</td>
-</tr>
-<tr>
-<td>Trunk Link<br>干道/中继链路</td>
-<td>用于交换机之间互联或者交换机与路由器之间连接的链路<br>干道链路上传输的帧都是tagged帧，用于两端识别</td>
-</tr>
-</tbody></table>
-<h3 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/hQEnJzBp9v3CkDW.png" alt="alt VLAN链路类型"></p>
-<h3 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display port vlan </span><br><span class="line">dispaly vlan</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="PVID"><a href="#PVID" class="headerlink" title="PVID"></a>PVID</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><ol>
-<li>Port VLAN ID，代表端口的缺省VLAN</li>
-<li>默认的PVID为1</li>
-</ol>
-<h3 id="修改命令"><a href="#修改命令" class="headerlink" title="修改命令"></a>修改命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#端口模式下</span><br><span class="line">port default vlan 100</span><br></pre></td></tr></table></figure>
-
-<h3 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/20/Sy3HCJdsvBbXRup.png" alt="alt PVID"></p>
-<h2 id="VLAN端口类型"><a href="#VLAN端口类型" class="headerlink" title="VLAN端口类型"></a>VLAN端口类型</h2><h3 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Access<br>接入端口</td>
-<td>用于连接终端<br>收到数据帧后，会添加VLAN Tag，VLAN ID与端口的PVID相同<br>转发数据前，会移除VLAN Tag<br><img src="https://i.loli.net/2021/04/20/QHga7nTd5FZDYxE.png" alt="alt Access端口"></td>
-</tr>
-<tr>
-<td>Trunk<br>干道/中继端口</td>
-<td>用于交换机与交换机、交换机与路由器之间连接<br>收到帧  时<br>1. 如果帧不包含标签Tag，将打上接口的PVID<br>2. 如果帧包含标签Tag，则不改变<br>发送帧时，该帧的VLAN ID在Trunk的允许发送列表（Trunk VLAN List）<br>1. 与端口的PVID一致，则剥离Tag发送<br>2. 与端口的PVID不一致，则直接发送（包含Tag）<br><img src="https://i.loli.net/2021/04/20/oayP8CFweZnM46s.png" alt="alt Trunk端口"></td>
-</tr>
-<tr>
-<td>Hybrid<br>混杂端口</td>
-<td>既可以连接主机，也可以l连接其他交换机<br>既可以连接接入链路，又可以连接干道链路<br>允许多个VLAN的帧通过，并可以在出接口位置将某些帧的Tag剥离（命令实现）<br><img src="https://i.loli.net/2021/04/25/jf83sYyFUzdNKTb.png" alt="alt Hybrid混合端口"></td>
-</tr>
-</tbody></table>
-<h3 id="不同端口详解"><a href="#不同端口详解" class="headerlink" title="不同端口详解"></a>不同端口详解</h3><ol>
-<li>Access端口<ul>
-<li>收到数据帧，默认添加Tags，数据帧的VLANID与端口PVID相同</li>
-<li>发送数据帧的时候，会剥离数据帧中的Tags</li>
+<h3 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/HakE7R3XoVsfDMr.png" alt="alt 非根交换指定端口选举"></p>
+<h1 id="STP案例"><a href="#STP案例" class="headerlink" title="STP案例"></a>STP案例</h1><h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><h3 id="图示-3"><a href="#图示-3" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/XTnmCiIogRB9s7u.png" alt="alt 选举案例一"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>根交换<ul>
+<li>确定SW1为根交换</li>
+<li>比较三个交换的BID</li>
+<li>首先比较优先级，三个交换的优先级一样都是缺省值32768</li>
+<li>然后比较三个交换的MAC地址，SW1的MAC地址最小，确定为根交换</li>
 </ul>
 </li>
-<li>Trunk端口<ul>
-<li>收到数据帧的时候<ul>
-<li>如果数据帧没有Tags，打上端口的PVID</li>
-<li>如果数据帧有Tags，VLANID不变</li>
+<li>非根交换的根端口<ul>
+<li>SW2的根端口是F0/24、SW3的根端口是F0/23</li>
+<li>SW2与根交换之间是100M带宽，F0/24的RPC值为200000，F0/23的RPC值为400000，所以F0/24为根端口</li>
+<li>SW3与跟交换之间是100M带宽，F0/23的RPC值为200000，F0/24的RPC值为400000，所以F0/23为根端口</li>
 </ul>
 </li>
-<li>发送数据帧的时候<ul>
-<li>首先，确定VLANID是在Trunk允许列表中</li>
-<li>如果发送的时候，数据帧的VLANID与端口的PVID相同，剥离Tags发送。</li>
-<li>如果发送的时候，数据帧的VLANID与端口的PVID不相同，数据帧带Tags发送。</li>
+<li>指定端口<ul>
+<li>根交换的端口都是指定端口，所以SW1的F0/23和F0/24两个端口都是指定端口</li>
+<li>SW2的F0/23与SW3的F0/24口进行选举，因为SW2与SW3之间带宽是100M，SW2的F0/23发送STP数据帧时的RPC为200000，SW3的F0/24发送STP数据帧时的RPC也是200000</li>
+<li>比较SW2的F0/23与SW3的F0/24口的BID，优先级的值都是默认值32768，比较MAC，SW2的F0/23的MAC的值小，所以SW2的F0/23为指定端口，SW3的F0/24口为阻塞端口</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Hybrid端口</li>
 </ol>
-<h2 id="VLAN转发流程"><a href="#VLAN转发流程" class="headerlink" title="VLAN转发流程"></a>VLAN转发流程</h2><h3 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/04/25/SDwGZFHQyIB8J3A.png" alt="alt VLAN转发过程"></p>
-<h3 id="释义"><a href="#释义" class="headerlink" title="释义"></a>释义</h3>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><h3 id="图示-4"><a href="#图示-4" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/fpK8LXul4JsVho5.png" alt="alt STP选举案例二"></p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>根交换<ul>
+<li>根交换是SC</li>
+<li>比较四个交换的BID，SC的优先级的值为0000，最小，所以SC为根交换</li>
+</ul>
+</li>
+<li>非根交换的根端口<ul>
+<li>SA交换的根端口为F0/0</li>
+<li>SA的Fa0/0端口到根交换的带宽是Fa（100M），所以RPC值为200000</li>
+<li>SA到根交换的路径中带宽有Gi(1000M)与Fa（100M），根据图上的路径，RPC值为20000+200000+200000=420000</li>
+<li>SB交换的根端口是Fa0/3</li>
+<li>SB交换的Fa0/3端口到根交换的带宽有Fa(100M) 与Gi(1000M)，根据图上的路径，RPC的值为20000+200000=220000</li>
+<li>SB交换的Fa0/2端口到根交换的带宽是Fa(100M)，所以RPC为200000+200000=40000</li>
+<li>SD交换的根端口是Gi0/9</li>
+<li>SD交换Gi0/9端口到跟交换的带宽是Gi(1000M)，所以RPC的值为20000</li>
+<li>SD交换Gi0/1端口到跟交换的带宽是Fa(100M)，所以RPC的值为200000+200000+200000=600000</li>
+</ul>
+</li>
+<li>指点端口<ul>
+<li>根交换的端口是指定端口，所以SC的Gi0/1与Gi0/10是指定端口</li>
+<li>SA交换的Fa0/1端口发送STP数据帧时的RPC值为200000</li>
+<li>SB交换的Fa0/2端口发送STP数据帧时的RPC值为200000</li>
+<li>SA交换的Fa0/1端口发送STP数据帧时的RPC值为200000，而SB交换的Fa0/2端口发送STP数据帧时的RPC值是20000+200000=220000，所以SA交换的Fa0/1端口为指点端口</li>
+<li>SD换的Gi0/1端口发送STP数据帧时的RPC值为20000，所以是指点端口</li>
+<li>四个交换中只有SB交换的Fa0/2端口是阻塞端口</li>
+</ul>
+</li>
+</ol>
+<h2 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h2><h3 id="图示-5"><a href="#图示-5" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/d6MLCHDYUkzx4tZ.png" alt="alt STP选举案例三"></p>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>根交换<ul>
+<li>SC为根交换</li>
+<li>SC与SA、SB、SD三个交换的BID进行比较，SC交换的优先级的值为0000，最小，所以SC为根交换</li>
+</ul>
+</li>
+<li>非根交换的根端口<ul>
+<li>SA交换的根端口为10Gb/s线连接的端口，10Gb/s线连接的端口的RPC值为2000，1Gb/s线连接的端口的RPC值为20000+20000=40000，所以，10Gb/s线连接的端口为根端口</li>
+<li>SB交换的根端口是斜着的1Gb/s线连接的端口，斜着的1Gb/s线连接的端口的RPC的值为20000，直的1Gb/s线连接的端口的RPC值为2000+20000=22000，所以斜着1Gb/s线连接的端口</li>
+<li>SD交换机的根端口是直着的1Gb/s线连接的端口，直着的1Gb/s线连接的端口的RPC值为20000，斜着的1Gb/s线连接的端口的RPC值为2000+20000=22000</li>
+</ul>
+</li>
+<li>指定端口<ul>
+<li>根交换的口都是指定端口</li>
+<li>SA剩余的口是指定端口，因为它发送STP数据帧中的RPC值为2000</li>
+<li>SD与SB剩余的口是阻塞端口，虽然它发送STP数据帧中的RPC值与SD发送STP数据帧中的RPC值一致，但是它的优先级的值更小</li>
+</ul>
+</li>
+</ol>
+<h2 id="案例四"><a href="#案例四" class="headerlink" title="案例四"></a>案例四</h2><h3 id="图示-6"><a href="#图示-6" class="headerlink" title="图示"></a>图示</h3><p><img src="https://i.loli.net/2021/05/04/MVPKJcrw3E5zmGe.png" alt="alt STP选举案例四"></p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3>
           
         
       
@@ -585,7 +536,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/64/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/88/">88</a><a class="extend next" rel="next" href="/page/66/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/64/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><span class="page-number current">65</span><a class="page-number" href="/page/66/">66</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/66/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -630,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">95</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -641,7 +592,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -652,7 +603,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
