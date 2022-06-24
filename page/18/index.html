@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E5%85%AC%E7%BD%91%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E7%A9%BF%E8%B6%8AVPN%E7%9A%84GRE%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E5%85%AC%E7%BD%91%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  配置CE使用公网GRE隧道接入VPN示例
+                <a class="post-title-link" href="/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E7%A9%BF%E8%B6%8AVPN%E7%9A%84GRE%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/" itemprop="url">
+                  配置CE使用穿越VPN的GRE隧道接入VPN示例
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-12T15:34:58+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-12T15:35:13+08:00">
                 2022-04-12
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E5%85%AC%E7%BD%91%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/04/12/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/GRE%E9%9A%A7%E9%81%93/%E9%85%8D%E7%BD%AECE%E4%BD%BF%E7%94%A8%E7%A9%BF%E8%B6%8AVPN%E7%9A%84GRE%E9%9A%A7%E9%81%93%E6%8E%A5%E5%85%A5VPN%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/04/12/实验/三层协议/GRE隧道/配置CE使用公网隧道接入VPN示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/04/12/实验/三层协议/GRE隧道/配置CE使用穿越VPN的GRE隧道接入VPN示例/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,27 +406,26 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>PE1和PE2位于MPLS骨干网</li>
-<li>CE1和PE1之间为公共网络，期间通过设备R1互联</li>
-<li>CE2与PE2直连</li>
-<li>CE1与CE2属于同一个VPN要求他们之间能互通</li>
+<li>PE1和PE2位于一级运营商的MPLS骨干网</li>
+<li>VPN2属于二级运营商的一个VPN，其CE1与一级运营商的PE1相连</li>
+<li>CE2和CE3属于用户设备，CE2与一级运营商的PE2相连，CE3与二级运营商的CE1相连</li>
+<li>CE2和CE3属于同一个VPN，为VPN1，要求他们之间互通</li>
+<li>PE1上没有与CE3的直连的接口，无法将VPN实例与物理接口进行绑定，通过建立GRE隧道实现</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/09/XzdeAPDH4QWahrs.jpg" alt="配置CE使用公网隧道接入VPN示例"></p>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/11/nFNHAX5fgYh9vTe.jpg" alt="配置CE使用穿越VPN的GRE隧道接入VPN拓扑图"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>配置各个路由器基本功能以及各个接口IP地址</li>
-<li>配置PE1与PE2之间的OSPF协议，保持互通，并配置MPLS和接口使能MPLS</li>
-<li>配置PE1与PE2的VPN实例，并绑定响应接口</li>
-<li>配置PE1与CE1之间网络互通</li>
-<li>配置PE1与CE1之间隧道的互通</li>
-<li>配置PE2与CE2之间网络互通</li>
-<li>配置PE1与PE2之间BGP协议以及MP-BGP</li>
-<li>路由互相引入</li>
+<li>在一级运营商的骨干网设备PE1和PE2上运行OSPF协议（进程为10）实现互通，使能MPLS</li>
+<li>PE1上配置VPN2，PE1、CE1、CE2上运行OSPF协议（进程为20）实现互通</li>
+<li>CE3与PE1之间建立隧道</li>
+<li>PE1与PE2之间建立VPN1实例，并绑定PE1的GRE隧道接口，PE2上绑定与CE2连接的物理接口</li>
+<li>配置CE与PE间路由，使用IS-IS协议</li>
+<li>在PE之间配置BGP，实现CE2与CE3之间互通</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>配置各个路由器基本功能以及各个接口IP地址</p>
+<li><p>配置路由器基本功能以及各个接口IP地址</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 110.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 50.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 1.1.1.9 32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 110.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 50.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">    ip add 1.1.1.9 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -436,15 +435,7 @@
 </ol>
 <ul>
 <li><p>PE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE2</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 110.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 11.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 3.3.3.9 32</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 30.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line"> ip dd 50.1.1.2 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE2</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 110.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 11.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">    ip add 3.3.3.9 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -452,7 +443,7 @@
 </ul>
 <ul>
 <li><p>CE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys CE1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 30.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 21.1.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys CE1</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 30.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 50.1.1.2 30</span><br></pre></td></tr></table></figure>
 
 
 
@@ -460,17 +451,25 @@
 </ul>
 <ul>
 <li><p>CE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys CE2</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 41.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 11.1.1.2 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys CE2</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 41.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 11.1.1.2 30</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>CE3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys CE3</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 30.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip add 21.1.1.1 30</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>配置PE1与PE2之间的OSPF协议，保持互通，并配置MPLS和接口使能MPLS</p>
+<li><p>配置PE1与PE2之间OSPF协议，进程为10，实现互通，并使能MPLS</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf 10</span><br><span class="line">  area 0</span><br><span class="line">    network 1.1.1.9 0.0.0.0</span><br><span class="line">    network 110.1.1.0 0.0.0.3</span><br><span class="line">    </span><br><span class="line">mpls lsr-id 1.1.1.9</span><br><span class="line">mpls</span><br><span class="line">    lsp-trigger all</span><br><span class="line">    quit</span><br><span class="line">mpls ldp</span><br><span class="line">    </span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    mpls</span><br><span class="line">    mpls ldp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 10</span><br><span class="line">    area 0</span><br><span class="line">        network 1.1.1.9 0.0.0.0</span><br><span class="line">        network 110.1.1.0 0.0.0.3</span><br><span class="line"></span><br><span class="line">mpls lsr-id 1.1.1.9</span><br><span class="line">mpls</span><br><span class="line">    lsp-trigger all</span><br><span class="line">    quit</span><br><span class="line">mpls ldp</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    mpls</span><br><span class="line">    mpls ldp</span><br></pre></td></tr></table></figure>
 
 
 
@@ -480,17 +479,17 @@
 </ol>
 <ul>
 <li><p>PE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 10</span><br><span class="line">  area 0</span><br><span class="line">    network 3.3.3.9 0.0.0.0</span><br><span class="line">    network 110.1.1.0 0.0.0.3</span><br><span class="line">    </span><br><span class="line">mpls lsr-id 3.3.3.9</span><br><span class="line">mpls</span><br><span class="line">    lsp-trigger all</span><br><span class="line">    quit</span><br><span class="line">mpls ldp</span><br><span class="line">    </span><br><span class="line">int g0&#x2F;0&#x2F;0&#x2F;</span><br><span class="line">    mpls</span><br><span class="line">    mpls ldp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 10</span><br><span class="line">    area 0</span><br><span class="line">        network 3.3.3.9 0.0.0.0</span><br><span class="line">        network 110.1.1.0 0.0.0.3</span><br><span class="line">    </span><br><span class="line">mpls lsr-id 3.3.3.9</span><br><span class="line">mpls </span><br><span class="line">    lsp-trigger all</span><br><span class="line">mpls ldp</span><br><span class="line">    </span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    mpls</span><br><span class="line">    mpls ldp</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>配置VPN实例，并在指定接口绑定VPN实例</p>
+<li><p>PE1与PE2上配置VPN实例并绑定相应接口</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">    route-distinguisher 100:1</span><br><span class="line">        vpn-target 111:1 export-excommunity</span><br><span class="line">        vpn-target 111:1 import-excommunity</span><br><span class="line">            </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    ip binding vpn-instance vpn1</span><br><span class="line">    ip add 2.2.2.2 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line">    route-distinguisher 100:2</span><br><span class="line">        vpn-tartget 222:2 export-excommunity</span><br><span class="line">        vpn-tartget 222:2 import-excommunity</span><br><span class="line">        quit</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip binding vpn-instance vpn2</span><br><span class="line">    ip add 50.1.1.1 30</span><br><span class="line">    </span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">    route-distinguisher 100:1</span><br><span class="line">        vpn-target 111:1 export-excommunity</span><br><span class="line">        vpn-target 111:1 import-excommunity</span><br><span class="line">       </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    ip binding vpn-instance vpn1</span><br></pre></td></tr></table></figure>
 
 
 
@@ -500,17 +499,17 @@
 </ol>
 <ul>
 <li><p>PE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">    route-distinguisher 200:1</span><br><span class="line">        vpn-target 111:1 export-excommunity</span><br><span class="line">        vpn-target 111:1 import-excommunity</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip binding vpn-instance vpn1</span><br><span class="line">    ip add 11.1.1.1 30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">    route-distinguisher 200:1</span><br><span class="line">        vpn-target 111:1 export-excommunity</span><br><span class="line">        vpn-target 111:1 import-excommunity</span><br><span class="line">        </span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    ip binding vpn-instance vpn1</span><br><span class="line">    ip add 11.1.1.1 30</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="4">
-<li><p>配置PE1与R1与CE1之间网络互通</p>
+<li><p>配置PE1、CE1、CE3之间网络互通（OSPF协议，进程为20）</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20</span><br><span class="line">  area 0</span><br><span class="line">    network 50.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20 vpn-instance vpn2</span><br><span class="line">    area 0</span><br><span class="line">        network 50.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
@@ -519,26 +518,26 @@
 </li>
 </ol>
 <ul>
-<li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20</span><br><span class="line">  area 0</span><br><span class="line">    network 50.1.1.0 0.0.0.3</span><br><span class="line">    network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
+<li><p>CE1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20</span><br><span class="line">    area 0</span><br><span class="line">        network 50.1.1.0 0.0.0.3</span><br><span class="line">        network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ul>
-<li><p>CE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20</span><br><span class="line">  area 0</span><br><span class="line">    network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
+<li><p>CE3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 20</span><br><span class="line">    area 0</span><br><span class="line">        network 30.1.1.0 0.0.0.3</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="5">
-<li><p>配置PE2与CE2之间网络互通</p>
+<li><p>配置PE2、CE2之间网络互通（IS-IS协议，区域为50）</p>
 <ul>
 <li><p>PE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50 vpn-instance vpn1</span><br><span class="line">    network-entity 50.0000.0000.0003.00</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50 vpn-instance vpn1</span><br><span class="line">    network-entity 50.0000.0000.0003.00</span><br><span class="line"> </span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
@@ -548,17 +547,17 @@
 </ol>
 <ul>
 <li><p>CE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50</span><br><span class="line">    network-entity 50.0000.0000.0004.00</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50</span><br><span class="line">    network-entity 50.0000.0000.0004.00</span><br><span class="line">    </span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br><span class="line">   </span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="6">
-<li><p>配置GRE隧道，指定IP地址、源地址、目的地址、隧道协议</p>
+<li><p>配置GRE隧道，实现PE1与CE3之间直连</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    tunnel-protocol gre</span><br><span class="line">    source 50.1.1.1</span><br><span class="line">    destination 30.1.1.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int Tunnel 0/0/0</span><br><span class="line">    ip add 2.2.2.2 30</span><br><span class="line">    tunnel-protocol gre</span><br><span class="line">    soruce 50.1.1.1</span><br><span class="line">    destination vpn-instance vpn2 30.1.1.1</span><br></pre></td></tr></table></figure>
 
 
 
@@ -567,18 +566,16 @@
 </li>
 </ol>
 <ul>
-<li><p>CE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    tunnel-protocol gre</span><br><span class="line">    ip add 2.2.2.1 30</span><br><span class="line">    source 30.1.1.1</span><br><span class="line">    destination 50.1.1.1</span><br></pre></td></tr></table></figure>
-
-
+<li><p>CE3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    ip add 2.2.2.1 30</span><br><span class="line">    tunnel-protocol gre</span><br><span class="line">    source 30.1.1.1</span><br><span class="line">    destination 50.1.1.1</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <ol start="7">
-<li><p>配置GRE隧道路由，实现网络互通</p>
+<li><p>配置Tunnel间路由协议</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50 vpn-instance vpn1</span><br><span class="line">    network-entity 50.0000.0000.0002.00</span><br><span class="line">    </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50 vpn-instance vpn1</span><br><span class="line">    network-entity 50.0000.0000.0002.00</span><br><span class="line">    </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
@@ -587,18 +584,18 @@
 </li>
 </ol>
 <ul>
-<li><p>CE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50</span><br><span class="line">    network-entity 50.0000.0000.0001.00</span><br><span class="line">   </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
+<li><p>CE3配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50</span><br><span class="line">    network-entity 50.0000.0000.0001.00</span><br><span class="line">    </span><br><span class="line">int Tunnel 0&#x2F;0&#x2F;0</span><br><span class="line">    isis enable 50</span><br><span class="line">    isis small-hello</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="8">
-<li><p>配置BGP路由，实现MP-BGP</p>
+<li><p>配置PE1与PE2之间的BGP协议，实现MP-BGP（VPNv4），并在VPN实例中引入到CE的路由</p>
 <ul>
 <li><p>PE1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">bgp 100</span><br><span class="line">    peer 3.3.3.9 as-number 100</span><br><span class="line">    peer 3.3.3.9 connect-interface LoopBack 0</span><br><span class="line">    </span><br><span class="line">    ipv4-family vpnv4</span><br><span class="line">        peer 3.3.3.9 enable</span><br><span class="line">    ipv4-family vpn-instance</span><br><span class="line">        import-route isis 50</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">bgp 100</span><br><span class="line">    peer 3.3.3.9 as-number 100</span><br><span class="line">    peer 3.3.3.9 connetct-interface LoopBack 0</span><br><span class="line">    </span><br><span class="line">    ipv4-family vpnv4</span><br><span class="line">        peer 3.3.3.9 enable</span><br><span class="line">    </span><br><span class="line">    ipv4-family vpn-instance vpn1</span><br><span class="line">        import-route isis 50</span><br></pre></td></tr></table></figure>
 
 
 
@@ -608,14 +605,14 @@
 </ol>
 <ul>
 <li><p>PE2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">bgp 100</span><br><span class="line">    peer 1.1.1.9 as-number 100</span><br><span class="line">    peer 1.1.1.9 connect-interface LoopBack 0</span><br><span class="line">    </span><br><span class="line">    ipv4-family vpnv4</span><br><span class="line">        peer 1.1.1.9 enable</span><br><span class="line">    ipv4-family vpn-instance vpn1</span><br><span class="line">        import-route isis 50</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">bgp <span class="number">100</span></span><br><span class="line">    peer <span class="number">1.1</span><span class="number">.1</span><span class="number">.9</span> as-number <span class="number">100</span></span><br><span class="line">    peer <span class="number">1.1</span><span class="number">.1</span><span class="number">.9</span> connect-<span class="class"><span class="keyword">interface</span> <span class="title">LoopBack</span> 0</span></span><br><span class="line"><span class="class">    </span></span><br><span class="line"><span class="class">    <span class="title">ipv4</span>-<span class="title">family</span> <span class="title">vpnv4</span></span></span><br><span class="line"><span class="class">        <span class="title">peer</span> 1.1.1.9 <span class="title">enable</span></span></span><br><span class="line"><span class="class">    </span></span><br><span class="line"><span class="class">    <span class="title">ipv4</span>-<span class="title">family</span> <span class="title">vpn</span>-<span class="title">instance</span> <span class="title">vpn1</span></span></span><br><span class="line"><span class="class">        <span class="title">import</span>-<span class="title">route</span> <span class="title">isis</span> 50</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="9">
-<li><p>将MPLS骨干网中的路由引入到PE与CE间路由表</p>
+<li><p>在PE与CE间网络引入BGP</p>
 <ul>
 <li><p>PE1配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">isis 50</span><br><span class="line">    import-route bgp</span><br></pre></td></tr></table></figure>
@@ -635,11 +632,16 @@
 </li>
 </ul>
 <h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
-<li><p>查看VPN1的路由</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">dispaly ip routing-table vpn-instance vpn1</span><br><span class="line"></span><br><span class="line">&lt;PE1&gt;dis ip routing-table vpn-instance vpn1</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: vpn1</span><br><span class="line">         Destinations : <span class="number">7</span>        Routes : <span class="number">7</span>        </span><br><span class="line"></span><br><span class="line">Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        <span class="number">2.2</span><span class="number">.2</span><span class="number">.0</span>/<span class="number">30</span>  Direct  <span class="number">0</span>    <span class="number">0</span>           D   <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span>         Tunnel0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">        <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span>/<span class="number">32</span>  Direct  <span class="number">0</span>    <span class="number">0</span>           D   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>       Tunnel0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">        <span class="number">2.2</span><span class="number">.2</span><span class="number">.3</span>/<span class="number">32</span>  Direct  <span class="number">0</span>    <span class="number">0</span>           D   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>       Tunnel0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">       <span class="number">11.1</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">30</span>  IBGP    <span class="number">255</span>  <span class="number">0</span>          RD   <span class="number">3.3</span><span class="number">.3</span><span class="number">.9</span>         GigabitEthernet</span><br><span class="line"><span class="number">0</span>/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">       <span class="number">21.1</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">30</span>  ISIS-L2 <span class="number">15</span>   <span class="number">20</span>          D   <span class="number">2.2</span><span class="number">.2</span><span class="number">.1</span>         Tunnel0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">       <span class="number">41.1</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">30</span>  IBGP    <span class="number">255</span>  <span class="number">20</span>         RD   <span class="number">3.3</span><span class="number">.3</span><span class="number">.9</span>         GigabitEthernet</span><br><span class="line"><span class="number">0</span>/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line"><span class="number">255.255</span><span class="number">.255</span><span class="number">.255</span>/<span class="number">32</span>  Direct  <span class="number">0</span>    <span class="number">0</span>           D   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>       InLoopBack0</span><br></pre></td></tr></table></figure>
+<li><p>查看VPN路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">display ip routing-table vpn-instance vpn1</span><br><span class="line"></span><br><span class="line">&lt;PE1&gt;dis ip routing-table vpn-instance vpn1</span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: vpn1</span><br><span class="line">         Destinations : 7        Routes : 7        </span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.2.2.0&#x2F;30  Direct  0    0           D   2.2.2.2         Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">        2.2.2.2&#x2F;32  Direct  0    0           D   127.0.0.1       Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">        2.2.2.3&#x2F;32  Direct  0    0           D   127.0.0.1       Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">       11.1.1.0&#x2F;30  IBGP    255  0          RD   3.3.3.9         GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">       21.1.1.0&#x2F;30  ISIS-L1 15   20          D   2.2.2.1         Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">       41.1.1.0&#x2F;30  IBGP    255  20         RD   3.3.3.9         GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoo</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
-<li><p>查看CE1到PC2间的路由</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">display</span> ip routing-table <span class="number">41.1</span><span class="number">.1</span><span class="number">.2</span></span><br><span class="line">    </span><br><span class="line">&lt;CE1&gt;<span class="built_in">display</span> ip routing-table <span class="number">41.1</span><span class="number">.1</span><span class="number">.2</span></span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Table : Public</span><br><span class="line">Summary Count : <span class="number">1</span></span><br><span class="line">Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">       <span class="number">41.1</span><span class="number">.1</span><span class="number">.0</span>/<span class="number">30</span>  ISIS-L2 <span class="number">15</span>   <span class="number">74</span>          D   <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span>         Tunnel0/<span class="number">0</span>/<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</ol>
+<ol start="2">
+<li><p>查看IP路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">dis ip routing-table</span><br><span class="line"></span><br><span class="line">&lt;CE3&gt;dis ip routing-table </span><br><span class="line">Route Flags: R - relay, D - download to fib</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line">Routing Tables: Public</span><br><span class="line">         Destinations : 16       Routes : 16       </span><br><span class="line"></span><br><span class="line">Destination&#x2F;Mask    Proto   Pre  Cost      Flags NextHop         Interface</span><br><span class="line"></span><br><span class="line">        2.2.2.0&#x2F;30  Direct  0    0           D   2.2.2.1         Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">        2.2.2.1&#x2F;32  Direct  0    0           D   127.0.0.1       Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">        2.2.2.3&#x2F;32  Direct  0    0           D   127.0.0.1       Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">       11.1.1.0&#x2F;30  ISIS-L2 15   74          D   2.2.2.2         Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">       21.1.1.0&#x2F;30  Direct  0    0           D   21.1.1.1        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">       21.1.1.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">       21.1.1.3&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;1</span><br><span class="line">       30.1.1.0&#x2F;30  Direct  0    0           D   30.1.1.1        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">       30.1.1.1&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">       30.1.1.3&#x2F;32  Direct  0    0           D   127.0.0.1       GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">       41.1.1.0&#x2F;30  ISIS-L2 15   74          D   2.2.2.2         Tunnel0&#x2F;0&#x2F;0</span><br><span class="line">       50.1.1.0&#x2F;30  OSPF    10   2           D   30.1.1.2        GigabitEthernet</span><br><span class="line">0&#x2F;0&#x2F;0</span><br><span class="line">      127.0.0.0&#x2F;8   Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">      127.0.0.1&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">127.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br><span class="line">255.255.255.255&#x2F;32  Direct  0    0           D   127.0.0.1       InLoopBack0</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -681,7 +683,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/96/">96</a><a class="extend next" rel="next" href="/page/19/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/17/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/19/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -726,7 +728,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -737,7 +739,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -748,7 +750,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
