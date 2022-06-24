@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/28/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E5%9F%BA%E4%BA%8E%E5%89%8D%E7%BC%80%E7%9A%84ORF%E5%AE%9E%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/03/29/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E8%B4%9F%E8%BD%BD%E5%88%86%E6%8B%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/03/28/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E5%9F%BA%E4%BA%8E%E5%89%8D%E7%BC%80%E7%9A%84ORF%E5%AE%9E%E4%BE%8B/" itemprop="url">
-                  BGP基于前缀的ORF示例
+                <a class="post-title-link" href="/2022/03/29/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E8%B4%9F%E8%BD%BD%E5%88%86%E6%8B%85/" itemprop="url">
+                  BGP负载分担示例
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T22:24:00+08:00">
-                2022-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-29T17:14:56+08:00">
+                2022-03-29
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/03/28/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E5%9F%BA%E4%BA%8E%E5%89%8D%E7%BC%80%E7%9A%84ORF%E5%AE%9E%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/03/29/%E5%AE%9E%E9%AA%8C/%E4%B8%89%E5%B1%82%E5%8D%8F%E8%AE%AE/BGP%E5%8D%8F%E8%AE%AE/BGP%E8%B4%9F%E8%BD%BD%E5%88%86%E6%8B%85/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/03/28/实验/三层协议/BGP协议/BGP基于前缀的ORF实例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/03/29/实验/三层协议/BGP协议/BGP负载分担/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,18 +406,19 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>如图PE1与PE2分别属于AS 100和AS 200</li>
-<li>要求PE2 的出口路由只发送符合PE1 入口策略的路由</li>
+<li>所有路由器配置BGP，Router A在AS 100，Router B、Router C在AS 300，Router D在AS 200</li>
+<li>要求：充分利用网络资源，减少Router A到8.1.1.1/32的网络阻塞</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/03/28/VO9X4cKDCSnaexP.jpg" alt="BGP基于前缀的ORF"></p>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/03/29/yRcUzhbdkgWlYq3.jpg" alt="BGP负载分担拓扑图"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>在PE1上配置基于前缀的ORF功能</li>
+<li>Router A与Router B、Router C之间配置EBGP，Router D与Router B、Router C之间配置EBGP</li>
+<li>在Router A上配置负载分担功能，使得从Router A发送的流量可以经过Router B和Router C两条路径到Router D</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>配置路由器基本功能以及各接口IP地址</p>
+<li><p>配置路由器基本功能以及各个接口IP地址</p>
 <ul>
-<li><p>PE 1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE 1	</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 111.1.1.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 1.1.1.1 32</span><br></pre></td></tr></table></figure>
+<li><p>Router A配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router A</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 200.1.1.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 200.1.2.1 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 1.1.1.1 32</span><br></pre></td></tr></table></figure>
 
 
 
@@ -426,18 +427,34 @@
 </li>
 </ol>
 <ul>
-<li><p>PE 2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys PE 2</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 111.1.1.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip ad d 2.2.2. 32</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router B</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 200.1.1.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 200.1.3.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 2.2.2.2 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router C配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router C</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 200.1.2.2 30</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ip add 200.1.4.2 30</span><br><span class="line">int LoopBack 0</span><br><span class="line">  ip add 3.3.3.3 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router D配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys Router D</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 200.1.3.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 200.1.4.1 30</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 4.4.4.4 32</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>配置EBGP连接</p>
+<li><p>配置EBGP</p>
 <ul>
-<li><p>PE 1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">  router-id 1.1.1.1</span><br><span class="line">  peer 111.1.1.2 as-number 20</span><br></pre></td></tr></table></figure>
+<li><p>Router A配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 100</span><br><span class="line">  router-id 1.1.1.1</span><br><span class="line">  peer 200.1.1.2 as-number 300</span><br><span class="line">  peer 200.1.2.2 as-number 300</span><br></pre></td></tr></table></figure>
 
 
 
@@ -446,18 +463,34 @@
 </li>
 </ol>
 <ul>
-<li><p>PE 2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 20</span><br><span class="line">  router-id 2.2.2.2</span><br><span class="line">  peer 111.1.1.1 as-numebr 10</span><br></pre></td></tr></table></figure>
+<li><p>Router B配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 300</span><br><span class="line">  router-id 2.2.2.2</span><br><span class="line">  peer 200.1.1.1 as-number 100</span><br><span class="line">  peer 200.1.3.1 as-number 200</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router C配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 300</span><br><span class="line">  router-id 3.3.3.3</span><br><span class="line">  peer 200.1.2.1 as-number 100</span><br><span class="line">  peer 200.1.4.1 as-number 200</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router D配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 200</span><br><span class="line">  router-id 4.4.4.4</span><br><span class="line">  peer 200.1.3.2 as-number 300</span><br><span class="line">  peer 200.1.4.2 as-number 300</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>宣告路由</p>
+<li><p>宣告网段</p>
 <ul>
-<li><p>PE 2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip route-static 3.3.3.3 32 NULL0</span><br><span class="line">ip route-static 4.4.4.4 32 NULL0</span><br><span class="line">ip route-static 5.5.5.5 32 NULL0</span><br><span class="line"></span><br><span class="line">bgp 20</span><br><span class="line">  import-route static</span><br></pre></td></tr></table></figure>
+<li><p>Router A配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 100</span><br><span class="line">  ipv4-family unicast</span><br><span class="line">    network 200.1.1.0 30</span><br><span class="line">    network 200.1.2.0 30</span><br></pre></td></tr></table></figure>
 
 
 
@@ -465,11 +498,35 @@
 </ul>
 </li>
 </ol>
+<ul>
+<li><p>Router B配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 300</span><br><span class="line">  ipv4-family unicast</span><br><span class="line">    network 200.1.1.0 30</span><br><span class="line">    network 200.1.3.0 30</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router C配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 300</span><br><span class="line">  ipv4-family unicast</span><br><span class="line">    network 200.1.4.0 30</span><br><span class="line">    network 200.1.2.0 30</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>Router D配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 200</span><br><span class="line">  ipv4-family unicast</span><br><span class="line">    network 200.1.3.0 30</span><br><span class="line">    network 200.1.4.0 30</span><br><span class="line">    network 8.1.1.1 32</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
 <ol start="4">
-<li><p>配置IP前缀过滤</p>
+<li><p>配置负载均衡</p>
 <ul>
-<li><p>PE 1配置前缀过滤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ip ip-prefix BGP_ORF_List permit 4.4.4.0 24 greater-equal 32</span><br><span class="line">    </span><br><span class="line">    bgp 10</span><br><span class="line">    peer 111.1.1.2 ip-prefix BGP_ORF_List import</span><br></pre></td></tr></table></figure>
+<li><p>Router A配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 100</span><br><span class="line">  ipv4-family unicast</span><br><span class="line">    maximum load-balancing 2</span><br></pre></td></tr></table></figure>
 
 
 
@@ -477,69 +534,19 @@
 </ul>
 </li>
 </ol>
-<ol start="5">
-<li><p>配置BGP ORF</p>
-<ul>
-<li><p>PE 1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgp 10</span><br><span class="line">    peer 111.1.1.2 capability-advertise orf ip-prefix both</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>PE 2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bgo 20</span><br><span class="line">    peer 111.1.1.1 capability-advertise orf ip-prefix both</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
 <h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
-<li><p>没有配置ORF之前的路由表</p>
-<ul>
-<li><p>PE 2上宣告的路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing peer 111.1.1.1 advertised-routers</span><br><span class="line"></span><br><span class="line">&lt;PE2&gt;display bgp routing peer 111.1.1.1 advertised-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 3</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path&#x2F;Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   3.3.3.3&#x2F;32         111.1.1.2       0                     0      20?</span><br><span class="line"> *&gt;   4.4.4.4&#x2F;32         111.1.1.2       0                     0      20?</span><br><span class="line"> *&gt;   5.5.5.5&#x2F;32         111.1.1.2       0                     0      20?</span><br></pre></td></tr></table></figure>
+<li><p>没有配置负载均衡前Router A的路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">display routing-table 8.1.1.1 32</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;dis bgp routing-table 8.1.1.1 32</span><br><span class="line"></span><br><span class="line"> BGP local router ID : 1.1.1.1</span><br><span class="line"> Local AS number : 100</span><br><span class="line">     &#x2F;&#x2F;一条路由被选</span><br><span class="line"> Paths:   2 available, 1 best, 1 select</span><br><span class="line"> BGP routing table entry information of 8.1.1.1&#x2F;32:</span><br><span class="line"> From: 200.1.1.2 (2.2.2.2)</span><br><span class="line"> Route Duration: 00h05m25s  </span><br><span class="line"> Direct Out-interface: GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> Original nexthop: 200.1.1.2</span><br><span class="line"> Qos information : 0x0</span><br><span class="line"> AS-path 300 200, origin igp, pref-val 0, valid, external, best, select, active,</span><br><span class="line"> pre 255</span><br><span class="line">     &#x2F;&#x2F; 两个邻居都宣告</span><br><span class="line"> Advertised to such 2 peers:</span><br><span class="line">    200.1.1.2</span><br><span class="line">    200.1.2.2</span><br><span class="line"> BGP routing table entry information of 8.1.1.1&#x2F;32:</span><br><span class="line"> From: 200.1.2.2 (3.3.3.3)</span><br><span class="line"> Route Duration: 00h05m19s  </span><br><span class="line"> Direct Out-interface: GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> Original nexthop: 200.1.2.2</span><br><span class="line"> Qos information : 0x0</span><br><span class="line"> AS-path 300 200, origin igp, pref-val 0, valid, external, pre 255, not preferre</span><br><span class="line">d for router ID</span><br><span class="line"> Not advertised to any peer yet</span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
 </li>
 </ol>
-<ul>
-<li><p>PE1 上接收到路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing-table peer 111.1.1.2 received-routers</span><br><span class="line"></span><br><span class="line">&lt;PE1&gt;display bgp routing-table peer 111.1.1.2 received-routes</span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 1.1.1.1 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 1</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path&#x2F;Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   4.4.4.4&#x2F;32         111.1.1.2       0                     0</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
 <ol start="2">
-<li><p>配置ORF之后的路由表</p>
-<ul>
-<li><p>PE 2上宣告的路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">display bgp routing peer 111.1.1.1 advertised-routers</span><br><span class="line"></span><br><span class="line">&lt;PE2&gt;dis bgp routing-table peer 111.1.1.1 advertised-routes </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 2.2.2.2 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 1</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path&#x2F;Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   4.4.4.4&#x2F;32         111.1.1.2       0                     0      20?</span><br></pre></td></tr></table></figure>
+<li><p>配置负载均衡后Router A的路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">display routing-table 8.1.1.1 32</span><br><span class="line"></span><br><span class="line">&lt;Router A&gt;dis bgp routing-table 8.1.1.1 32</span><br><span class="line"></span><br><span class="line"> BGP local router ID : 1.1.1.1</span><br><span class="line"> Local AS number : 100</span><br><span class="line"> &#x2F;&#x2F; 两条路由被选</span><br><span class="line"> Paths:   2 available, 1 best, 2 select</span><br><span class="line"> BGP routing table entry information of 8.1.1.1&#x2F;32:</span><br><span class="line"> From: 200.1.1.2 (2.2.2.2)</span><br><span class="line"> Route Duration: 00h11m45s  </span><br><span class="line"> Direct Out-interface: GigabitEthernet0&#x2F;0&#x2F;0</span><br><span class="line"> Original nexthop: 200.1.1.2</span><br><span class="line"> Qos information : 0x0</span><br><span class="line"> AS-path 300 200, origin igp, pref-val 0, valid, external, best, select, active,</span><br><span class="line"> pre 255</span><br><span class="line"> Advertised to such 2 peers:</span><br><span class="line">    200.1.1.2</span><br><span class="line">    200.1.2.2</span><br><span class="line"> BGP routing table entry information of 8.1.1.1&#x2F;32:</span><br><span class="line"> From: 200.1.2.2 (3.3.3.3)</span><br><span class="line"> Route Duration: 00h11m39s  </span><br><span class="line"> Direct Out-interface: GigabitEthernet0&#x2F;0&#x2F;1</span><br><span class="line"> Original nexthop: 200.1.2.2</span><br><span class="line"> Qos information : 0x0</span><br><span class="line"> AS-path 300 200, origin igp, pref-val 0, valid, external, select, active, pre 2</span><br><span class="line">55, not preferred for router ID</span><br><span class="line"> Not advertised to any peer yet</span><br></pre></td></tr></table></figure>
 
 
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>PE1 上接收到路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dispaly bgp routing-table peer 111.1.1.2 received-routers</span><br><span class="line"></span><br><span class="line">&lt;PE1&gt;dis bgp routing-table peer 111.1.1.2 received-routes </span><br><span class="line"></span><br><span class="line"> BGP Local router ID is 1.1.1.1 </span><br><span class="line"> Status codes: * - valid, &gt; - best, d - damped,</span><br><span class="line">               h - history,  i - internal, s - suppressed, S - Stale</span><br><span class="line">               Origin : i - IGP, e - EGP, ? - incomplete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Total Number of Routes: 1</span><br><span class="line">      Network            NextHop        MED        LocPrf    PrefVal Path&#x2F;Ogn</span><br><span class="line"></span><br><span class="line"> *&gt;   4.4.4.4&#x2F;32         111.1.1.2       0                     0      20?</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="3">
-<li><p>PE1 上查看邻居信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">display bgp peer verbose</span><br><span class="line"></span><br><span class="line">&lt;PE1&gt;dis bgp peer 111.1.1.2 verbose </span><br><span class="line"></span><br><span class="line">	BGP Peer is 111.1.1.2,  remote AS 20  </span><br><span class="line">	Type: EBGP link</span><br><span class="line">	BGP version 4, Remote router ID 2.2.2.2</span><br><span class="line">	Update-group ID: 0  </span><br><span class="line">	BGP current state: Established, Up for 00h03m48s </span><br><span class="line">	BGP current event: RecvKeepalive</span><br><span class="line">	BGP last state: OpenConfirm</span><br><span class="line">	BGP Peer Up count: 3</span><br><span class="line">	Received total routes: 1</span><br><span class="line">	Received active routes total: 1</span><br><span class="line">	Advertised total routes: 0</span><br><span class="line">	Port:  Local - 179	Remote - 50000</span><br><span class="line">	Configured: Connect-retry Time: 32 sec</span><br><span class="line">	Configured: Active Hold Time: 180 sec	Keepalive Time:60 sec</span><br><span class="line">	Received  : Active Hold Time: 180 sec</span><br><span class="line">	Negotiated: Active Hold Time: 180 sec	Keepalive Time:60 sec</span><br><span class="line">	Peer optional capabilities:</span><br><span class="line">	Peer supports bgp multi-protocol extension</span><br><span class="line">	Peer supports bgp route refresh capability</span><br><span class="line">	Peer supports bgp outbound route filter capability</span><br><span class="line"> 	</span><br><span class="line">        &#x2F;&#x2F; 基于前缀的BGP ORF协商信息</span><br><span class="line">        Support Address-Prefix: IPv4-UNC address-family, rfc-compatible, both</span><br><span class="line">	Peer supports bgp 4-byte-as capability</span><br><span class="line">	Address family IPv4 Unicast: advertised and received</span><br><span class="line"> Received: Total 7 messages</span><br><span class="line">		 Update messages 		1 </span><br><span class="line">		 Open messages 			1 </span><br><span class="line">		 KeepAlive messages 		4 </span><br><span class="line">		 Notification messages  	0 </span><br><span class="line">		 Refresh messages 		1</span><br><span class="line"> Sent: Total 7 messages</span><br><span class="line">		 Update messages 		0 </span><br><span class="line">		 Open messages 			2 </span><br><span class="line">		 KeepAlive messages 		4 </span><br><span class="line">		 Notification messages  	0 </span><br><span class="line">		 Refresh messages 		1</span><br><span class="line"> Authentication type configured: None</span><br><span class="line"> Last keepalive received: 2022&#x2F;03&#x2F;28 21:54:05 UTC-08:00    </span><br><span class="line"> Last keepalive sent    : 2022&#x2F;03&#x2F;28 21:54:04 UTC-08:00    </span><br><span class="line"> Last update    received: 2022&#x2F;03&#x2F;28 21:51:05 UTC-08:00    </span><br><span class="line"> Minimum route advertisement interval is 30 seconds</span><br><span class="line"> Optional capabilities:</span><br><span class="line"> Route refresh capability has been enabled</span><br><span class="line"> Outbound route filter capability has been enabled</span><br><span class="line">     </span><br><span class="line">     &#x2F;&#x2F; 基于前缀的BGP ORF协商信息</span><br><span class="line">     Enable Address-Prefix: IPv4-UNC address-family, rfc-compatible, both</span><br><span class="line"> 4-byte-as capability has been enabled</span><br><span class="line"> Peer Preferred Value: 0</span><br><span class="line"> Routing policy configured:</span><br><span class="line"> No import update filter list</span><br><span class="line"> No export update filter list</span><br><span class="line"> Import prefix list is: BGP_ORF_List</span><br><span class="line"> No export prefix list</span><br><span class="line"> No import route policy </span><br><span class="line"> No export route policy</span><br><span class="line"> No import distribute policy </span><br><span class="line"> No export distribute policy</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -581,7 +588,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/95/">95</a><a class="extend next" rel="next" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/27/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/96/">96</a><a class="extend next" rel="next" href="/page/29/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -626,7 +633,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -637,7 +644,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -648,7 +655,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
