@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url">
-                  园区网络架构
+                <a class="post-title-link" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" itemprop="url">
+                  交换机工作原理
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T15:21:54+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-17T17:28:44+08:00">
                 2021-04-17
               </time>
             
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/#comments" itemprop="discussionUrl">
+                <a href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2021/04/17/HCNA/交换/交换基础/园区网架构/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2021/04/17/HCNA/交换/交换基础/交换机工作原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,19 +404,16 @@
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ol>
-<li>交换机工作再数据链路层</li>
-<li>对数据帧进程操作</li>
-<li>收到数据帧后，交换机根据数据帧的头部信息，对数据帧进行转发</li>
+          <h1 id="交换机主要功能"><a href="#交换机主要功能" class="headerlink" title="交换机主要功能"></a>交换机主要功能</h1><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><p><img src="https://i.loli.net/2021/04/17/zRB8hguAD5MI7cJ.png" alt="alt 交换机主要功能"></p>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
+<li>终端设备接入</li>
+<li>以太网数据帧的交换，根据目的MAC地址转发数据帧</li>
+<li>学习MAC地址，并维护MAC地址表</li>
+<li>防止二层环路(STP)</li>
 </ol>
-<h1 id="网络分层设计"><a href="#网络分层设计" class="headerlink" title="网络分层设计"></a>网络分层设计</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
-<li><p>通过使用网络分层设计原则和条理化设计方案，设计人员可以创建易于管理和易于支持的网络</p>
-</li>
-<li><p>图示</p>
-<p><img src="https://i.loli.net/2021/04/17/dqmoCLAhJNb3GZ7.png" alt="alt 网络分层设计"></p></li></ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84/#more" rel="contents">
+            <a class="btn" href="/2021/04/17/HCNA/%E4%BA%A4%E6%8D%A2/%E4%BA%A4%E6%8D%A2%E5%9F%BA%E7%A1%80/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -457,7 +454,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/75/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><span class="page-number current">76</span><a class="page-number" href="/page/77/">77</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/77/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/75/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><span class="page-number current">76</span><a class="page-number" href="/page/77/">77</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><a class="extend next" rel="next" href="/page/77/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -502,7 +499,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -513,7 +510,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -524,7 +521,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

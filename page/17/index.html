@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/18/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/IPv6%E5%B0%8F%E5%9E%8B%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/04/18/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/IPv6%E5%B0%8F%E5%9E%8B%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/" itemprop="url">
-                  IPv6小型网络示例
+                <a class="post-title-link" href="/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/" itemprop="url">
+                  配置一个双栈网络示例
                 </a>
               
             
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-18T17:36:28+08:00">
-                2022-04-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-21T10:07:39+08:00">
+                2022-04-21
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/04/18/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/IPv6%E5%B0%8F%E5%9E%8B%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B/#comments" itemprop="discussionUrl">
+                <a href="/2022/04/21/%E5%AE%9E%E9%AA%8C/IPv6/HCIA/%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%8F%8C%E6%A0%88%E7%BD%91%E7%BB%9C/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/04/18/实验/IPv6/HCIA/IPv6小型网络配置示例/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/04/21/实验/IPv6/HCIA/配置一个双栈网络/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,24 +406,21 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>R1与R2之间使用静态IPv6地址互联</li>
-<li>R2作为DHCPv6服务器给R3的GE 0/0/0分配全球单播地址</li>
-<li>R4的GE0/0/0接口通过R2的RA进行无状态地址自动配置</li>
-<li>配置静态路由，实现各设备之前互访</li>
+<li>配置R1、R2的接口IP地址</li>
+<li>在R1、R2上分别配置OSPFv2和OSPFv3，实现PC1与PC2的双栈访问</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/18/Acf2n4wq5zVMey9.jpg" alt="IPv6小型网络配置拓扑图"></p>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/04/21/7rWNzfPCyVDJw4s.jpg" alt="配置一个双栈网络拓扑"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>在R1、R2、R3、R4全局和相关接口使能IPv6功能，同时自动生成链路本地地址（Link-Local LLA）</li>
-<li>在R1、R2相应接口配置静态IPv6全球单播地址</li>
-<li>在R2上配置DHCPv6服务器功能，R3接口通过DHCPv6方式获取全球单播地址</li>
-<li>在R2上使能发布RA报文的功能，R4通过无状态地址配置的方式获取地址</li>
-<li>配置静态路由，实现各个路由器之间互访</li>
+<li>R1、R2全局和相关接口使能IPv6功能</li>
+<li>在PC、R1、R2相应接口配置IPv4和IPv6全球单播地址</li>
+<li>在R1、R2上配置OSPFv2，PC1、PC2可以通过IPv4网络通信</li>
+<li>在R1、R2上配置OSPFv3，PC1、PC2可以通过IPv6网络通信</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
-<li><p>在全部路由器上使能IPv6，并自动生成本地链路地址</p>
+<li><p>配置R1、R2全局和接口使能IPv6功能</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"># 全局使能IPv6</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 enable</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
 
 
 
@@ -433,33 +430,17 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"># 全局使能IPv6</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R3配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line"># 全局使能IPv6</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R4配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line"># 全局使能IPv6</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ipv6 enable</span><br><span class="line">  ipv6 address auto link-local</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">ipv6</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ipv6 enable</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ipv6 enable</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>在R1、R2上配置静态IPv6全球单播地址</p>
+<li><p>在PC1、R1、R2相应接口配置IPv4和IPv6全球单播地址</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 address 2001::1&#x2F;64</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ip add 10.0.12.1 30</span><br><span class="line">  ipv6 add 2001:db8:1::1&#x2F;64</span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ip add 192.168.1.1 30</span><br><span class="line">  ipv6 add 2001:db8:2::1&#x2F;64</span><br></pre></td></tr></table></figure>
 
 
 
@@ -469,60 +450,17 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;0</span><br><span class="line">  ipv6 address 2001::2&#x2F;64</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.0</span><span class="number">.12</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line">  ipv6 add <span class="number">2001</span>:db8:<span class="number">1</span>::<span class="number">2</span>/<span class="number">64</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">192.168</span><span class="number">.2</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line">  ipv6 add <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">1</span>/<span class="number">64</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>在R2上配置DHCPv6服务器，R3上配置DHCP Client</p>
-<ul>
-<li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">dhcp</span><br><span class="line">dhcpv6 pool ipv6_pool</span><br><span class="line">  address prefix 2002::</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  dhcpv6 server ipv6_pool</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>R3配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">dhcp</span><br><span class="line"></span><br><span class="line">int g0&#x2F;0&#x2F;1</span><br><span class="line">  ipv6 address auto dhcp</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="4">
-<li><p>在R2上配置NDP协议的RA，R4上配置自动全球单播</p>
-<ul>
-<li><p>R2配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  undo ipv6 nd ra halt</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>R4配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">int g0&#x2F;0&#x2F;2</span><br><span class="line">  ipv6 address auto global</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ol start="5">
-<li><p>配置静态路由，实现路由器之间互联互通</p>
+<li><p>在R1、R2上配置OSPFv2、OSPFv3，使得网络互通</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">&#x2F;&#x2F; 配置静态路由，聚合后的地址</span><br><span class="line">ipv6 route-static 2002:: 15 2001::2C</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>R3配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">&#x2F;&#x2F; 配置默认路由</span><br><span class="line">ipv6 route-static :: 0 2002::1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf router-id <span class="number">10.0</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.0</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">192.168</span><span class="number">.1</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line">ospfv3</span><br><span class="line">  router-id <span class="number">10.0</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -531,24 +469,24 @@
 </li>
 </ol>
 <ul>
-<li><p>R4配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ipv6 route-static 2001:: 64 2003::1</span><br><span class="line">ipv6 route-static 2002:: 64 2003::1</span><br></pre></td></tr></table></figure>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf router-id <span class="number">10.0</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.0</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">192.168</span><span class="number">.2</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line">ospfv3</span><br><span class="line">  router-id <span class="number">10.0</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ospfv3 <span class="number">1</span> area <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<h2 id="结果查看"><a href="#结果查看" class="headerlink" title="结果查看"></a>结果查看</h2><ol>
-<li><p>查看接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">display ipv6 interface g0&#x2F;0&#x2F;0</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis ipv6 interface g0&#x2F;0&#x2F;0</span><br><span class="line">GigabitEthernet0&#x2F;0&#x2F;0 current state : UP </span><br><span class="line">IPv6 protocol current state : UP</span><br><span class="line">IPv6 is enabled, link-local address is FE80::2E0:FCFF:FEB8:14E0</span><br><span class="line">  Global unicast address(es):</span><br><span class="line">    2001::1, subnet is 2001::&#x2F;64</span><br><span class="line">  Joined group address(es):</span><br><span class="line">    FF02::1:FF00:1</span><br><span class="line">    FF02::2</span><br><span class="line">    FF02::1</span><br><span class="line">    FF02::1:FFB8:14E0</span><br><span class="line">  MTU is 1500 bytes</span><br><span class="line">  ND DAD is enabled, number of DAD attempts: 1</span><br><span class="line">  ND reachable time is 30000 milliseconds</span><br><span class="line">  ND retransmit interval is 1000 milliseconds</span><br><span class="line">  Hosts use stateless autoconfig for addresses</span><br></pre></td></tr></table></figure>
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
+<li><p>PC1 ping PC2（IPv4网络）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line">PC&gt;ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line">Ping <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: <span class="number">32</span> data bytes, Press Ctrl_C to <span class="keyword">break</span></span><br><span class="line">Request timeout!</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">2</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">3</span> ttl=<span class="number">126</span> time=<span class="number">15</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">4</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span>: bytes=<span class="number">32</span> seq=<span class="number">5</span> ttl=<span class="number">126</span> time=<span class="number">16</span> ms</span><br><span class="line"></span><br><span class="line">--- <span class="number">192.168</span><span class="number">.2</span><span class="number">.2</span> ping statistics ---</span><br><span class="line">  <span class="number">5</span> packet(s) transmitted</span><br><span class="line">  <span class="number">4</span> packet(s) received</span><br><span class="line">  <span class="number">20.00</span>% packet loss</span><br><span class="line">  round-trip min/avg/max = <span class="number">0</span>/<span class="number">15</span>/<span class="number">16</span> ms</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>查看路由表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">display ipv6 routing-table</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; R1的路由表</span><br><span class="line">&lt;R1&gt;dis ipv6 routing-table </span><br><span class="line">Routing Table : Public</span><br><span class="line">	Destinations : 5	Routes : 5</span><br><span class="line"></span><br><span class="line"> Destination  : ::1                             PrefixLength : 128</span><br><span class="line"> NextHop      : ::1                             Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : InLoopBack0                     Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : 2001::                          PrefixLength : 64</span><br><span class="line"> NextHop      : 2001::1                         Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;0            Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : 2001::1                         PrefixLength : 128</span><br><span class="line"> NextHop      : ::1                             Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;0            Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : 2002::                          PrefixLength : 15</span><br><span class="line"> NextHop      : 2001::2                         Preference   : 60</span><br><span class="line"> Cost         : 0                               Protocol     : Static</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;0            Flags        : RD</span><br><span class="line"></span><br><span class="line"> Destination  : FE80::                          PrefixLength : 10</span><br><span class="line"> NextHop      : ::                              Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : NULL0                           Flags        : D</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; R4的路由表</span><br><span class="line">&lt;R4&gt;dis ipv6 routing-table </span><br><span class="line">Routing Table : Public</span><br><span class="line">	Destinations : 6	Routes : 6</span><br><span class="line"></span><br><span class="line"> Destination  : ::1                             PrefixLength : 128</span><br><span class="line"> NextHop      : ::1                             Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : InLoopBack0                     Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : 2001::                          PrefixLength : 64</span><br><span class="line"> NextHop      : 2003::1                         Preference   : 60</span><br><span class="line"> Cost         : 0                               Protocol     : Static</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;2            Flags        : RD</span><br><span class="line"></span><br><span class="line"> Destination  : 2002::                          PrefixLength : 64</span><br><span class="line"> NextHop      : 2003::1                         Preference   : 60</span><br><span class="line"> Cost         : 0                               Protocol     : Static</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;2            Flags        : RD</span><br><span class="line"></span><br><span class="line"> Destination  : 2003::                          PrefixLength : 64</span><br><span class="line"> NextHop      : 2003::2E0:FCFF:FE0B:6062        Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;2            Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : 2003::2E0:FCFF:FE0B:6062        PrefixLength : 128</span><br><span class="line"> NextHop      : ::1                             Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : GigabitEthernet0&#x2F;0&#x2F;2            Flags        : D</span><br><span class="line"></span><br><span class="line"> Destination  : FE80::                          PrefixLength : 10</span><br><span class="line"> NextHop      : ::                              Preference   : 0</span><br><span class="line"> Cost         : 0                               Protocol     : Direct</span><br><span class="line"> RelayNextHop : ::                              TunnelID     : 0x0</span><br><span class="line"> Interface    : NULL0                           Flags        : D</span><br></pre></td></tr></table></figure>
+<li><p>PC1 ping PC2（IPv6网络）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span></span><br><span class="line"></span><br><span class="line">PC&gt;ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span></span><br><span class="line"></span><br><span class="line">Ping <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: <span class="number">32</span> data bytes, Press Ctrl_C to <span class="keyword">break</span></span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">1</span> hop limit=<span class="number">253</span> time=<span class="number">31</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">2</span> hop limit=<span class="number">253</span> time=<span class="number">32</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">3</span> hop limit=<span class="number">253</span> time=<span class="number">15</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">4</span> hop limit=<span class="number">253</span> time=<span class="number">16</span> ms</span><br><span class="line">From <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span>: bytes=<span class="number">32</span> seq=<span class="number">5</span> hop limit=<span class="number">253</span> time=<span class="number">16</span> ms</span><br><span class="line"></span><br><span class="line">--- <span class="number">2001</span>:db8:<span class="number">3</span>::<span class="number">2</span> ping statistics ---</span><br><span class="line">  <span class="number">5</span> packet(s) transmitted</span><br><span class="line">  <span class="number">5</span> packet(s) received</span><br><span class="line">  <span class="number">0.00</span>% packet loss</span><br><span class="line">  round-trip min/avg/max = <span class="number">15</span>/<span class="number">22</span>/<span class="number">32</span> ms</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -590,7 +528,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/18/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/16/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><a class="extend next" rel="next" href="/page/18/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -635,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -646,7 +584,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -657,7 +595,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

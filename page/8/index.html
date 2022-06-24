@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E4%B8%8EBFD%E8%81%94%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://myblog.wuchao.space/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E6%99%BA%E8%83%BD%E5%AE%9A%E6%97%B6%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴超">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E4%B8%8EBFD%E8%81%94%E5%8A%A8/" itemprop="url">
-                  OSPF FRR BFD联动示例
+                <a class="post-title-link" href="/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E6%99%BA%E8%83%BD%E5%AE%9A%E6%97%B6%E5%99%A8/" itemprop="url">
+                  OSPF智能定时器示例
                 </a>
               
             
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-02T11:23:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-02T11:24:08+08:00">
                 2022-06-02
               </time>
             
@@ -386,9 +386,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E4%B8%8EBFD%E8%81%94%E5%8A%A8/#comments" itemprop="discussionUrl">
+                <a href="/2022/06/02/Datacom/IGP%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/OSPF%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B/OSPF%E6%99%BA%E8%83%BD%E5%AE%9A%E6%97%B6%E5%99%A8/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2022/06/02/Datacom/IGP高级特性/OSPF快速收敛/OSPF与BFD联动/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2022/06/02/Datacom/IGP高级特性/OSPF快速收敛/OSPF智能定时器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -417,21 +417,23 @@
         
           
             <h2 id="组网需求"><a href="#组网需求" class="headerlink" title="组网需求"></a>组网需求</h2><ol>
-<li>快速感知OSPF的链路中断</li>
-<li>快速将路由切换到备份链路</li>
+<li>为了提高网络HA能力，实现OSPF路由协议的快速收敛</li>
+<li>OSPF协议在SPF计算、产生LSA以及接收LSA时使用智能定时器，以达到路由的快速收敛</li>
 </ol>
-<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/05/13/4vTizpnCAUEhsrw.jpg" alt="OSPF  FRR BFD联动拓扑图"></p>
+<h2 id="组网拓扑"><a href="#组网拓扑" class="headerlink" title="组网拓扑"></a>组网拓扑</h2><p><img src="https://s2.loli.net/2022/05/11/zUd3AqHXQtBkFOc.jpg" alt="OSPF-快速收敛-智能定时器"></p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
 <li>配置路由器基本功能以及各个接口IP地址</li>
-<li>配置OSPF协议，宣告路由，设置各个接口Cost值</li>
-<li>在R1上使能OSPF IP FRR功能</li>
-<li>在R1与R3的链路之间配置BFD</li>
+<li>配置OSPF路由协议以及宣告路由</li>
+<li>查看未配置智能定时器时，OSPF路由协议SPF计算、LSA发布以及接收的状态</li>
+<li>配置智能定时器，控制LSA发布的时间间隔</li>
+<li>配置智能定时器，控制LSA接收的时间间隔</li>
+<li>配置智能定时器，控制SPF计算的时间间隔</li>
 </ol>
 <h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><ol>
 <li><p>配置路由器基本功能以及各个接口IP地址</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.13</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.12</span><span class="number">.1</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> LoopBack <span class="number">0</span></span><br><span class="line">  ip add <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span> <span class="number">32</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -441,33 +443,17 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.12</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.23</span><span class="number">.2</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R3配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R3</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.13</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.34</span><span class="number">.1</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.23</span><span class="number">.1</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R4配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R4</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ip add <span class="number">10.1</span><span class="number">.1</span><span class="number">.2</span> <span class="number">30</span></span><br><span class="line"><span class="keyword">int</span> LoopBack <span class="number">0</span></span><br><span class="line">  ip add <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span> <span class="number">32</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="2">
-<li><p>配置OSPF协议，宣告路由，设置各个接口Cost值</p>
+<li><p>配置OSPF路由协议以及宣告路由</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.13</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">    ospf cost <span class="number">10</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">    ospf cost <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.1</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span>..<span class="number">3</span></span><br><span class="line">    network <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -477,40 +463,17 @@
 </ol>
 <ul>
 <li><p>R2配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">10.1</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.23</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.12</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">    ospf cost <span class="number">10</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">    ospf cost <span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R3配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">10.1</span><span class="number">.3</span><span class="number">.3</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.13</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.23</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.34</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">    ospf cost <span class="number">10</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">    ospf cost <span class="number">5</span></span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">2</span></span><br><span class="line">    ospf cost <span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>R4配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">10.1</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.34</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">    ospf cost <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span> router-id <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line">  area <span class="number">0</span></span><br><span class="line">    network <span class="number">10.1</span><span class="number">.1</span><span class="number">.0</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.3</span></span><br><span class="line">    network <span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
 <ol start="3">
-<li><p>配置OSPF IP FRR</p>
+<li><p>配置智能定时器，控制LSA发布的时间间隔</p>
 <ul>
 <li><p>R1配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  frr</span><br><span class="line">    loop-free-alternate</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>配置OSPF与BFD联动</p>
-<ul>
-<li><p>R1配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  bfd all-interfaces enable</span><br><span class="line">  bfd all-interfaces min-rx-interaval <span class="number">100</span> min-tx-interval <span class="number">100</span> detect-multicast <span class="number">4</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospf bfd enable</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  lsa-originate-interval intelligent-timer <span class="number">3000</span> <span class="number">300</span> <span class="number">1500</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -519,47 +482,67 @@
 </li>
 </ol>
 <ul>
-<li><p>R3配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">bfd</span><br><span class="line">q</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  bfd all-interfaces enable</span><br><span class="line">  bfd all-interfaces min-rx-interaval <span class="number">100</span> min-tx-interval <span class="number">100</span> detect-multicast <span class="number">4</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> g0/<span class="number">0</span>/<span class="number">0</span></span><br><span class="line">  ospf bfd enable</span><br></pre></td></tr></table></figure>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  lsa-originate-interval intelligent-timer <span class="number">3000</span> <span class="number">300</span> <span class="number">1500</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<h2 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h2><ol>
-<li><p>查看BFD会话状态</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">display bfd session all</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis bfd session all</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Local Remote     PeerIpAddr      State     Type        InterfaceName            </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">8193</span>  <span class="number">0</span>          <span class="number">10.1</span><span class="number">.12</span><span class="number">.2</span>       Down      D_IP_IF     GigabitEthernet0/<span class="number">0</span>/<span class="number">1</span>     </span><br><span class="line"><span class="number">8196</span>  <span class="number">8196</span>       <span class="number">10.1</span><span class="number">.13</span><span class="number">.2</span>       Up        D_IP_IF     GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>     </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">     Total UP/DOWN Session Number : <span class="number">1</span>/<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>配置智能定时器，控制LSA接收的时间间隔</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  lsa-arrival-interval intelligent-timer <span class="number">3000</span> <span class="number">300</span> <span class="number">1500</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  lsa-arrival-interval intelligent-timer <span class="number">3000</span> <span class="number">300</span> <span class="number">1500</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ol start="5">
+<li><p>配置智能定时器，控制SPF计算的时间间隔</p>
+<ul>
+<li><p>R1配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf 1</span><br><span class="line">  spf-schedule-intelval intelligent 3000 300 1500</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>R2配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line"></span><br><span class="line">ospf <span class="number">1</span></span><br><span class="line">  spf-schedult-interval intelligent <span class="number">3000</span> <span class="number">300</span> <span class="number">1500</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><ol>
+<li><p>查看OSPF默认情况下，智能定时器参数值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">display ospf brief | include Spf</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;display ospf brief | include Spf</span><br><span class="line"></span><br><span class="line">	 OSPF Process <span class="number">1</span> with Router ID <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">		 OSPF Protocol Information</span><br><span class="line"></span><br><span class="line"> Spf-schedule-interval: max <span class="number">10000</span>ms, start <span class="number">500</span>ms, hold <span class="number">1000</span>ms</span><br><span class="line"> </span><br><span class="line"> Area: <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>          (MPLS TE not enabled)</span><br><span class="line"></span><br><span class="line"> Interface: <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span> (GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"> Interface: <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span> (LoopBack0)</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
 <ol start="2">
-<li><p>查看OSPF与BFD联动的会话状态</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">display ospf bfd session all</span><br><span class="line"></span><br><span class="line">&lt;R1&gt;dis ospf bfd session all</span><br><span class="line"></span><br><span class="line">	 OSPF Process <span class="number">1</span> with Router ID <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">  Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span> <span class="class"><span class="keyword">interface</span> 10.1.13.1(<span class="title">GigabitEthernet0</span>/0/0)'<span class="title">s</span> <span class="title">BFD</span> <span class="title">Sessions</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"> NeighborId:10.1.3.3         AreaId:0.0.0.0          Interface:GigabitEthernet0/</span><br><span class="line"><span class="number">0</span>/<span class="number">0</span></span><br><span class="line"> BFDState:up                 rx    :<span class="number">1000</span>             tx       :<span class="number">1000</span>          </span><br><span class="line"> Multiplier:<span class="number">3</span>                BFD Local Dis:<span class="number">8196</span>      LocalIpAdd:<span class="number">10.1</span><span class="number">.13</span><span class="number">.1</span></span><br><span class="line"> RemoteIpAdd:<span class="number">10.1</span><span class="number">.13</span><span class="number">.2</span>       Diagnostic Info:No diagnostic information</span><br><span class="line"></span><br><span class="line">  Area <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span> <span class="class"><span class="keyword">interface</span> 10.1.12.1(<span class="title">GigabitEthernet0</span>/0/1)'<span class="title">s</span> <span class="title">BFD</span> <span class="title">Sessions</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"> NeighborId:10.1.2.2         AreaId:0.0.0.0          Interface:GigabitEthernet0/</span><br><span class="line"><span class="number">0</span>/<span class="number">1</span></span><br><span class="line"> BFDState:down               rx    :<span class="number">11999</span>            tx       :<span class="number">11999</span>         </span><br><span class="line"> Multiplier:<span class="number">0</span>                BFD Local Dis:<span class="number">8193</span>      LocalIpAdd:<span class="number">10.1</span><span class="number">.12</span><span class="number">.1</span></span><br><span class="line"> RemoteIpAdd:<span class="number">10.1</span><span class="number">.12</span><span class="number">.2</span>       Diagnostic Info:No diagnostic information</span><br></pre></td></tr></table></figure>
-
-
+<li><p>查看配置SPF计算间隔时间后OSPF 参数值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;display ospf brief | include Spf</span><br><span class="line"></span><br><span class="line">	 OSPF Process <span class="number">1</span> with Router ID <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">		 OSPF Protocol Information</span><br><span class="line"></span><br><span class="line"> Spf-schedule-interval: max <span class="number">3000</span>ms, start <span class="number">300</span>ms, hold <span class="number">1500</span>ms</span><br><span class="line"> </span><br><span class="line"> Area: <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>          (MPLS TE not enabled)</span><br><span class="line"></span><br><span class="line"> Interface: <span class="number">10.1</span><span class="number">.1</span><span class="number">.1</span> (GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"> Interface: <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span> (LoopBack0)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<ol start="3">
-<li><p>当链路中断，BFD快速感知，并由FRR切换到备用链路</p>
-<ul>
-<li><p>中断前，路由使用主链路</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;tracert <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line"> traceroute to  <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span>(<span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span>), max hops: <span class="number">30</span> ,packet length: <span class="number">40</span>,press CTRL</span><br><span class="line">_C to <span class="keyword">break</span> </span><br><span class="line"></span><br><span class="line"> <span class="number">1</span> <span class="number">10.1</span><span class="number">.13</span><span class="number">.2</span> <span class="number">20</span> ms  <span class="number">30</span> ms  <span class="number">10</span> ms </span><br><span class="line"></span><br><span class="line"> <span class="number">2</span> <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span> <span class="number">20</span> ms  <span class="number">30</span> ms  <span class="number">20</span> ms</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>链路中断，BFD快速感知，FRR切换到备用链路</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">May <span class="number">13</span> <span class="number">2022</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">09</span>-<span class="number">08</span>:<span class="number">00</span> R1 %%<span class="number">01</span>BFD/<span class="number">4</span>/STACHG_TODWN(l)[<span class="number">0</span>]:BFD session changed t</span><br><span class="line">o Down. (SlotNumber=<span class="number">0</span>, Discriminator=<span class="number">69206016</span>, Diagnostic=DetectDown, Applicatio</span><br><span class="line">ns=OSPF, ProcessPST=False, BindInterfaceName=GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>, InterfacePhys</span><br><span class="line">icalState=Up, InterfaceProtocolState=Up) </span><br><span class="line">&lt;R1&gt;</span><br><span class="line">May <span class="number">13</span> <span class="number">2022</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">09</span>-<span class="number">08</span>:<span class="number">00</span> R1 %%<span class="number">01</span>OSPF/<span class="number">3</span>/NBR_CHG_DOWN(l)[<span class="number">1</span>]:Neighbor event:neigh</span><br><span class="line">bor state changed to Down. (ProcessId=<span class="number">256</span>, NeighborAddress=<span class="number">3.3</span><span class="number">.1</span><span class="number">.10</span>, NeighborEve</span><br><span class="line">nt=KillNbr, NeighborPreviousState=Full, NeighborCurrentState=Down) </span><br><span class="line">&lt;R1&gt;</span><br><span class="line">May <span class="number">13</span> <span class="number">2022</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">09</span>-<span class="number">08</span>:<span class="number">00</span> R1 %%<span class="number">01</span>OSPF/<span class="number">3</span>/NBR_DOWN_REASON(l)[<span class="number">2</span>]:Neighbor state le</span><br><span class="line">aves full or changed to Down. (ProcessId=<span class="number">256</span>, NeighborRouterId=<span class="number">3.3</span><span class="number">.1</span><span class="number">.10</span>, Neighbo</span><br><span class="line">rAreaId=<span class="number">0</span>, NeighborInterface=GigabitEthernet0/<span class="number">0</span>/<span class="number">0</span>,NeighborDownImmediate reason=N</span><br><span class="line">eighbor Down Due to Kill Neighbor, NeighborDownPrimeReason=BFD Session Down, Nei</span><br><span class="line">ghborChangeTime=<span class="number">2022</span>-<span class="number">05</span>-<span class="number">13</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">09</span>-<span class="number">08</span>:<span class="number">00</span>) </span><br><span class="line">&lt;R1&gt;</span><br><span class="line">May <span class="number">13</span> <span class="number">2022</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">11</span>-<span class="number">08</span>:<span class="number">00</span> R1 %%<span class="number">01</span>IFPDT/<span class="number">4</span>/IF_STATE(l)[<span class="number">3</span>]:Interface GigabitEthern</span><br><span class="line">et0/<span class="number">0</span>/<span class="number">0</span> has turned into DOWN state.</span><br><span class="line">&lt;R1&gt;</span><br><span class="line">May <span class="number">13</span> <span class="number">2022</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">11</span>-<span class="number">08</span>:<span class="number">00</span> R1 %%<span class="number">01</span>IFNET/<span class="number">4</span>/LINK_STATE(l)[<span class="number">4</span>]:The line protocol IP </span><br><span class="line">on the <span class="class"><span class="keyword">interface</span> <span class="title">GigabitEthernet0</span>/0/0 <span class="title">has</span> <span class="title">entered</span> <span class="title">the</span> <span class="title">DOWN</span> <span class="title">state</span>. </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">// 链路切换到备用</span></span><br><span class="line"><span class="class">&lt;<span class="title">R1</span>&gt;<span class="title">tracert</span> 10.1.34.2</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"> traceroute to  10.1.34.2(10.1.34.2), max hops: 30 ,packet length: 40,press CTRL</span><br><span class="line">_C to <span class="keyword">break</span> </span><br><span class="line"></span><br><span class="line"> <span class="number">1</span> <span class="number">10.1</span><span class="number">.12</span><span class="number">.2</span> <span class="number">20</span> ms  <span class="number">20</span> ms  <span class="number">30</span> ms </span><br><span class="line"></span><br><span class="line"> <span class="number">2</span> <span class="number">10.1</span><span class="number">.23</span><span class="number">.1</span> <span class="number">40</span> ms  <span class="number">20</span> ms  <span class="number">20</span> ms </span><br><span class="line"></span><br><span class="line"> <span class="number">3</span> <span class="number">10.1</span><span class="number">.34</span><span class="number">.2</span> <span class="number">40</span> ms  <span class="number">40</span> ms  <span class="number">40</span> ms</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
 
           
         
@@ -598,7 +581,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/97/">97</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/98/">98</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -643,7 +626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -654,7 +637,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -665,7 +648,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
